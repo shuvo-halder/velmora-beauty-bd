@@ -1,0 +1,814 @@
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { SmartImage } from '../common/SmartImage';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useStorefront } from '../../context/StorefrontContext';
+import { useAuth } from '../../context/AuthContext';
+import { useSettings } from '../../context/SettingsContext';
+import { useCart } from '../../hooks/useCart';
+import { storefrontApi } from '../../services/storefrontApi';
+import { checkoutSchema, CheckoutFormData } from '../../types/checkout';
+import { QuantitySelector } from './QuantitySelector';
+import { AddressForm } from '../checkout/AddressForm';
+import { PaymentStep } from '../checkout/PaymentStep';
+import { 
+  trackGA4BeginCheckout, 
+  trackGA4AddShippingInfo,
+  trackGA4AddPaymentInfo
+} from '../../utils/analytics';
+import { formatPrice } from '../../utils/formatters';
+import { 
+  ArrowLeft, 
+  Loader2, 
+  ShieldCheck, 
+  ShieldAlert,
+  ShoppingBag,
+  Trash2,
+  Tag,
+  AlertCircle
+} from 'lucide-react';
+
+export const CheckoutPage: React.FC = () => {
+  const { navigateTo, notifyError, notifySuccess } = useStorefront();
+  const { user } = useAuth();
+  const { settings } = useSettings();
+
+  const currency = settings?.general?.currency || 'BDT';
+  const currencySymbol = settings?.general?.currencySymbol || (currency === 'BDT' ? '৳' : '৳');
+  const freeShippingThreshold = settings?.shipping?.freeShippingThreshold ?? 3000;
+
+  const { 
+    cart, 
+    isLoading: isCartLoading, 
+    updateQuantity,
+    isUpdatingQuantity,
+    removeCartItem,
+    availableCoupons,
+    applyCoupon,
+    removeCoupon,
+    isRemovingCoupon,
+    clearCart
+  } = useCart();
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [serverError, setServerError] = useState<string | null>(null);
+
+  const [localCoupon, setLocalCoupon] = useState('');
+  const [isCouponExpanded, setIsCouponExpanded] = useState(false);
+
+  const [isSessionLoading, setIsSessionLoading] = useState(false);
+  const [sessionError, setSessionError] = useState<string | null>(null);
+
+  const [checkoutSession, setCheckoutSession] = useState<{
+    subtotal: number;
+    discount: number;
+    shippingFee: number;
+    tax: number;
+    totalAmount: number;
+  } | null>(null);
+
+  const trackedBeginCheckoutKeyRef = React.useRef<string | null>(null);
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    formState: { errors },
+  } = useForm<CheckoutFormData>({
+    resolver: zodResolver(checkoutSchema),
+    defaultValues: {
+      customer: {
+        email: user?.email || '',
+        firstName: user?.fullName?.split(' ')[0] || '',
+        lastName: user?.fullName?.split(' ').slice(1).join(' ') || '',
+        phone: user?.phone || '',
+      },
+      shippingAddress: {
+        fullName: user?.fullName || '',
+        email: user?.email || '',
+        phone: user?.phone || '',
+        addressLine1: '',
+        city: '',
+        state: '',
+        postalCode: '',
+        country: 'Bangladesh',
+      },
+      billingAddress: {
+        sameAsShipping: false, // Billing address fields are visible and unchecked by default
+        fullName: user?.fullName || '',
+        email: user?.email || '',
+        phone: user?.phone || '',
+        addressLine1: '',
+        city: '',
+        state: '',
+        postalCode: '',
+        country: 'Bangladesh',
+      },
+      shippingMethod: 'standard',
+      paymentMethod: 'cod',
+      couponCode: cart.appliedCoupon || '',
+      orderNotes: '',
+    },
+  });
+
+  const sameAsShipping = watch('billingAddress.sameAsShipping');
+  const shippingAddress = watch('shippingAddress');
+  const watchedCoupon = watch('couponCode');
+
+  const hasEnteredAddress = Boolean(
+    shippingAddress && (
+      (shippingAddress.city && shippingAddress.city.trim().length > 0) ||
+      (shippingAddress.state && shippingAddress.state.trim().length > 0) ||
+      (shippingAddress.addressLine1 && shippingAddress.addressLine1.trim().length > 0)
+    )
+  );
+
+  const fetchSession = React.useCallback(async () => {
+    if (cart.items.length === 0) {
+      setCheckoutSession(null);
+      setIsSessionLoading(false);
+      setSessionError(null);
+      return;
+    }
+
+    setIsSessionLoading(true);
+    setSessionError(null);
+
+    try {
+      const payload: any = {
+        couponCode: cart.appliedCoupon || watchedCoupon || undefined,
+      };
+
+      if (hasEnteredAddress) {
+        payload.shippingAddress = {
+          address1: shippingAddress.addressLine1 || '',
+          city: shippingAddress.city || '',
+          state: shippingAddress.state || '',
+          postalCode: shippingAddress.postalCode || '',
+          country: shippingAddress.country || 'Bangladesh'
+        };
+      }
+
+      const sess = await storefrontApi.getCheckoutSession(payload);
+      if (sess && typeof sess.shippingFee === 'number') {
+        setCheckoutSession(sess);
+      }
+    } catch (err: any) {
+      setSessionError('Unable to calculate shipping. Please check your delivery address and try again.');
+    } finally {
+      setIsSessionLoading(false);
+    }
+  }, [
+    cart.items.length, 
+    cart.appliedCoupon, 
+    watchedCoupon,
+    hasEnteredAddress,
+    shippingAddress?.addressLine1, 
+    shippingAddress?.city, 
+    shippingAddress?.state,
+    shippingAddress?.postalCode,
+    shippingAddress?.country
+  ]);
+
+  useEffect(() => {
+    fetchSession();
+  }, [fetchSession]);
+
+  const netSubtotal = Math.max(0, cart.subtotal - cart.discount);
+  const isFreeShipping = cart.subtotal >= freeShippingThreshold || (checkoutSession && checkoutSession.shippingFee === 0);
+
+  const rawTaxRate = settings?.tax?.enableTax || settings?.tax?.taxEnabled
+    ? (settings?.tax?.taxRate ?? settings?.tax?.defaultTaxRate ?? 0)
+    : 0;
+  const taxFraction = rawTaxRate > 1 ? rawTaxRate / 100 : rawTaxRate;
+  const taxPercentDisplay = Math.round(taxFraction * 100);
+
+  // Authoritative shipping calculation: Derived strictly from backend response
+  const effectiveShippingFee = checkoutSession
+    ? checkoutSession.shippingFee
+    : (isFreeShipping ? 0 : (cart.shippingFee ?? 0));
+
+  // Authoritative tax calculation: Derived strictly from backend response or settings
+  const effectiveTax = checkoutSession
+    ? checkoutSession.tax
+    : (cart.estimatedTax !== undefined ? cart.estimatedTax : netSubtotal * taxFraction);
+
+  // Authoritative grand total: Derived strictly from backend response or consistent sum
+  const effectiveTotal = checkoutSession
+    ? checkoutSession.totalAmount
+    : (cart.total > 0 ? cart.total : netSubtotal + (isFreeShipping ? 0 : effectiveShippingFee) + effectiveTax);
+
+  // Pre-fill logged in user info (customer fields and basic contact info)
+  useEffect(() => {
+    if (user) {
+      setValue('customer.email', user.email || '');
+      const parts = (user.fullName || '').split(' ');
+      setValue('customer.firstName', parts[0] || '');
+      setValue('customer.lastName', parts.slice(1).join(' ') || '');
+      setValue('customer.phone', user.phone || '');
+
+      // Pre-fill shipping/billing address basic contact if currently empty
+      if (!watch('shippingAddress.fullName')) {
+        setValue('shippingAddress.fullName', user.fullName || '');
+      }
+      if (!watch('shippingAddress.email')) {
+        setValue('shippingAddress.email', user.email || '');
+      }
+      if (!watch('shippingAddress.phone')) {
+        setValue('shippingAddress.phone', user.phone || '');
+      }
+      if (!watch('billingAddress.fullName')) {
+        setValue('billingAddress.fullName', user.fullName || '');
+      }
+      if (!watch('billingAddress.email')) {
+        setValue('billingAddress.email', user.email || '');
+      }
+      if (!watch('billingAddress.phone')) {
+        setValue('billingAddress.phone', user.phone || '');
+      }
+    }
+  }, [user, setValue, watch]);
+
+  // Auto-fill saved default address for authenticated users
+  useEffect(() => {
+    if (user) {
+      storefrontApi.getAddresses().then((addresses) => {
+        if (addresses && addresses.length > 0) {
+          const defaultAddr = addresses.find(a => a.isDefault) || addresses[0];
+          if (defaultAddr) {
+            setValue('shippingAddress.fullName', defaultAddr.fullName || user.fullName || '');
+            if (defaultAddr.email || user.email) setValue('shippingAddress.email', defaultAddr.email || user.email || '');
+            if (defaultAddr.phone || user.phone) setValue('shippingAddress.phone', defaultAddr.phone || user.phone || '');
+            if (defaultAddr.address1) setValue('shippingAddress.addressLine1', defaultAddr.address1);
+            if (defaultAddr.city) setValue('shippingAddress.city', defaultAddr.city);
+            if (defaultAddr.state) setValue('shippingAddress.state', defaultAddr.state);
+            if (defaultAddr.postalCode) setValue('shippingAddress.postalCode', defaultAddr.postalCode);
+            setValue('shippingAddress.country', defaultAddr.country || 'Bangladesh');
+          }
+        }
+      }).catch(() => {
+        // Silent error handling
+      });
+    }
+  }, [user, setValue]);
+
+  // Synchronize billing address with shipping address if 'sameAsShipping' is checked
+  useEffect(() => {
+    if (sameAsShipping) {
+      setValue('billingAddress.fullName', shippingAddress.fullName || '');
+      setValue('billingAddress.email', shippingAddress.email || '');
+      setValue('billingAddress.phone', shippingAddress.phone || '');
+      setValue('billingAddress.addressLine1', shippingAddress.addressLine1 || '');
+      setValue('billingAddress.city', shippingAddress.city || '');
+      setValue('billingAddress.state', shippingAddress.state || '');
+      setValue('billingAddress.postalCode', shippingAddress.postalCode || '');
+      setValue('billingAddress.country', shippingAddress.country || 'Bangladesh');
+    }
+  }, [sameAsShipping, shippingAddress, setValue]);
+
+  // Sync applied coupon to form
+  useEffect(() => {
+    if (cart.appliedCoupon) {
+      setValue('couponCode', cart.appliedCoupon);
+    }
+  }, [cart.appliedCoupon, setValue]);
+
+  // GA4 begin_checkout
+  useEffect(() => {
+    if (cart.items.length > 0) {
+      const couponCode = cart.appliedCoupon || watch('couponCode');
+      const beginCheckoutKey = `begin_checkout_${cart.items.map(i => `${i.id}_${i.quantity}`).join(',')}_${cart.total}_${couponCode || ''}`;
+      
+      if (trackedBeginCheckoutKeyRef.current !== beginCheckoutKey) {
+        trackedBeginCheckoutKeyRef.current = beginCheckoutKey;
+        trackGA4BeginCheckout(cart.items, cart.total, currency, couponCode);
+      }
+    }
+  }, [cart.items, cart.total, cart.appliedCoupon, currency, watch]);
+
+  const handleApplyCoupon = async () => {
+    if (!localCoupon.trim()) {
+      notifyError(new Error('Please enter a coupon code'), 'Empty Coupon');
+      return;
+    }
+    try {
+      await applyCoupon(localCoupon);
+      setLocalCoupon('');
+      fetchSession();
+    } catch {
+      // Error handled by hook
+    }
+  };
+
+  const handleRemoveCoupon = async () => {
+    try {
+      await removeCoupon();
+      setLocalCoupon('');
+      setValue('couponCode', '');
+      fetchSession();
+    } catch {
+      // Handled by hook
+    }
+  };
+
+  const onPlaceOrder: SubmitHandler<CheckoutFormData> = async (data) => {
+    if (isSubmitting) return; // Prevent double submission
+    setIsSubmitting(true);
+    setServerError(null);
+
+    try {
+      // Sync shipping contact info to customer if missing
+      if (!data.customer.email) data.customer.email = data.shippingAddress.email || '';
+      if (!data.customer.phone) data.customer.phone = data.shippingAddress.phone || '';
+      if (!data.customer.firstName) {
+        const parts = data.shippingAddress.fullName.trim().split(' ');
+        data.customer.firstName = parts[0] || '';
+        data.customer.lastName = parts.length > 1 ? parts.slice(1).join(' ') : '';
+      }
+
+      // If sameAsShipping is true, ensure billing fields are mirrored
+      if (data.billingAddress.sameAsShipping) {
+        data.billingAddress.fullName = data.shippingAddress.fullName;
+        data.billingAddress.email = data.shippingAddress.email;
+        data.billingAddress.phone = data.shippingAddress.phone;
+        data.billingAddress.addressLine1 = data.shippingAddress.addressLine1;
+        data.billingAddress.city = data.shippingAddress.city;
+        data.billingAddress.state = data.shippingAddress.state;
+        data.billingAddress.postalCode = data.shippingAddress.postalCode;
+        data.billingAddress.country = data.shippingAddress.country;
+      }
+
+      const couponCode = cart.appliedCoupon || data.couponCode;
+      
+      const methodTierMap: Record<string, string> = {
+        standard: 'Standard Shipping',
+        express: 'Express Shipping',
+        overnight: 'Overnight Priority',
+      };
+      const shippingTier = methodTierMap[data.shippingMethod] || data.shippingMethod || 'Standard Shipping';
+      trackGA4AddShippingInfo(cart.items, cart.total, shippingTier, currency, couponCode);
+
+      const paymentType = data.paymentMethod || 'cod';
+      trackGA4AddPaymentInfo(cart.items, cart.total, paymentType, currency, couponCode);
+
+      const orderPayload = {
+        ...data,
+        items: cart.items.map(item => ({
+          productId: item.productId,
+          productName: item.product.name,
+          productImage: item.product.images[0],
+          variantName: item.selectedVariant?.name,
+          quantity: item.quantity,
+          unitPrice: item.unitPrice,
+          totalPrice: item.totalPrice,
+        })),
+        subtotal: cart.subtotal,
+        discount: cart.discount,
+        shippingFee: effectiveShippingFee,
+        tax: effectiveTax,
+        totalAmount: effectiveTotal,
+        notes: data.orderNotes || '',
+        status: 'Pending',
+      };
+
+      const createdOrder = await storefrontApi.checkoutComplete(orderPayload);
+      
+      // Clear the cart after successful order creation
+      try {
+        await clearCart();
+      } catch (err) {
+        console.error('Failed to clear cart after checkout', err);
+      }
+      
+      const isCod = data.paymentMethod === 'cod';
+
+      if (isCod) {
+        navigateTo('order-confirmation', { confirmedOrder: createdOrder, orderId: createdOrder.id });
+      } else {
+        navigateTo('checkout-gateway', { orderId: createdOrder.id, method: data.paymentMethod });
+      }
+    } catch (err: any) {
+      setServerError(err.message || 'An error occurred while placing your order. Please check all required fields and try again.');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (isCartLoading) {
+    return (
+      <div className="py-24 flex flex-col items-center justify-center space-y-3">
+        <Loader2 size={32} className="animate-spin text-[#DC2B53]" />
+        <p className="text-xs text-[#6B7280] font-semibold">Synchronizing secure checkout...</p>
+      </div>
+    );
+  }
+
+  if (cart.items.length === 0 && !isSubmitting) {
+    return (
+      <div className="py-20 text-center max-w-md mx-auto px-4">
+        <div className="w-14 h-14 bg-[#F9FAFB] rounded-full flex items-center justify-center mx-auto text-[#6B7280] mb-4 border border-[#E5E7EB]">
+          <ShoppingBag size={24} />
+        </div>
+        <h2 className="text-lg font-bold text-[#111827]">Your cart is empty</h2>
+        <p className="text-xs text-[#6B7280] mt-1 mb-5">Add items to your cart before proceeding to checkout.</p>
+        <button 
+          onClick={() => navigateTo('shop')}
+          className="px-6 py-2.5 bg-[#DC2B53] hover:bg-[#C52247] text-white rounded-lg text-xs font-bold transition-colors shadow-xs"
+        >
+          Explore Shop
+        </button>
+      </div>
+    );
+  }
+
+  const isProfileMissingDetails = user && (!user.phone || !user.fullName || !user.email);
+
+  return (
+    <div className="bg-[#F9FAFB] min-h-screen pb-12">
+      {/* Simple Header */}
+      <div className="bg-white border-b border-[#E5E7EB]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+          <button 
+            onClick={() => navigateTo('cart')} 
+            className="flex items-center gap-1.5 text-xs font-semibold text-[#6B7280] hover:text-[#111827] transition-colors cursor-pointer"
+          >
+            <ArrowLeft size={16} />
+            <span className="hidden sm:inline">Back to Cart</span>
+          </button>
+          
+          <div className="flex flex-col items-center">
+            <h1 className="text-base sm:text-lg font-bold text-[#111827]">Secure Checkout</h1>
+          </div>
+          
+          <div className="flex items-center gap-1.5">
+            <ShieldCheck className="text-emerald-600 hidden sm:block" size={16} />
+            <span className="text-[10px] sm:text-xs font-semibold text-[#6B7280] uppercase tracking-wider">
+              <span className="hidden sm:inline">SSL </span>Secure
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8">
+        
+        {serverError && (
+          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-[#DC2626] text-xs font-medium flex items-center gap-2.5">
+            <AlertCircle size={18} className="shrink-0" />
+            <span>{serverError}</span>
+          </div>
+        )}
+
+        {isProfileMissingDetails && (
+          <div className="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-2xs">
+            <div className="flex items-start gap-3">
+              <span className="p-2 bg-amber-100 rounded-lg text-amber-800 shrink-0 mt-0.5">
+                <ShieldAlert size={18} />
+              </span>
+              <div>
+                <h3 className="text-xs sm:text-sm font-bold text-amber-900">Missing Customer Profile Information</h3>
+                <p className="text-xs text-amber-700 mt-0.5 leading-relaxed">
+                  Your profile is missing {!user.phone ? 'a valid mobile number' : ''} {!user.phone && !user.fullName ? 'and' : ''} {!user.fullName ? 'your full name' : ''}. Please ensure all required delivery fields below are completed.
+                </p>
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={() => navigateTo('account')}
+              className="px-3.5 py-1.5 bg-amber-800 hover:bg-amber-900 text-white rounded-lg text-xs font-semibold whitespace-nowrap transition-colors cursor-pointer"
+            >
+              Update Account
+            </button>
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit(onPlaceOrder)} className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+          
+          {/* Main Left Column */}
+          <div className="lg:col-span-7 space-y-6">
+            
+            {/* 1. Order Review (Compact) */}
+            <div className="bg-white border border-[#E5E7EB] rounded-xl shadow-xs overflow-hidden">
+              <div className="px-5 py-4 border-b border-[#E5E7EB] bg-[#F9FAFB]">
+                <h2 className="text-base font-bold text-[#111827]">Order Review ({cart.items.length})</h2>
+              </div>
+              <div className="p-5 space-y-4">
+                {cart.items.map((item) => (
+                  <div key={item.id} className="flex gap-4 items-center">
+                    <div className="w-16 h-16 shrink-0 bg-[#F9FAFB] border border-[#E5E7EB] rounded-md overflow-hidden relative">
+                      {item.product.images[0] ? (
+                        <SmartImage src={item.product.images[0]} alt={item.product.name} fill className="object-cover" />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-[#9CA3AF]">
+                          <ShoppingBag size={18} />
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="text-xs font-bold text-[#111827] truncate">{item.product.name}</h4>
+                      {item.selectedVariant && (
+                        <p className="text-[11px] text-[#6B7280] mt-0.5">{item.selectedVariant.name}</p>
+                      )}
+                      
+                      <div className="flex items-center gap-3 mt-2">
+                        <QuantitySelector
+                          quantity={item.quantity}
+                          onUpdate={(q) => updateQuantity(item.id, q)}
+                          isLoading={isUpdatingQuantity}
+                          size="sm"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => removeCartItem(item.id)}
+                          className="text-[#6B7280] hover:text-[#DC2B53] cursor-pointer"
+                          title="Remove item"
+                        >
+                          <Trash2 size={14} />
+                        </button>
+                      </div>
+                    </div>
+                    <div className="text-right shrink-0">
+                      <div className="text-xs font-bold text-[#111827]">
+                        {formatPrice(item.totalPrice, currency, currencySymbol)}
+                      </div>
+                      {item.quantity > 1 && (
+                        <div className="text-[10px] text-[#6B7280] mt-1">
+                          {formatPrice(item.unitPrice, currency, currencySymbol)} each
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 2. Shipping Information */}
+            <div className="bg-white border border-[#E5E7EB] rounded-xl shadow-xs overflow-hidden">
+              <div className="px-5 py-4 border-b border-[#E5E7EB] bg-[#F9FAFB]">
+                <h2 className="text-base font-bold text-[#111827]">Shipping Information</h2>
+              </div>
+              <div className="p-5">
+                <AddressForm 
+                  register={register} 
+                  errors={errors} 
+                  prefix="shippingAddress" 
+                  title="" 
+                />
+              </div>
+            </div>
+
+            {/* 3. Billing Information (Visible by default, Checkbox UNCHECKED by default) */}
+            <div className="bg-white border border-[#E5E7EB] rounded-xl shadow-xs overflow-hidden">
+              <div className="px-5 py-4 border-b border-[#E5E7EB] bg-[#F9FAFB]">
+                <h2 className="text-base font-bold text-[#111827]">Billing Information</h2>
+              </div>
+              <div className="p-5 space-y-4">
+                <label className="flex items-center gap-2.5 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    {...register('billingAddress.sameAsShipping')}
+                    className="w-4 h-4 rounded text-[#DC2B53] border-[#E5E7EB] focus:ring-[#DC2B53] accent-[#DC2B53]"
+                  />
+                  <span className="text-xs sm:text-sm text-[#111827] font-medium">Billing address is the same as shipping address</span>
+                </label>
+                
+                {!sameAsShipping && (
+                  <div className="pt-4 border-t border-[#E5E7EB]">
+                    <AddressForm 
+                      register={register} 
+                      errors={errors} 
+                      prefix="billingAddress" 
+                      title="" 
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* 4. Payment Method */}
+            <div className="bg-white border border-[#E5E7EB] rounded-xl shadow-xs overflow-hidden">
+              <div className="px-5 py-4 border-b border-[#E5E7EB] bg-[#F9FAFB]">
+                <h2 className="text-base font-bold text-[#111827]">Payment Method</h2>
+              </div>
+              <div className="p-5">
+                <PaymentStep 
+                  register={register} 
+                  errors={errors} 
+                  watch={watch} 
+                />
+              </div>
+            </div>
+
+          </div>
+
+          {/* Right Sidebar / Order Summary */}
+          <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-8">
+            <div className="bg-white border border-[#E5E7EB] rounded-xl shadow-xs overflow-hidden flex flex-col">
+              
+              <div className="px-5 py-4 border-b border-[#E5E7EB] bg-[#F9FAFB]">
+                <h2 className="text-base font-bold text-[#111827]">Order Summary</h2>
+              </div>
+              
+              <div className="p-5 space-y-4">
+                
+                {/* Breakdown */}
+                <div className="space-y-3 pb-4 border-b border-[#E5E7EB] text-sm">
+                  <div className="flex justify-between text-[#6B7280]">
+                    <span>Subtotal</span>
+                    <span className="font-semibold text-[#111827]">{formatPrice(cart.subtotal, currency, currencySymbol)}</span>
+                  </div>
+                  
+                  {cart.discount > 0 && (
+                    <div className="flex justify-between text-[#DC2B53] font-medium">
+                      <span>Discount ({cart.appliedCoupon || 'Promo'})</span>
+                      <span className="font-semibold">-{formatPrice(cart.discount, currency, currencySymbol)}</span>
+                    </div>
+                  )}
+                  
+                  <div className="flex justify-between text-[#6B7280]">
+                    <span>Shipping</span>
+                    <span className="font-semibold text-[#111827]">
+                      {isSessionLoading ? (
+                        <span className="text-xs text-[#6B7280] italic flex items-center gap-1">
+                          <Loader2 size={12} className="animate-spin text-[#DC2B53]" /> Calculating...
+                        </span>
+                      ) : isFreeShipping ? (
+                        <span className="text-[#16A34A] font-semibold">FREE</span>
+                      ) : checkoutSession && checkoutSession.shippingFee !== undefined ? (
+                        formatPrice(checkoutSession.shippingFee, currency, currencySymbol)
+                      ) : cart.shippingFee !== undefined && cart.shippingFee > 0 ? (
+                        formatPrice(cart.shippingFee, currency, currencySymbol)
+                      ) : (
+                        <span className="text-xs text-[#6B7280] font-normal">Calculated at checkout</span>
+                      )}
+                    </span>
+                  </div>
+                  
+                  <div className="flex justify-between text-[#6B7280]">
+                    <span>Estimated Tax ({taxPercentDisplay}%)</span>
+                    <span className="font-semibold text-[#111827]">
+                      {isSessionLoading ? (
+                        <span className="text-xs text-[#6B7280] italic flex items-center gap-1">
+                          <Loader2 size={12} className="animate-spin text-[#DC2B53]" /> Calculating...
+                        </span>
+                      ) : (
+                        formatPrice(effectiveTax, currency, currencySymbol)
+                      )}
+                    </span>
+                  </div>
+                </div>
+
+                {sessionError && (
+                  <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-xs text-[#DC2626] flex items-center justify-between">
+                    <span>{sessionError}</span>
+                    <button
+                      type="button"
+                      onClick={fetchSession}
+                      className="text-xs underline font-semibold text-red-700 hover:text-red-900 cursor-pointer ml-2"
+                    >
+                      Retry
+                    </button>
+                  </div>
+                )}
+
+                {/* Final Total */}
+                <div className="flex justify-between items-center pt-2">
+                  <span className="text-base font-bold text-[#111827]">Total Amount</span>
+                  <span className="text-xl font-bold text-[#DC2B53]">
+                    {isSessionLoading ? (
+                      <span className="text-sm font-normal italic text-[#6B7280] flex items-center gap-1">
+                        <Loader2 size={14} className="animate-spin text-[#DC2B53]" /> Calculating...
+                      </span>
+                    ) : (
+                      formatPrice(effectiveTotal, currency, currencySymbol)
+                    )}
+                  </span>
+                </div>
+              </div>
+
+              {/* Coupon Section */}
+              <div className="bg-[#F9FAFB] border-t border-[#E5E7EB] p-5">
+                <button
+                  type="button"
+                  onClick={() => setIsCouponExpanded(!isCouponExpanded)}
+                  className="flex items-center gap-2 text-xs font-semibold text-[#111827] hover:text-[#DC2B53] transition-colors w-full text-left cursor-pointer"
+                >
+                  <Tag size={15} className="text-[#6B7280]" />
+                  <span>Have a promo coupon or gift code?</span>
+                </button>
+                
+                {isCouponExpanded && (
+                  <div className="mt-3.5">
+                    {cart.appliedCoupon ? (
+                      <div className="flex items-center justify-between bg-emerald-50 border border-emerald-200 p-2.5 rounded-lg">
+                        <div className="flex items-center gap-2 text-emerald-700 text-xs font-bold">
+                          <Tag size={13} />
+                          <span>{cart.appliedCoupon}</span>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={handleRemoveCoupon}
+                          className="text-emerald-700 hover:text-emerald-900 text-xs font-semibold underline cursor-pointer"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="space-y-2">
+                        <div className="flex gap-2">
+                          <input
+                            type="text"
+                            value={localCoupon}
+                            onChange={(e) => setLocalCoupon(e.target.value)}
+                            placeholder="Enter coupon code (e.g. MONSOON-5)"
+                            className="flex-1 px-3 py-2 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] uppercase placeholder:normal-case focus:outline-none focus:border-[#DC2B53]"
+                          />
+                          <button
+                            type="button"
+                            onClick={handleApplyCoupon}
+                            className="px-3.5 py-2 bg-[#111827] hover:bg-black text-white rounded-lg text-xs font-semibold transition-colors shrink-0 cursor-pointer"
+                          >
+                            Apply
+                          </button>
+                        </div>
+                        {availableCoupons && availableCoupons.length > 0 && (
+                          <div className="pt-1">
+                            <p className="text-[11px] text-[#6B7280] mb-1 font-medium">Available Offers:</p>
+                            <div className="flex flex-wrap gap-1.5">
+                              {availableCoupons.map((c) => (
+                                <button
+                                  key={c.code}
+                                  type="button"
+                                  onClick={() => {
+                                    setLocalCoupon(c.code);
+                                    applyCoupon(c.code);
+                                  }}
+                                  className="inline-flex items-center gap-1 text-[11px] font-semibold bg-[#F3F4F6] hover:bg-[#E5E7EB] text-[#111827] px-2 py-1 rounded border border-[#E5E7EB] transition-colors cursor-pointer"
+                                >
+                                  <Tag size={10} className="text-[#DC2B53]" />
+                                  {c.code} {c.minOrderAmount ? `(Min BDT ${c.minOrderAmount})` : ''}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+              
+              {/* Customer Note */}
+              <div className="bg-[#F9FAFB] border-t border-[#E5E7EB] p-5">
+                <label className="block text-xs font-semibold text-[#111827] mb-1.5">Order Notes <span className="text-[11px] font-normal text-[#6B7280]">(Optional)</span></label>
+                <textarea
+                  {...register('orderNotes')}
+                  className="w-full px-3 py-2 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] focus:outline-none focus:border-[#DC2B53] resize-none"
+                  rows={2}
+                  placeholder="Special instructions for packaging or delivery..."
+                />
+              </div>
+
+              {/* Terms and Submit */}
+              <div className="p-5 border-t border-[#E5E7EB] space-y-4">
+                <label className="flex items-start gap-2.5 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    required
+                    className="mt-0.5 w-4 h-4 rounded text-[#DC2B53] border-[#E5E7EB] focus:ring-[#DC2B53] accent-[#DC2B53]"
+                  />
+                  <span className="text-[11px] text-[#6B7280] leading-tight">
+                    I agree to the <a href="/terms" className="text-[#DC2B53] hover:underline font-medium" target="_blank">Terms & Conditions</a>, <a href="/privacy" className="text-[#DC2B53] hover:underline font-medium" target="_blank">Privacy Policy</a>, and <a href="/refund-policy" className="text-[#DC2B53] hover:underline font-medium" target="_blank">Return Policy</a>.
+                  </span>
+                </label>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting || cart.items.length === 0}
+                  className="w-full flex items-center justify-center gap-2 py-3.5 bg-[#DC2B53] hover:bg-[#C52247] disabled:bg-gray-300 disabled:cursor-not-allowed text-white rounded-lg text-xs font-bold uppercase tracking-wider transition-colors shadow-xs cursor-pointer"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 size={16} className="animate-spin" />
+                      <span>Processing Order...</span>
+                    </>
+                  ) : (
+                    <>
+                      <ShieldCheck size={16} />
+                      <span>Place Order</span>
+                    </>
+                  )}
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  );
+};

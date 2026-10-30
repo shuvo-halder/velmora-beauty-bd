@@ -1,0 +1,135 @@
+import { apiClient, unwrapApiResponse, normalizeProduct, extractApiError, ApiResponse } from '../lib/api';
+import { Product, ProductFilterState } from '../types/storefront';
+import { smartFilterAndRankProducts } from '../lib/searchUtils';
+
+export { normalizeProduct };
+
+export const productService = {
+  // GET /products
+  getProducts: async (filters?: Partial<ProductFilterState>): Promise<ApiResponse<{ products: Product[]; total: number }>> => {
+    try {
+      const params: Record<string, any> = {};
+      const hasSearchQuery = Boolean(filters?.searchQuery && filters.searchQuery.trim().length > 0);
+
+      if (filters) {
+        if (filters.searchQuery) params.q = filters.searchQuery;
+        if (filters.categorySlug) params.category = filters.categorySlug;
+        if (filters.brandSlugs && filters.brandSlugs.length > 0) params.brand = filters.brandSlugs.join(',');
+        if (filters.minPrice !== undefined && filters.minPrice > 0) params.minPrice = filters.minPrice;
+        if (filters.maxPrice !== undefined && filters.maxPrice < 100000) params.maxPrice = filters.maxPrice;
+        if (filters.ratingMin !== undefined && filters.ratingMin > 0) params.minRating = filters.ratingMin;
+        if (filters.inStockOnly) params.inStock = true;
+        if (filters.sortBy) {
+          const s = filters.sortBy;
+          if (s === 'price_asc' || s === 'price-asc') params.sort = 'price_asc';
+          else if (s === 'price_desc' || s === 'price-desc') params.sort = 'price_desc';
+          else if (s === 'name_asc' || s === 'name-asc') params.sort = 'name_asc';
+          else if (s === 'name_desc' || s === 'name-desc') params.sort = 'name_desc';
+          else if (s === 'newest') params.sort = 'newest';
+          else if (s === 'oldest') params.sort = 'oldest';
+          // Omit unsupported sort params like 'featured', 'bestsellers', 'rating' to allow default backend ordering without 400 error
+        }
+        if (filters.page) params.page = filters.page;
+        // If searchQuery is present, fetch more candidates so client-side smart ranking has full view
+        if (hasSearchQuery) {
+          params.limit = 100;
+        } else if (filters.pageSize) {
+          params.limit = filters.pageSize;
+        }
+      }
+
+      const res = await apiClient.get('/products', { params });
+      const unwrapped = unwrapApiResponse<any>(res);
+
+      if (unwrapped.status === 'error') {
+        return { status: 'error', message: unwrapped.message || 'Failed to fetch products', data: { products: [], total: 0 } };
+      }
+
+      let rawList: any[] = [];
+      let totalCount = 0;
+
+      if (Array.isArray(unwrapped.data)) {
+        rawList = unwrapped.data;
+        totalCount = unwrapped.pagination?.total || rawList.length;
+      } else if (unwrapped.data && Array.isArray(unwrapped.data.items)) {
+        rawList = unwrapped.data.items;
+        totalCount = unwrapped.pagination?.total ?? unwrapped.data.total ?? rawList.length;
+      } else if (unwrapped.data && Array.isArray(unwrapped.data.products)) {
+        rawList = unwrapped.data.products;
+        totalCount = unwrapped.data.total ?? unwrapped.pagination?.total ?? rawList.length;
+      } else if (unwrapped.data && typeof unwrapped.data === 'object') {
+        if (unwrapped.data.id || unwrapped.data.name || unwrapped.data.slug || unwrapped.data.title) {
+          rawList = [unwrapped.data];
+          totalCount = 1;
+        }
+      }
+
+      let products = rawList.map(normalizeProduct);
+
+      // If search query is provided, apply smart partial matching and ranking
+      if (hasSearchQuery && filters?.searchQuery) {
+        const smartRes = smartFilterAndRankProducts(products, filters.searchQuery, {
+          category: filters.categorySlug,
+          brand: filters.brandSlugs,
+          minPrice: filters.minPrice,
+          maxPrice: filters.maxPrice,
+          inStock: filters.inStockOnly,
+          ratingMin: filters.ratingMin,
+          sort: filters.sortBy,
+          page: filters.page || 1,
+          pageSize: filters.pageSize || 12
+        });
+        products = smartRes.products;
+        totalCount = smartRes.total;
+      } else if (filters?.sortBy) {
+        // Apply client-side sorting for UI sort options not handled by backend
+        const s = String(filters.sortBy);
+        if (s === 'rating' || s === 'rating_desc') {
+          products.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+        } else if (s === 'featured') {
+          products.sort((a, b) => (b.isFeatured ? 1 : 0) - (a.isFeatured ? 1 : 0) || (b.rating || 0) - (a.rating || 0));
+        } else if (s === 'bestsellers') {
+          products.sort((a, b) => (b.isBestSeller ? 1 : 0) - (a.isBestSeller ? 1 : 0) || (b.reviewCount || 0) - (a.reviewCount || 0));
+        }
+      }
+
+      return {
+        status: 'success', 
+        message: null, 
+        data: { products, total: totalCount },
+        pagination: unwrapped.pagination
+      };
+    } catch (err: any) {
+      const { message, errors } = extractApiError(err, 'Failed to fetch products');
+      return {
+        status: 'error', message, errors, data: { products: [], total: 0 }
+      };
+    }
+  },
+
+  // GET /products/:slug
+  getProductBySlug: async (slug: string): Promise<ApiResponse<Product>> => {
+    try {
+      const res = await apiClient.get(`/products/${encodeURIComponent(slug)}`);
+      const unwrapped = unwrapApiResponse<any>(res);
+
+      if (unwrapped.status === 'error' || !unwrapped.data) {
+        return { status: 'error', message: unwrapped.message || 'Product not found', data: null as any };
+      }
+
+      const rawObj = Array.isArray(unwrapped.data) ? unwrapped.data[0] : unwrapped.data;
+      if (!rawObj) {
+        return { status: 'error', message: 'Product not found', data: null as any };
+      }
+
+      const product = normalizeProduct(rawObj);
+      return { status: 'success', message: null, data: product };
+    } catch (err: any) {
+      const { message, errors } = extractApiError(err, `Failed to fetch product '${slug}'`);
+      return {
+        status: 'error', message, errors, data: null as any
+      };
+    }
+  }
+};
+

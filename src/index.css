@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* Brand Color System */
+    --color-primary: #DC2B53;
+    --color-primary-hover: #C52247;
+    --color-primary-light: #FDF0F3;
+    
+    --color-accent: #DC2B53;
+    --color-accent-hover: #C52247;
+    --color-accent-muted: #FDF0F3;
+
+    /* Neutrals & Surfaces */
+    --color-text-main: #111827;
+    --color-text-muted: #6B7280;
+    --color-border: #E5E7EB;
+    --color-bg-page: #FFFFFF;
+    --color-bg-subtle: #F9FAFB;
+    --color-dark: #111827;
+
+    /* Feedback Colors */
+    --color-success: #16A34A;
+    --color-warning: #D97706;
+    --color-error: #DC2626;
+
+    /* Spacing & Layout Tokens */
+    --spacing-page: 1.5rem;
+    --max-width-container: 1440px;
+
+    /* Minimal Shadow System */
+    --shadow-subtle: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+    --shadow-hover: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  body {
+    background-color: var(--color-bg-page);
+    color: var(--color-text-main);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-display {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-weight: 700;
+    color: var(--color-text-main);
+  }
+
+  /* Smooth Entry Transitions */
+  .page-transition {
+    @apply transition-all duration-300 ease-out;
+  }
+}
+
+@theme {
+  /* System Font Stack */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-display: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  /* Brand Colors */
+  --color-primary: #DC2B53;
+  --color-primary-hover: #C52247;
+  --color-primary-light: #FDF0F3;
+  
+  --color-secondary: #111827;
+  --color-secondary-hover: #1f2937;
+  
+  --color-accent: #DC2B53;
+  --color-accent-hover: #C52247;
+  --color-accent-muted: #FDF0F3;
+  
+  /* Backgrounds */
+  --color-bg-app: #FFFFFF;
+  --color-surface: #F9FAFB;
+  --color-surface-subtle: #F9FAFB;
+  
+  /* Text & Borders */
+  --color-text-main: #111827;
+  --color-text-muted: #6B7280;
+  --color-border-default: #E5E7EB;
+  --color-border-subtle: #E5E7EB;
+
+  /* Status Colors */
+  --color-success: #16A34A;
+  --color-warning: #D97706;
+  --color-error: #DC2626;
+  --color-footer-dark: #111827;
+  
+  /* Shadows */
+  --shadow-premium: var(--shadow-card);
+  --shadow-accent: 0 4px 12px -2px rgba(220, 43, 83, 0.2);
+
+  /* Custom Spacing */
+  --spacing-container: var(--spacing-page);
+}
+
+@layer components {
+  .container-vyzobd {
+    @apply w-full max-w-[var(--max-width-container)] mx-auto px-4 md:px-6 lg:px-8;
+  }
+
+  .btn-primary {
+    @apply px-6 py-2.5 bg-primary text-white font-semibold rounded-lg hover:bg-primary-hover transition-colors shadow-xs focus:ring-2 focus:ring-primary/20 focus:outline-none cursor-pointer;
+  }
+
+  .btn-accent {
+    @apply px-6 py-2.5 bg-primary text-white font-semibold rounded-lg hover:bg-primary-hover transition-colors shadow-xs focus:ring-2 focus:ring-primary/20 focus:outline-none cursor-pointer;
+  }
+
+  .card-vyzobd {
+    @apply bg-white border border-[#E5E7EB] rounded-xl p-5 shadow-xs hover:border-gray-300 transition-colors;
+  }
+
+  .input-vyzobd {
+    @apply w-full px-4 py-2.5 bg-white border border-[#E5E7EB] rounded-lg text-sm text-[#111827] placeholder:text-[#6B7280] focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors outline-none;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #E5E7EB;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6B7280;
+}
+
+/* Trust Features Marquee Animation */
+@keyframes trust-marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-trust-marquee {
+  display: flex;
+  width: max-content;
+  animation: trust-marquee 35s linear infinite;
+  will-change: transform;
+}
+
+@media (hover: hover) {
+  .trust-marquee-container:hover .animate-trust-marquee {
+    animation-play-state: paused;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-trust-marquee {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+

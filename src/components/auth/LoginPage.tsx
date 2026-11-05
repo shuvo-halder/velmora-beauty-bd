@@ -15,6 +15,7 @@ import {
 } from '../../types/auth';
 import { useAuth } from '../../context/AuthContext';
 import { useStorefront } from '../../context/StorefrontContext';
+import { useSettings } from '../../context/SettingsContext';
 import { 
   Loader2, 
   Mail, 
@@ -48,6 +49,8 @@ export const LoginPage: React.FC = () => {
   const searchParams = useSearchParams();
   const { login, loginWithMobile, verifyMobileLogin, isAuthenticated } = useAuth();
   const { notifySuccess, notifyError } = useStorefront();
+  const { settings } = useSettings();
+  const siteName = settings?.general?.siteName || 'Store';
 
   const [authMethod, setAuthMethod] = useState<'email' | 'mobile'>('email');
   const [showPassword, setShowPassword] = useState(false);
@@ -475,7 +478,7 @@ export const LoginPage: React.FC = () => {
 
           <div className="mt-6 pt-5 border-t border-[#E5E7EB]">
             <p className="text-[11px] text-center text-[#6B7280]">
-              Secure customer authentication powered by Vyzobd
+              Secure customer authentication powered by {siteName}
             </p>
           </div>
         </div>

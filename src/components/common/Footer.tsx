@@ -90,7 +90,7 @@ export const Footer: React.FC = () => {
           >
             <img 
               src={publicSettings?.branding?.logoDarkUrl || "/logowhite.svg"} 
-              alt={publicSettings?.general?.siteName || "Vyzobd"} 
+              alt={publicSettings?.general?.siteName || "Store"} 
               className="h-8 lg:h-9 w-auto object-contain"
             />
           </Link>
@@ -202,7 +202,7 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm text-gray-400">
               {[
-                { label: 'About Vyzobd', href: '/pages/about' },
+                { label: `About ${publicSettings?.general?.siteName || 'Store'}`, href: '/pages/about' },
                 { label: 'Our Story', href: '/pages/about' },
                 { label: 'Latest News', href: '/blog' },
                 { label: 'Terms of Service', href: '/pages/terms' },
@@ -226,7 +226,7 @@ export const Footer: React.FC = () => {
       {/* Bottom Copyright & Payment Icons */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-2 flex flex-col-reverse md:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-gray-400">
         <div className="text-center md:text-left text-xs sm:text-sm text-gray-400 font-normal leading-relaxed md:shrink-0">
-          © {new Date().getFullYear()} {publicSettings?.general?.siteName || "Vyzobd"}. All rights reserved.
+          © {new Date().getFullYear()} {publicSettings?.general?.siteName || "Store"}. All rights reserved.
         </div>
 
         {/* Payment Gateway / SSLCOMMERZ Banner */}

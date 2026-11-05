@@ -38,6 +38,8 @@ const STATUS_FILTERS = [
 
 export const OrdersPage: React.FC = () => {
   const { navigateTo, publicSettings } = useStorefront();
+  const { settings } = useSettings();
+  const siteName = settings?.general?.siteName || publicSettings?.general?.siteName || 'Store';
   const [selectedTrackingOrderId, setSelectedTrackingOrderId] = useState<string | null>(null);
   const [selectedTrackingOrderNumber, setSelectedTrackingOrderNumber] = useState<string | null>(null);
 
@@ -342,7 +344,7 @@ export const OrdersPage: React.FC = () => {
               <p className="text-xs text-gray-500 font-medium max-w-xs mx-auto mt-1 leading-relaxed">
                 {debouncedSearch || selectedStatus !== 'ALL'
                   ? 'Try adjusting your search keywords or switching status filter tabs.'
-                  : 'Your purchases from Vyzobd will appear here with live tracking and receipts.'}
+                  : `Your purchases from ${siteName} will appear here with live tracking and receipts.`}
               </p>
             </div>
             <div>

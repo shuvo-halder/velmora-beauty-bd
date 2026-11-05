@@ -8,6 +8,7 @@ import { useAuth } from '../../context/AuthContext';
 import { ProtectedRoute } from '../common/ProtectedRoute';
 import { useQuery } from '@tanstack/react-query';
 import { customerService } from '../../services/customerService';
+import { useSettings } from '../../context/SettingsContext';
 import { 
   User, 
   LayoutDashboard,
@@ -37,6 +38,8 @@ interface AccountLayoutProps {
 export const AccountLayout: React.FC<AccountLayoutProps> = ({ children, activeTab }) => {
   const router = useRouter();
   const { customer, user, logout } = useAuth();
+  const { settings } = useSettings();
+  const siteName = settings?.general?.siteName || 'Store';
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const activeUser = customer || user;
 
@@ -203,7 +206,7 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({ children, activeTa
                         </div>
                       </div>
                     </div>
-                    <div className="text-xs text-gray-400 font-medium truncate">{activeUser?.email || activeUser?.phone || 'customer@vyzobd.com'}</div>
+                    <div className="text-xs text-gray-400 font-medium truncate">{activeUser?.email || activeUser?.phone || 'customer@example.com'}</div>
                   </div>
                 </div>
 
@@ -264,7 +267,7 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({ children, activeTa
                 <div className="px-5 py-3 bg-gray-50 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500 font-medium">
                   <div className="flex items-center gap-2">
                     <Sparkles size={14} className="text-[#DC2B53]" />
-                    <span className="text-[11px] text-gray-600">Vyzobd Customer Portal</span>
+                    <span className="text-[11px] text-gray-600">{siteName} Customer Portal</span>
                   </div>
                 </div>
               </div>

@@ -4,11 +4,14 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useStorefront } from '../../context/StorefrontContext';
+import { useSettings } from '../../context/SettingsContext';
 import { ShieldAlert, ArrowLeft, Smartphone, Mail, Headphones } from 'lucide-react';
 
 export const ForgotPasswordPage: React.FC = () => {
   const router = useRouter();
   const { navigateTo, publicSettings } = useStorefront();
+  const { settings } = useSettings();
+  const siteName = settings?.general?.siteName || publicSettings?.general?.siteName || 'Store';
 
   const supportEmail = publicSettings?.supportEmail || publicSettings?.general?.storeEmail || publicSettings?.store?.supportEmail;
 
@@ -20,7 +23,7 @@ export const ForgotPasswordPage: React.FC = () => {
         </div>
         <h1 className="text-2xl font-bold text-[#111827]">Account Access & Recovery</h1>
         <p className="mt-1.5 text-xs text-[#6B7280]">
-          Secure self-service access options for your Vyzobd account
+          Secure self-service access options for your {siteName} account
         </p>
       </div>
 

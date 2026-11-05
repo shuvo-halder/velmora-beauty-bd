@@ -82,7 +82,7 @@ export function getFallbackSvgUri(type: FallbackType = 'product', label?: string
           <rect x="140" y="160" width="120" height="70" rx="12" fill="#E2E8F0"/>
           <circle cx="170" cy="195" r="14" fill="#CBD5E1"/>
           <path d="M200 130V150M200 240V260M150 195H130M270 195H250" stroke="#E11D48" stroke-width="3" stroke-linecap="round"/>
-          <text x="200" y="320" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="14" fill="#64748B" text-anchor="middle" letter-spacing="0.5">${displayLabel || 'VYZOBD PRODUCT'}</text>
+          <text x="200" y="320" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="14" fill="#64748B" text-anchor="middle" letter-spacing="0.5">${displayLabel || 'PRODUCT'}</text>
         </svg>
       `;
       break;
@@ -147,7 +147,7 @@ export function getFallbackSvgUri(type: FallbackType = 'product', label?: string
       svgContent = `
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
           <rect width="200" height="200" fill="#F8FAFC"/>
-          <text x="100" y="105" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="12" fill="#94A3B8" text-anchor="middle">VYZOBD</text>
+          <text x="100" y="105" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="12" fill="#94A3B8" text-anchor="middle">STORE</text>
         </svg>
       `;
       break;

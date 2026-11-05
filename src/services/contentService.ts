@@ -160,7 +160,7 @@ export const contentService = {
   normalizeBlogArticle(raw: any): BlogArticle | null {
     if (!raw) return null;
     const coverImage = raw.coverImage || raw.featuredImage?.secureUrl || raw.featuredImage?.url || raw.image || '/placeholder-blog.png';
-    const authorName = typeof raw.author === 'string' ? raw.author : (raw.author?.fullName || raw.author?.name || 'Vyzobd Editorial');
+    const authorName = typeof raw.author === 'string' ? raw.author : (raw.author?.fullName || raw.author?.name || 'Editorial Team');
     const catName = typeof raw.category === 'string' ? raw.category : (raw.category?.name || 'Journal');
 
     let publishedDate = 'Recent';

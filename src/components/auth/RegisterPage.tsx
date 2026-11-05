@@ -15,6 +15,7 @@ import {
 } from '../../types/auth';
 import { useAuth } from '../../context/AuthContext';
 import { useStorefront } from '../../context/StorefrontContext';
+import { useSettings } from '../../context/SettingsContext';
 import { 
   Loader2, 
   Mail, 
@@ -47,6 +48,8 @@ export const RegisterPage: React.FC = () => {
   const searchParams = useSearchParams();
   const { register: registerAccount, registerWithMobile, verifyMobileRegister, isAuthenticated } = useAuth();
   const { notifySuccess, notifyError } = useStorefront();
+  const { settings } = useSettings();
+  const siteName = settings?.general?.siteName || 'Store';
 
   const [authMethod, setAuthMethod] = useState<'email' | 'mobile'>('email');
   const [showPassword, setShowPassword] = useState(false);
@@ -178,7 +181,7 @@ export const RegisterPage: React.FC = () => {
         password: data.password ? data.password : undefined,
       });
 
-      notifySuccess('Registration Verified!', 'Welcome to Vyzobd.');
+      notifySuccess('Registration Verified!', `Welcome to ${siteName}.`);
       router.push(redirectTarget);
     } catch (err: any) {
       if (err?.errors && Array.isArray(err.errors)) {
@@ -603,7 +606,7 @@ export const RegisterPage: React.FC = () => {
 
           <div className="mt-6 pt-5 border-t border-[#E5E7EB]">
             <p className="text-[11px] text-center text-[#6B7280]">
-              By registering, you agree to Vyzobd's Terms of Service and Privacy Policy.
+              By registering, you agree to {siteName}&apos;s Terms of Service and Privacy Policy.
             </p>
           </div>
         </div>

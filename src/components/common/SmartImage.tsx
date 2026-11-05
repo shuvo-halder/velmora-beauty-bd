@@ -123,7 +123,7 @@ export const SmartImage: React.FC<SmartImageProps> = ({
         <Image
           ref={imgRef}
           src={imgSrc}
-          alt={alt || 'Vyzobd Image'}
+          alt={alt || 'Image'}
           fill
           priority={priority}
           sizes={sizes}
@@ -140,7 +140,7 @@ export const SmartImage: React.FC<SmartImageProps> = ({
         <img
           ref={imgRef}
           src={imgSrc}
-          alt={alt || 'Vyzobd Image'}
+          alt={alt || 'Image'}
           width={width}
           height={height}
           loading={priority ? 'eager' : 'lazy'}

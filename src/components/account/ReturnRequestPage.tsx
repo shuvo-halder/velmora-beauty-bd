@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { SmartImage } from '../common/SmartImage';
 import { AccountLayout } from './AccountLayout';
 import { useStorefront } from '../../context/StorefrontContext';
+import { useSettings } from '../../context/SettingsContext';
 import { storefrontApi } from '../../services/storefrontApi';
 import { Order } from '../../types/storefront';
 import { useForm, useFieldArray } from 'react-hook-form';
@@ -21,6 +22,8 @@ import {
 
 export const ReturnRequestPage: React.FC = () => {
   const { viewParams, navigateTo } = useStorefront();
+  const { settings } = useSettings();
+  const siteName = settings?.general?.siteName || 'Store';
   const [order, setOrder] = useState<Order | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -291,7 +294,7 @@ export const ReturnRequestPage: React.FC = () => {
         <div className="text-center py-4">
            <div className="inline-flex items-center gap-1.5 text-xs text-gray-400 font-medium">
              <ShieldCheck size={14} className="text-primary" />
-             <span>Vyzobd Purchase Protection Guaranteed</span>
+             <span>{siteName} Purchase Protection Guaranteed</span>
            </div>
         </div>
 

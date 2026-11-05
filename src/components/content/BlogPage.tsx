@@ -5,10 +5,13 @@ import Link from 'next/link';
 import { SmartImage } from '../common/SmartImage';
 import { RichTextRenderer } from '../common/RichTextRenderer';
 import { storefrontApi } from '../../services/storefrontApi';
+import { useSettings } from '../../context/SettingsContext';
 import { BlogArticle } from '../../types/storefront';
 import { Clock, BookOpen, ArrowRight, AlertCircle, RefreshCw, FileText } from 'lucide-react';
 
 export const BlogPage: React.FC = () => {
+  const { settings } = useSettings();
+  const siteName = settings?.general?.siteName || 'Store';
   const [articles, setArticles] = useState<BlogArticle[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -36,7 +39,7 @@ export const BlogPage: React.FC = () => {
       <div className="min-h-[60vh] flex flex-col items-center justify-center bg-slate-50 space-y-3 p-6">
         <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin" />
         <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">
-          Loading Vyzobd Journal...
+          Loading articles...
         </p>
       </div>
     );
@@ -92,7 +95,7 @@ export const BlogPage: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 text-slate-500 text-[10px] font-black uppercase tracking-[0.2em] shadow-sm">
             <BookOpen size={14} className="text-primary" />
-            <span>Vyzobd Journal</span>
+            <span>{siteName} Journal</span>
           </div>
           <h1 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
             Stories, News & <span className="text-primary">Buying Guides</span>

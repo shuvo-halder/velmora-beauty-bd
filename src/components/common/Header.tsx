@@ -7,6 +7,7 @@ import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { useStorefront } from '../../context/StorefrontContext';
 import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../hooks/useCart';
+import { useSettings } from '../../context/SettingsContext';
 import { 
   Search, 
   ShoppingCart, 
@@ -488,7 +489,7 @@ function HeaderContent() {
           >
             <img 
               src={publicSettings?.branding?.logoUrl || "/logo.svg"} 
-              alt={publicSettings?.general?.siteName || "Vyzobd"} 
+              alt={publicSettings?.general?.siteName || "Store"} 
               className="h-7 sm:h-8 lg:h-9 xl:h-10 w-auto object-contain shrink-0 block max-w-[120px] xs:max-w-[135px] sm:max-w-[155px] lg:max-w-[165px] xl:max-w-[180px]"
             />
           </Link>
@@ -1019,7 +1020,7 @@ function HeaderContent() {
             <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-2 group min-w-0">
               <img 
                 src={publicSettings?.branding?.logoUrl || "/logo.svg"} 
-                alt={publicSettings?.general?.siteName || "Vyzobd"} 
+                alt={publicSettings?.general?.siteName || "Store"} 
                 className="h-7 w-auto flex-shrink-0" 
               />
             </Link>
@@ -1052,7 +1053,7 @@ function HeaderContent() {
                 </div>
                 <div className="min-w-0 flex-1">
                   <h3 className="font-bold text-xs sm:text-sm leading-tight truncate">
-                    {user ? `Hello, ${user.fullName.split(' ')[0]}` : 'Welcome to Vyzobd'}
+                    {user ? `Hello, ${user.fullName.split(' ')[0]}` : `Welcome to ${publicSettings?.general?.siteName || 'Store'}`}
                   </h3>
                   <p className="text-gray-300 text-[11px] mt-0.5 truncate">
                     {user ? user.email : 'Sign in to manage orders'}
@@ -1182,11 +1183,13 @@ function HeaderContent() {
 }
 
 export const Header: React.FC = () => {
+  const { settings } = useSettings();
+  const siteName = settings?.general?.siteName || 'Store';
   return (
     <Suspense fallback={
       <header className="w-full bg-white border-b border-[#E5E7EB] sticky top-0 z-40 py-3.5">
         <div className="container-vyzobd flex items-center justify-between">
-          <Link href="/" className="font-bold text-xl text-[#111827]">VYZOBD</Link>
+          <Link href="/" className="font-bold text-xl text-[#111827]">{siteName}</Link>
         </div>
       </header>
     }>

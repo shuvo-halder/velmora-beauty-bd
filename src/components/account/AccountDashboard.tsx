@@ -31,6 +31,7 @@ export const AccountDashboard: React.FC = () => {
   const activeUser = customer || user;
   const { publicSettings } = useStorefront();
   const { settings } = useSettings();
+  const siteName = settings?.general?.siteName || publicSettings?.general?.siteName || 'Store';
 
   const currencyCode = publicSettings?.general?.currency || settings?.general?.currency || 'BDT';
   const currencySymbol = publicSettings?.general?.currencySymbol || settings?.general?.currencySymbol || '৳';
@@ -235,7 +236,7 @@ export const AccountDashboard: React.FC = () => {
                 <div className="flex items-center justify-between mb-5 pb-3 border-b border-gray-100">
                   <div>
                     <h3 className="text-base font-bold text-gray-900">Recent Orders</h3>
-                    <p className="text-[11px] text-gray-500">Your latest purchases from Vyzobd</p>
+                    <p className="text-[11px] text-gray-500">Your latest purchases from {siteName}</p>
                   </div>
                   <Link 
                     href="/account/orders" 

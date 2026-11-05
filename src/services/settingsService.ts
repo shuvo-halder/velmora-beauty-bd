@@ -1,14 +1,14 @@
 import { apiClient, unwrapApiResponse, extractApiError, ApiResponse } from '../lib/api';
 import { PublicSettings } from '../types/storefront';
 
-const DEFAULT_SETTINGS: PublicSettings = {
+export const DEFAULT_SETTINGS: PublicSettings = {
   branding: {
     logoUrl: '',
     faviconUrl: '',
     primaryColor: '#0f172a'
   },
   seo: {
-    metaTitle: 'Vyzobd Store',
+    metaTitle: 'Store',
     metaDescription: 'Quality products, trusted service, and a seamless shopping experience.'
   },
   shipping: {
@@ -25,8 +25,8 @@ const DEFAULT_SETTINGS: PublicSettings = {
     pricesIncludeTax: false
   },
   general: {
-    siteName: 'Vyzobd',
-    siteTitle: 'Vyzobd Store',
+    siteName: 'Store',
+    siteTitle: 'Store',
     currency: 'BDT',
     currencySymbol: '৳',
     storePhone: '',
@@ -38,8 +38,8 @@ const DEFAULT_SETTINGS: PublicSettings = {
     metaPixelId: '',
     googleAdsId: ''
   },
-  siteName: 'Vyzobd',
-  siteTitle: 'Vyzobd Store',
+  siteName: 'Store',
+  siteTitle: 'Store',
   logoUrl: '',
   faviconUrl: '',
   currency: 'BDT',
@@ -106,14 +106,14 @@ export const settingsService = {
           raw.branding?.siteName || 
           raw.general?.siteName || 
           raw.siteName || 
-          'Vyzobd';
+          'Store';
 
         const siteTitle = 
           raw.branding?.siteTitle || 
           raw.general?.siteTitle || 
           raw.seo?.metaTitle || 
           raw.siteTitle || 
-          'Vyzobd Store';
+          'Store';
 
         const defaultCurrency = 
           raw.branding?.defaultCurrency || 
@@ -154,7 +154,7 @@ export const settingsService = {
             siteTitle: raw.branding?.siteTitle || siteTitle,
             siteTagline: raw.branding?.siteTagline || null,
             logoUrl: raw.branding?.logoUrl || raw.logoUrl || '',
-            logoDarkUrl: raw.branding?.logoDarkUrl || null,
+            logoDarkUrl: raw.branding?.logoDarkUrl || raw.branding?.darkLogoUrl || null,
             faviconUrl: raw.branding?.faviconUrl || raw.faviconUrl || '',
             adminPanelName: raw.branding?.adminPanelName || null,
             adminPanelLogo: raw.branding?.adminPanelLogo || null,

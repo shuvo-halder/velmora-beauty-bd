@@ -18,9 +18,14 @@ interface SettingsContextType {
 
 const SettingsContext = createContext<SettingsContextType | undefined>(undefined);
 
-export const SettingsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [settings, setSettings] = useState<PublicSettings | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+export interface SettingsProviderProps {
+  children: ReactNode;
+  initialSettings?: PublicSettings | null;
+}
+
+export const SettingsProvider: React.FC<SettingsProviderProps> = ({ children, initialSettings = null }) => {
+  const [settings, setSettings] = useState<PublicSettings | null>(initialSettings);
+  const [isLoading, setIsLoading] = useState<boolean>(!initialSettings);
 
   const fetchSettings = async () => {
     try {

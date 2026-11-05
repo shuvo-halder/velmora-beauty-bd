@@ -6,7 +6,14 @@ import { SettingsProvider } from '../context/SettingsContext';
 import { StorefrontProvider } from '../context/StorefrontContext';
 import { AuthProvider } from '../context/AuthContext';
 
-export function StorefrontProviders({ children }: { children: React.ReactNode }) {
+import { PublicSettings } from '../types/storefront';
+
+export interface StorefrontProvidersProps {
+  children: React.ReactNode;
+  initialSettings?: PublicSettings | null;
+}
+
+export function StorefrontProviders({ children, initialSettings = null }: StorefrontProvidersProps) {
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -23,7 +30,7 @@ export function StorefrontProviders({ children }: { children: React.ReactNode })
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SettingsProvider>
+      <SettingsProvider initialSettings={initialSettings}>
         <StorefrontProvider>
           <AuthProvider>
             {children}

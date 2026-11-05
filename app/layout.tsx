@@ -11,6 +11,8 @@ import { AuthModal } from '../src/components/account/AuthModal';
 import { PromotionalPopup } from '../src/components/common/PromotionalPopup';
 import { getHomepageMetadata } from '../src/lib/seo';
 import { storefrontApi } from '../src/services/storefrontApi';
+import { DEFAULT_SETTINGS } from '../src/services/settingsService';
+import { PublicSettings } from '../src/types/storefront';
 
 export const dynamic = 'force-dynamic';
 
@@ -23,6 +25,18 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  let initialSettings: PublicSettings = DEFAULT_SETTINGS;
+  try {
+    const settingsPromise = storefrontApi.getPublicSettings();
+    const timeoutPromise = new Promise<never>((_, reject) => {
+      setTimeout(() => reject(new Error('Settings fetch timeout after 3000ms')), 3000);
+    });
+    initialSettings = await Promise.race([settingsPromise, timeoutPromise]);
+  } catch (err) {
+    console.warn('Failed to fetch server-side settings within 3s timeout, using neutral defaults:', err);
+    initialSettings = DEFAULT_SETTINGS;
+  }
+
   let initialAnalyticsConfig = null;
   try {
     initialAnalyticsConfig = await storefrontApi.getAnalyticsConfig();
@@ -33,7 +47,7 @@ export default async function RootLayout({
   return (
     <html lang="en" className="light">
       <body className="min-h-screen bg-white text-[#111827] font-sans flex flex-col justify-between selection:bg-primary selection:text-white antialiased overflow-x-hidden">
-        <StorefrontProviders>
+        <StorefrontProviders initialSettings={initialSettings}>
           <AnalyticsProvider initialConfig={initialAnalyticsConfig} />
           <div>
             <Header />

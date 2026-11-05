@@ -87,6 +87,10 @@ function HeaderContent() {
   const [isAccountMenuOpen, setIsAccountMenuOpen] = useState<boolean>(false);
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState<boolean>(false);
   const [isHeaderVisible, setIsHeaderVisible] = useState<boolean>(true);
+  const [logoError, setLogoError] = useState<boolean>(false);
+
+  const siteName = publicSettings?.general?.siteName || 'Store';
+  const logoUrl = !logoError && publicSettings?.branding?.logoUrl ? publicSettings.branding.logoUrl : null;
 
   const lastScrollYRef = useRef<number>(0);
   const mobileSearchInputRef = useRef<HTMLInputElement>(null);
@@ -487,11 +491,16 @@ function HeaderContent() {
             href="/" 
             className="max-lg:absolute max-lg:left-1/2 max-lg:top-1/2 max-lg:-translate-x-1/2 max-lg:-translate-y-1/2 flex items-center justify-center group select-none shrink-0 z-10"
           >
-            <img 
-              src={publicSettings?.branding?.logoUrl || "/logo.svg"} 
-              alt={publicSettings?.general?.siteName || "Store"} 
-              className="h-7 sm:h-8 lg:h-9 xl:h-10 w-auto object-contain shrink-0 block max-w-[120px] xs:max-w-[135px] sm:max-w-[155px] lg:max-w-[165px] xl:max-w-[180px]"
-            />
+            {logoUrl ? (
+              <img 
+                src={logoUrl} 
+                alt={siteName} 
+                className="h-7 sm:h-8 lg:h-9 xl:h-10 w-auto object-contain shrink-0 block max-w-[120px] xs:max-w-[135px] sm:max-w-[155px] lg:max-w-[165px] xl:max-w-[180px]"
+                onError={() => setLogoError(true)}
+              />
+            ) : (
+              <span className="font-extrabold text-xl sm:text-2xl text-[#111827] tracking-tight hover:text-[#DC2B53] transition-colors">{siteName}</span>
+            )}
           </Link>
 
           {/* Large Search Bar (Desktop) */}
@@ -1018,11 +1027,16 @@ function HeaderContent() {
           size="md"
           title={
             <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-2 group min-w-0">
-              <img 
-                src={publicSettings?.branding?.logoUrl || "/logo.svg"} 
-                alt={publicSettings?.general?.siteName || "Store"} 
-                className="h-7 w-auto flex-shrink-0" 
-              />
+              {logoUrl ? (
+                <img 
+                  src={logoUrl} 
+                  alt={siteName} 
+                  className="h-7 w-auto flex-shrink-0" 
+                  onError={() => setLogoError(true)}
+                />
+              ) : (
+                <span className="font-bold text-lg text-[#111827]">{siteName}</span>
+              )}
             </Link>
           }
           footer={

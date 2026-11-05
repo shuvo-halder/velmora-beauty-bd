@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useStorefront } from '../../context/StorefrontContext';
 import { 
@@ -76,6 +76,12 @@ export const Footer: React.FC = () => {
     }))
     .filter((platform): platform is typeof platform & { sanitizedUrl: string } => Boolean(platform.sanitizedUrl));
 
+  const [logoDarkError, setLogoDarkError] = useState(false);
+  const siteName = publicSettings?.general?.siteName || 'Store';
+  const logoDarkUrl = !logoDarkError && (publicSettings?.branding?.logoDarkUrl || publicSettings?.branding?.logoUrl) 
+    ? (publicSettings?.branding?.logoDarkUrl || publicSettings?.branding?.logoUrl) 
+    : null;
+
   return (
     <footer className="bg-[#111827] text-[#9CA3AF] pt-12 sm:pt-14 pb-5">
       
@@ -88,11 +94,16 @@ export const Footer: React.FC = () => {
             href="/" 
             className="cursor-pointer inline-flex items-center group"
           >
-            <img 
-              src={publicSettings?.branding?.logoDarkUrl || "/logowhite.svg"} 
-              alt={publicSettings?.general?.siteName || "Store"} 
-              className="h-8 lg:h-9 w-auto object-contain"
-            />
+            {logoDarkUrl ? (
+              <img 
+                src={logoDarkUrl} 
+                alt={siteName} 
+                className="h-8 lg:h-9 w-auto object-contain"
+                onError={() => setLogoDarkError(true)}
+              />
+            ) : (
+              <span className="font-extrabold text-xl lg:text-2xl text-white tracking-tight hover:text-[#DC2B53] transition-colors">{siteName}</span>
+            )}
           </Link>
 
           <p className="text-xs sm:text-sm text-gray-400 leading-relaxed max-w-sm font-normal">

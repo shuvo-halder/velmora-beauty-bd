@@ -89,6 +89,10 @@ function HeaderContent() {
   const [isHeaderVisible, setIsHeaderVisible] = useState<boolean>(true);
   const [logoError, setLogoError] = useState<boolean>(false);
 
+  useEffect(() => {
+    setLogoError(false);
+  }, [publicSettings?.branding?.logoUrl]);
+
   const siteName = publicSettings?.general?.siteName || 'Store';
   const logoUrl = !logoError && publicSettings?.branding?.logoUrl ? publicSettings.branding.logoUrl : null;
 

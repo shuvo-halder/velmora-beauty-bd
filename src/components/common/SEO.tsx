@@ -24,10 +24,10 @@ export const SEO: React.FC<SEOProps> = ({
 }) => {
   const { seo, general, branding } = useSettings();
 
-  const siteName = general?.siteName || 'Vyzobd';
+  const siteName = general?.siteName || 'Store';
   const fullTitle = title ? `${title} | ${siteName}` : (seo?.metaTitle || general?.siteTitle || siteName);
   const metaDescription = description || seo?.metaDescription || '';
-  const metaImage = ogImage || seo?.ogImageUrl || branding?.logoUrl || '';
+  const metaImage = ogImage || seo?.ogImageUrl || seo?.ogImage || branding?.logoUrl || '';
 
   useEffect(() => {
     if (typeof window === 'undefined') return;

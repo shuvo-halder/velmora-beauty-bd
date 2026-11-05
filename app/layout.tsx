@@ -9,7 +9,7 @@ import { QuickViewModal } from '../src/components/common/QuickViewModal';
 import { ToastContainer } from '../src/components/common/ToastContainer';
 import { AuthModal } from '../src/components/account/AuthModal';
 import { PromotionalPopup } from '../src/components/common/PromotionalPopup';
-import { getHomepageMetadata } from '../src/lib/seo';
+import { getHomepageMetadata, getPublicSiteSettings } from '../src/lib/seo';
 import { storefrontApi } from '../src/services/storefrontApi';
 import { DEFAULT_SETTINGS } from '../src/services/settingsService';
 import { PublicSettings } from '../src/types/storefront';
@@ -25,26 +25,20 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  let initialSettings: PublicSettings = DEFAULT_SETTINGS;
-  try {
-    const settingsPromise = storefrontApi.getPublicSettings();
-    const timeoutPromise = new Promise<never>((_, reject) => {
-      setTimeout(() => reject(new Error('Settings fetch timeout after 3000ms')), 3000);
-    });
-    initialSettings = await Promise.race([settingsPromise, timeoutPromise]);
-  } catch (err) {
-    console.warn('Failed to fetch server-side settings within 3s timeout, using neutral defaults:', err);
-    initialSettings = DEFAULT_SETTINGS;
-  }
+  const settings = await getPublicSiteSettings();
+  const initialSettings: PublicSettings = settings || DEFAULT_SETTINGS;
 
   let initialAnalyticsConfig = null;
   try {
-    initialAnalyticsConfig = await storefrontApi.getAnalyticsConfig();
+    const analyticsPromise = storefrontApi.getAnalyticsConfig();
+    const timeoutPromise = new Promise<never>((_, reject) => {
+      setTimeout(() => reject(new Error('Analytics config fetch timeout after 3000ms')), 3000);
+    });
+    initialAnalyticsConfig = await Promise.race([analyticsPromise, timeoutPromise]);
   } catch (err) {
-    console.error('Failed to fetch initial analytics config:', err);
+    console.warn('Failed to fetch initial analytics config within 3s timeout:', err);
   }
-
-  return (
+return (
     <html lang="en" className="light">
       <body className="min-h-screen bg-white text-[#111827] font-sans flex flex-col justify-between selection:bg-primary selection:text-white antialiased overflow-x-hidden">
         <StorefrontProviders initialSettings={initialSettings}>

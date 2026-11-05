@@ -3,7 +3,7 @@ import { Product, BlogArticle, CMSPage, StoreGeneral } from '../types/storefront
 export const getOrganizationSchema = (general: StoreGeneral | null) => ({
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  'name': general?.siteName || 'Vyzobd',
+  'name': general?.siteName || 'Store',
   'url': typeof window !== 'undefined' ? window.location.origin : '',
   'logo': '', // Add logo URL if available
   'contactPoint': {
@@ -17,7 +17,7 @@ export const getOrganizationSchema = (general: StoreGeneral | null) => ({
 export const getWebsiteSchema = (general: StoreGeneral | null) => ({
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  'name': general?.siteName || 'Vyzobd',
+  'name': general?.siteName || 'Store',
   'url': typeof window !== 'undefined' ? window.location.origin : '',
   'potentialAction': {
     '@type': 'SearchAction',

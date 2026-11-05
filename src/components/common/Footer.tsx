@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useStorefront } from '../../context/StorefrontContext';
 import { 
@@ -81,6 +81,10 @@ export const Footer: React.FC = () => {
   const logoDarkUrl = !logoDarkError && (publicSettings?.branding?.logoDarkUrl || publicSettings?.branding?.logoUrl) 
     ? (publicSettings?.branding?.logoDarkUrl || publicSettings?.branding?.logoUrl) 
     : null;
+
+  useEffect(() => {
+    setLogoDarkError(false);
+  }, [publicSettings?.branding?.logoDarkUrl, publicSettings?.branding?.logoUrl]);
 
   return (
     <footer className="bg-[#111827] text-[#9CA3AF] pt-12 sm:pt-14 pb-5">

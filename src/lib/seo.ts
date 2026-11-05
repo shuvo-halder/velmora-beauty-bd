@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { cache } from 'react';
 import { storefrontApi } from '../services/storefrontApi';
 
 const DEFAULT_BASE_URL = (
@@ -7,14 +8,19 @@ const DEFAULT_BASE_URL = (
   'https://vyzobd.com'
 ).replace(/\/+$/, '');
 
-export async function getPublicSiteSettings() {
+export const getPublicSiteSettings = cache(async () => {
   try {
-    const settings = await storefrontApi.getPublicSettings();
-    return settings;
+    const settingsPromise = storefrontApi.getPublicSettings();
+    const timeoutPromise = new Promise<never>((_, reject) => {
+      setTimeout(() => reject(new Error('Settings fetch timeout after 3000ms')), 3000);
+    });
+    const settings = await Promise.race([settingsPromise, timeoutPromise]);
+    return settings || null;
   } catch (err) {
+    console.warn('Failed to fetch public site settings within 3s timeout:', err);
     return null;
   }
-}
+});
 
 export function getSiteName(settings: any): string {
   return (
@@ -23,12 +29,27 @@ export function getSiteName(settings: any): string {
     settings?.branding?.siteName ||
     settings?.general?.siteTitle ||
     settings?.siteTitle ||
-    'Vyzobd'
+    'Store'
   );
 }
 
 export function getFaviconUrl(settings: any): string {
   return settings?.branding?.faviconUrl || settings?.faviconUrl || '/favicon.svg';
+}
+
+export function resolveOgImage(customImage?: string | null, settings?: any): string | null {
+  if (customImage && typeof customImage === 'string' && customImage.trim() && !customImage.includes('favicon.svg')) {
+    return customImage.trim();
+  }
+  const ogImg = settings?.seo?.ogImageUrl || settings?.seo?.ogImage;
+  if (ogImg && typeof ogImg === 'string' && ogImg.trim()) {
+    return ogImg.trim();
+  }
+  const logo = settings?.branding?.logoUrl || settings?.logoUrl;
+  if (logo && typeof logo === 'string' && logo.trim()) {
+    return logo.trim();
+  }
+  return null;
 }
 
 /**
@@ -54,12 +75,7 @@ export async function getHomepageMetadata(): Promise<Metadata> {
 
   const ogTitle = settings?.seo?.ogTitle || title;
   const ogDescription = settings?.seo?.ogDescription || description;
-  const ogImage =
-    settings?.seo?.ogImageUrl ||
-    settings?.seo?.ogImage ||
-    settings?.branding?.logoUrl ||
-    settings?.logoUrl ||
-    `${DEFAULT_BASE_URL}/favicon.svg`;
+  const ogImage = resolveOgImage(null, settings);
 
   const twitterTitle = settings?.seo?.twitterTitle || title;
   const twitterDescription = settings?.seo?.twitterDescription || description;
@@ -82,14 +98,14 @@ export async function getHomepageMetadata(): Promise<Metadata> {
       description: ogDescription,
       url: DEFAULT_BASE_URL,
       siteName,
-      images: [{ url: ogImage }],
+      ...(ogImage ? { images: [{ url: ogImage }] } : {}),
       type: 'website',
     },
     twitter: {
       card: 'summary_large_image',
       title: twitterTitle,
       description: twitterDescription,
-      images: [twitterImage],
+      ...(twitterImage ? { images: [twitterImage] } : {}),
     },
     alternates: {
       canonical: DEFAULT_BASE_URL,
@@ -111,6 +127,7 @@ export async function getProductsListingMetadata(): Promise<Metadata> {
   const description = `Browse the complete collection of high-performance audio equipment, workstation accessories, and power solutions at ${siteName}.`;
   const canonical = `${DEFAULT_BASE_URL}/products`;
   const favicon = getFaviconUrl(settings);
+  const ogImage = resolveOgImage(null, settings);
 
   return {
     title,
@@ -142,13 +159,14 @@ export async function getCategoriesIndexMetadata(): Promise<Metadata> {
   const description = `Browse all product categories and departments at ${siteName}.`;
   const canonical = `${DEFAULT_BASE_URL}/categories`;
   const favicon = getFaviconUrl(settings);
+  const ogImage = resolveOgImage(null, settings);
 
   return {
     title,
     description,
     icons: { icon: favicon, shortcut: favicon, apple: favicon },
-    openGraph: { title, description, url: canonical, siteName, type: 'website' },
-    twitter: { card: 'summary_large_image', title, description },
+    openGraph: { title, description, url: canonical, siteName, ...(ogImage ? { images: [{ url: ogImage }] } : {}), type: 'website' },
+    twitter: { card: 'summary_large_image', title, description, ...(ogImage ? { images: [ogImage] } : {}) },
     alternates: { canonical },
   };
 }
@@ -163,13 +181,14 @@ export async function getBrandsIndexMetadata(): Promise<Metadata> {
   const description = `Explore authentic collections and products from verified brand partners at ${siteName}.`;
   const canonical = `${DEFAULT_BASE_URL}/brands`;
   const favicon = getFaviconUrl(settings);
+  const ogImage = resolveOgImage(null, settings);
 
   return {
     title,
     description,
     icons: { icon: favicon, shortcut: favicon, apple: favicon },
-    openGraph: { title, description, url: canonical, siteName, type: 'website' },
-    twitter: { card: 'summary_large_image', title, description },
+    openGraph: { title, description, url: canonical, siteName, ...(ogImage ? { images: [{ url: ogImage }] } : {}), type: 'website' },
+    twitter: { card: 'summary_large_image', title, description, ...(ogImage ? { images: [ogImage] } : {}) },
     alternates: { canonical },
   };
 }
@@ -184,13 +203,14 @@ export async function getBlogIndexMetadata(): Promise<Metadata> {
   const description = `Read the latest shopping guides, articles, product highlights, and news at ${siteName}.`;
   const canonical = `${DEFAULT_BASE_URL}/blog`;
   const favicon = getFaviconUrl(settings);
+  const ogImage = resolveOgImage(null, settings);
 
   return {
     title,
     description,
     icons: { icon: favicon, shortcut: favicon, apple: favicon },
-    openGraph: { title, description, url: canonical, siteName, type: 'website' },
-    twitter: { card: 'summary_large_image', title, description },
+    openGraph: { title, description, url: canonical, siteName, ...(ogImage ? { images: [{ url: ogImage }] } : {}), type: 'website' },
+    twitter: { card: 'summary_large_image', title, description, ...(ogImage ? { images: [ogImage] } : {}) },
     alternates: { canonical },
   };
 }
@@ -223,7 +243,8 @@ export async function getProductDetailMetadata(slug: string): Promise<Metadata> 
     const entityTitle = product.name || rawProduct.title || rawProduct.seoTitle || rawProduct.productName || (product.slug ? product.slug.replace(/[-_]/g, ' ') : 'Product');
     const pageTitle = `${entityTitle} | ${siteName}`;
     const description = rawProduct.seoDescription || product.description || product.subtitle || `Buy ${entityTitle} at ${siteName}. High quality and genuine products.`;
-    const image = rawProduct.ogImage || (product.images && product.images.length > 0 ? product.images[0] : rawProduct.thumbnail) || `${DEFAULT_BASE_URL}/favicon.svg`;
+    const rawImage = rawProduct.ogImage || (product.images && product.images.length > 0 ? product.images[0] : rawProduct.thumbnail);
+    const image = resolveOgImage(rawImage, settings);
 
     return {
       title: pageTitle,
@@ -235,14 +256,14 @@ export async function getProductDetailMetadata(slug: string): Promise<Metadata> 
         description: description.substring(0, 160),
         url: canonical,
         siteName,
-        images: [{ url: image, alt: entityTitle }],
+        ...(image ? { images: [{ url: image, alt: entityTitle }] } : {}),
         type: 'website',
       },
       twitter: {
         card: 'summary_large_image',
         title: pageTitle,
         description: description.substring(0, 160),
-        images: [image],
+        ...(image ? { images: [image] } : {}),
       },
       alternates: { canonical },
     };
@@ -301,7 +322,8 @@ export async function getCategoryDetailMetadata(slug: string): Promise<Metadata>
     const entityTitle = category.seoTitle || category.name || slug;
     const pageTitle = `${entityTitle} | ${siteName}`;
     const description = category.seoDescription || category.description || `Shop the latest ${entityTitle} products and deals at ${siteName}.`;
-    const image = category.ogImage || category.image || `${DEFAULT_BASE_URL}/favicon.svg`;
+    const rawImage = category.ogImage || category.image;
+    const image = resolveOgImage(rawImage, settings);
 
     return {
       title: pageTitle,
@@ -364,7 +386,8 @@ export async function getBrandDetailMetadata(slug: string): Promise<Metadata> {
     const entityTitle = brand.seoTitle || brand.name || slug;
     const pageTitle = `${entityTitle} | ${siteName}`;
     const description = brand.seoDescription || brand.description || `Discover authentic products from ${entityTitle} at ${siteName}.`;
-    const image = brand.ogImage || brand.logo || brand.logoUrl || `${DEFAULT_BASE_URL}/favicon.svg`;
+    const rawImage = brand.ogImage || brand.logo || brand.logoUrl;
+    const image = resolveOgImage(rawImage, settings);
 
     return {
       title: pageTitle,
@@ -426,7 +449,8 @@ export async function getBlogDetailMetadata(slug: string): Promise<Metadata> {
     const entityTitle = article.title || 'Journal Article';
     const pageTitle = `${entityTitle} | ${siteName}`;
     const description = article.excerpt || article.content?.substring(0, 160) || `Read ${entityTitle} on the ${siteName} journal.`;
-    const image = article.coverImage || article.featuredImage?.secureUrl || article.featuredImage?.url || `${DEFAULT_BASE_URL}/favicon.svg`;
+    const rawImage = article.coverImage || article.featuredImage?.secureUrl || article.featuredImage?.url;
+    const image = resolveOgImage(rawImage, settings);
 
     return {
       title: pageTitle,
@@ -468,6 +492,7 @@ export async function getCMSPageMetadata(slug: string): Promise<Metadata> {
   const settings = await getPublicSiteSettings();
   const siteName = getSiteName(settings);
   const favicon = getFaviconUrl(settings);
+  const ogImage = resolveOgImage(null, settings);
   const canonical = `${DEFAULT_BASE_URL}/pages/${slug}`;
 
   try {
@@ -527,6 +552,7 @@ export async function getSearchPageMetadata(query?: string): Promise<Metadata> {
   const settings = await getPublicSiteSettings();
   const siteName = getSiteName(settings);
   const favicon = getFaviconUrl(settings);
+  const ogImage = resolveOgImage(null, settings);
   const q = query?.trim();
 
   const title = q ? `Search results for "${q}" | ${siteName}` : `Search Products | ${siteName}`;

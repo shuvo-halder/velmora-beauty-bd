@@ -2,11 +2,7 @@ import type { Metadata } from 'next';
 import { cache } from 'react';
 import { storefrontApi } from '../services/storefrontApi';
 
-const DEFAULT_BASE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  process.env.NEXT_PUBLIC_APP_URL ||
-  'https://vyzobd.com'
-).replace(/\/+$/, '');
+import { getSiteUrl } from './siteUrl';
 
 export const getPublicSiteSettings = cache(async () => {
   try {
@@ -84,7 +80,7 @@ export async function getHomepageMetadata(): Promise<Metadata> {
   const favicon = getFaviconUrl(settings);
 
   return {
-    metadataBase: new URL(DEFAULT_BASE_URL),
+    ...((() => { const u = getSiteUrl(); return u ? { metadataBase: new URL(u) } : {}; })()),
     title,
     description,
     keywords,
@@ -96,7 +92,7 @@ export async function getHomepageMetadata(): Promise<Metadata> {
     openGraph: {
       title: ogTitle,
       description: ogDescription,
-      url: DEFAULT_BASE_URL,
+      ...((() => { const u = getSiteUrl(); return u ? { url: u } : {}; })()),
       siteName,
       ...(ogImage ? { images: [{ url: ogImage }] } : {}),
       type: 'website',
@@ -107,9 +103,7 @@ export async function getHomepageMetadata(): Promise<Metadata> {
       description: twitterDescription,
       ...(twitterImage ? { images: [twitterImage] } : {}),
     },
-    alternates: {
-      canonical: DEFAULT_BASE_URL,
-    },
+    ...((() => { const u = getSiteUrl(); return u ? { alternates: { canonical: u } } : {}; })()),
     robots: {
       index: true,
       follow: true,
@@ -125,7 +119,7 @@ export async function getProductsListingMetadata(): Promise<Metadata> {
   const siteName = getSiteName(settings);
   const title = `All Products | ${siteName}`;
   const description = `Browse the complete collection of high-performance audio equipment, workstation accessories, and power solutions at ${siteName}.`;
-  const canonical = `${DEFAULT_BASE_URL}/products`;
+  const canonical = (getSiteUrl() ? `${getSiteUrl()}/products` : undefined);
   const favicon = getFaviconUrl(settings);
   const ogImage = resolveOgImage(null, settings);
 
@@ -136,7 +130,7 @@ export async function getProductsListingMetadata(): Promise<Metadata> {
     openGraph: {
       title,
       description,
-      url: canonical,
+      ...(canonical ? { url: canonical } : {}),
       siteName,
       type: 'website',
     },
@@ -145,7 +139,7 @@ export async function getProductsListingMetadata(): Promise<Metadata> {
       title,
       description,
     },
-    alternates: { canonical },
+    ...(canonical ? { alternates: { canonical } } : {}),
   };
 }
 
@@ -157,7 +151,7 @@ export async function getCategoriesIndexMetadata(): Promise<Metadata> {
   const siteName = getSiteName(settings);
   const title = `Categories | ${siteName}`;
   const description = `Browse all product categories and departments at ${siteName}.`;
-  const canonical = `${DEFAULT_BASE_URL}/categories`;
+  const canonical = (getSiteUrl() ? `${getSiteUrl()}/categories` : undefined);
   const favicon = getFaviconUrl(settings);
   const ogImage = resolveOgImage(null, settings);
 
@@ -165,9 +159,9 @@ export async function getCategoriesIndexMetadata(): Promise<Metadata> {
     title,
     description,
     icons: { icon: favicon, shortcut: favicon, apple: favicon },
-    openGraph: { title, description, url: canonical, siteName, ...(ogImage ? { images: [{ url: ogImage }] } : {}), type: 'website' },
+    openGraph: { title, description, ...(canonical ? { url: canonical } : {}), siteName, ...(ogImage ? { images: [{ url: ogImage }] } : {}), type: 'website' },
     twitter: { card: 'summary_large_image', title, description, ...(ogImage ? { images: [ogImage] } : {}) },
-    alternates: { canonical },
+    ...(canonical ? { alternates: { canonical } } : {}),
   };
 }
 
@@ -179,7 +173,7 @@ export async function getBrandsIndexMetadata(): Promise<Metadata> {
   const siteName = getSiteName(settings);
   const title = `Official Brands | ${siteName}`;
   const description = `Explore authentic collections and products from verified brand partners at ${siteName}.`;
-  const canonical = `${DEFAULT_BASE_URL}/brands`;
+  const canonical = (getSiteUrl() ? `${getSiteUrl()}/brands` : undefined);
   const favicon = getFaviconUrl(settings);
   const ogImage = resolveOgImage(null, settings);
 
@@ -187,9 +181,9 @@ export async function getBrandsIndexMetadata(): Promise<Metadata> {
     title,
     description,
     icons: { icon: favicon, shortcut: favicon, apple: favicon },
-    openGraph: { title, description, url: canonical, siteName, ...(ogImage ? { images: [{ url: ogImage }] } : {}), type: 'website' },
+    openGraph: { title, description, ...(canonical ? { url: canonical } : {}), siteName, ...(ogImage ? { images: [{ url: ogImage }] } : {}), type: 'website' },
     twitter: { card: 'summary_large_image', title, description, ...(ogImage ? { images: [ogImage] } : {}) },
-    alternates: { canonical },
+    ...(canonical ? { alternates: { canonical } } : {}),
   };
 }
 
@@ -201,7 +195,7 @@ export async function getBlogIndexMetadata(): Promise<Metadata> {
   const siteName = getSiteName(settings);
   const title = `Journal & Articles | ${siteName}`;
   const description = `Read the latest shopping guides, articles, product highlights, and news at ${siteName}.`;
-  const canonical = `${DEFAULT_BASE_URL}/blog`;
+  const canonical = (getSiteUrl() ? `${getSiteUrl()}/blog` : undefined);
   const favicon = getFaviconUrl(settings);
   const ogImage = resolveOgImage(null, settings);
 
@@ -209,9 +203,9 @@ export async function getBlogIndexMetadata(): Promise<Metadata> {
     title,
     description,
     icons: { icon: favicon, shortcut: favicon, apple: favicon },
-    openGraph: { title, description, url: canonical, siteName, ...(ogImage ? { images: [{ url: ogImage }] } : {}), type: 'website' },
+    openGraph: { title, description, ...(canonical ? { url: canonical } : {}), siteName, ...(ogImage ? { images: [{ url: ogImage }] } : {}), type: 'website' },
     twitter: { card: 'summary_large_image', title, description, ...(ogImage ? { images: [ogImage] } : {}) },
-    alternates: { canonical },
+    ...(canonical ? { alternates: { canonical } } : {}),
   };
 }
 
@@ -222,7 +216,7 @@ export async function getProductDetailMetadata(slug: string): Promise<Metadata> 
   const settings = await getPublicSiteSettings();
   const siteName = getSiteName(settings);
   const favicon = getFaviconUrl(settings);
-  const canonical = `${DEFAULT_BASE_URL}/products/${slug}`;
+  const canonical = (getSiteUrl() ? `${getSiteUrl()}/products/${slug}` : undefined);
 
   try {
     const product = await storefrontApi.getProductBySlug(slug);
@@ -233,9 +227,9 @@ export async function getProductDetailMetadata(slug: string): Promise<Metadata> 
         title: missingTitle,
         description: missingDesc,
         icons: { icon: favicon, shortcut: favicon, apple: favicon },
-        openGraph: { title: missingTitle, description: missingDesc, url: canonical, siteName },
+        openGraph: { title: missingTitle, description: missingDesc, ...(canonical ? { url: canonical } : {}), siteName },
         twitter: { card: 'summary_large_image', title: missingTitle, description: missingDesc },
-        alternates: { canonical },
+        ...(canonical ? { alternates: { canonical } } : {}),
       };
     }
 
@@ -254,7 +248,7 @@ export async function getProductDetailMetadata(slug: string): Promise<Metadata> 
       openGraph: {
         title: pageTitle,
         description: description.substring(0, 160),
-        url: canonical,
+        ...(canonical ? { url: canonical } : {}),
         siteName,
         ...(image ? { images: [{ url: image, alt: entityTitle }] } : {}),
         type: 'website',
@@ -265,7 +259,7 @@ export async function getProductDetailMetadata(slug: string): Promise<Metadata> 
         description: description.substring(0, 160),
         ...(image ? { images: [image] } : {}),
       },
-      alternates: { canonical },
+      ...(canonical ? { alternates: { canonical } } : {}),
     };
   } catch (err) {
     const errorTitle = `Product Not Found | ${siteName}`;
@@ -273,8 +267,8 @@ export async function getProductDetailMetadata(slug: string): Promise<Metadata> 
       title: errorTitle,
       description: `The requested product could not be found on ${siteName}.`,
       icons: { icon: favicon, shortcut: favicon, apple: favicon },
-      openGraph: { title: errorTitle, url: canonical, siteName },
-      alternates: { canonical },
+      openGraph: { title: errorTitle, ...(canonical ? { url: canonical } : {}), siteName },
+      ...(canonical ? { alternates: { canonical } } : {}),
     };
   }
 }
@@ -286,7 +280,7 @@ export async function getCategoryDetailMetadata(slug: string): Promise<Metadata>
   const settings = await getPublicSiteSettings();
   const siteName = getSiteName(settings);
   const favicon = getFaviconUrl(settings);
-  const canonical = `${DEFAULT_BASE_URL}/categories/${slug}`;
+  const canonical = (getSiteUrl() ? `${getSiteUrl()}/categories/${slug}` : undefined);
 
   try {
     const categories = await storefrontApi.getCategories();
@@ -313,9 +307,9 @@ export async function getCategoryDetailMetadata(slug: string): Promise<Metadata>
         title: missingTitle,
         description: missingDesc,
         icons: { icon: favicon, shortcut: favicon, apple: favicon },
-        openGraph: { title: missingTitle, description: missingDesc, url: canonical, siteName },
+        openGraph: { title: missingTitle, description: missingDesc, ...(canonical ? { url: canonical } : {}), siteName },
         twitter: { card: 'summary_large_image', title: missingTitle, description: missingDesc },
-        alternates: { canonical },
+        ...(canonical ? { alternates: { canonical } } : {}),
       };
     }
 
@@ -332,7 +326,7 @@ export async function getCategoryDetailMetadata(slug: string): Promise<Metadata>
       openGraph: {
         title: pageTitle,
         description: description.substring(0, 160),
-        url: canonical,
+        ...(canonical ? { url: canonical } : {}),
         siteName,
         images: [{ url: image, alt: entityTitle }],
         type: 'website',
@@ -343,7 +337,7 @@ export async function getCategoryDetailMetadata(slug: string): Promise<Metadata>
         description: description.substring(0, 160),
         images: [image],
       },
-      alternates: { canonical },
+      ...(canonical ? { alternates: { canonical } } : {}),
     };
   } catch (err) {
     const errorTitle = `Category Not Found | ${siteName}`;
@@ -351,8 +345,8 @@ export async function getCategoryDetailMetadata(slug: string): Promise<Metadata>
       title: errorTitle,
       description: `The requested category could not be found on ${siteName}.`,
       icons: { icon: favicon, shortcut: favicon, apple: favicon },
-      openGraph: { title: errorTitle, url: canonical, siteName },
-      alternates: { canonical },
+      openGraph: { title: errorTitle, ...(canonical ? { url: canonical } : {}), siteName },
+      ...(canonical ? { alternates: { canonical } } : {}),
     };
   }
 }
@@ -364,7 +358,7 @@ export async function getBrandDetailMetadata(slug: string): Promise<Metadata> {
   const settings = await getPublicSiteSettings();
   const siteName = getSiteName(settings);
   const favicon = getFaviconUrl(settings);
-  const canonical = `${DEFAULT_BASE_URL}/brands/${slug}`;
+  const canonical = (getSiteUrl() ? `${getSiteUrl()}/brands/${slug}` : undefined);
 
   try {
     const brands = await storefrontApi.getBrands();
@@ -377,9 +371,9 @@ export async function getBrandDetailMetadata(slug: string): Promise<Metadata> {
         title: missingTitle,
         description: missingDesc,
         icons: { icon: favicon, shortcut: favicon, apple: favicon },
-        openGraph: { title: missingTitle, description: missingDesc, url: canonical, siteName },
+        openGraph: { title: missingTitle, description: missingDesc, ...(canonical ? { url: canonical } : {}), siteName },
         twitter: { card: 'summary_large_image', title: missingTitle, description: missingDesc },
-        alternates: { canonical },
+        ...(canonical ? { alternates: { canonical } } : {}),
       };
     }
 
@@ -396,7 +390,7 @@ export async function getBrandDetailMetadata(slug: string): Promise<Metadata> {
       openGraph: {
         title: pageTitle,
         description: description.substring(0, 160),
-        url: canonical,
+        ...(canonical ? { url: canonical } : {}),
         siteName,
         images: [{ url: image, alt: entityTitle }],
         type: 'website',
@@ -407,7 +401,7 @@ export async function getBrandDetailMetadata(slug: string): Promise<Metadata> {
         description: description.substring(0, 160),
         images: [image],
       },
-      alternates: { canonical },
+      ...(canonical ? { alternates: { canonical } } : {}),
     };
   } catch (err) {
     const errorTitle = `Brand Not Found | ${siteName}`;
@@ -415,8 +409,8 @@ export async function getBrandDetailMetadata(slug: string): Promise<Metadata> {
       title: errorTitle,
       description: `The requested brand could not be found on ${siteName}.`,
       icons: { icon: favicon, shortcut: favicon, apple: favicon },
-      openGraph: { title: errorTitle, url: canonical, siteName },
-      alternates: { canonical },
+      openGraph: { title: errorTitle, ...(canonical ? { url: canonical } : {}), siteName },
+      ...(canonical ? { alternates: { canonical } } : {}),
     };
   }
 }
@@ -428,7 +422,7 @@ export async function getBlogDetailMetadata(slug: string): Promise<Metadata> {
   const settings = await getPublicSiteSettings();
   const siteName = getSiteName(settings);
   const favicon = getFaviconUrl(settings);
-  const canonical = `${DEFAULT_BASE_URL}/blog/${slug}`;
+  const canonical = (getSiteUrl() ? `${getSiteUrl()}/blog/${slug}` : undefined);
 
   try {
     const article = await storefrontApi.getArticleBySlug(slug) as any;
@@ -440,9 +434,9 @@ export async function getBlogDetailMetadata(slug: string): Promise<Metadata> {
         title: missingTitle,
         description: missingDesc,
         icons: { icon: favicon, shortcut: favicon, apple: favicon },
-        openGraph: { title: missingTitle, description: missingDesc, url: canonical, siteName },
+        openGraph: { title: missingTitle, description: missingDesc, ...(canonical ? { url: canonical } : {}), siteName },
         twitter: { card: 'summary_large_image', title: missingTitle, description: missingDesc },
-        alternates: { canonical },
+        ...(canonical ? { alternates: { canonical } } : {}),
       };
     }
 
@@ -460,7 +454,7 @@ export async function getBlogDetailMetadata(slug: string): Promise<Metadata> {
       openGraph: {
         title: pageTitle,
         description: description.substring(0, 160),
-        url: canonical,
+        ...(canonical ? { url: canonical } : {}),
         siteName,
         images: [{ url: image, alt: entityTitle }],
         type: 'article',
@@ -471,7 +465,7 @@ export async function getBlogDetailMetadata(slug: string): Promise<Metadata> {
         description: description.substring(0, 160),
         images: [image],
       },
-      alternates: { canonical },
+      ...(canonical ? { alternates: { canonical } } : {}),
     };
   } catch (err) {
     const errorTitle = `Article Not Found | ${siteName}`;
@@ -479,8 +473,8 @@ export async function getBlogDetailMetadata(slug: string): Promise<Metadata> {
       title: errorTitle,
       description: `The requested article could not be found on ${siteName}.`,
       icons: { icon: favicon, shortcut: favicon, apple: favicon },
-      openGraph: { title: errorTitle, url: canonical, siteName },
-      alternates: { canonical },
+      openGraph: { title: errorTitle, ...(canonical ? { url: canonical } : {}), siteName },
+      ...(canonical ? { alternates: { canonical } } : {}),
     };
   }
 }
@@ -493,7 +487,7 @@ export async function getCMSPageMetadata(slug: string): Promise<Metadata> {
   const siteName = getSiteName(settings);
   const favicon = getFaviconUrl(settings);
   const ogImage = resolveOgImage(null, settings);
-  const canonical = `${DEFAULT_BASE_URL}/pages/${slug}`;
+  const canonical = (getSiteUrl() ? `${getSiteUrl()}/pages/${slug}` : undefined);
 
   try {
     const page = await storefrontApi.getCMSPageBySlug(slug) as any;
@@ -505,9 +499,9 @@ export async function getCMSPageMetadata(slug: string): Promise<Metadata> {
         title: missingTitle,
         description: missingDesc,
         icons: { icon: favicon, shortcut: favicon, apple: favicon },
-        openGraph: { title: missingTitle, description: missingDesc, url: canonical, siteName },
+        openGraph: { title: missingTitle, description: missingDesc, ...(canonical ? { url: canonical } : {}), siteName },
         twitter: { card: 'summary_large_image', title: missingTitle, description: missingDesc },
-        alternates: { canonical },
+        ...(canonical ? { alternates: { canonical } } : {}),
       };
     }
 
@@ -522,7 +516,7 @@ export async function getCMSPageMetadata(slug: string): Promise<Metadata> {
       openGraph: {
         title: pageTitle,
         description,
-        url: canonical,
+        ...(canonical ? { url: canonical } : {}),
         siteName,
         type: 'website',
       },
@@ -531,7 +525,7 @@ export async function getCMSPageMetadata(slug: string): Promise<Metadata> {
         title: pageTitle,
         description,
       },
-      alternates: { canonical },
+      ...(canonical ? { alternates: { canonical } } : {}),
     };
   } catch (err) {
     const errorTitle = `Page Not Found | ${siteName}`;
@@ -539,8 +533,8 @@ export async function getCMSPageMetadata(slug: string): Promise<Metadata> {
       title: errorTitle,
       description: `The requested page could not be found on ${siteName}.`,
       icons: { icon: favicon, shortcut: favicon, apple: favicon },
-      openGraph: { title: errorTitle, url: canonical, siteName },
-      alternates: { canonical },
+      openGraph: { title: errorTitle, ...(canonical ? { url: canonical } : {}), siteName },
+      ...(canonical ? { alternates: { canonical } } : {}),
     };
   }
 }
@@ -561,8 +555,8 @@ export async function getSearchPageMetadata(query?: string): Promise<Metadata> {
     : `Search our entire catalog of products, collections, and deals at ${siteName}.`;
   
   const canonical = q 
-    ? `${DEFAULT_BASE_URL}/search?q=${encodeURIComponent(q)}` 
-    : `${DEFAULT_BASE_URL}/search`;
+    ? (getSiteUrl() ? `${getSiteUrl()}/search?q=${encodeURIComponent(q)}` : undefined) 
+    : (getSiteUrl() ? `${getSiteUrl()}/search` : undefined);
 
   return {
     title,
@@ -571,7 +565,7 @@ export async function getSearchPageMetadata(query?: string): Promise<Metadata> {
     openGraph: {
       title,
       description,
-      url: canonical,
+      ...(canonical ? { url: canonical } : {}),
       siteName,
       type: 'website',
     },
@@ -580,6 +574,6 @@ export async function getSearchPageMetadata(query?: string): Promise<Metadata> {
       title,
       description,
     },
-    alternates: { canonical },
+    ...(canonical ? { alternates: { canonical } } : {}),
   };
 }

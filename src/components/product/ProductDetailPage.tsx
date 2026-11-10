@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { SmartImage } from '../common/SmartImage';
 import { isValidImageUrl } from '../../utils/imageUtils';
+import { getSiteUrl } from '../../lib/siteUrl';
 import { useParams } from 'next/navigation';
 import { useStorefront } from '../../context/StorefrontContext';
 import { useCart } from '../../hooks/useCart';
@@ -402,6 +403,15 @@ export const ProductDetailPage: React.FC = () => {
     setIsZoomOpen(true);
   };
 
+  const origin = typeof window !== 'undefined' ? window.location.origin : getSiteUrl();
+  const breadcrumbItems = origin
+    ? [
+        { name: 'Home', url: origin },
+        { name: 'Products', url: `${origin}/products` },
+        { name: product.name, url: `${origin}/products/${product.slug}` }
+      ]
+    : [];
+
   return (
     <div className="py-8 bg-white min-h-screen">
       <SEO 
@@ -410,12 +420,8 @@ export const ProductDetailPage: React.FC = () => {
         ogImage={selectedImage || product.images[0]}
         ogType="product"
         structuredData={[
-          getProductSchema(product, publicSettings?.general?.currency),
-          getBreadcrumbSchema([
-            { name: 'Home', url: typeof window !== 'undefined' ? window.location.origin : 'https://vyzobd.com' },
-            { name: 'Products', url: `${typeof window !== 'undefined' ? window.location.origin : 'https://vyzobd.com'}/products` },
-            { name: product.name, url: typeof window !== 'undefined' ? `${window.location.origin}/products/${product.slug}` : `https://vyzobd.com/products/${product.slug}` }
-          ])
+          getProductSchema(product, publicSettings?.general?.currency, origin),
+          ...(breadcrumbItems.length > 0 ? [getBreadcrumbSchema(breadcrumbItems)] : [])
         ]}
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">

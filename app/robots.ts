@@ -1,12 +1,9 @@
 import type { MetadataRoute } from 'next';
-
-const BASE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  process.env.NEXT_PUBLIC_APP_URL ||
-  'https://vyzobd.com'
-).replace(/\/+$/, '');
+import { getSiteUrl } from '../src/lib/siteUrl';
 
 export default function robots(): MetadataRoute.Robots {
+  const baseUrl = getSiteUrl();
+
   return {
     rules: [
       {
@@ -26,7 +23,6 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
     ],
-    sitemap: `${BASE_URL}/sitemap.xml`,
+    ...(baseUrl ? { sitemap: `${baseUrl}/sitemap.xml` } : {}),
   };
 }
-

@@ -1,3 +1,4 @@
+import { getSiteUrl } from '../lib/siteUrl';
 import { Product, BlogArticle, CMSPage, StoreGeneral } from '../types/storefront';
 
 export const getOrganizationSchema = (general: StoreGeneral | null) => ({
@@ -27,17 +28,17 @@ export const getWebsiteSchema = (general: StoreGeneral | null) => ({
 });
 
 export const getProductSchema = (product: Product, currency: string = 'BDT', baseUrl?: string) => {
-  const origin = baseUrl || (typeof window !== 'undefined' ? window.location.origin : 'https://vyzobd.com');
+  const origin = baseUrl !== undefined ? baseUrl : (typeof window !== 'undefined' ? window.location.origin : getSiteUrl());
   const schema: any = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     'name': product.name,
-    'image': product.images && product.images.length > 0 ? product.images : [`${origin}/favicon.svg`],
+    'image': product.images && product.images.length > 0 ? product.images : (origin ? [`${origin}/favicon.svg`] : []),
     'description': product.description || product.subtitle || product.name,
     'sku': product.variants?.[0]?.sku || `SKU-${product.id}`,
     'offers': {
       '@type': 'Offer',
-      'url': `${origin}/products/${product.slug}`,
+      ...(origin ? { 'url': `${origin}/products/${product.slug}` } : {}),
       'priceCurrency': currency,
       'price': product.price,
       'itemCondition': 'https://schema.org/NewCondition',
@@ -84,7 +85,7 @@ export const getArticleSchema = (article: BlogArticle) => ({
 export const getBreadcrumbSchema = (items: { name: string; url: string }[]) => ({
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
-  'itemListElement': items.map((item, index) => ({
+  'itemListElement': items.filter(item => Boolean(item.url)).map((item, index) => ({
     '@type': 'ListItem',
     'position': index + 1,
     'name': item.name,

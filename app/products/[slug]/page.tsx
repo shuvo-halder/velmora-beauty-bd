@@ -3,6 +3,7 @@ import { ProductDetailPage } from '../../../src/components/product/ProductDetail
 import { getProductDetailMetadata } from '../../../src/lib/seo';
 import { storefrontApi } from '../../../src/services/storefrontApi';
 import { getProductSchema, getBreadcrumbSchema } from '../../../src/utils/seo';
+import { getSiteUrl } from '../../../src/lib/siteUrl';
 import type { Metadata } from 'next';
 
 export async function generateMetadata({ params }: { params: { slug: string } | Promise<{ slug: string }> }): Promise<Metadata> {
@@ -32,26 +33,31 @@ export default async function ProductSlugPage({ params }: { params: { slug: stri
     notFound();
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://vyzobd.com';
+  const baseUrl = getSiteUrl();
   const currency = publicSettings?.general?.currency || 'BDT';
   const productJsonLd = getProductSchema(product, currency, baseUrl);
-  const breadcrumbJsonLd = getBreadcrumbSchema([
-    { name: 'Home', url: baseUrl },
-    { name: 'Products', url: `${baseUrl}/products` },
-    { name: product.name, url: `${baseUrl}/products/${product.slug}` }
-  ]);
+  const breadcrumbItems = baseUrl
+    ? [
+        { name: 'Home', url: baseUrl },
+        { name: 'Products', url: `${baseUrl}/products` },
+        { name: product.name, url: `${baseUrl}/products/${product.slug}` }
+      ]
+    : [];
+  const breadcrumbJsonLd = breadcrumbItems.length > 0 ? getBreadcrumbSchema(breadcrumbItems) : null;
+  const structuredData = [productJsonLd, breadcrumbJsonLd].filter(Boolean);
 
   return (
     <>
-      <script
-        id="json-ld-structured-data"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify([productJsonLd, breadcrumbJsonLd])
-        }}
-      />
+      {structuredData.length > 0 && (
+        <script
+          id="json-ld-structured-data"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData)
+          }}
+        />
+      )}
       <ProductDetailPage />
     </>
   );
 }
-

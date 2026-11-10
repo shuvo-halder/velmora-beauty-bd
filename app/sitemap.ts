@@ -1,14 +1,9 @@
 import type { MetadataRoute } from 'next';
 import { storefrontApi } from '../src/services/storefrontApi';
+import { getSiteUrl } from '../src/lib/siteUrl';
 
 // Automatically revalidate sitemap every 4 hours (14,400 seconds)
 export const revalidate = 14400;
-
-const BASE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  process.env.NEXT_PUBLIC_APP_URL ||
-  'https://vyzobd.com'
-).replace(/\/+$/, '');
 
 function parseValidDate(dateVal: any): Date | undefined {
   if (!dateVal) return undefined;
@@ -27,6 +22,10 @@ async function fetchWithTimeout<T>(fn: () => Promise<T>, timeoutMs = 8000): Prom
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const baseUrl = getSiteUrl();
+  if (!baseUrl) {
+    return [];
+  }
   const urlMap = new Map<string, MetadataRoute.Sitemap[number]>();
 
   const addUrl = (
@@ -38,7 +37,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   ) => {
     const cleanPath = path.startsWith('/') ? path : `/${path}`;
-    const fullUrl = `${BASE_URL}${cleanPath}`;
+    const fullUrl = `${baseUrl}${cleanPath}`;
 
     if (!urlMap.has(fullUrl)) {
       urlMap.set(fullUrl, {

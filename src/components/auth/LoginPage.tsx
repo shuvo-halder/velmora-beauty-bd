@@ -208,15 +208,15 @@ export const LoginPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#F9FAFB] flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center mb-6">
-        <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-[#FDF0F3] mb-4 border border-[#DC2B53]/20">
-          <ShieldCheck size={24} className="text-[#DC2B53]" />
+        <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary-light mb-4 border border-primary/20">
+          <ShieldCheck size={24} className="text-primary" />
         </div>
         <h1 className="text-2xl font-bold text-[#111827]">Customer Sign In</h1>
         <p className="mt-1 text-xs text-[#6B7280]">
           Don't have an account?{' '}
           <Link
             href={`/register${redirectTarget !== '/account' ? `?redirect=${encodeURIComponent(redirectTarget)}` : ''}`}
-            className="text-[#DC2B53] font-semibold hover:text-[#C52247] transition-colors"
+            className="text-primary font-semibold hover:text-primary-hover transition-colors"
           >
             Create an account
           </Link>
@@ -297,7 +297,7 @@ export const LoginPage: React.FC = () => {
                     {...registerEmail('email')}
                     type="email"
                     autoComplete="email"
-                    className="block w-full pl-10 pr-3.5 py-2.5 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] placeholder:text-[#6B7280] focus:outline-none focus:border-[#DC2B53]"
+                    className="block w-full pl-10 pr-3.5 py-2.5 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] placeholder:text-[#6B7280] focus:outline-none focus:border-primary"
                     placeholder="name@example.com"
                   />
                 </div>
@@ -311,7 +311,7 @@ export const LoginPage: React.FC = () => {
                   <label className="block text-xs font-semibold text-[#111827]">Password</label>
                   <Link
                     href="/forgot-password"
-                    className="text-[11px] font-medium text-[#6B7280] hover:text-[#DC2B53] transition-colors"
+                    className="text-[11px] font-medium text-[#6B7280] hover:text-primary transition-colors"
                   >
                     Forgot password?
                   </Link>
@@ -324,7 +324,7 @@ export const LoginPage: React.FC = () => {
                     {...registerEmail('password')}
                     type={showPassword ? 'text' : 'password'}
                     autoComplete="current-password"
-                    className="block w-full pl-10 pr-10 py-2.5 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] placeholder:text-[#6B7280] focus:outline-none focus:border-[#DC2B53]"
+                    className="block w-full pl-10 pr-10 py-2.5 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] placeholder:text-[#6B7280] focus:outline-none focus:border-primary"
                     placeholder="••••••••"
                   />
                   <button
@@ -346,7 +346,7 @@ export const LoginPage: React.FC = () => {
                   {...registerEmail('rememberMe')}
                   id="remember-me"
                   type="checkbox"
-                  className="h-4 w-4 text-[#DC2B53] focus:ring-[#DC2B53] border-[#E5E7EB] rounded accent-[#DC2B53]"
+                  className="h-4 w-4 text-primary focus:ring-primary border-[#E5E7EB] rounded accent-primary"
                 />
                 <label htmlFor="remember-me" className="ml-2 block text-xs font-medium text-[#6B7280]">
                   Remember me on this device
@@ -356,7 +356,7 @@ export const LoginPage: React.FC = () => {
               <button
                 type="submit"
                 disabled={isSubmittingEmail}
-                className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-[#DC2B53] hover:bg-[#C52247] disabled:bg-gray-300 text-white text-xs font-bold rounded-lg transition-colors cursor-pointer shadow-xs"
+                className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-primary hover:bg-primary-hover disabled:bg-gray-300 text-white text-xs font-bold rounded-lg transition-colors cursor-pointer shadow-xs"
               >
                 {isSubmittingEmail ? <Loader2 size={16} className="animate-spin" /> : <ArrowRight size={16} />}
                 <span>{isSubmittingEmail ? 'Signing in...' : 'Sign In'}</span>
@@ -383,7 +383,7 @@ export const LoginPage: React.FC = () => {
                         {...registerMobileReq('phone')}
                         type="tel"
                         autoComplete="tel"
-                        className="block w-full pl-10 pr-3.5 py-2.5 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] placeholder:text-[#6B7280] focus:outline-none focus:border-[#DC2B53]"
+                        className="block w-full pl-10 pr-3.5 py-2.5 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] placeholder:text-[#6B7280] focus:outline-none focus:border-primary"
                         placeholder="01XXXXXXXXX"
                       />
                     </div>
@@ -400,7 +400,7 @@ export const LoginPage: React.FC = () => {
                   <button
                     type="submit"
                     disabled={isSubmittingOtp}
-                    className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-[#DC2B53] hover:bg-[#C52247] disabled:bg-gray-300 text-white text-xs font-bold rounded-lg transition-colors cursor-pointer shadow-xs"
+                    className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-primary hover:bg-primary-hover disabled:bg-gray-300 text-white text-xs font-bold rounded-lg transition-colors cursor-pointer shadow-xs"
                   >
                     {isSubmittingOtp ? <Loader2 size={16} className="animate-spin" /> : <ArrowRight size={16} />}
                     <span>{isSubmittingOtp ? 'Sending OTP...' : 'Send Verification Code'}</span>
@@ -419,7 +419,7 @@ export const LoginPage: React.FC = () => {
                         setOtpStep('request');
                         setServerError(null);
                       }}
-                      className="text-xs font-semibold text-[#DC2B53] hover:underline cursor-pointer"
+                      className="text-xs font-semibold text-primary hover:underline cursor-pointer"
                     >
                       Change
                     </button>
@@ -439,7 +439,7 @@ export const LoginPage: React.FC = () => {
                         maxLength={6}
                         autoFocus
                         inputMode="numeric"
-                        className="block w-full pl-10 pr-3.5 py-2.5 bg-white border border-[#E5E7EB] rounded-lg text-xs font-bold tracking-widest text-[#111827] placeholder:text-[#6B7280] focus:outline-none focus:border-[#DC2B53] text-center"
+                        className="block w-full pl-10 pr-3.5 py-2.5 bg-white border border-[#E5E7EB] rounded-lg text-xs font-bold tracking-widest text-[#111827] placeholder:text-[#6B7280] focus:outline-none focus:border-primary text-center"
                         placeholder="123456"
                       />
                     </div>
@@ -456,7 +456,7 @@ export const LoginPage: React.FC = () => {
                       type="button"
                       disabled={resendCooldown > 0 || isSubmittingOtp}
                       onClick={handleResendOtp}
-                      className="font-semibold text-[#DC2B53] hover:underline disabled:text-[#9CA3AF] disabled:no-underline cursor-pointer flex items-center gap-1"
+                      className="font-semibold text-primary hover:underline disabled:text-[#9CA3AF] disabled:no-underline cursor-pointer flex items-center gap-1"
                     >
                       <RotateCw size={12} className={isSubmittingOtp ? 'animate-spin' : ''} />
                       <span>{resendCooldown > 0 ? `Resend in ${resendCooldown}s` : 'Resend OTP'}</span>
@@ -466,7 +466,7 @@ export const LoginPage: React.FC = () => {
                   <button
                     type="submit"
                     disabled={isSubmittingOtp}
-                    className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-[#DC2B53] hover:bg-[#C52247] disabled:bg-gray-300 text-white text-xs font-bold rounded-lg transition-colors cursor-pointer shadow-xs"
+                    className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-primary hover:bg-primary-hover disabled:bg-gray-300 text-white text-xs font-bold rounded-lg transition-colors cursor-pointer shadow-xs"
                   >
                     {isSubmittingOtp ? <Loader2 size={16} className="animate-spin" /> : <CheckCircle2 size={16} />}
                     <span>{isSubmittingOtp ? 'Verifying...' : 'Verify & Sign In'}</span>

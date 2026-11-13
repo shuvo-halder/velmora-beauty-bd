@@ -56,7 +56,7 @@ export const CartItem = React.memo<CartItemProps>(({
           <div>
             <h4 
               onClick={() => onNavigateToProduct(item.product.slug)}
-              className="text-xs sm:text-sm font-semibold text-[#111827] hover:text-[#DC2B53] cursor-pointer transition-colors line-clamp-1"
+              className="text-xs sm:text-sm font-semibold text-[#111827] hover:text-primary cursor-pointer transition-colors line-clamp-1"
             >
               {item.product.name}
             </h4>
@@ -65,7 +65,7 @@ export const CartItem = React.memo<CartItemProps>(({
             </div>
             {item.selectedVariant && (
               <div className="mt-1">
-                <span className="text-[10px] font-semibold text-[#DC2B53] bg-[#FDF0F3] px-1.5 py-0.5 rounded border border-[#DC2B53]/20">
+                <span className="text-[10px] font-semibold text-primary bg-primary-light px-1.5 py-0.5 rounded border border-primary/20">
                   {item.selectedVariant.name}
                 </span>
               </div>
@@ -75,7 +75,7 @@ export const CartItem = React.memo<CartItemProps>(({
           <button
             onClick={() => onRemove(item.id)}
             disabled={isRemoving}
-            className="text-[#6B7280] hover:text-[#DC2B53] p-1 transition-colors disabled:opacity-40 cursor-pointer"
+            className="text-[#6B7280] hover:text-primary p-1 transition-colors disabled:opacity-40 cursor-pointer"
             title="Remove from cart"
           >
             <Trash2 size={15} />

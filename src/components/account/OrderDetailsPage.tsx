@@ -265,7 +265,7 @@ export const OrderDetailsPage: React.FC = () => {
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
             <button
               onClick={() => handleRefetchAll()}
-              className="px-4 py-2 bg-[#DC2B53] hover:bg-[#b02242] text-white font-semibold text-xs rounded-lg transition-colors cursor-pointer inline-flex items-center gap-1.5"
+              className="px-4 py-2 bg-primary hover:bg-primary-hover text-white font-semibold text-xs rounded-lg transition-colors cursor-pointer inline-flex items-center gap-1.5"
             >
               <RefreshCw size={13} />
               <span>Retry Order</span>
@@ -337,7 +337,7 @@ export const OrderDetailsPage: React.FC = () => {
           <div>
             <Link 
               href="/account/orders"
-              className="min-h-[44px] inline-flex items-center gap-1.5 text-xs font-semibold text-gray-600 hover:text-[#DC2B53] transition-colors py-2 cursor-pointer"
+              className="min-h-[44px] inline-flex items-center gap-1.5 text-xs font-semibold text-gray-600 hover:text-primary transition-colors py-2 cursor-pointer"
             >
               <ArrowLeft size={16} />
               <span>Back to Orders List</span>
@@ -360,7 +360,7 @@ export const OrderDetailsPage: React.FC = () => {
             {status !== 'CANCELLED' && (
               <button
                 onClick={() => setIsReturnModalOpen(true)}
-                className="min-h-[44px] px-3.5 py-2 bg-white text-gray-700 hover:text-[#DC2B53] font-semibold text-xs sm:text-sm rounded-lg border border-gray-200 hover:bg-gray-50 active:bg-gray-100 transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
+                className="min-h-[44px] px-3.5 py-2 bg-white text-gray-700 hover:text-primary font-semibold text-xs sm:text-sm rounded-lg border border-gray-200 hover:bg-gray-50 active:bg-gray-100 transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
               >
                 <RotateCcw size={14} />
                 <span>Request Return</span>
@@ -381,7 +381,7 @@ export const OrderDetailsPage: React.FC = () => {
               className="min-h-[44px] min-w-[44px] p-2.5 bg-white text-gray-700 font-semibold text-xs rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors shadow-2xs disabled:opacity-60 flex items-center justify-center cursor-pointer"
               title="Refresh"
             >
-              <RefreshCw size={14} className={isOrderFetching ? 'animate-spin text-[#DC2B53]' : ''} />
+              <RefreshCw size={14} className={isOrderFetching ? 'animate-spin text-primary' : ''} />
             </button>
           </div>
         </div>
@@ -458,13 +458,13 @@ export const OrderDetailsPage: React.FC = () => {
             <div className="bg-white rounded-xl p-5 sm:p-6 border border-gray-200 shadow-2xs space-y-4">
               <div className="flex items-center justify-between pb-3 border-b border-gray-100">
                 <h2 className="text-base font-bold text-gray-900 flex items-center gap-2">
-                  <Truck size={18} className="text-[#DC2B53]" />
+                  <Truck size={18} className="text-primary" />
                   <span>Real-Time Tracking Checkpoints</span>
                 </h2>
                 <button
                   onClick={() => refetchTracking()}
                   disabled={isTrackingFetching}
-                  className="text-xs font-semibold text-[#DC2B53] hover:underline inline-flex items-center gap-1 cursor-pointer disabled:opacity-50"
+                  className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1 cursor-pointer disabled:opacity-50"
                   title="Update tracking live"
                 >
                   <RefreshCw size={12} className={isTrackingFetching ? 'animate-spin' : ''} />
@@ -487,7 +487,7 @@ export const OrderDetailsPage: React.FC = () => {
             <div className="bg-white rounded-xl p-5 sm:p-6 border border-gray-200 shadow-2xs">
               <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-100">
                 <h2 className="text-base font-bold text-gray-900 flex items-center gap-2">
-                  <Package size={18} className="text-[#DC2B53]" />
+                  <Package size={18} className="text-primary" />
                   <span>Purchased Items ({items.length})</span>
                 </h2>
                 <span className="text-xs text-gray-500 font-medium">
@@ -580,12 +580,12 @@ export const OrderDetailsPage: React.FC = () => {
             <div className="bg-white rounded-xl p-5 sm:p-6 border border-gray-200 shadow-2xs space-y-5">
               <div className="flex items-center justify-between pb-3 border-b border-gray-100">
                 <h2 className="text-base font-bold text-gray-900 flex items-center gap-2">
-                  <CreditCard size={18} className="text-[#DC2B53]" />
+                  <CreditCard size={18} className="text-primary" />
                   <span>Payment & Financial Summary</span>
                 </h2>
                 <Link
                   href="/account/payments"
-                  className="text-xs font-semibold text-[#DC2B53] hover:underline inline-flex items-center gap-1"
+                  className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1"
                 >
                   <span>All Payments</span>
                   <ExternalLink size={11} />
@@ -649,7 +649,7 @@ export const OrderDetailsPage: React.FC = () => {
                           className="p-3.5 bg-white hover:bg-gray-50/50 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
                         >
                           <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-lg bg-gray-50 border border-gray-200 flex items-center justify-center text-[#DC2B53] flex-shrink-0">
+                            <div className="w-8 h-8 rounded-lg bg-gray-50 border border-gray-200 flex items-center justify-center text-primary flex-shrink-0">
                               <GatewayIcon size={14} />
                             </div>
                             <div>
@@ -700,12 +700,12 @@ export const OrderDetailsPage: React.FC = () => {
             <div className="bg-white rounded-xl p-5 sm:p-6 border border-gray-200 shadow-2xs space-y-4">
               <div className="flex items-center justify-between pb-3 border-b border-gray-100">
                 <h2 className="text-base font-bold text-gray-900 flex items-center gap-2">
-                  <Layers size={18} className="text-[#DC2B53]" />
+                  <Layers size={18} className="text-primary" />
                   <span>Shipment Packages ({packagesList.length > 0 ? packagesList.length : '1'})</span>
                 </h2>
                 <Link
                   href="/account/shipments"
-                  className="text-xs font-semibold text-[#DC2B53] hover:underline inline-flex items-center gap-1"
+                  className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1"
                 >
                   <span>All Shipments</span>
                   <ExternalLink size={11} />
@@ -727,7 +727,7 @@ export const OrderDetailsPage: React.FC = () => {
                       >
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                           <div className="flex items-center gap-2.5">
-                            <div className="w-8 h-8 rounded-lg bg-white border border-gray-200 flex items-center justify-center text-[#DC2B53]">
+                            <div className="w-8 h-8 rounded-lg bg-white border border-gray-200 flex items-center justify-center text-primary">
                               <Truck size={15} />
                             </div>
                             <div>
@@ -793,13 +793,13 @@ export const OrderDetailsPage: React.FC = () => {
               <div className="bg-white rounded-xl p-5 sm:p-6 border border-gray-200 shadow-2xs space-y-4">
                 <div className="flex items-center justify-between pb-3 border-b border-gray-100">
                   <h2 className="text-base font-bold text-gray-900 flex items-center gap-2">
-                    <RotateCcw size={18} className="text-[#DC2B53]" />
+                    <RotateCcw size={18} className="text-primary" />
                     <span>Returns & Financial Adjustments</span>
                   </h2>
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => setIsReturnModalOpen(true)}
-                      className="text-xs font-semibold text-[#DC2B53] hover:underline inline-flex items-center gap-1 cursor-pointer"
+                      className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1 cursor-pointer"
                     >
                       <span>Request Return</span>
                     </button>
@@ -845,7 +845,7 @@ export const OrderDetailsPage: React.FC = () => {
                             )}
                             <Link
                               href="/account/returns"
-                              className="text-xs font-semibold text-[#DC2B53] hover:underline inline-flex items-center gap-1"
+                              className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1"
                             >
                               <span>View Returns</span>
                               <ExternalLink size={11} />
@@ -908,7 +908,7 @@ export const OrderDetailsPage: React.FC = () => {
                     <span>Need to return an item from this order?</span>
                     <button
                       onClick={() => setIsReturnModalOpen(true)}
-                      className="font-bold text-[#DC2B53] hover:underline cursor-pointer"
+                      className="font-bold text-primary hover:underline cursor-pointer"
                     >
                       Start Return Request &rarr;
                     </button>
@@ -925,7 +925,7 @@ export const OrderDetailsPage: React.FC = () => {
             {/* Delivery Address Card */}
             <div className="bg-white rounded-xl p-5 sm:p-6 border border-gray-200 shadow-2xs">
               <h2 className="text-xs font-bold text-gray-900 uppercase tracking-wider mb-4 flex items-center gap-2">
-                <MapPin size={16} className="text-[#DC2B53]" />
+                <MapPin size={16} className="text-primary" />
                 <span>Shipping Address</span>
               </h2>
               {hasShippingAddress ? (
@@ -975,7 +975,7 @@ export const OrderDetailsPage: React.FC = () => {
             {/* Financial Breakdown Card */}
             <div className="bg-white rounded-xl p-5 sm:p-6 border border-gray-200 shadow-2xs">
               <h2 className="text-xs font-bold text-gray-900 uppercase tracking-wider mb-4 flex items-center gap-2">
-                <Receipt size={16} className="text-[#DC2B53]" />
+                <Receipt size={16} className="text-primary" />
                 <span>Cost Breakdown</span>
               </h2>
               
@@ -1021,7 +1021,7 @@ export const OrderDetailsPage: React.FC = () => {
 
                   <div className="pt-3 border-t border-gray-100 flex justify-between items-center">
                     <span className="text-xs font-bold text-gray-900">Grand Total</span>
-                    <span className="text-lg font-bold text-[#DC2B53]">
+                    <span className="text-lg font-bold text-primary">
                       {formatPrice(totalAmount, currencyCode, currencySymbol)}
                     </span>
                   </div>
@@ -1046,7 +1046,7 @@ export const OrderDetailsPage: React.FC = () => {
             {/* Customer Support Card */}
             <div className="bg-gray-900 rounded-xl p-5 sm:p-6 text-white shadow-xs">
               <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-300 mb-2">
-                <ShieldCheck size={16} className="text-[#DC2B53]" />
+                <ShieldCheck size={16} className="text-primary" />
                 <span>Customer Care</span>
               </div>
               <h3 className="text-sm font-bold text-white mb-1">Need help with this order?</h3>

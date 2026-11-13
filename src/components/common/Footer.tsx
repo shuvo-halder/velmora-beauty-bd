@@ -106,7 +106,7 @@ export const Footer: React.FC = () => {
                 onError={() => setLogoDarkError(true)}
               />
             ) : (
-              <span className="font-extrabold text-xl lg:text-2xl text-white tracking-tight hover:text-[#DC2B53] transition-colors">{siteName}</span>
+              <span className="font-extrabold text-xl lg:text-2xl text-white tracking-tight hover:text-primary transition-colors">{siteName}</span>
             )}
           </Link>
 
@@ -118,19 +118,19 @@ export const Footer: React.FC = () => {
             <div className="space-y-2.5 text-xs font-medium text-gray-300 min-w-0 w-full">
               {(publicSettings?.supportPhone || publicSettings?.general?.storePhone || publicSettings?.store?.supportPhone || publicSettings?.store?.callOrderNumber) && (
                 <div className="flex items-center gap-3 min-w-0">
-                  <Phone size={14} className="text-[#DC2B53] shrink-0" />
+                  <Phone size={14} className="text-primary shrink-0" />
                   <span className="truncate">{publicSettings?.supportPhone || publicSettings?.general?.storePhone || publicSettings?.store?.supportPhone || publicSettings?.store?.callOrderNumber}</span>
                 </div>
               )}
               {(publicSettings?.supportEmail || publicSettings?.general?.storeEmail || publicSettings?.store?.supportEmail) && (
                 <div className="flex items-center gap-3 min-w-0">
-                  <Mail size={14} className="text-[#DC2B53] shrink-0" />
+                  <Mail size={14} className="text-primary shrink-0" />
                   <span className="lowercase truncate">{publicSettings?.supportEmail || publicSettings?.general?.storeEmail || publicSettings?.store?.supportEmail}</span>
                 </div>
               )}
               {(publicSettings?.general?.storeAddress || publicSettings?.store?.address) && (
                 <div className="flex items-center gap-3 min-w-0">
-                  <MapPin size={14} className="text-[#DC2B53] shrink-0" />
+                  <MapPin size={14} className="text-primary shrink-0" />
                   <span className="capitalize truncate">{publicSettings?.general?.storeAddress || publicSettings?.store?.address}</span>
                 </div>
               )}
@@ -176,7 +176,7 @@ export const Footer: React.FC = () => {
                 <li key={idx}>
                   <Link
                     href={link.href}
-                    className="hover:text-[#DC2B53] transition-colors text-gray-400 block"
+                    className="hover:text-primary transition-colors text-gray-400 block"
                   >
                     {link.label}
                   </Link>
@@ -201,7 +201,7 @@ export const Footer: React.FC = () => {
                 <li key={idx}>
                   <Link
                     href={link.href}
-                    className="hover:text-[#DC2B53] transition-colors text-gray-400 block"
+                    className="hover:text-primary transition-colors text-gray-400 block"
                   >
                     {link.label}
                   </Link>
@@ -226,7 +226,7 @@ export const Footer: React.FC = () => {
                 <li key={idx}>
                   <Link
                     href={link.href}
-                    className="hover:text-[#DC2B53] transition-colors text-gray-400 block"
+                    className="hover:text-primary transition-colors text-gray-400 block"
                   >
                     {link.label}
                   </Link>

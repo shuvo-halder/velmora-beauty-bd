@@ -68,7 +68,7 @@ export const NotificationCard: React.FC<NotificationCardProps> = ({
         relative rounded-xl p-4 sm:p-5 border transition-all duration-200
         ${notification.orderId ? 'cursor-pointer' : isUnread ? 'cursor-pointer' : 'cursor-default'}
         ${isUnread 
-          ? 'bg-[#FFF9FA] border-rose-200/80 shadow-2xs hover:border-[#DC2B53]/40' 
+          ? 'bg-primary-light/50 border-rose-200/80 shadow-2xs hover:border-primary/40' 
           : 'bg-white border-gray-200/80 hover:border-gray-300'}
       `}
     >
@@ -87,8 +87,8 @@ export const NotificationCard: React.FC<NotificationCardProps> = ({
                 {meta.categoryLabel}
               </span>
               {isUnread && (
-                <span className="inline-flex items-center gap-1 text-[10px] font-extrabold text-[#DC2B53] bg-rose-50 px-2 py-0.5 rounded-full border border-rose-200">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#DC2B53] animate-pulse"></span>
+                <span className="inline-flex items-center gap-1 text-[10px] font-extrabold text-primary bg-rose-50 px-2 py-0.5 rounded-full border border-rose-200">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
                   <span>Unread</span>
                 </span>
               )}
@@ -114,7 +114,7 @@ export const NotificationCard: React.FC<NotificationCardProps> = ({
                 type="button"
                 onClick={handleOrderLinkClick}
                 disabled={isLocalNavigating}
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#DC2B53] hover:text-[#C52247] hover:underline cursor-pointer group"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:text-primary-hover hover:underline cursor-pointer group"
               >
                 <span>View Order Details</span>
                 {isLocalNavigating ? (

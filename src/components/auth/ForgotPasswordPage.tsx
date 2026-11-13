@@ -42,7 +42,7 @@ export const ForgotPasswordPage: React.FC = () => {
             <button
               type="button"
               onClick={() => router.push('/login')}
-              className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-[#DC2B53] hover:bg-[#C52247] text-white text-xs font-bold rounded-lg transition-colors cursor-pointer shadow-xs"
+              className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-primary hover:bg-primary-hover text-white text-xs font-bold rounded-lg transition-colors cursor-pointer shadow-xs"
             >
               <Smartphone size={16} />
               <span>Sign In with Mobile OTP</span>

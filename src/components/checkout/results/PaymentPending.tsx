@@ -104,7 +104,7 @@ export const PaymentPending: React.FC = () => {
                   setStatus('verifying');
                   window.location.reload();
                 }}
-                className="w-full py-3 bg-[#DC2B53] text-white font-bold text-xs rounded-lg hover:bg-[#C52247] transition-colors cursor-pointer flex items-center justify-center gap-2 shadow-xs"
+                className="w-full py-3 bg-primary text-white font-bold text-xs rounded-lg hover:bg-primary-hover transition-colors cursor-pointer flex items-center justify-center gap-2 shadow-xs"
               >
                 <RefreshCw size={14} />
                 <span>Retry Verification</span>

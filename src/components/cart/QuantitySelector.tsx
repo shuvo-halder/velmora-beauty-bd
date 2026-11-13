@@ -34,7 +34,7 @@ export const QuantitySelector: React.FC<QuantitySelectorProps> = ({
       
       <div className={`${textClass} font-semibold text-[#111827] min-w-[30px] text-center flex items-center justify-center`}>
         {isLoading ? (
-          <Loader2 size={12} className="animate-spin text-[#DC2B53]" />
+          <Loader2 size={12} className="animate-spin text-primary" />
         ) : (
           <span>{quantity}</span>
         )}

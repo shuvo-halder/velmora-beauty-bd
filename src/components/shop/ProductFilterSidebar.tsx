@@ -49,12 +49,12 @@ export const ProductFilterSidebar: React.FC<FilterSidebarProps> = ({ onCloseMobi
       {/* Title & Reset Button */}
       <div className="flex items-center justify-between pb-3 border-b border-[#E5E7EB]">
         <div className="flex items-center gap-2 font-bold text-xs uppercase tracking-wider text-[#111827]">
-          <Filter size={15} className="text-[#DC2B53]" />
+          <Filter size={15} className="text-primary" />
           <span>Filter Catalog</span>
         </div>
         <button
           onClick={resetFilters}
-          className="text-xs font-semibold text-[#DC2B53] hover:text-[#C52247] flex items-center gap-1 transition-colors cursor-pointer"
+          className="text-xs font-semibold text-primary hover:text-primary-hover flex items-center gap-1 transition-colors cursor-pointer"
         >
           <RotateCcw size={12} />
           <span>Reset All</span>
@@ -72,7 +72,7 @@ export const ProductFilterSidebar: React.FC<FilterSidebarProps> = ({ onCloseMobi
             value={filters.searchQuery}
             onChange={handleSearchChange}
             placeholder="Search products..."
-            className="w-full py-2 pl-8 pr-3 bg-white border border-[#E5E7EB] rounded-lg text-xs font-medium text-[#111827] focus:outline-none focus:border-[#DC2B53] transition-colors"
+            className="w-full py-2 pl-8 pr-3 bg-white border border-[#E5E7EB] rounded-lg text-xs font-medium text-[#111827] focus:outline-none focus:border-primary transition-colors"
           />
           <Search size={14} className="text-[#6B7280] absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
         </div>
@@ -87,7 +87,7 @@ export const ProductFilterSidebar: React.FC<FilterSidebarProps> = ({ onCloseMobi
           <button
             onClick={() => handleCategorySelect(null)}
             className={`w-full text-left py-1.5 px-2.5 rounded-lg text-xs font-medium transition-colors flex items-center justify-between cursor-pointer ${
-              filters.categorySlug === null ? 'bg-[#FDF0F3] text-[#DC2B53] font-semibold' : 'hover:bg-[#F9FAFB] text-[#111827]'
+              filters.categorySlug === null ? 'bg-primary-light text-primary font-semibold' : 'hover:bg-[#F9FAFB] text-[#111827]'
             }`}
           >
             <span>All Departments</span>
@@ -103,7 +103,7 @@ export const ProductFilterSidebar: React.FC<FilterSidebarProps> = ({ onCloseMobi
                 <button
                   onClick={() => handleCategorySelect(cat.slug)}
                   className={`w-full text-left py-1.5 px-2.5 rounded-lg text-xs font-medium transition-colors flex items-center justify-between cursor-pointer ${
-                    isSelected ? 'bg-[#FDF0F3] text-[#DC2B53] font-semibold' : 'hover:bg-[#F9FAFB] text-[#111827]'
+                    isSelected ? 'bg-primary-light text-primary font-semibold' : 'hover:bg-[#F9FAFB] text-[#111827]'
                   }`}
                 >
                   <span>{cat.name}</span>
@@ -122,7 +122,7 @@ export const ProductFilterSidebar: React.FC<FilterSidebarProps> = ({ onCloseMobi
                           key={sub.id}
                           onClick={() => handleCategorySelect(sub.slug)}
                           className={`w-full text-left py-1 px-2 rounded-md text-[11px] font-medium transition-colors flex items-center justify-between cursor-pointer ${
-                            isSubSelected ? 'bg-[#FDF0F3] text-[#DC2B53] font-bold' : 'hover:bg-[#F9FAFB] text-[#4B5563] hover:text-[#DC2B53]'
+                            isSubSelected ? 'bg-primary-light text-primary font-bold' : 'hover:bg-[#F9FAFB] text-[#4B5563] hover:text-primary'
                           }`}
                         >
                           <span className="truncate">└ {sub.name}</span>
@@ -149,15 +149,15 @@ export const ProductFilterSidebar: React.FC<FilterSidebarProps> = ({ onCloseMobi
             return (
               <label 
                 key={b.id} 
-                className="flex items-center gap-2.5 text-xs text-[#111827] hover:text-[#DC2B53] cursor-pointer py-1"
+                className="flex items-center gap-2.5 text-xs text-[#111827] hover:text-primary cursor-pointer py-1"
               >
                 <input
                   type="checkbox"
                   checked={isChecked}
                   onChange={() => handleBrandToggle(b.slug)}
-                  className="w-4 h-4 rounded text-[#DC2B53] focus:ring-[#DC2B53] border-[#E5E7EB] accent-[#DC2B53]"
+                  className="w-4 h-4 rounded text-primary focus:ring-primary border-[#E5E7EB] accent-primary"
                 />
-                <span className={isChecked ? 'font-bold text-[#DC2B53]' : 'font-medium'}>
+                <span className={isChecked ? 'font-bold text-primary' : 'font-medium'}>
                   {b.name}
                 </span>
               </label>
@@ -170,7 +170,7 @@ export const ProductFilterSidebar: React.FC<FilterSidebarProps> = ({ onCloseMobi
       <div className="space-y-3 pt-3 border-t border-[#E5E7EB]">
         <div className="flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-[#6B7280]">
           <span>Price Range</span>
-          <span className="text-[#DC2B53] font-mono font-bold text-xs">
+          <span className="text-primary font-mono font-bold text-xs">
             {formatPrice(filters.minPrice)} - {formatPrice(filters.maxPrice)}
           </span>
         </div>
@@ -184,7 +184,7 @@ export const ProductFilterSidebar: React.FC<FilterSidebarProps> = ({ onCloseMobi
               max={filters.maxPrice}
               value={filters.minPrice}
               onChange={handleMinPriceChange}
-              className="w-full py-1.5 px-2 bg-white border border-[#E5E7EB] rounded-lg text-xs font-mono font-semibold text-[#111827] focus:outline-none focus:border-[#DC2B53]"
+              className="w-full py-1.5 px-2 bg-white border border-[#E5E7EB] rounded-lg text-xs font-mono font-semibold text-[#111827] focus:outline-none focus:border-primary"
             />
           </div>
           <div>
@@ -195,7 +195,7 @@ export const ProductFilterSidebar: React.FC<FilterSidebarProps> = ({ onCloseMobi
               max={2000}
               value={filters.maxPrice}
               onChange={handleMaxPriceChange}
-              className="w-full py-1.5 px-2 bg-white border border-[#E5E7EB] rounded-lg text-xs font-mono font-semibold text-[#111827] focus:outline-none focus:border-[#DC2B53]"
+              className="w-full py-1.5 px-2 bg-white border border-[#E5E7EB] rounded-lg text-xs font-mono font-semibold text-[#111827] focus:outline-none focus:border-primary"
             />
           </div>
         </div>
@@ -207,7 +207,7 @@ export const ProductFilterSidebar: React.FC<FilterSidebarProps> = ({ onCloseMobi
           step={25}
           value={filters.maxPrice}
           onChange={handleMaxPriceChange}
-          className="w-full accent-[#DC2B53] cursor-pointer"
+          className="w-full accent-primary cursor-pointer"
         />
       </div>
 
@@ -224,7 +224,7 @@ export const ProductFilterSidebar: React.FC<FilterSidebarProps> = ({ onCloseMobi
                 key={rate}
                 onClick={() => setFilters(prev => ({ ...prev, ratingMin: prev.ratingMin === rate ? 0 : rate, page: 1 }))}
                 className={`w-full text-left py-1.5 px-2.5 rounded-lg text-xs font-medium transition-colors flex items-center justify-between cursor-pointer ${
-                  isSelected ? 'bg-[#FDF0F3] text-[#DC2B53] font-semibold' : 'hover:bg-[#F9FAFB] text-[#111827]'
+                  isSelected ? 'bg-primary-light text-primary font-semibold' : 'hover:bg-[#F9FAFB] text-[#111827]'
                 }`}
               >
                 <div className="flex items-center gap-1.5">
@@ -246,7 +246,7 @@ export const ProductFilterSidebar: React.FC<FilterSidebarProps> = ({ onCloseMobi
             type="checkbox"
             checked={filters.inStockOnly}
             onChange={(e) => setFilters(prev => ({ ...prev, inStockOnly: e.target.checked, page: 1 }))}
-            className="w-4 h-4 rounded text-[#DC2B53] focus:ring-[#DC2B53] border-[#E5E7EB] accent-[#DC2B53] cursor-pointer"
+            className="w-4 h-4 rounded text-primary focus:ring-primary border-[#E5E7EB] accent-primary cursor-pointer"
           />
         </label>
       </div>

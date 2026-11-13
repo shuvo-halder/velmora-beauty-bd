@@ -64,7 +64,7 @@ export const ProductCard = React.memo(({
       <div className="group bg-white border border-[#E5E7EB] rounded-xl p-4 shadow-xs hover:border-gray-300 transition-colors flex flex-col sm:flex-row items-stretch gap-5 relative overflow-hidden">
         {/* Badges */}
         {product.discountPercent && (
-          <div className="absolute top-3 left-3 bg-[#DC2B53] text-white font-semibold text-[10px] px-2 py-0.5 rounded-md z-10">
+          <div className="absolute top-3 left-3 bg-primary text-white font-semibold text-[10px] px-2 py-0.5 rounded-md z-10">
             -{product.discountPercent}%
           </div>
         )}
@@ -88,7 +88,7 @@ export const ProductCard = React.memo(({
         <div className="flex-1 flex flex-col justify-between py-1">
           <div>
             <div className="flex items-center justify-between">
-              <span className="text-[11px] font-semibold uppercase tracking-wider text-[#DC2B53]">
+              <span className="text-[11px] font-semibold uppercase tracking-wider text-primary">
                 {product.brand}
               </span>
               <RatingStars rating={product.rating} count={product.reviewCount} />
@@ -96,7 +96,7 @@ export const ProductCard = React.memo(({
 
             <h3 
               onClick={handleCardClick}
-              className="font-semibold text-lg text-[#111827] group-hover:text-[#DC2B53] transition-colors cursor-pointer mt-1.5"
+              className="font-semibold text-lg text-[#111827] group-hover:text-primary transition-colors cursor-pointer mt-1.5"
             >
               {product.name}
             </h3>
@@ -131,16 +131,16 @@ export const ProductCard = React.memo(({
               <button
                 onClick={() => toggleWishlist(product)}
                 className={`p-2 rounded-lg border transition-colors cursor-pointer ${
-                  inWishlist ? 'bg-[#FDF0F3] border-[#DC2B53]/20 text-[#DC2B53]' : 'bg-[#F9FAFB] border-[#E5E7EB] text-[#6B7280] hover:text-[#DC2B53]'
+                  inWishlist ? 'bg-primary-light border-primary/20 text-primary' : 'bg-[#F9FAFB] border-[#E5E7EB] text-[#6B7280] hover:text-primary'
                 }`}
                 title="Wishlist"
               >
-                <Heart size={16} fill={inWishlist ? '#DC2B53' : 'none'} />
+                <Heart size={16} fill={inWishlist ? 'currentColor' : 'none'} />
               </button>
               <button
                 onClick={onAddToCart}
                 disabled={isLocalAdding || isAddingToCart}
-                className="py-2 px-4 bg-[#DC2B53] hover:bg-[#C52247] text-white font-semibold text-sm rounded-lg transition-colors flex items-center gap-2 cursor-pointer disabled:opacity-70 shadow-xs"
+                className="py-2 px-4 bg-primary hover:bg-primary-hover text-white font-semibold text-sm rounded-lg transition-colors flex items-center gap-2 cursor-pointer disabled:opacity-70 shadow-xs"
               >
                 {isLocalAdding ? <Loader2 size={16} className="animate-spin" /> : <ShoppingCart size={16} />}
                 <span>{isLocalAdding ? 'Adding...' : 'Add to Cart'}</span>
@@ -158,7 +158,7 @@ export const ProductCard = React.memo(({
       {/* Badges Top Left */}
       <div className="absolute top-2 left-2 z-10 flex flex-col gap-1 items-start">
         {product.discountPercent && (
-          <span className="bg-[#DC2B53] text-white font-semibold text-[9px] sm:text-[10px] px-1.5 py-0.5 rounded-md shadow-xs">
+          <span className="bg-primary text-white font-semibold text-[9px] sm:text-[10px] px-1.5 py-0.5 rounded-md shadow-xs">
             -{product.discountPercent}%
           </span>
         )}
@@ -174,12 +174,12 @@ export const ProductCard = React.memo(({
         onClick={() => toggleWishlist(product)}
         className={`absolute top-2 right-2 z-10 p-1 sm:p-1.5 rounded-full border transition-colors cursor-pointer ${
           inWishlist 
-            ? 'bg-[#FDF0F3] text-[#DC2B53] border-[#DC2B53]/20' 
-            : 'bg-white/90 text-[#6B7280] border-[#E5E7EB] hover:text-[#DC2B53] hover:bg-white'
+            ? 'bg-primary-light text-primary border-primary/20' 
+            : 'bg-white/90 text-[#6B7280] border-[#E5E7EB] hover:text-primary hover:bg-white'
         }`}
         aria-label="Wishlist"
       >
-        <Heart size={14} fill={inWishlist ? '#DC2B53' : 'none'} />
+        <Heart size={14} fill={inWishlist ? 'currentColor' : 'none'} />
       </button>
 
       {/* Image Gallery Stage with Quick View Overlay */}
@@ -215,7 +215,7 @@ export const ProductCard = React.memo(({
             }}
             className="w-full py-1 px-1.5 bg-white/95 hover:bg-white text-[#111827] font-semibold text-[10px] rounded-md shadow-xs border border-[#E5E7EB] flex items-center justify-center gap-1 transition-colors cursor-pointer"
           >
-            <Eye size={12} className="text-[#DC2B53]" />
+            <Eye size={12} className="text-primary" />
             <span>Quick View</span>
           </button>
         </div>
@@ -225,13 +225,13 @@ export const ProductCard = React.memo(({
       <div className="space-y-1 flex-1 flex flex-col justify-between">
         <div>
           <div className="flex items-center justify-between text-[9px] sm:text-[10px] font-medium text-[#6B7280] min-h-[14px]">
-            <span className="text-[#DC2B53] font-semibold uppercase tracking-wider truncate max-w-[55%]">{product.brand}</span>
+            <span className="text-primary font-semibold uppercase tracking-wider truncate max-w-[55%]">{product.brand}</span>
             <RatingStars rating={product.rating} count={product.reviewCount} showNumber={false} size={11} />
           </div>
 
           <h3 
             onClick={handleCardClick}
-            className="font-medium text-xs text-[#111827] group-hover:text-[#DC2B53] transition-colors cursor-pointer line-clamp-2 mt-0.5 leading-snug min-h-[2rem]"
+            className="font-medium text-xs text-[#111827] group-hover:text-primary transition-colors cursor-pointer line-clamp-2 mt-0.5 leading-snug min-h-[2rem]"
             title={product.name}
           >
             {product.name}
@@ -273,7 +273,7 @@ export const ProductCard = React.memo(({
           <button
             onClick={onAddToCart}
             disabled={isLocalAdding || isAddingToCart}
-            className="w-7 sm:w-8 h-7 sm:h-8 bg-[#DC2B53] hover:bg-[#C52247] text-white rounded-lg shadow-xs transition-colors cursor-pointer disabled:opacity-70 flex items-center justify-center shrink-0"
+            className="w-7 sm:w-8 h-7 sm:h-8 bg-primary hover:bg-primary-hover text-white rounded-lg shadow-xs transition-colors cursor-pointer disabled:opacity-70 flex items-center justify-center shrink-0"
             title="Add to Cart"
             aria-label="Add to cart"
           >

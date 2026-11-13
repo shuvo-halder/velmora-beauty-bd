@@ -211,7 +211,7 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ item, isOpen, onClose, o
               {/* Star Rating Selection */}
               <div>
                 <label className="block text-xs font-bold text-gray-900 mb-1.5">
-                  Overall Rating <span className="text-[#DC2B53]">*</span>
+                  Overall Rating <span className="text-primary">*</span>
                 </label>
                 <div className="flex items-center gap-2">
                   <div className="flex items-center gap-1">
@@ -252,14 +252,14 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ item, isOpen, onClose, o
                   onChange={(e) => setHeadline(e.target.value)}
                   placeholder="e.g. Excellent sound quality & fast delivery!"
                   maxLength={100}
-                  className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-xs font-medium focus:bg-white focus:outline-hidden focus:ring-1 focus:ring-[#DC2B53] focus:border-[#DC2B53] transition-colors"
+                  className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-xs font-medium focus:bg-white focus:outline-hidden focus:ring-1 focus:ring-primary focus:border-primary transition-colors"
                 />
               </div>
 
               {/* Detailed Review Feedback */}
               <div>
                 <label className="block text-xs font-bold text-gray-900 mb-1">
-                  Detailed Feedback <span className="text-[#DC2B53]">*</span>
+                  Detailed Feedback <span className="text-primary">*</span>
                 </label>
                 <textarea
                   value={comment}
@@ -268,7 +268,7 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ item, isOpen, onClose, o
                   rows={3}
                   maxLength={1000}
                   required
-                  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg text-xs font-medium focus:bg-white focus:outline-hidden focus:ring-1 focus:ring-[#DC2B53] focus:border-[#DC2B53] transition-colors"
+                  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg text-xs font-medium focus:bg-white focus:outline-hidden focus:ring-1 focus:ring-primary focus:border-primary transition-colors"
                 />
                 <div className="flex justify-between items-center text-[10px] text-gray-400 mt-0.5">
                   <span>Authentic reviews help our community.</span>
@@ -314,7 +314,7 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ item, isOpen, onClose, o
                     <button
                       type="button"
                       onClick={() => fileInputRef.current?.click()}
-                      className="w-14 h-14 rounded-lg border-2 border-dashed border-gray-300 hover:border-[#DC2B53] hover:bg-gray-50 flex flex-col items-center justify-center text-gray-400 hover:text-[#DC2B53] transition-colors cursor-pointer"
+                      className="w-14 h-14 rounded-lg border-2 border-dashed border-gray-300 hover:border-primary hover:bg-gray-50 flex flex-col items-center justify-center text-gray-400 hover:text-primary transition-colors cursor-pointer"
                       aria-label="Upload photo"
                     >
                       <Upload size={16} />

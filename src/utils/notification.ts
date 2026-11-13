@@ -189,7 +189,7 @@ export function getNotificationMeta(type?: string): NotificationMeta {
       icon: Sparkles,
       categoryLabel: 'Promotion',
       iconBgClass: 'bg-rose-50',
-      iconColorClass: 'text-[#DC2B53]',
+      iconColorClass: 'text-primary',
       badgeClass: 'bg-rose-50 text-rose-700 border-rose-200',
     };
   }

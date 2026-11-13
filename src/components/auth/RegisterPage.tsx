@@ -218,15 +218,15 @@ export const RegisterPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#F9FAFB] flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center mb-6">
-        <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-[#FDF0F3] mb-4 border border-[#DC2B53]/20">
-          <ShieldCheck size={24} className="text-[#DC2B53]" />
+        <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary-light mb-4 border border-primary/20">
+          <ShieldCheck size={24} className="text-primary" />
         </div>
         <h1 className="text-2xl font-bold text-[#111827]">Create an Account</h1>
         <p className="mt-1 text-xs text-[#6B7280]">
           Already have an account?{' '}
           <Link
             href={`/login${redirectTarget !== '/account' ? `?redirect=${encodeURIComponent(redirectTarget)}` : ''}`}
-            className="text-[#DC2B53] font-semibold hover:text-[#C52247] transition-colors"
+            className="text-primary font-semibold hover:text-primary-hover transition-colors"
           >
             Sign in here
           </Link>
@@ -296,7 +296,7 @@ export const RegisterPage: React.FC = () => {
                     <input
                       {...registerEmail('firstName')}
                       type="text"
-                      className="block w-full pl-10 pr-3.5 py-2.5 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] placeholder:text-[#6B7280] focus:outline-none focus:border-[#DC2B53]"
+                      className="block w-full pl-10 pr-3.5 py-2.5 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] placeholder:text-[#6B7280] focus:outline-none focus:border-primary"
                       placeholder="Jane"
                     />
                   </div>
@@ -314,7 +314,7 @@ export const RegisterPage: React.FC = () => {
                     <input
                       {...registerEmail('lastName')}
                       type="text"
-                      className="block w-full pl-10 pr-3.5 py-2.5 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] placeholder:text-[#6B7280] focus:outline-none focus:border-[#DC2B53]"
+                      className="block w-full pl-10 pr-3.5 py-2.5 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] placeholder:text-[#6B7280] focus:outline-none focus:border-primary"
                       placeholder="Doe"
                     />
                   </div>
@@ -332,7 +332,7 @@ export const RegisterPage: React.FC = () => {
                     <input
                       {...registerEmail('email')}
                       type="email"
-                      className="block w-full pl-10 pr-3.5 py-2.5 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] placeholder:text-[#6B7280] focus:outline-none focus:border-[#DC2B53]"
+                      className="block w-full pl-10 pr-3.5 py-2.5 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] placeholder:text-[#6B7280] focus:outline-none focus:border-primary"
                       placeholder="jane.doe@example.com"
                     />
                   </div>
@@ -352,7 +352,7 @@ export const RegisterPage: React.FC = () => {
                     <input
                       {...registerEmail('phone')}
                       type="tel"
-                      className="block w-full pl-10 pr-3.5 py-2.5 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] placeholder:text-[#6B7280] focus:outline-none focus:border-[#DC2B53]"
+                      className="block w-full pl-10 pr-3.5 py-2.5 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] placeholder:text-[#6B7280] focus:outline-none focus:border-primary"
                       placeholder="017XXXXXXXX"
                     />
                   </div>
@@ -370,7 +370,7 @@ export const RegisterPage: React.FC = () => {
                     <input
                       {...registerEmail('password')}
                       type={showPassword ? 'text' : 'password'}
-                      className="block w-full pl-10 pr-10 py-2.5 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] placeholder:text-[#6B7280] focus:outline-none focus:border-[#DC2B53]"
+                      className="block w-full pl-10 pr-10 py-2.5 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] placeholder:text-[#6B7280] focus:outline-none focus:border-primary"
                       placeholder="••••••••"
                     />
                     <button
@@ -396,7 +396,7 @@ export const RegisterPage: React.FC = () => {
                     <input
                       {...registerEmail('confirmPassword')}
                       type={showConfirmPassword ? 'text' : 'password'}
-                      className="block w-full pl-10 pr-10 py-2.5 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] placeholder:text-[#6B7280] focus:outline-none focus:border-[#DC2B53]"
+                      className="block w-full pl-10 pr-10 py-2.5 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] placeholder:text-[#6B7280] focus:outline-none focus:border-primary"
                       placeholder="••••••••"
                     />
                     <button
@@ -420,12 +420,12 @@ export const RegisterPage: React.FC = () => {
                     {...registerEmail('agreeTerms')}
                     id="agree-terms"
                     type="checkbox"
-                    className="h-4 w-4 text-[#DC2B53] focus:ring-[#DC2B53] border-[#E5E7EB] rounded accent-[#DC2B53]"
+                    className="h-4 w-4 text-primary focus:ring-primary border-[#E5E7EB] rounded accent-primary"
                   />
                 </div>
                 <div className="ml-2.5 text-xs">
                   <label htmlFor="agree-terms" className="font-medium text-[#6B7280]">
-                    I agree to the <Link href="/pages/terms" className="text-[#DC2B53] hover:underline font-semibold">Terms of Service</Link> and <Link href="/pages/privacy" className="text-[#DC2B53] hover:underline font-semibold">Privacy Policy</Link>
+                    I agree to the <Link href="/pages/terms" className="text-primary hover:underline font-semibold">Terms of Service</Link> and <Link href="/pages/privacy" className="text-primary hover:underline font-semibold">Privacy Policy</Link>
                   </label>
                   {emailErrors.agreeTerms && (
                     <p className="mt-1 text-[11px] font-medium text-[#DC2626]">{emailErrors.agreeTerms.message}</p>
@@ -436,7 +436,7 @@ export const RegisterPage: React.FC = () => {
               <button
                 type="submit"
                 disabled={isSubmittingEmail}
-                className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-[#DC2B53] hover:bg-[#C52247] disabled:bg-gray-300 text-white text-xs font-bold rounded-lg transition-colors cursor-pointer shadow-xs mt-2"
+                className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-primary hover:bg-primary-hover disabled:bg-gray-300 text-white text-xs font-bold rounded-lg transition-colors cursor-pointer shadow-xs mt-2"
               >
                 {isSubmittingEmail ? <Loader2 size={16} className="animate-spin" /> : <ArrowRight size={16} />}
                 <span>{isSubmittingEmail ? 'Creating Account...' : 'Create Account'}</span>
@@ -462,7 +462,7 @@ export const RegisterPage: React.FC = () => {
                       <input
                         {...registerMobileReq('phone')}
                         type="tel"
-                        className="block w-full pl-10 pr-3.5 py-2.5 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] placeholder:text-[#6B7280] focus:outline-none focus:border-[#DC2B53]"
+                        className="block w-full pl-10 pr-3.5 py-2.5 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] placeholder:text-[#6B7280] focus:outline-none focus:border-primary"
                         placeholder="017XXXXXXXX"
                       />
                     </div>
@@ -479,7 +479,7 @@ export const RegisterPage: React.FC = () => {
                   <button
                     type="submit"
                     disabled={isSubmittingOtp}
-                    className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-[#DC2B53] hover:bg-[#C52247] disabled:bg-gray-300 text-white text-xs font-bold rounded-lg transition-colors cursor-pointer shadow-xs"
+                    className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-primary hover:bg-primary-hover disabled:bg-gray-300 text-white text-xs font-bold rounded-lg transition-colors cursor-pointer shadow-xs"
                   >
                     {isSubmittingOtp ? <Loader2 size={16} className="animate-spin" /> : <ArrowRight size={16} />}
                     <span>{isSubmittingOtp ? 'Sending SMS Code...' : 'Send Verification Code'}</span>
@@ -498,7 +498,7 @@ export const RegisterPage: React.FC = () => {
                         setOtpStep('request');
                         setServerError(null);
                       }}
-                      className="text-xs font-semibold text-[#DC2B53] hover:underline cursor-pointer"
+                      className="text-xs font-semibold text-primary hover:underline cursor-pointer"
                     >
                       Change
                     </button>
@@ -518,7 +518,7 @@ export const RegisterPage: React.FC = () => {
                         maxLength={6}
                         autoFocus
                         inputMode="numeric"
-                        className="block w-full pl-10 pr-3.5 py-2.5 bg-white border border-[#E5E7EB] rounded-lg text-xs font-bold tracking-widest text-[#111827] placeholder:text-[#6B7280] focus:outline-none focus:border-[#DC2B53] text-center"
+                        className="block w-full pl-10 pr-3.5 py-2.5 bg-white border border-[#E5E7EB] rounded-lg text-xs font-bold tracking-widest text-[#111827] placeholder:text-[#6B7280] focus:outline-none focus:border-primary text-center"
                         placeholder="123456"
                       />
                     </div>
@@ -535,7 +535,7 @@ export const RegisterPage: React.FC = () => {
                       <input
                         {...registerMobileVerify('firstName')}
                         type="text"
-                        className="block w-full px-3.5 py-2 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] focus:outline-none focus:border-[#DC2B53]"
+                        className="block w-full px-3.5 py-2 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] focus:outline-none focus:border-primary"
                         placeholder="Jane"
                       />
                       {mobileVerifyErrors.firstName && (
@@ -550,7 +550,7 @@ export const RegisterPage: React.FC = () => {
                       <input
                         {...registerMobileVerify('lastName')}
                         type="text"
-                        className="block w-full px-3.5 py-2 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] focus:outline-none focus:border-[#DC2B53]"
+                        className="block w-full px-3.5 py-2 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] focus:outline-none focus:border-primary"
                         placeholder="Doe"
                       />
                       {mobileVerifyErrors.lastName && (
@@ -568,7 +568,7 @@ export const RegisterPage: React.FC = () => {
                     <input
                       {...registerMobileVerify('password')}
                       type="password"
-                      className="block w-full px-3.5 py-2 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] placeholder:text-[#6B7280] focus:outline-none focus:border-[#DC2B53]"
+                      className="block w-full px-3.5 py-2 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] placeholder:text-[#6B7280] focus:outline-none focus:border-primary"
                       placeholder="Set password (optional)"
                     />
                     {mobileVerifyErrors.password && (
@@ -584,7 +584,7 @@ export const RegisterPage: React.FC = () => {
                       type="button"
                       disabled={resendCooldown > 0 || isSubmittingOtp}
                       onClick={handleResendOtp}
-                      className="font-semibold text-[#DC2B53] hover:underline disabled:text-[#9CA3AF] disabled:no-underline cursor-pointer flex items-center gap-1"
+                      className="font-semibold text-primary hover:underline disabled:text-[#9CA3AF] disabled:no-underline cursor-pointer flex items-center gap-1"
                     >
                       <RotateCw size={12} className={isSubmittingOtp ? 'animate-spin' : ''} />
                       <span>{resendCooldown > 0 ? `Resend in ${resendCooldown}s` : 'Resend OTP'}</span>
@@ -594,7 +594,7 @@ export const RegisterPage: React.FC = () => {
                   <button
                     type="submit"
                     disabled={isSubmittingOtp}
-                    className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-[#DC2B53] hover:bg-[#C52247] disabled:bg-gray-300 text-white text-xs font-bold rounded-lg transition-colors cursor-pointer shadow-xs"
+                    className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-primary hover:bg-primary-hover disabled:bg-gray-300 text-white text-xs font-bold rounded-lg transition-colors cursor-pointer shadow-xs"
                   >
                     {isSubmittingOtp ? <Loader2 size={16} className="animate-spin" /> : <CheckCircle2 size={16} />}
                     <span>{isSubmittingOtp ? 'Verifying...' : 'Complete Registration'}</span>

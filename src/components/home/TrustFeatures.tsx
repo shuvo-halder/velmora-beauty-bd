@@ -5,27 +5,27 @@ import { Truck, ShieldCheck, RotateCcw, Headphones, Lock } from 'lucide-react';
 export const TrustFeatures: React.FC = () => {
   const features = [
     {
-      icon: <Headphones size={16} className="text-[#DC2B53]" />,
+      icon: <Headphones size={16} className="text-primary" />,
       title: '24/7 Support',
       description: 'Dedicated customer help',
     },
     {
-      icon: <Truck size={16} className="text-[#DC2B53]" />,
+      icon: <Truck size={16} className="text-primary" />,
       title: 'Fast Delivery',
       description: 'Express shipping options',
     },
     {
-      icon: <ShieldCheck size={16} className="text-[#DC2B53]" />,
+      icon: <ShieldCheck size={16} className="text-primary" />,
       title: 'Authentic Products',
       description: '100% verified authentic',
     },
     {
-      icon: <RotateCcw size={16} className="text-[#DC2B53]" />,
+      icon: <RotateCcw size={16} className="text-primary" />,
       title: 'Easy Returns',
       description: '30-day money back',
     },
     {
-      icon: <Lock size={16} className="text-[#DC2B53]" />,
+      icon: <Lock size={16} className="text-primary" />,
       title: 'Secure Payment',
       description: 'Fully encrypted checkout',
     },

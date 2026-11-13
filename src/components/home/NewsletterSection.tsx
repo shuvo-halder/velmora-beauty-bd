@@ -35,8 +35,8 @@ export const NewsletterSection: React.FC = () => {
         
         <div className="relative z-10 max-w-xl mx-auto space-y-5">
           <div className="space-y-2.5">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-[#E5E7EB] text-xs font-semibold text-[#DC2B53]">
-              <Mail size={13} className="text-[#DC2B53]" />
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-[#E5E7EB] text-xs font-semibold text-primary">
+              <Mail size={13} className="text-primary" />
               <span>Newsletter</span>
             </div>
 
@@ -66,13 +66,13 @@ export const NewsletterSection: React.FC = () => {
                     placeholder="Enter your email address"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full h-11 pl-4 pr-4 bg-white border border-[#E5E7EB] rounded-lg text-sm text-[#111827] placeholder-[#6B7280] focus:outline-none focus:border-[#DC2B53] focus:ring-1 focus:ring-[#DC2B53] transition-colors"
+                    className="w-full h-11 pl-4 pr-4 bg-white border border-[#E5E7EB] rounded-lg text-sm text-[#111827] placeholder-[#6B7280] focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
                     required
                   />
                 </div>
                 <button
                   type="submit"
-                  className="h-11 px-6 bg-[#DC2B53] hover:bg-[#C52247] text-white font-semibold text-sm rounded-lg transition-colors cursor-pointer shrink-0 shadow-xs"
+                  className="h-11 px-6 bg-primary hover:bg-primary-hover text-white font-semibold text-sm rounded-lg transition-colors cursor-pointer shrink-0 shadow-xs"
                 >
                   Subscribe
                 </button>

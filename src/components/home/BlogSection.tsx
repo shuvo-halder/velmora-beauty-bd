@@ -58,7 +58,7 @@ export const BlogSection: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-5">
         <div>
-          <div className="flex items-center gap-2 text-[#DC2B53] font-semibold text-xs uppercase tracking-wider mb-0.5">
+          <div className="flex items-center gap-2 text-primary font-semibold text-xs uppercase tracking-wider mb-0.5">
             <BookOpen size={14} />
             <span>Articles & Insights</span>
           </div>
@@ -69,7 +69,7 @@ export const BlogSection: React.FC = () => {
 
         <button
           onClick={() => navigateTo('blog')}
-          className="text-xs font-semibold text-[#DC2B53] hover:text-[#C52247] flex items-center gap-1 transition-colors cursor-pointer self-start sm:self-auto min-h-[32px]"
+          className="text-xs font-semibold text-primary hover:text-primary-hover flex items-center gap-1 transition-colors cursor-pointer self-start sm:self-auto min-h-[32px]"
         >
           <span>Read All Articles</span>
           <ArrowRight size={14} />
@@ -114,7 +114,7 @@ export const BlogSection: React.FC = () => {
                   </span>
                 </div>
 
-                <h3 className="font-semibold text-sm sm:text-base text-[#111827] group-hover:text-[#DC2B53] transition-colors line-clamp-2 leading-snug">
+                <h3 className="font-semibold text-sm sm:text-base text-[#111827] group-hover:text-primary transition-colors line-clamp-2 leading-snug">
                   {article.title}
                 </h3>
 
@@ -126,7 +126,7 @@ export const BlogSection: React.FC = () => {
               </div>
             </div>
 
-            <div className="p-4 pt-1 flex items-center gap-1 text-xs font-semibold text-[#DC2B53] group-hover:translate-x-1 transition-transform">
+            <div className="p-4 pt-1 flex items-center gap-1 text-xs font-semibold text-primary group-hover:translate-x-1 transition-transform">
               <span>Read Article</span>
               <ArrowRight size={13} />
             </div>

@@ -299,8 +299,8 @@ export const CustomerReviewCarousel: React.FC = () => {
             <h2 className="text-base sm:text-lg lg:text-xl font-bold text-[#111827] tracking-tight leading-none">
               What Our Customers Say
             </h2>
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-[#E5E7EB] text-xs font-semibold text-[#DC2B53] shadow-2xs">
-              <Sparkles size={12} className="text-[#DC2B53]" />
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-[#E5E7EB] text-xs font-semibold text-primary shadow-2xs">
+              <Sparkles size={12} className="text-primary" />
               Verified Stories
             </span>
           </div>
@@ -337,7 +337,7 @@ export const CustomerReviewCarousel: React.FC = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.97 }}
                         transition={{ duration: 0.25, ease: 'easeOut' }}
-                        className="w-full bg-white border-2 border-[#DC2B53]/35 ring-1 ring-[#DC2B53]/15 rounded-xl sm:rounded-2xl p-3.5 sm:p-4 min-h-[175px] flex flex-col justify-between shadow-md shadow-rose-950/5 relative overflow-hidden"
+                        className="w-full bg-white border-2 border-primary/35 ring-1 ring-primary/15 rounded-xl sm:rounded-2xl p-3.5 sm:p-4 min-h-[175px] flex flex-col justify-between shadow-md shadow-rose-950/5 relative overflow-hidden"
                         aria-live="polite"
                       >
                         {/* Top Bar: Stars + Rating Score + Verified Badge */}
@@ -390,7 +390,7 @@ export const CustomerReviewCarousel: React.FC = () => {
                         {/* Footer: Author & Product Reference */}
                         <div className="flex items-center justify-between gap-2 pt-2 border-t border-[#F3F4F6] shrink-0">
                           <div className="flex items-center gap-2 min-w-0">
-                            <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-gradient-to-tr from-[#DC2B53] to-rose-400 text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-2xs">
+                            <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-gradient-to-tr from-primary to-primary-hover text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-2xs">
                               {item.avatar ? (
                                 <SmartImage
                                   src={item.avatar}
@@ -411,7 +411,7 @@ export const CustomerReviewCarousel: React.FC = () => {
 
                           {item.productName && (
                             <div className="hidden xl:inline-flex items-center gap-1 text-[10px] text-[#6B7280] truncate max-w-[120px] bg-slate-50 px-1.5 py-0.5 rounded border border-slate-200">
-                              <ShoppingBag size={10} className="text-[#DC2B53] shrink-0" />
+                              <ShoppingBag size={10} className="text-primary shrink-0" />
                               <span className="truncate">{item.productName}</span>
                             </div>
                           )}
@@ -489,7 +489,7 @@ export const CustomerReviewCarousel: React.FC = () => {
             <button
               type="button"
               onClick={handlePrev}
-              className="w-7 h-7 rounded-full bg-white border border-[#E5E7EB] text-[#4B5563] hover:text-[#111827] hover:border-slate-300 hover:bg-slate-50 transition-all flex items-center justify-center shadow-2xs cursor-pointer focus:outline-none focus:ring-1 focus:ring-[#DC2B53]/30"
+              className="w-7 h-7 rounded-full bg-white border border-[#E5E7EB] text-[#4B5563] hover:text-[#111827] hover:border-slate-300 hover:bg-slate-50 transition-all flex items-center justify-center shadow-2xs cursor-pointer focus:outline-none focus:ring-1 focus:ring-primary/30"
               aria-label="Previous customer review"
             >
               <ChevronLeft size={15} />
@@ -507,7 +507,7 @@ export const CustomerReviewCarousel: React.FC = () => {
                   aria-label={`Go to customer review ${idx + 1} of ${count}`}
                   className={`transition-all duration-300 rounded-full cursor-pointer focus:outline-none ${
                     idx === activeIndex
-                      ? 'w-5 h-1.5 bg-[#DC2B53]'
+                      ? 'w-5 h-1.5 bg-primary'
                       : 'w-1.5 h-1.5 bg-slate-300 hover:bg-slate-400'
                   }`}
                 />
@@ -518,7 +518,7 @@ export const CustomerReviewCarousel: React.FC = () => {
             <button
               type="button"
               onClick={handleNext}
-              className="w-7 h-7 rounded-full bg-white border border-[#E5E7EB] text-[#4B5563] hover:text-[#111827] hover:border-slate-300 hover:bg-slate-50 transition-all flex items-center justify-center shadow-2xs cursor-pointer focus:outline-none focus:ring-1 focus:ring-[#DC2B53]/30"
+              className="w-7 h-7 rounded-full bg-white border border-[#E5E7EB] text-[#4B5563] hover:text-[#111827] hover:border-slate-300 hover:bg-slate-50 transition-all flex items-center justify-center shadow-2xs cursor-pointer focus:outline-none focus:ring-1 focus:ring-primary/30"
               aria-label="Next customer review"
             >
               <ChevronRight size={15} />

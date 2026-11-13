@@ -35,7 +35,7 @@ export const BrandSection: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-4 sm:mb-5">
         <div>
-          <div className="flex items-center gap-2 text-[#DC2B53] font-semibold text-xs uppercase tracking-wider mb-0.5">
+          <div className="flex items-center gap-2 text-primary font-semibold text-xs uppercase tracking-wider mb-0.5">
             <Award size={14} />
             <span>Featured Brand Partners</span>
           </div>
@@ -49,7 +49,7 @@ export const BrandSection: React.FC = () => {
             setFilters(prev => ({ ...prev, brandSlugs: [] }));
             navigateTo('shop');
           }}
-          className="text-xs font-semibold text-[#DC2B53] hover:text-[#C52247] flex items-center gap-1 transition-colors cursor-pointer self-start sm:self-auto min-h-[32px]"
+          className="text-xs font-semibold text-primary hover:text-primary-hover flex items-center gap-1 transition-colors cursor-pointer self-start sm:self-auto min-h-[32px]"
         >
           <span>View All Brands</span>
           <ArrowRight size={14} />
@@ -62,9 +62,9 @@ export const BrandSection: React.FC = () => {
           <div
             key={brand.id}
             onClick={() => handleBrandClick(brand.slug)}
-            className="group bg-white border border-[#E5E7EB] hover:border-[#DC2B53]/40 rounded-xl p-3 sm:p-3.5 text-center transition-all duration-200 cursor-pointer flex flex-col items-center justify-between min-h-[85px] sm:min-h-[95px] shadow-2xs"
+            className="group bg-white border border-[#E5E7EB] hover:border-primary/40 rounded-xl p-3 sm:p-3.5 text-center transition-all duration-200 cursor-pointer flex flex-col items-center justify-between min-h-[85px] sm:min-h-[95px] shadow-2xs"
           >
-            <div className="font-semibold text-[#111827] group-hover:text-[#DC2B53] transition-colors text-xs sm:text-sm tracking-tight my-auto line-clamp-1">
+            <div className="font-semibold text-[#111827] group-hover:text-primary transition-colors text-xs sm:text-sm tracking-tight my-auto line-clamp-1">
               {brand.name}
             </div>
 

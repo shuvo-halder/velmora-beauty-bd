@@ -251,7 +251,7 @@ export const ProductDetailPage: React.FC = () => {
     return (
       <div className="py-16 bg-[#F9FAFB] min-h-screen flex items-center justify-center px-4">
         <div className="bg-white border border-[#E5E7EB] rounded-xl p-8 max-w-md w-full text-center space-y-4 shadow-xs">
-          <div className="w-14 h-14 rounded-xl bg-[#FDF0F3] text-[#DC2B53] flex items-center justify-center mx-auto border border-[#DC2B53]/20">
+          <div className="w-14 h-14 rounded-xl bg-primary-light text-primary flex items-center justify-center mx-auto border border-primary/20">
             <AlertCircle size={28} />
           </div>
           <h2 className="text-xl font-bold text-[#111827]">Product Unavailable</h2>
@@ -261,7 +261,7 @@ export const ProductDetailPage: React.FC = () => {
           <div className="pt-2">
             <button
               onClick={() => navigateTo('shop')}
-              className="w-full py-2.5 bg-[#DC2B53] hover:bg-[#C52247] text-white font-semibold text-xs rounded-lg transition-colors cursor-pointer shadow-xs"
+              className="w-full py-2.5 bg-primary hover:bg-primary-hover text-white font-semibold text-xs rounded-lg transition-colors cursor-pointer shadow-xs"
             >
               Return to Catalog
             </button>
@@ -428,17 +428,17 @@ export const ProductDetailPage: React.FC = () => {
         
         {/* Breadcrumb Navigation */}
         <nav className="flex items-center gap-2 text-xs text-[#6B7280] font-medium overflow-x-auto pb-1">
-          <button onClick={() => navigateTo('home')} className="hover:text-[#DC2B53] transition-colors cursor-pointer">
+          <button onClick={() => navigateTo('home')} className="hover:text-primary transition-colors cursor-pointer">
             Home
           </button>
           <ChevronRight size={12} className="text-[#6B7280] flex-shrink-0" />
-          <button onClick={() => navigateTo('shop')} className="hover:text-[#DC2B53] transition-colors cursor-pointer">
+          <button onClick={() => navigateTo('shop')} className="hover:text-primary transition-colors cursor-pointer">
             Catalog
           </button>
           <ChevronRight size={12} className="text-[#6B7280] flex-shrink-0" />
           <button 
             onClick={() => navigateTo('shop')} 
-            className="hover:text-[#DC2B53] transition-colors cursor-pointer truncate"
+            className="hover:text-primary transition-colors cursor-pointer truncate"
           >
             {product.category}
           </button>
@@ -458,7 +458,7 @@ export const ProductDetailPage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => openLightbox(selectedImage || product.images[0])}
-                className="w-full h-full relative cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#DC2B53] rounded-xl overflow-hidden text-left block"
+                className="w-full h-full relative cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary rounded-xl overflow-hidden text-left block"
                 aria-label={`Open ${product.name} image in lightbox`}
               >
                 <SmartImage 
@@ -474,7 +474,7 @@ export const ProductDetailPage: React.FC = () => {
 
               {/* Discount Badge */}
               {computedDiscount && (
-                <span className="absolute top-3.5 left-3.5 bg-[#DC2B53] text-white font-bold text-[11px] px-2.5 py-0.5 rounded-full shadow-xs z-10 pointer-events-none">
+                <span className="absolute top-3.5 left-3.5 bg-primary text-white font-bold text-[11px] px-2.5 py-0.5 rounded-full shadow-xs z-10 pointer-events-none">
                   -{computedDiscount}% OFF
                 </span>
               )}
@@ -534,7 +534,7 @@ export const ProductDetailPage: React.FC = () => {
                     key={idx}
                     onClick={() => setSelectedImage(img)}
                     className={`w-16 h-16 rounded-lg border-2 overflow-hidden flex-shrink-0 transition-all cursor-pointer relative ${
-                      selectedImage === img ? 'border-[#DC2B53] ring-1 ring-[#DC2B53]/20' : 'border-[#E5E7EB] opacity-70 hover:opacity-100'
+                      selectedImage === img ? 'border-primary ring-1 ring-primary/20' : 'border-[#E5E7EB] opacity-70 hover:opacity-100'
                     }`}
                   >
                     <SmartImage 
@@ -559,7 +559,7 @@ export const ProductDetailPage: React.FC = () => {
               
               {/* Brand & Stock Header */}
               <div className="flex items-center justify-between gap-2">
-                <span className="inline-block text-xs font-bold uppercase tracking-wider text-[#DC2B53] bg-[#FDF0F3] px-2.5 py-0.5 rounded-md border border-[#DC2B53]/20">
+                <span className="inline-block text-xs font-bold uppercase tracking-wider text-primary bg-primary-light px-2.5 py-0.5 rounded-md border border-primary/20">
                   {product.brand}
                 </span>
 
@@ -575,7 +575,7 @@ export const ProductDetailPage: React.FC = () => {
                     Only {activeStock} Left
                   </span>
                 ) : (
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-[#FDF0F3] text-[#DC2626] border border-[#DC2626]/20 text-xs font-semibold">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-primary-light text-[#DC2626] border border-[#DC2626]/20 text-xs font-semibold">
                     <AlertCircle size={12} className="text-[#DC2626]" />
                     Currently Out of Stock
                   </span>
@@ -592,7 +592,7 @@ export const ProductDetailPage: React.FC = () => {
                   <RatingStars rating={product.rating} count={product.reviewCount} size={15} />
                   <button 
                     onClick={() => setActiveTab('reviews')}
-                    className="text-xs font-semibold text-[#DC2B53] hover:underline cursor-pointer ml-1"
+                    className="text-xs font-semibold text-primary hover:underline cursor-pointer ml-1"
                   >
                     Read Reviews
                   </button>
@@ -613,7 +613,7 @@ export const ProductDetailPage: React.FC = () => {
                   </span>
                 )}
                 {computedDiscount && (
-                  <span className="px-2 py-0.5 bg-[#FDF0F3] text-[#DC2B53] font-bold text-xs rounded-md border border-[#DC2B53]/20">
+                  <span className="px-2 py-0.5 bg-primary-light text-primary font-bold text-xs rounded-md border border-primary/20">
                     Save {formatPrice(activeComparePrice! - activePrice, currencyCode, currencySymbol)} ({computedDiscount}%)
                   </span>
                 )}
@@ -643,7 +643,7 @@ export const ProductDetailPage: React.FC = () => {
                         onClick={() => handleVariantChange(v)}
                         className={`p-2.5 rounded-lg text-xs font-semibold border transition-colors flex flex-col justify-between text-left cursor-pointer ${
                           isSelected 
-                            ? 'bg-[#FDF0F3] border-[#DC2B53] text-[#DC2B53] ring-1 ring-[#DC2B53]' 
+                            ? 'bg-primary-light border-primary text-primary ring-1 ring-primary' 
                             : 'bg-white border-[#E5E7EB] text-[#111827] hover:border-[#111827]'
                         }`}
                       >
@@ -696,7 +696,7 @@ export const ProductDetailPage: React.FC = () => {
                 <button
                   onClick={handleAddToCart}
                   disabled={activeStock === 0 || isAddingToCart}
-                  className="flex-1 py-2.5 px-5 bg-[#DC2B53] hover:bg-[#C52247] disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold text-xs rounded-lg shadow-xs transition-colors flex items-center justify-center gap-2 cursor-pointer min-h-[42px]"
+                  className="flex-1 py-2.5 px-5 bg-primary hover:bg-primary-hover disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold text-xs rounded-lg shadow-xs transition-colors flex items-center justify-center gap-2 cursor-pointer min-h-[42px]"
                 >
                   {isAddingToCart ? <Loader2 size={16} className="animate-spin" /> : <ShoppingCart size={16} />}
                   <span>{activeStock === 0 ? 'Out of Stock' : isAddingToCart ? 'Adding...' : 'Add to Cart'}</span>
@@ -716,11 +716,11 @@ export const ProductDetailPage: React.FC = () => {
                   <button
                     onClick={() => toggleWishlist(product)}
                     className={`p-2.5 rounded-lg border transition-colors cursor-pointer min-h-[42px] min-w-[42px] flex items-center justify-center ${
-                      inWishlist ? 'bg-[#FDF0F3] border-[#DC2B53]/30 text-[#DC2B53]' : 'bg-white border-[#E5E7EB] text-[#6B7280] hover:text-[#DC2B53]'
+                      inWishlist ? 'bg-primary-light border-primary/30 text-primary' : 'bg-white border-[#E5E7EB] text-[#6B7280] hover:text-primary'
                     }`}
                     title={inWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}
                   >
-                    <Heart size={16} fill={inWishlist ? '#DC2B53' : 'none'} />
+                    <Heart size={16} fill={inWishlist ? 'currentColor' : 'none'} />
                   </button>
 
                   <button
@@ -775,7 +775,7 @@ export const ProductDetailPage: React.FC = () => {
                 onClick={() => setActiveTab(tab.id as any)}
                 className={`pb-3 border-b-2 transition-colors cursor-pointer whitespace-nowrap ${
                   activeTab === tab.id 
-                    ? 'border-[#DC2B53] text-[#DC2B53]' 
+                    ? 'border-primary text-primary' 
                     : 'border-transparent text-[#6B7280] hover:text-[#111827]'
                 }`}
               >
@@ -794,7 +794,7 @@ export const ProductDetailPage: React.FC = () => {
               {product.features && product.features.length > 0 && (
                 <div className="pt-2">
                   <h4 className="font-bold text-sm text-[#111827] mb-3 flex items-center gap-2">
-                    <Sparkles size={15} className="text-[#DC2B53]" />
+                    <Sparkles size={15} className="text-primary" />
                     <span>Product Highlights</span>
                   </h4>
                   <ul className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
@@ -849,7 +849,7 @@ export const ProductDetailPage: React.FC = () => {
           {activeTab === 'faq' && (
             <div className="space-y-4">
               <h4 className="font-bold text-sm text-[#111827] flex items-center gap-2">
-                <HelpCircle size={16} className="text-[#DC2B53]" />
+                <HelpCircle size={16} className="text-primary" />
                 <span>Frequently Asked Questions</span>
               </h4>
 
@@ -863,7 +863,7 @@ export const ProductDetailPage: React.FC = () => {
                           type="button"
                           aria-expanded={isOpen}
                           onClick={() => setOpenFaqId(isOpen ? null : faq.id)}
-                          className="w-full flex items-center justify-between gap-4 p-4 sm:p-4.5 text-left font-semibold text-xs sm:text-sm text-[#111827] hover:bg-[#F9FAFB] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DC2B53]/20 cursor-pointer"
+                          className="w-full flex items-center justify-between gap-4 p-4 sm:p-4.5 text-left font-semibold text-xs sm:text-sm text-[#111827] hover:bg-[#F9FAFB] transition-colors focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer"
                         >
                           <span className="flex-1 leading-snug">{faq.question}</span>
                           <span className="p-1 rounded-md bg-[#F3F4F6] text-[#6B7280] shrink-0">
@@ -944,13 +944,13 @@ export const ProductDetailPage: React.FC = () => {
               <>
                 <button
                   onClick={() => setZoomImageIndex((prev) => (prev <= 0 ? product.images.length - 1 : prev - 1))}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/60 hover:bg-[#DC2B53] text-white cursor-pointer"
+                  className="absolute left-2 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/60 hover:bg-primary text-white cursor-pointer"
                 >
                   <ChevronLeft size={20} />
                 </button>
                 <button
                   onClick={() => setZoomImageIndex((prev) => (prev + 1) % product.images.length)}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/60 hover:bg-[#DC2B53] text-white cursor-pointer"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/60 hover:bg-primary text-white cursor-pointer"
                 >
                   <ChevronRight size={20} />
                 </button>

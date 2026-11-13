@@ -54,11 +54,11 @@ export const PromoCard: React.FC<PromoCardProps> = ({ banner, variant = 'vertica
       >
         <div className="relative z-10 space-y-1 flex-1 min-w-0">
           {banner.badge && (
-            <span className="inline-block text-[10px] font-semibold uppercase tracking-wider text-[#DC2B53] bg-[#DC2B53]/10 px-2 py-0.5 rounded-md border border-[#DC2B53]/20">
+            <span className="inline-block text-[10px] font-semibold uppercase tracking-wider text-primary bg-primary/10 px-2 py-0.5 rounded-md border border-primary/20">
               {banner.badge}
             </span>
           )}
-          <h4 className="font-semibold text-sm sm:text-base leading-snug text-white group-hover:text-[#DC2B53] transition-colors truncate">
+          <h4 className="font-semibold text-sm sm:text-base leading-snug text-white group-hover:text-primary transition-colors truncate">
             {banner.title}
           </h4>
           {descriptionText && (
@@ -67,7 +67,7 @@ export const PromoCard: React.FC<PromoCardProps> = ({ banner, variant = 'vertica
             </p>
           )}
           {banner.price && (
-            <div className="text-xs font-semibold text-[#DC2B53] pt-0.5">
+            <div className="text-xs font-semibold text-primary pt-0.5">
               {banner.price}
             </div>
           )}
@@ -120,12 +120,12 @@ export const PromoCard: React.FC<PromoCardProps> = ({ banner, variant = 'vertica
       {/* Top Badge */}
       <div className="relative z-10 flex items-center justify-between">
         {banner.badge ? (
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-[#DC2B53]/20 border border-[#DC2B53]/30 text-white text-[10px] font-semibold tracking-wide backdrop-blur-xs">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-primary/20 border border-primary/30 text-white text-[10px] font-semibold tracking-wide backdrop-blur-xs">
             {banner.badge}
           </span>
         ) : <div />}
         {banner.discount && (
-          <span className="px-2 py-0.5 bg-[#DC2B53] text-white font-semibold text-[10px] rounded-md tracking-wide">
+          <span className="px-2 py-0.5 bg-primary text-white font-semibold text-[10px] rounded-md tracking-wide">
             {banner.discount}
           </span>
         )}
@@ -133,7 +133,7 @@ export const PromoCard: React.FC<PromoCardProps> = ({ banner, variant = 'vertica
 
       {/* Center/Bottom Content */}
       <div className="relative z-10 mt-6 space-y-2">
-        <h3 className="font-semibold text-lg text-white group-hover:text-[#DC2B53] transition-colors leading-tight">
+        <h3 className="font-semibold text-lg text-white group-hover:text-primary transition-colors leading-tight">
           {banner.title}
         </h3>
         {descriptionText && (
@@ -149,7 +149,7 @@ export const PromoCard: React.FC<PromoCardProps> = ({ banner, variant = 'vertica
             </span>
           )}
           {ctaText && (
-            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#DC2B53] group-hover:translate-x-0.5 transition-transform">
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary group-hover:translate-x-0.5 transition-transform">
               <span>{ctaText}</span>
               <ArrowRight size={13} />
             </span>

@@ -139,7 +139,7 @@ export const HeroSection: React.FC = () => {
       <div className="relative z-10 flex items-center justify-between gap-2 sm:gap-4">
         {activeHero.badge ? (
           <span className="inline-flex items-center gap-1 sm:gap-1.5 px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-black/40 border border-white/20 text-white text-[10px] sm:text-xs font-semibold backdrop-blur-md">
-            <Sparkles size={11} className="text-[#DC2B53] sm:w-[13px] sm:h-[13px]" />
+            <Sparkles size={11} className="text-primary sm:w-[13px] sm:h-[13px]" />
             {activeHero.badge}
           </span>
         ) : <div />}
@@ -154,7 +154,7 @@ export const HeroSection: React.FC = () => {
                 e.stopPropagation();
                 setCurrentSlide((prev) => (prev === 0 ? heroBanners.length - 1 : prev - 1));
               }}
-              className="w-6 h-6 sm:w-9 sm:h-9 rounded-full bg-black/40 hover:bg-[#DC2B53] text-white border border-white/20 flex items-center justify-center transition-colors cursor-pointer backdrop-blur-xs"
+              className="w-6 h-6 sm:w-9 sm:h-9 rounded-full bg-black/40 hover:bg-primary text-white border border-white/20 flex items-center justify-center transition-colors cursor-pointer backdrop-blur-xs"
               aria-label="Previous Slide"
             >
               <ChevronLeft size={14} className="sm:w-4 sm:h-4" />
@@ -166,7 +166,7 @@ export const HeroSection: React.FC = () => {
                 e.stopPropagation();
                 setCurrentSlide((prev) => (prev + 1) % heroBanners.length);
               }}
-              className="w-6 h-6 sm:w-9 sm:h-9 rounded-full bg-black/40 hover:bg-[#DC2B53] text-white border border-white/20 flex items-center justify-center transition-colors cursor-pointer backdrop-blur-xs"
+              className="w-6 h-6 sm:w-9 sm:h-9 rounded-full bg-black/40 hover:bg-primary text-white border border-white/20 flex items-center justify-center transition-colors cursor-pointer backdrop-blur-xs"
               aria-label="Next Slide"
             >
               <ChevronRight size={14} className="sm:w-4 sm:h-4" />
@@ -203,7 +203,7 @@ export const HeroSection: React.FC = () => {
               </span>
             )}
             {activeHero.discount && (
-              <span className="px-1.5 py-0.5 sm:px-2 bg-[#DC2B53] text-white text-[9px] sm:text-xs font-bold rounded-sm sm:rounded-md">
+              <span className="px-1.5 py-0.5 sm:px-2 bg-primary text-white text-[9px] sm:text-xs font-bold rounded-sm sm:rounded-md">
                 {activeHero.discount}
               </span>
             )}
@@ -225,7 +225,7 @@ export const HeroSection: React.FC = () => {
                   setCurrentSlide(idx);
                 }}
                 className={`h-1 sm:h-1.5 rounded-full transition-all cursor-pointer ${
-                  currentSlide === idx ? 'w-4 sm:w-6 bg-[#DC2B53]' : 'w-1.5 sm:w-2 bg-white/40 hover:bg-white/70'
+                  currentSlide === idx ? 'w-4 sm:w-6 bg-primary' : 'w-1.5 sm:w-2 bg-white/40 hover:bg-white/70'
                 }`}
                 aria-label={`Go to slide ${idx + 1}`}
               />
@@ -256,7 +256,7 @@ export const HeroSection: React.FC = () => {
           rel="noopener noreferrer"
           onClick={() => handleBannerClick(activeHero)}
           aria-label={activeHero.title || 'Promotional Banner'}
-          className="relative w-full rounded-[2px] sm:rounded-[3px] overflow-hidden bg-[#111827] text-white border border-[#E5E7EB] shadow-xs flex flex-col justify-between h-[170px] min-h-[170px] max-h-[170px] sm:h-[418px] sm:min-h-[418px] sm:max-h-[418px] p-2.5 xs:p-3 sm:p-8 lg:p-10 group block focus:outline-none focus:ring-2 focus:ring-[#DC2B53] focus:ring-offset-2 transition-shadow"
+          className="relative w-full rounded-[2px] sm:rounded-[3px] overflow-hidden bg-[#111827] text-white border border-[#E5E7EB] shadow-xs flex flex-col justify-between h-[170px] min-h-[170px] max-h-[170px] sm:h-[418px] sm:min-h-[418px] sm:max-h-[418px] p-2.5 xs:p-3 sm:p-8 lg:p-10 group block focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-shadow"
         >
           {bannerContent}
         </a>
@@ -265,7 +265,7 @@ export const HeroSection: React.FC = () => {
           href={bannerHref}
           onClick={() => handleBannerClick(activeHero)}
           aria-label={activeHero.title || 'Promotional Banner'}
-          className="relative w-full rounded-[2px] sm:rounded-[3px] overflow-hidden bg-[#111827] text-white border border-[#E5E7EB] shadow-xs flex flex-col justify-between h-[170px] min-h-[170px] max-h-[170px] sm:h-[418px] sm:min-h-[418px] sm:max-h-[418px] p-2.5 xs:p-3 sm:p-8 lg:p-10 group block focus:outline-none focus:ring-2 focus:ring-[#DC2B53] focus:ring-offset-2 transition-shadow"
+          className="relative w-full rounded-[2px] sm:rounded-[3px] overflow-hidden bg-[#111827] text-white border border-[#E5E7EB] shadow-xs flex flex-col justify-between h-[170px] min-h-[170px] max-h-[170px] sm:h-[418px] sm:min-h-[418px] sm:max-h-[418px] p-2.5 xs:p-3 sm:p-8 lg:p-10 group block focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-shadow"
         >
           {bannerContent}
         </Link>

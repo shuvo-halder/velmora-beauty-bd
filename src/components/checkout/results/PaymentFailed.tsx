@@ -32,7 +32,7 @@ export const PaymentFailed: React.FC = () => {
         <div className="space-y-2.5">
           <button
             onClick={() => navigateTo('checkout')}
-            className="w-full py-3 bg-[#DC2B53] text-white font-bold text-xs rounded-lg flex items-center justify-center gap-2 hover:bg-[#C52247] transition-colors cursor-pointer shadow-xs"
+            className="w-full py-3 bg-primary text-white font-bold text-xs rounded-lg flex items-center justify-center gap-2 hover:bg-primary-hover transition-colors cursor-pointer shadow-xs"
           >
             <RefreshCw size={14} />
             <span>Retry Payment</span>

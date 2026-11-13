@@ -50,7 +50,7 @@ export const ReviewList: React.FC<ReviewListProps> = ({
   if (isLoading && reviews.length === 0) {
     return (
       <div className="py-12 flex flex-col items-center justify-center space-y-3 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl text-center">
-        <Loader2 size={24} className="animate-spin text-[#DC2B53]" />
+        <Loader2 size={24} className="animate-spin text-primary" />
         <p className="text-xs text-[#6B7280]">Loading verified reviews...</p>
       </div>
     );
@@ -60,7 +60,7 @@ export const ReviewList: React.FC<ReviewListProps> = ({
     return (
       <div className="text-center py-10 px-4 bg-[#F9FAFB] border border-dashed border-[#E5E7EB] rounded-xl space-y-3">
         <div className="w-12 h-12 rounded-full bg-white border border-[#E5E7EB] mx-auto flex items-center justify-center text-[#6B7280] shadow-2xs">
-          <MessageSquare size={22} className="text-[#DC2B53]" />
+          <MessageSquare size={22} className="text-primary" />
         </div>
         <div className="space-y-1">
           <h5 className="font-bold text-sm text-[#111827]">No customer reviews yet</h5>
@@ -71,7 +71,7 @@ export const ReviewList: React.FC<ReviewListProps> = ({
         <button
           type="button"
           onClick={onWriteReview}
-          className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#DC2B53] hover:bg-[#C52247] text-white font-semibold text-xs rounded-lg transition-colors cursor-pointer shadow-xs"
+          className="inline-flex items-center gap-1.5 px-4 py-2 bg-primary hover:bg-primary-hover text-white font-semibold text-xs rounded-lg transition-colors cursor-pointer shadow-xs"
         >
           <Sparkles size={14} />
           Write the First Review
@@ -102,7 +102,7 @@ export const ReviewList: React.FC<ReviewListProps> = ({
             onClick={() => setFilterType('with-images')}
             className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full font-medium transition-colors cursor-pointer ${
               filterType === 'with-images'
-                ? 'bg-[#DC2B53] text-white'
+                ? 'bg-primary text-white'
                 : 'bg-[#F9FAFB] text-[#4B5563] border border-[#E5E7EB] hover:bg-gray-100'
             }`}
           >

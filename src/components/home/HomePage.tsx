@@ -77,7 +77,7 @@ export const HomePage: React.FC = () => {
       <ProductSection
         title="Featured Products"
         badge="CURATED COLLECTION"
-        icon={<Sparkles size={14} className="text-[#DC2B53]" />}
+        icon={<Sparkles size={14} className="text-primary" />}
         products={featuredProducts}
         isLoading={isLoading}
         viewAllText="View All Products"
@@ -92,7 +92,7 @@ export const HomePage: React.FC = () => {
       <ProductSection
         title="Popular Products"
         badge="MOST POPULAR"
-        icon={<Flame size={14} className="text-[#DC2B53]" />}
+        icon={<Flame size={14} className="text-primary" />}
         products={bestSellers}
         isLoading={isLoading}
         viewAllText="View All Popular Products"
@@ -110,7 +110,7 @@ export const HomePage: React.FC = () => {
       <ProductSection
         title="New Arrivals"
         badge="JUST RELEASED"
-        icon={<Zap size={14} className="text-[#DC2B53]" />}
+        icon={<Zap size={14} className="text-primary" />}
         products={newArrivals}
         isLoading={isLoading}
         viewAllText="View All New Arrivals"

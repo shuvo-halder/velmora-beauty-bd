@@ -288,7 +288,7 @@ export const ReviewFormModal: React.FC<ReviewFormModalProps> = ({
                 {/* 1. Rating Selector */}
                 <div className="space-y-1.5 bg-[#F9FAFB] p-3.5 rounded-xl border border-[#E5E7EB]">
                   <label className="font-semibold text-xs text-[#111827] block">
-                    Overall Rating <span className="text-[#DC2B53]">*</span>
+                    Overall Rating <span className="text-primary">*</span>
                   </label>
 
                   <div className="flex items-center gap-1.5 pt-1">
@@ -302,7 +302,7 @@ export const ReviewFormModal: React.FC<ReviewFormModalProps> = ({
                           onMouseEnter={() => setHoverRating(star)}
                           onMouseLeave={() => setHoverRating(null)}
                           aria-label={`Rate ${star} star${star > 1 ? 's' : ''}`}
-                          className="p-1 text-amber-400 hover:scale-115 transition-transform cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#DC2B53] rounded"
+                          className="p-1 text-amber-400 hover:scale-115 transition-transform cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary rounded"
                         >
                           <Star
                             size={24}
@@ -345,14 +345,14 @@ export const ReviewFormModal: React.FC<ReviewFormModalProps> = ({
                 ) : (
                   <div className="space-y-3 bg-[#F9FAFB] p-3.5 rounded-xl border border-[#E5E7EB]">
                     <div className="flex items-center gap-1.5 font-semibold text-xs text-[#111827]">
-                      <User size={13} className="text-[#DC2B53]" />
+                      <User size={13} className="text-primary" />
                       Guest Customer Information
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
                         <label className="font-medium text-[11px] text-[#4B5563] block mb-1">
-                          Your Name <span className="text-[#DC2B53]">*</span>
+                          Your Name <span className="text-primary">*</span>
                         </label>
                         <input
                           type="text"
@@ -360,13 +360,13 @@ export const ReviewFormModal: React.FC<ReviewFormModalProps> = ({
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           placeholder="e.g. Tanvir Hasan"
-                          className="w-full p-2 bg-white border border-[#E5E7EB] rounded-lg focus:outline-none focus:border-[#DC2B53] text-[#111827] text-xs font-normal"
+                          className="w-full p-2 bg-white border border-[#E5E7EB] rounded-lg focus:outline-none focus:border-primary text-[#111827] text-xs font-normal"
                         />
                       </div>
 
                       <div>
                         <label className="font-medium text-[11px] text-[#4B5563] block mb-1">
-                          Mobile Number <span className="text-[#DC2B53]">*</span>
+                          Mobile Number <span className="text-primary">*</span>
                         </label>
                         <input
                           type="tel"
@@ -374,7 +374,7 @@ export const ReviewFormModal: React.FC<ReviewFormModalProps> = ({
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           placeholder="e.g. 017XXXXXXXX"
-                          className="w-full p-2 bg-white border border-[#E5E7EB] rounded-lg focus:outline-none focus:border-[#DC2B53] text-[#111827] text-xs font-normal"
+                          className="w-full p-2 bg-white border border-[#E5E7EB] rounded-lg focus:outline-none focus:border-primary text-[#111827] text-xs font-normal"
                         />
                       </div>
                     </div>
@@ -388,7 +388,7 @@ export const ReviewFormModal: React.FC<ReviewFormModalProps> = ({
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="e.g. customer@example.com"
-                        className="w-full p-2 bg-white border border-[#E5E7EB] rounded-lg focus:outline-none focus:border-[#DC2B53] text-[#111827] text-xs font-normal"
+                        className="w-full p-2 bg-white border border-[#E5E7EB] rounded-lg focus:outline-none focus:border-primary text-[#111827] text-xs font-normal"
                       />
                     </div>
                   </div>
@@ -404,7 +404,7 @@ export const ReviewFormModal: React.FC<ReviewFormModalProps> = ({
                     value={formData.title}
                     onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                     placeholder="e.g. Excellent build quality and premium sound!"
-                    className="w-full p-2 bg-white border border-[#E5E7EB] rounded-lg focus:outline-none focus:border-[#DC2B53] text-[#111827] text-xs font-normal"
+                    className="w-full p-2 bg-white border border-[#E5E7EB] rounded-lg focus:outline-none focus:border-primary text-[#111827] text-xs font-normal"
                   />
                 </div>
 
@@ -412,7 +412,7 @@ export const ReviewFormModal: React.FC<ReviewFormModalProps> = ({
                 <div>
                   <div className="flex items-center justify-between mb-1">
                     <label className="font-semibold text-xs text-[#111827]">
-                      Your Detailed Review <span className="text-[#DC2B53]">*</span>
+                      Your Detailed Review <span className="text-primary">*</span>
                     </label>
                     <span className="text-[10px] text-[#6B7280]">
                       {formData.comment.length} / 1000 characters
@@ -425,7 +425,7 @@ export const ReviewFormModal: React.FC<ReviewFormModalProps> = ({
                     value={formData.comment}
                     onChange={(e) => setFormData({ ...formData, comment: e.target.value })}
                     placeholder="Tell us what you liked or disliked, quality, delivery experience, etc."
-                    className="w-full p-2.5 bg-white border border-[#E5E7EB] rounded-lg focus:outline-none focus:border-[#DC2B53] text-[#111827] text-xs font-normal resize-none leading-relaxed"
+                    className="w-full p-2.5 bg-white border border-[#E5E7EB] rounded-lg focus:outline-none focus:border-primary text-[#111827] text-xs font-normal resize-none leading-relaxed"
                   />
                 </div>
 
@@ -462,7 +462,7 @@ export const ReviewFormModal: React.FC<ReviewFormModalProps> = ({
                   <button
                     type="submit"
                     disabled={formStatus === 'submitting'}
-                    className="flex-1 py-2.5 bg-[#DC2B53] hover:bg-[#C52247] disabled:opacity-60 text-white font-semibold rounded-lg cursor-pointer shadow-xs transition-colors text-xs flex items-center justify-center gap-1.5"
+                    className="flex-1 py-2.5 bg-primary hover:bg-primary-hover disabled:opacity-60 text-white font-semibold rounded-lg cursor-pointer shadow-xs transition-colors text-xs flex items-center justify-center gap-1.5"
                   >
                     {formStatus === 'submitting' ? (
                       <>

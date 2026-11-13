@@ -17,7 +17,7 @@ export const OrderReview: React.FC<OrderReviewProps> = ({ cart, formData }) => {
       {/* Items */}
       <div className="bg-[#F9FAFB] rounded-lg p-4 border border-[#E5E7EB]">
         <div className="flex items-center gap-2 mb-3 pb-2 border-b border-[#E5E7EB]">
-          <ShoppingBag size={15} className="text-[#DC2B53]" />
+          <ShoppingBag size={15} className="text-primary" />
           <span className="text-xs font-bold text-[#111827]">Order Items ({cart.items.length})</span>
         </div>
         <div className="space-y-2.5">
@@ -36,7 +36,7 @@ export const OrderReview: React.FC<OrderReviewProps> = ({ cart, formData }) => {
         {/* Shipping Info */}
         <div className="bg-white border border-[#E5E7EB] p-4 rounded-lg">
           <div className="flex items-center gap-2 mb-2">
-            <MapPin size={14} className="text-[#DC2B53]" />
+            <MapPin size={14} className="text-primary" />
             <span className="text-xs font-bold text-[#111827]">Delivery Address</span>
           </div>
           <div className="text-xs text-[#6B7280] leading-relaxed">
@@ -50,7 +50,7 @@ export const OrderReview: React.FC<OrderReviewProps> = ({ cart, formData }) => {
         {/* Payment & Method */}
         <div className="bg-white border border-[#E5E7EB] p-4 rounded-lg">
           <div className="flex items-center gap-2 mb-2">
-            <Wallet size={14} className="text-[#DC2B53]" />
+            <Wallet size={14} className="text-primary" />
             <span className="text-xs font-bold text-[#111827]">Payment & Method</span>
           </div>
           <div className="text-xs text-[#6B7280] space-y-1">
@@ -90,7 +90,7 @@ export const OrderReview: React.FC<OrderReviewProps> = ({ cart, formData }) => {
         </div>
         <div className="flex justify-between text-base font-bold pt-3 border-t border-gray-700">
           <span>Total</span>
-          <span className="text-[#DC2B53]">{formatPrice(cart.total)}</span>
+          <span className="text-primary">{formatPrice(cart.total)}</span>
         </div>
       </div>
     </div>

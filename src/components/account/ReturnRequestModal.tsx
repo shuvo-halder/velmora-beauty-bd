@@ -197,7 +197,7 @@ export const ReturnRequestModal: React.FC<ReturnRequestModalProps> = ({
           <div className="flex-1 flex flex-col min-h-0">
             {/* Header */}
             <div className="mb-4 pr-8">
-              <div className="flex items-center gap-2 text-xs font-bold text-[#DC2B53] uppercase tracking-wider mb-1">
+              <div className="flex items-center gap-2 text-xs font-bold text-primary uppercase tracking-wider mb-1">
                 <RotateCcw size={14} />
                 <span>Return Item Request</span>
               </div>
@@ -215,7 +215,7 @@ export const ReturnRequestModal: React.FC<ReturnRequestModalProps> = ({
               {/* Item selection list */}
               <div className="space-y-3">
                 <label className="block text-xs font-bold text-gray-900">
-                  Select Order Items <span className="text-[#DC2B53]">*</span>
+                  Select Order Items <span className="text-primary">*</span>
                 </label>
 
                 {itemSelections.length === 0 ? (
@@ -228,7 +228,7 @@ export const ReturnRequestModal: React.FC<ReturnRequestModalProps> = ({
                       key={idx}
                       className={`p-3.5 rounded-xl border transition-all ${
                         item.selected
-                          ? 'border-[#DC2B53] bg-[#DC2B53]/5 shadow-xs'
+                          ? 'border-primary bg-primary/5 shadow-xs'
                           : 'border-gray-200 bg-white hover:border-gray-300'
                       }`}
                     >
@@ -237,7 +237,7 @@ export const ReturnRequestModal: React.FC<ReturnRequestModalProps> = ({
                           type="checkbox"
                           checked={item.selected}
                           onChange={() => handleToggleItem(idx)}
-                          className="mt-1 w-4 h-4 text-[#DC2B53] rounded border-gray-300 focus:ring-[#DC2B53] cursor-pointer"
+                          className="mt-1 w-4 h-4 text-primary rounded border-gray-300 focus:ring-primary cursor-pointer"
                         />
                         <div className="w-12 h-12 rounded-lg bg-gray-100 overflow-hidden border border-gray-200 flex-shrink-0 relative">
                           <SmartImage
@@ -272,7 +272,7 @@ export const ReturnRequestModal: React.FC<ReturnRequestModalProps> = ({
                             <select
                               value={item.selectedQuantity}
                               onChange={(e) => handleQuantityChange(idx, Number(e.target.value))}
-                              className="w-full px-2.5 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-medium focus:ring-1 focus:ring-[#DC2B53] focus:border-[#DC2B53]"
+                              className="w-full px-2.5 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-medium focus:ring-1 focus:ring-primary focus:border-primary"
                             >
                               {Array.from({ length: item.maxQuantity }, (_, i) => i + 1).map((q) => (
                                 <option key={q} value={q}>
@@ -289,7 +289,7 @@ export const ReturnRequestModal: React.FC<ReturnRequestModalProps> = ({
                             <select
                               value={item.condition}
                               onChange={(e) => handleConditionChange(idx, e.target.value)}
-                              className="w-full px-2.5 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-medium focus:ring-1 focus:ring-[#DC2B53] focus:border-[#DC2B53]"
+                              className="w-full px-2.5 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-medium focus:ring-1 focus:ring-primary focus:border-primary"
                             >
                               {ITEM_CONDITIONS.map((c) => (
                                 <option key={c.value} value={c.value}>
@@ -306,7 +306,7 @@ export const ReturnRequestModal: React.FC<ReturnRequestModalProps> = ({
                             <select
                               value={item.reason}
                               onChange={(e) => handleReasonChange(idx, e.target.value)}
-                              className="w-full px-2.5 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-medium focus:ring-1 focus:ring-[#DC2B53] focus:border-[#DC2B53]"
+                              className="w-full px-2.5 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-medium focus:ring-1 focus:ring-primary focus:border-primary"
                             >
                               {RETURN_REASONS.map((r) => (
                                 <option key={r.value} value={r.value}>
@@ -333,7 +333,7 @@ export const ReturnRequestModal: React.FC<ReturnRequestModalProps> = ({
                   placeholder="Explain why you are returning this item, package condition, or any missing elements..."
                   rows={2}
                   maxLength={500}
-                  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg text-xs font-medium focus:bg-white focus:outline-hidden focus:ring-1 focus:ring-[#DC2B53] focus:border-[#DC2B53] transition-colors"
+                  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg text-xs font-medium focus:bg-white focus:outline-hidden focus:ring-1 focus:ring-primary focus:border-primary transition-colors"
                 />
               </div>
 

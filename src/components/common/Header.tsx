@@ -302,7 +302,7 @@ function HeaderContent() {
             <div>
               <div className="flex items-center justify-between text-xs font-semibold text-[#6B7280] uppercase tracking-wider mb-2">
                 <span>Recent Searches</span>
-                <button onClick={clearSearchHistory} className="text-[10px] text-[#DC2B53] hover:underline cursor-pointer">Clear All</button>
+                <button onClick={clearSearchHistory} className="text-[10px] text-primary hover:underline cursor-pointer">Clear All</button>
               </div>
               <div className="flex flex-wrap gap-2">
                 {searchHistory.map((q) => (
@@ -313,7 +313,7 @@ function HeaderContent() {
                       router.push(`/search?q=${encodeURIComponent(q)}`);
                       setIsSearchFocused(false);
                     }}
-                    className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg text-xs font-medium text-[#111827] hover:border-[#DC2B53] hover:text-[#DC2B53] cursor-pointer transition-colors"
+                    className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg text-xs font-medium text-[#111827] hover:border-primary hover:text-primary cursor-pointer transition-colors"
                   >
                     <span>{q}</span>
                     <X 
@@ -338,7 +338,7 @@ function HeaderContent() {
                   key={cat.id}
                   href={`/categories/${cat.slug}`}
                   onClick={() => setIsSearchFocused(false)}
-                  className="p-2 rounded-lg bg-[#F9FAFB] hover:bg-[#FDF0F3] hover:text-[#DC2B53] transition-colors text-xs font-medium text-[#111827] flex items-center justify-between border border-transparent hover:border-[#DC2B53]/20"
+                  className="p-2 rounded-lg bg-[#F9FAFB] hover:bg-primary-light hover:text-primary transition-colors text-xs font-medium text-[#111827] flex items-center justify-between border border-transparent hover:border-primary/20"
                 >
                   <span className="truncate">{cat.name}</span>
                   <ChevronRight size={14} className="text-[#6B7280] flex-shrink-0" />
@@ -359,7 +359,7 @@ function HeaderContent() {
                   key={cat.slug}
                   href={`/categories/${cat.slug}`}
                   onClick={() => setIsSearchFocused(false)}
-                  className="px-2.5 py-1 bg-white border border-[#E5E7EB] rounded-lg text-xs font-medium text-[#111827] hover:border-[#DC2B53] hover:text-[#DC2B53] transition-colors"
+                  className="px-2.5 py-1 bg-white border border-[#E5E7EB] rounded-lg text-xs font-medium text-[#111827] hover:border-primary hover:text-primary transition-colors"
                 >
                   {cat.name}
                 </Link>
@@ -377,7 +377,7 @@ function HeaderContent() {
                     setIsSearchFocused(false);
                   }}
                   className={`p-3 flex items-center justify-between gap-3 cursor-pointer transition-colors ${
-                    idx === selectedIndex ? 'bg-[#FDF0F3]' : 'hover:bg-[#F9FAFB]'
+                    idx === selectedIndex ? 'bg-primary-light' : 'hover:bg-[#F9FAFB]'
                   }`}
                 >
                   <div className="flex items-center gap-3 flex-1 min-w-0">
@@ -392,7 +392,7 @@ function HeaderContent() {
                     />
                     <div className="min-w-0 flex-1">
                       <div className="text-xs font-medium text-[#111827] truncate">{prod.name}</div>
-                      <div className="text-xs font-bold text-[#DC2B53] mt-0.5">${prod.price}</div>
+                      <div className="text-xs font-bold text-primary mt-0.5">${prod.price}</div>
                     </div>
                   </div>
                   <Badge variant={prod.stock > 0 ? 'success' : 'error'} size="sm" className="flex-shrink-0">
@@ -406,7 +406,7 @@ function HeaderContent() {
           <button
             type="button"
             onClick={() => handleSearchSubmit()}
-            className="w-full p-3 bg-[#F9FAFB] hover:bg-[#FDF0F3] text-center text-xs font-semibold text-[#DC2B53] border-t border-[#E5E7EB] transition-colors cursor-pointer flex items-center justify-center gap-1.5"
+            className="w-full p-3 bg-[#F9FAFB] hover:bg-primary-light text-center text-xs font-semibold text-primary border-t border-[#E5E7EB] transition-colors cursor-pointer flex items-center justify-center gap-1.5"
           >
             <span className="truncate">View all search results for "{searchInput}"</span>
             <ArrowRight size={14} className="flex-shrink-0" />
@@ -430,16 +430,16 @@ function HeaderContent() {
               {(publicSettings?.supportPhone || publicSettings?.general?.storePhone || publicSettings?.store?.supportPhone || publicSettings?.store?.callOrderNumber) && (
                 <a 
                   href={`tel:${publicSettings?.supportPhone || publicSettings?.general?.storePhone || publicSettings?.store?.supportPhone || publicSettings?.store?.callOrderNumber}`} 
-                  className="flex items-center gap-1.5 group cursor-pointer hover:text-[#DC2B53] transition-colors"
+                  className="flex items-center gap-1.5 group cursor-pointer hover:text-primary transition-colors"
                   title="Customer Support"
                 >
-                  <PhoneCall size={13} className="text-[#DC2B53]" />
+                  <PhoneCall size={13} className="text-primary" />
                   <span>{publicSettings?.supportPhone || publicSettings?.general?.storePhone || publicSettings?.store?.supportPhone || publicSettings?.store?.callOrderNumber}</span>
                 </a>
               )}
               {(publicSettings?.supportEmail || publicSettings?.general?.storeEmail || publicSettings?.store?.supportEmail) && (
-                <a href={`mailto:${publicSettings?.supportEmail || publicSettings?.general?.storeEmail || publicSettings?.store?.supportEmail}`} className="flex items-center gap-1.5 group cursor-pointer hover:text-[#DC2B53] transition-colors">
-                  <Mail size={13} className="text-[#DC2B53]" />
+                <a href={`mailto:${publicSettings?.supportEmail || publicSettings?.general?.storeEmail || publicSettings?.store?.supportEmail}`} className="flex items-center gap-1.5 group cursor-pointer hover:text-primary transition-colors">
+                  <Mail size={13} className="text-primary" />
                   <span>{publicSettings?.supportEmail || publicSettings?.general?.storeEmail || publicSettings?.store?.supportEmail}</span>
                 </a>
               )}
@@ -455,9 +455,9 @@ function HeaderContent() {
               </div>
               <Link 
                 href={user ? '/account/profile' : '/login'}
-                className="flex items-center gap-1.5 hover:text-[#DC2B53] transition-colors cursor-pointer border-l border-[#E5E7EB] pl-5 ml-1"
+                className="flex items-center gap-1.5 hover:text-primary transition-colors cursor-pointer border-l border-[#E5E7EB] pl-5 ml-1"
               >
-                <User size={13} className="text-[#DC2B53]" />
+                <User size={13} className="text-primary" />
                 <span>{user ? user.fullName : 'Login / Register'}</span>
               </Link>
             </div>
@@ -467,11 +467,11 @@ function HeaderContent() {
         {/* Announcement Banner */}
         {publicSettings?.announcementBanner?.enabled && (
           <div className="bg-[#111827] text-white text-xs py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
-            <Sparkles className="w-3.5 h-3.5 text-[#DC2B53]" />
+            <Sparkles className="w-3.5 h-3.5 text-primary" />
             <span>{publicSettings.announcementBanner.text}</span>
             <Link 
               href="/products?deals=true"
-              className="text-[#DC2B53] font-semibold hover:underline ml-1 cursor-pointer"
+              className="text-primary font-semibold hover:underline ml-1 cursor-pointer"
             >
               {publicSettings.announcementBanner.linkText || 'Explore Now'}
             </Link>
@@ -484,7 +484,7 @@ function HeaderContent() {
           {/* Mobile Hamburger Menu Button (Far Left) */}
           <button
             onClick={() => setIsMobileMenuOpen(true)}
-            className="p-1.5 text-[#111827] hover:text-[#DC2B53] transition-colors cursor-pointer min-h-[38px] min-w-[38px] flex items-center justify-center -ml-1 shrink-0 lg:hidden"
+            className="p-1.5 text-[#111827] hover:text-primary transition-colors cursor-pointer min-h-[38px] min-w-[38px] flex items-center justify-center -ml-1 shrink-0 lg:hidden"
             aria-label="Open Menu"
           >
             <Menu size={22} className="stroke-[2.2]" />
@@ -503,7 +503,7 @@ function HeaderContent() {
                 onError={() => setLogoError(true)}
               />
             ) : (
-              <span className="font-extrabold text-xl sm:text-2xl text-[#111827] tracking-tight hover:text-[#DC2B53] transition-colors">{siteName}</span>
+              <span className="font-extrabold text-xl sm:text-2xl text-[#111827] tracking-tight hover:text-primary transition-colors">{siteName}</span>
             )}
           </Link>
 
@@ -511,7 +511,7 @@ function HeaderContent() {
           <div className="hidden lg:flex flex-1 max-w-2xl lg:max-w-3xl relative" ref={searchContainerRef}>
             <form 
               onSubmit={handleSearchSubmit}
-              className="flex items-center w-full bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg focus-within:border-[#DC2B53] focus-within:ring-1 focus-within:ring-[#DC2B53] focus-within:bg-white transition-colors overflow-hidden"
+              className="flex items-center w-full bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg focus-within:border-primary focus-within:ring-1 focus-within:ring-primary focus-within:bg-white transition-colors overflow-hidden"
             >
               {/* Category Selector */}
               <div className="relative border-r border-[#E5E7EB] bg-gray-50 flex-shrink-0">
@@ -555,7 +555,7 @@ function HeaderContent() {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="px-5 bg-[#DC2B53] hover:bg-[#C52247] text-white transition-colors cursor-pointer min-h-[42px] flex items-center justify-center shrink-0"
+                className="px-5 bg-primary hover:bg-primary-hover text-white transition-colors cursor-pointer min-h-[42px] flex items-center justify-center shrink-0"
                 aria-label="Search"
               >
                 {isSearching ? <Loader2 size={16} className="animate-spin" /> : <Search size={18} />}
@@ -578,7 +578,7 @@ function HeaderContent() {
                   setIsSearchFocused(true);
                 }
               }}
-              className="p-1.5 text-[#111827] hover:text-[#DC2B53] hover:bg-gray-50 rounded-lg transition-colors cursor-pointer min-h-[38px] min-w-[38px] flex items-center justify-center lg:hidden"
+              className="p-1.5 text-[#111827] hover:text-primary hover:bg-gray-50 rounded-lg transition-colors cursor-pointer min-h-[38px] min-w-[38px] flex items-center justify-center lg:hidden"
               aria-label="Search products"
             >
               <Search size={20} />
@@ -588,12 +588,12 @@ function HeaderContent() {
             {user && (
               <Link
                 href="/account/notifications"
-                className="p-1.5 text-[#111827] hover:text-[#DC2B53] hover:bg-gray-50 rounded-lg transition-colors cursor-pointer min-h-[38px] min-w-[38px] flex items-center justify-center relative lg:hidden"
+                className="p-1.5 text-[#111827] hover:text-primary hover:bg-gray-50 rounded-lg transition-colors cursor-pointer min-h-[38px] min-w-[38px] flex items-center justify-center relative lg:hidden"
                 aria-label={`Notifications ${unreadNotificationsCount > 0 ? `(${unreadNotificationsCount} unread)` : ''}`}
               >
                 <Bell size={20} />
                 {unreadNotificationsCount > 0 && (
-                  <span className="absolute top-0.5 right-0.5 bg-[#DC2B53] text-white text-[10px] font-bold min-w-[16px] h-4 px-1 rounded-full flex items-center justify-center border border-white leading-none">
+                  <span className="absolute top-0.5 right-0.5 bg-primary text-white text-[10px] font-bold min-w-[16px] h-4 px-1 rounded-full flex items-center justify-center border border-white leading-none">
                     {unreadNotificationsCount > 99 ? '99+' : unreadNotificationsCount}
                   </span>
                 )}
@@ -612,7 +612,7 @@ function HeaderContent() {
                     router.push('/login');
                   }
                 }}
-                className="p-1.5 text-[#111827] hover:text-[#DC2B53] hover:bg-gray-50 rounded-lg transition-colors cursor-pointer min-h-[38px] min-w-[38px] flex items-center justify-center lg:hidden"
+                className="p-1.5 text-[#111827] hover:text-primary hover:bg-gray-50 rounded-lg transition-colors cursor-pointer min-h-[38px] min-w-[38px] flex items-center justify-center lg:hidden"
                 aria-label="Account"
               >
                 <User size={20} />
@@ -628,7 +628,7 @@ function HeaderContent() {
                     router.push('/login');
                   }
                 }}
-                className="hidden lg:flex items-center gap-2 p-2 text-[#111827] hover:text-[#DC2B53] hover:bg-gray-50 rounded-lg transition-colors cursor-pointer min-h-[40px]"
+                className="hidden lg:flex items-center gap-2 p-2 text-[#111827] hover:text-primary hover:bg-gray-50 rounded-lg transition-colors cursor-pointer min-h-[40px]"
               >
                 <div className="w-8 h-8 rounded-full bg-[#F9FAFB] border border-[#E5E7EB] flex items-center justify-center text-[#111827] font-semibold text-xs overflow-hidden relative">
                   {user ? (
@@ -670,7 +670,7 @@ function HeaderContent() {
                     <Link
                       href="/account"
                       onClick={() => setIsAccountMenuOpen(false)}
-                      className="w-full text-left px-3 py-2 text-xs font-medium text-[#111827] hover:text-[#DC2B53] hover:bg-[#FDF0F3] rounded-lg transition-colors flex items-center gap-2"
+                      className="w-full text-left px-3 py-2 text-xs font-medium text-[#111827] hover:text-primary hover:bg-primary-light rounded-lg transition-colors flex items-center gap-2"
                     >
                       <LayoutDashboard size={14} />
                       <span>Dashboard</span>
@@ -679,7 +679,7 @@ function HeaderContent() {
                     <Link
                       href="/account/profile"
                       onClick={() => setIsAccountMenuOpen(false)}
-                      className="w-full text-left px-3 py-2 text-xs font-medium text-[#111827] hover:text-[#DC2B53] hover:bg-[#FDF0F3] rounded-lg transition-colors flex items-center gap-2"
+                      className="w-full text-left px-3 py-2 text-xs font-medium text-[#111827] hover:text-primary hover:bg-primary-light rounded-lg transition-colors flex items-center gap-2"
                     >
                       <User size={14} />
                       <span>My Profile</span>
@@ -688,7 +688,7 @@ function HeaderContent() {
                     <Link
                       href="/account/orders"
                       onClick={() => setIsAccountMenuOpen(false)}
-                      className="w-full text-left px-3 py-2 text-xs font-medium text-[#111827] hover:text-[#DC2B53] hover:bg-[#FDF0F3] rounded-lg transition-colors flex items-center gap-2"
+                      className="w-full text-left px-3 py-2 text-xs font-medium text-[#111827] hover:text-primary hover:bg-primary-light rounded-lg transition-colors flex items-center gap-2"
                     >
                       <Package size={14} />
                       <span>Order History</span>
@@ -697,14 +697,14 @@ function HeaderContent() {
                     <Link
                       href="/account/notifications"
                       onClick={() => setIsAccountMenuOpen(false)}
-                      className="w-full text-left px-3 py-2 text-xs font-medium text-[#111827] hover:text-[#DC2B53] hover:bg-[#FDF0F3] rounded-lg transition-colors flex items-center justify-between"
+                      className="w-full text-left px-3 py-2 text-xs font-medium text-[#111827] hover:text-primary hover:bg-primary-light rounded-lg transition-colors flex items-center justify-between"
                     >
                       <div className="flex items-center gap-2">
                         <Bell size={14} />
                         <span>Notifications</span>
                       </div>
                       {unreadNotificationsCount > 0 && (
-                        <span className="text-[10px] bg-[#DC2B53] text-white font-bold px-1.5 py-0.2 rounded-full">
+                        <span className="text-[10px] bg-primary text-white font-bold px-1.5 py-0.2 rounded-full">
                           {unreadNotificationsCount > 99 ? '99+' : unreadNotificationsCount}
                         </span>
                       )}
@@ -713,14 +713,14 @@ function HeaderContent() {
                     <Link
                       href="/account/wishlist"
                       onClick={() => setIsAccountMenuOpen(false)}
-                      className="w-full text-left px-3 py-2 text-xs font-medium text-[#111827] hover:text-[#DC2B53] hover:bg-[#FDF0F3] rounded-lg transition-colors flex items-center justify-between"
+                      className="w-full text-left px-3 py-2 text-xs font-medium text-[#111827] hover:text-primary hover:bg-primary-light rounded-lg transition-colors flex items-center justify-between"
                     >
                       <div className="flex items-center gap-2">
                         <Heart size={14} />
                         <span>Wishlist</span>
                       </div>
                       {wishlist.length > 0 && (
-                        <span className="text-[10px] bg-[#DC2B53] text-white font-bold px-1.5 py-0.2 rounded-full">
+                        <span className="text-[10px] bg-primary text-white font-bold px-1.5 py-0.2 rounded-full">
                           {wishlist.length}
                         </span>
                       )}
@@ -748,13 +748,13 @@ function HeaderContent() {
             {user && (
               <Link
                 href="/account/notifications"
-                className="hidden lg:flex relative p-2 text-[#111827] hover:text-[#DC2B53] hover:bg-gray-50 rounded-lg transition-colors items-center gap-1.5 min-h-[40px]"
+                className="hidden lg:flex relative p-2 text-[#111827] hover:text-primary hover:bg-gray-50 rounded-lg transition-colors items-center gap-1.5 min-h-[40px]"
                 aria-label={`Notifications ${unreadNotificationsCount > 0 ? `(${unreadNotificationsCount} unread)` : ''}`}
               >
                 <div className="relative">
                   <Bell size={20} />
                   {unreadNotificationsCount > 0 && (
-                    <span className="absolute -top-1.5 -right-1.5 bg-[#DC2B53] text-white text-[10px] font-bold min-w-[16px] h-4 px-1 rounded-full flex items-center justify-center border border-white leading-none">
+                    <span className="absolute -top-1.5 -right-1.5 bg-primary text-white text-[10px] font-bold min-w-[16px] h-4 px-1 rounded-full flex items-center justify-center border border-white leading-none">
                       {unreadNotificationsCount > 99 ? '99+' : unreadNotificationsCount}
                     </span>
                   )}
@@ -768,13 +768,13 @@ function HeaderContent() {
             {/* Wishlist Button (Hidden on Mobile, Visible on Desktop) */}
             <Link
               href="/account/wishlist"
-              className="hidden lg:flex relative p-2 text-[#111827] hover:text-[#DC2B53] hover:bg-gray-50 rounded-lg transition-colors items-center gap-1.5 min-h-[40px]"
+              className="hidden lg:flex relative p-2 text-[#111827] hover:text-primary hover:bg-gray-50 rounded-lg transition-colors items-center gap-1.5 min-h-[40px]"
               aria-label="View Wishlist"
             >
               <div className="relative">
                 <Heart size={20} />
                 {wishlist.length > 0 && (
-                  <span className="absolute -top-1.5 -right-1.5 bg-[#DC2B53] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                  <span className="absolute -top-1.5 -right-1.5 bg-primary text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
                     {wishlist.length}
                   </span>
                 )}
@@ -787,12 +787,12 @@ function HeaderContent() {
             {/* Mobile Shopping Cart Button (Clean Icon with Badge, No Background Pill) */}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="p-1.5 text-[#111827] hover:text-[#DC2B53] hover:bg-gray-50 rounded-lg transition-colors cursor-pointer min-h-[38px] min-w-[38px] flex items-center justify-center relative lg:hidden"
+              className="p-1.5 text-[#111827] hover:text-primary hover:bg-gray-50 rounded-lg transition-colors cursor-pointer min-h-[38px] min-w-[38px] flex items-center justify-center relative lg:hidden"
               aria-label="Open Cart"
             >
               <ShoppingCart size={20} />
               {totalCartCount > 0 && (
-                <span className="absolute top-0.5 right-0.5 bg-[#DC2B53] text-white text-[10px] font-bold min-w-[16px] h-4 px-1 rounded-full flex items-center justify-center border border-white leading-none">
+                <span className="absolute top-0.5 right-0.5 bg-primary text-white text-[10px] font-bold min-w-[16px] h-4 px-1 rounded-full flex items-center justify-center border border-white leading-none">
                   {totalCartCount}
                 </span>
               )}
@@ -801,7 +801,7 @@ function HeaderContent() {
             {/* Desktop Shopping Cart Button (With Red Pill and Price Label) */}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="hidden lg:flex items-center gap-2 px-3.5 py-2 bg-[#DC2B53] hover:bg-[#C52247] text-white rounded-lg font-semibold shadow-xs transition-colors cursor-pointer group min-h-[40px]"
+              className="hidden lg:flex items-center gap-2 px-3.5 py-2 bg-primary hover:bg-primary-hover text-white rounded-lg font-semibold shadow-xs transition-colors cursor-pointer group min-h-[40px]"
               aria-label="Open Cart"
             >
               <div className="relative">
@@ -836,8 +836,8 @@ function HeaderContent() {
                 href="/"
                 className={`px-4 py-3 text-xs font-semibold uppercase tracking-wider transition-colors flex items-center gap-1 border-b-2 ${
                   isNavActive('/', true) 
-                    ? 'text-[#DC2B53] border-[#DC2B53]' 
-                    : 'text-[#111827] border-transparent hover:text-[#DC2B53]'
+                    ? 'text-primary border-primary' 
+                    : 'text-[#111827] border-transparent hover:text-primary'
                 }`}
               >
                 Home
@@ -847,8 +847,8 @@ function HeaderContent() {
                 href="/products"
                 className={`px-4 py-3 text-xs font-semibold uppercase tracking-wider transition-colors flex items-center gap-1 border-b-2 ${
                   isNavActive('/products', true) 
-                    ? 'text-[#DC2B53] border-[#DC2B53]' 
-                    : 'text-[#111827] border-transparent hover:text-[#DC2B53]'
+                    ? 'text-primary border-primary' 
+                    : 'text-[#111827] border-transparent hover:text-primary'
                 }`}
               >
                 Shop
@@ -862,8 +862,8 @@ function HeaderContent() {
                   href="/categories"
                   className={`px-4 py-3 text-xs font-semibold uppercase tracking-wider transition-colors flex items-center gap-1 border-b-2 ${
                     isNavActive('/categories') 
-                      ? 'text-[#DC2B53] border-[#DC2B53]' 
-                      : 'text-[#111827] border-transparent hover:text-[#DC2B53]'
+                      ? 'text-primary border-primary' 
+                      : 'text-[#111827] border-transparent hover:text-primary'
                   }`}
                 >
                   <span>Categories</span>
@@ -875,8 +875,8 @@ function HeaderContent() {
                 href="/brands"
                 className={`px-4 py-3 text-xs font-semibold uppercase tracking-wider transition-colors flex items-center gap-1 border-b-2 ${
                   isNavActive('/brands') 
-                    ? 'text-[#DC2B53] border-[#DC2B53]' 
-                    : 'text-[#111827] border-transparent hover:text-[#DC2B53]'
+                    ? 'text-primary border-primary' 
+                    : 'text-[#111827] border-transparent hover:text-primary'
                 }`}
               >
                 Brands
@@ -886,8 +886,8 @@ function HeaderContent() {
                 href="/products?deals=true"
                 className={`px-4 py-3 text-xs font-semibold uppercase tracking-wider transition-colors flex items-center gap-1 border-b-2 ${
                   isNavActive('/products?deals=true') 
-                    ? 'text-[#DC2B53] border-[#DC2B53]' 
-                    : 'text-[#111827] border-transparent hover:text-[#DC2B53]'
+                    ? 'text-primary border-primary' 
+                    : 'text-[#111827] border-transparent hover:text-primary'
                 }`}
               >
                 Deals
@@ -897,8 +897,8 @@ function HeaderContent() {
                 href="/products?sort=newest"
                 className={`px-4 py-3 text-xs font-semibold uppercase tracking-wider transition-colors flex items-center gap-1 border-b-2 ${
                   isNavActive('/products?sort=newest') 
-                    ? 'text-[#DC2B53] border-[#DC2B53]' 
-                    : 'text-[#111827] border-transparent hover:text-[#DC2B53]'
+                    ? 'text-primary border-primary' 
+                    : 'text-[#111827] border-transparent hover:text-primary'
                 }`}
               >
                 New Arrivals
@@ -908,8 +908,8 @@ function HeaderContent() {
                 href="/blog"
                 className={`px-4 py-3 text-xs font-semibold uppercase tracking-wider transition-colors flex items-center gap-1 border-b-2 ${
                   isNavActive('/blog') 
-                    ? 'text-[#DC2B53] border-[#DC2B53]' 
-                    : 'text-[#111827] border-transparent hover:text-[#DC2B53]'
+                    ? 'text-primary border-primary' 
+                    : 'text-[#111827] border-transparent hover:text-primary'
                 }`}
               >
                 Blog
@@ -919,8 +919,8 @@ function HeaderContent() {
                 href="/pages/about"
                 className={`px-4 py-3 text-xs font-semibold uppercase tracking-wider transition-colors flex items-center gap-1 border-b-2 ${
                   isNavActive('/pages/about') 
-                    ? 'text-[#DC2B53] border-[#DC2B53]' 
-                    : 'text-[#111827] border-transparent hover:text-[#DC2B53]'
+                    ? 'text-primary border-primary' 
+                    : 'text-[#111827] border-transparent hover:text-primary'
                 }`}
               >
                 About
@@ -930,8 +930,8 @@ function HeaderContent() {
                 href="/pages/contact"
                 className={`px-4 py-3 text-xs font-semibold uppercase tracking-wider transition-colors flex items-center gap-1 border-b-2 ${
                   isNavActive('/pages/contact') 
-                    ? 'text-[#DC2B53] border-[#DC2B53]' 
-                    : 'text-[#111827] border-transparent hover:text-[#DC2B53]'
+                    ? 'text-primary border-primary' 
+                    : 'text-[#111827] border-transparent hover:text-primary'
                 }`}
               >
                 Contact
@@ -941,7 +941,7 @@ function HeaderContent() {
             <div className="flex items-center gap-4">
               <Link 
                 href="/products?deals=true"
-                className="flex items-center gap-1.5 text-xs font-semibold text-[#DC2B53] hover:underline uppercase tracking-wider"
+                className="flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline uppercase tracking-wider"
               >
                 <Zap size={14} />
                 <span>Special Offers</span>
@@ -988,7 +988,7 @@ function HeaderContent() {
                     onChange={(e) => setSearchInput(e.target.value)}
                     onFocus={() => setIsSearchFocused(true)}
                     onKeyDown={handleKeyDown}
-                    className="w-full py-2 pl-9 pr-16 text-sm bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg focus:outline-none focus:bg-white focus:border-[#DC2B53] focus:ring-1 focus:ring-[#DC2B53] font-normal transition-colors"
+                    className="w-full py-2 pl-9 pr-16 text-sm bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg focus:outline-none focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary font-normal transition-colors"
                   />
                   <Search size={16} className="absolute left-3 text-[#6B7280] pointer-events-none" />
                   <div className="absolute right-2 flex items-center gap-1">
@@ -1046,12 +1046,12 @@ function HeaderContent() {
           footer={
             <div className="space-y-2.5">
               <div className="grid grid-cols-2 gap-2">
-                <button className="flex items-center justify-center gap-1.5 p-2 rounded-lg bg-white border border-[#E5E7EB] hover:border-[#DC2B53] transition-colors group cursor-pointer">
-                  <ShieldCheck size={15} className="text-[#111827] group-hover:text-[#DC2B53]" />
+                <button className="flex items-center justify-center gap-1.5 p-2 rounded-lg bg-white border border-[#E5E7EB] hover:border-primary transition-colors group cursor-pointer">
+                  <ShieldCheck size={15} className="text-[#111827] group-hover:text-primary" />
                   <span className="text-[11px] font-semibold text-[#6B7280] group-hover:text-[#111827]">Warranty</span>
                 </button>
-                <button className="flex items-center justify-center gap-1.5 p-2 rounded-lg bg-white border border-[#E5E7EB] hover:border-[#DC2B53] transition-colors group cursor-pointer">
-                  <Truck size={15} className="text-[#111827] group-hover:text-[#DC2B53]" />
+                <button className="flex items-center justify-center gap-1.5 p-2 rounded-lg bg-white border border-[#E5E7EB] hover:border-primary transition-colors group cursor-pointer">
+                  <Truck size={15} className="text-[#111827] group-hover:text-primary" />
                   <span className="text-[11px] font-semibold text-[#6B7280] group-hover:text-[#111827]">Track Order</span>
                 </button>
               </div>
@@ -1082,7 +1082,7 @@ function HeaderContent() {
                 <Link
                   href={user ? '/account/profile' : '/login'}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="flex-1 py-1.5 px-3 bg-[#DC2B53] hover:bg-[#C52247] text-white font-semibold text-xs rounded-lg text-center block transition-colors"
+                  className="flex-1 py-1.5 px-3 bg-primary hover:bg-primary-hover text-white font-semibold text-xs rounded-lg text-center block transition-colors"
                 >
                   {user ? 'My Dashboard' : 'Sign In / Register'}
                 </Link>
@@ -1118,18 +1118,18 @@ function HeaderContent() {
                   href={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`w-full flex items-center justify-between py-2 px-2.5 rounded-lg transition-colors group min-h-[40px] ${
-                    item.isHot ? 'bg-[#FDF0F3] text-[#DC2B53]' : 'hover:bg-[#F9FAFB] text-[#111827]'
+                    item.isHot ? 'bg-primary-light text-primary' : 'hover:bg-[#F9FAFB] text-[#111827]'
                   }`}
                 >
                   <div className="flex items-center gap-2.5 min-w-0">
                     <div className={`p-1.5 rounded-md flex-shrink-0 ${
-                      item.isHot ? 'bg-[#DC2B53]/10 text-[#DC2B53]' : 'bg-gray-100 text-[#111827]'
+                      item.isHot ? 'bg-primary/10 text-primary' : 'bg-gray-100 text-[#111827]'
                     }`}>
                       <item.icon size={15} />
                     </div>
                     <span className="text-xs font-semibold truncate">{item.label}</span>
                   </div>
-                  <ChevronRight size={15} className={`flex-shrink-0 ${item.isHot ? 'text-[#DC2B53]' : 'text-gray-400'}`} />
+                  <ChevronRight size={15} className={`flex-shrink-0 ${item.isHot ? 'text-primary' : 'text-gray-400'}`} />
                 </Link>
               ))}
             </div>
@@ -1141,7 +1141,7 @@ function HeaderContent() {
                 <Link 
                   href="/categories" 
                   onClick={() => setIsMobileMenuOpen(false)} 
-                  className="text-xs font-semibold text-[#DC2B53] hover:underline"
+                  className="text-xs font-semibold text-primary hover:underline"
                 >
                   View All
                 </Link>
@@ -1152,7 +1152,7 @@ function HeaderContent() {
                     key={cat.id}
                     href={`/categories/${cat.slug}`}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center gap-2 p-2 rounded-lg bg-[#F9FAFB] border border-[#E5E7EB] hover:border-[#DC2B53] transition-colors group min-h-[48px]"
+                    className="flex items-center gap-2 p-2 rounded-lg bg-[#F9FAFB] border border-[#E5E7EB] hover:border-primary transition-colors group min-h-[48px]"
                   >
                     <div className="w-10 h-10 rounded-md overflow-hidden relative flex-shrink-0 bg-gray-100">
                       <SmartImage 
@@ -1186,7 +1186,7 @@ function HeaderContent() {
                     key={item.label}
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-left px-2 py-1 text-xs font-medium text-[#6B7280] hover:text-[#DC2B53] transition-colors block truncate"
+                    className="text-left px-2 py-1 text-xs font-medium text-[#6B7280] hover:text-primary transition-colors block truncate"
                   >
                     {item.label}
                   </Link>

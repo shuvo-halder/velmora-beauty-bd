@@ -61,7 +61,7 @@ export const ReviewSummary: React.FC<ReviewSummaryProps> = ({
           <button
             type="button"
             onClick={onWriteReview}
-            className="mt-4 inline-flex items-center gap-2 px-4 py-2.5 bg-[#DC2B53] hover:bg-[#C52247] text-white font-semibold text-xs rounded-lg transition-colors cursor-pointer shadow-xs focus:outline-none focus:ring-2 focus:ring-[#DC2B53] focus:ring-offset-2"
+            className="mt-4 inline-flex items-center gap-2 px-4 py-2.5 bg-primary hover:bg-primary-hover text-white font-semibold text-xs rounded-lg transition-colors cursor-pointer shadow-xs focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
           >
             <MessageSquarePlus size={15} />
             Write a Review

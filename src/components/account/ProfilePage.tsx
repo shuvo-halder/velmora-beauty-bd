@@ -391,7 +391,7 @@ export const ProfilePage: React.FC = () => {
                       type="button"
                       onClick={() => fileInputRef.current?.click()}
                       disabled={isUploadingAvatar}
-                      className="absolute bottom-0 right-0 p-2 bg-[#DC2B53] hover:bg-[#b02242] text-white rounded-full shadow-md transition-transform hover:scale-105 cursor-pointer"
+                      className="absolute bottom-0 right-0 p-2 bg-primary hover:bg-primary-hover text-white rounded-full shadow-md transition-transform hover:scale-105 cursor-pointer"
                       title="Upload profile photo"
                     >
                       <Camera size={14} />
@@ -439,7 +439,7 @@ export const ProfilePage: React.FC = () => {
                       >
                         {isUploadingAvatar ? (
                           <>
-                            <Loader2 size={13} className="animate-spin text-[#DC2B53]" />
+                            <Loader2 size={13} className="animate-spin text-primary" />
                             <span>Uploading...</span>
                           </>
                         ) : (
@@ -468,7 +468,7 @@ export const ProfilePage: React.FC = () => {
                       type="url"
                       placeholder="https://example.com/avatar.jpg"
                       {...register('avatarUrl')}
-                      className={`block w-full pl-9 pr-3.5 py-2.5 bg-white border rounded-lg text-xs text-gray-900 placeholder:text-gray-400 focus:outline-hidden focus:ring-1 focus:ring-[#DC2B53] focus:border-[#DC2B53] ${
+                      className={`block w-full pl-9 pr-3.5 py-2.5 bg-white border rounded-lg text-xs text-gray-900 placeholder:text-gray-400 focus:outline-hidden focus:ring-1 focus:ring-primary focus:border-primary ${
                         errors.avatarUrl ? 'border-red-500' : 'border-gray-200'
                       }`}
                     />
@@ -488,7 +488,7 @@ export const ProfilePage: React.FC = () => {
                 {/* First Name (Editable) */}
                 <div>
                   <label className="block text-xs font-semibold text-gray-700 mb-1.5">
-                    First Name {isEditMode && <span className="text-[#DC2B53]">*</span>}
+                    First Name {isEditMode && <span className="text-primary">*</span>}
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
@@ -500,7 +500,7 @@ export const ProfilePage: React.FC = () => {
                       {...register('firstName')}
                       className={`block w-full pl-10 pr-3.5 py-2.5 rounded-lg text-xs font-medium transition-colors ${
                         isEditMode 
-                          ? 'bg-white border border-gray-200 text-gray-900 focus:outline-hidden focus:ring-1 focus:ring-[#DC2B53] focus:border-[#DC2B53]' 
+                          ? 'bg-white border border-gray-200 text-gray-900 focus:outline-hidden focus:ring-1 focus:ring-primary focus:border-primary' 
                           : 'bg-gray-50 border border-gray-200 text-gray-900 cursor-not-allowed opacity-90'
                       } ${errors.firstName ? 'border-red-500' : ''}`}
                     />
@@ -513,7 +513,7 @@ export const ProfilePage: React.FC = () => {
                 {/* Last Name (Editable) */}
                 <div>
                   <label className="block text-xs font-semibold text-gray-700 mb-1.5">
-                    Last Name {isEditMode && <span className="text-[#DC2B53]">*</span>}
+                    Last Name {isEditMode && <span className="text-primary">*</span>}
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
@@ -525,7 +525,7 @@ export const ProfilePage: React.FC = () => {
                       {...register('lastName')}
                       className={`block w-full pl-10 pr-3.5 py-2.5 rounded-lg text-xs font-medium transition-colors ${
                         isEditMode 
-                          ? 'bg-white border border-gray-200 text-gray-900 focus:outline-hidden focus:ring-1 focus:ring-[#DC2B53] focus:border-[#DC2B53]' 
+                          ? 'bg-white border border-gray-200 text-gray-900 focus:outline-hidden focus:ring-1 focus:ring-primary focus:border-primary' 
                           : 'bg-gray-50 border border-gray-200 text-gray-900 cursor-not-allowed opacity-90'
                       } ${errors.lastName ? 'border-red-500' : ''}`}
                     />
@@ -564,7 +564,7 @@ export const ProfilePage: React.FC = () => {
                 <div>
                   <div className="flex items-center justify-between mb-1.5">
                     <label className="block text-xs font-semibold text-gray-700">
-                      Phone Number {isEditMode && <span className="text-[#DC2B53]">*</span>}
+                      Phone Number {isEditMode && <span className="text-primary">*</span>}
                     </label>
                     {!isEditMode && (
                       <span className="text-[10px] text-gray-400 flex items-center gap-1 font-medium">
@@ -582,7 +582,7 @@ export const ProfilePage: React.FC = () => {
                       {...register('phone')}
                       className={`block w-full pl-10 pr-3.5 py-2.5 rounded-lg text-xs font-medium transition-colors ${
                         isEditMode 
-                          ? 'bg-white border border-gray-200 text-gray-900 focus:outline-hidden focus:ring-1 focus:ring-[#DC2B53] focus:border-[#DC2B53]' 
+                          ? 'bg-white border border-gray-200 text-gray-900 focus:outline-hidden focus:ring-1 focus:ring-primary focus:border-primary' 
                           : 'bg-gray-50 border border-gray-200 text-gray-900 cursor-not-allowed opacity-90'
                       } ${errors.phone ? 'border-red-500' : ''}`}
                       placeholder="e.g. 01700000000"
@@ -697,7 +697,7 @@ export const ProfilePage: React.FC = () => {
             </button>
 
             <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 rounded-xl bg-red-50 text-[#DC2B53] flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-red-50 text-primary flex items-center justify-center">
                 <Lock size={20} />
               </div>
               <div>
@@ -709,7 +709,7 @@ export const ProfilePage: React.FC = () => {
             <form onSubmit={handleChangePassword} className="space-y-4">
               <div>
                 <label className="block text-xs font-semibold text-gray-700 mb-1.5">
-                  Current Password <span className="text-[#DC2B53]">*</span>
+                  Current Password <span className="text-primary">*</span>
                 </label>
                 <input
                   type="password"
@@ -718,13 +718,13 @@ export const ProfilePage: React.FC = () => {
                   value={currentPassword}
                   onChange={(e) => setCurrentPassword(e.target.value)}
                   placeholder="Enter current password"
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-gray-200 text-xs font-medium focus:outline-hidden focus:ring-1 focus:ring-[#DC2B53] focus:border-[#DC2B53]"
+                  className="w-full px-3.5 py-2.5 rounded-lg border border-gray-200 text-xs font-medium focus:outline-hidden focus:ring-1 focus:ring-primary focus:border-primary"
                 />
               </div>
 
               <div>
                 <label className="block text-xs font-semibold text-gray-700 mb-1.5">
-                  New Password <span className="text-[#DC2B53]">*</span>
+                  New Password <span className="text-primary">*</span>
                 </label>
                 <input
                   type="password"
@@ -733,13 +733,13 @@ export const ProfilePage: React.FC = () => {
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
                   placeholder="At least 6 characters"
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-gray-200 text-xs font-medium focus:outline-hidden focus:ring-1 focus:ring-[#DC2B53] focus:border-[#DC2B53]"
+                  className="w-full px-3.5 py-2.5 rounded-lg border border-gray-200 text-xs font-medium focus:outline-hidden focus:ring-1 focus:ring-primary focus:border-primary"
                 />
               </div>
 
               <div>
                 <label className="block text-xs font-semibold text-gray-700 mb-1.5">
-                  Confirm New Password <span className="text-[#DC2B53]">*</span>
+                  Confirm New Password <span className="text-primary">*</span>
                 </label>
                 <input
                   type="password"
@@ -748,7 +748,7 @@ export const ProfilePage: React.FC = () => {
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="Re-enter new password"
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-gray-200 text-xs font-medium focus:outline-hidden focus:ring-1 focus:ring-[#DC2B53] focus:border-[#DC2B53]"
+                  className="w-full px-3.5 py-2.5 rounded-lg border border-gray-200 text-xs font-medium focus:outline-hidden focus:ring-1 focus:ring-primary focus:border-primary"
                 />
               </div>
 

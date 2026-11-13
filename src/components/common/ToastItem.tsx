@@ -88,7 +88,7 @@ export const ToastItem: React.FC<ToastItemProps> = ({ toast, onDismiss }) => {
       case 'info':
       default:
         return (
-          <div className="w-6 h-6 rounded-full bg-[#FDF0F3] text-[#DC2B53] border border-[#DC2B53]/20 flex items-center justify-center flex-shrink-0 shadow-2xs">
+          <div className="w-6 h-6 rounded-full bg-primary-light text-primary border border-primary/20 flex items-center justify-center flex-shrink-0 shadow-2xs">
             <Info size={14} strokeWidth={2.5} />
           </div>
         );
@@ -105,7 +105,7 @@ export const ToastItem: React.FC<ToastItemProps> = ({ toast, onDismiss }) => {
     type === 'success' ? 'bg-emerald-500' :
     type === 'error' ? 'bg-rose-500' :
     type === 'warning' ? 'bg-amber-500' :
-    'bg-[#DC2B53]';
+    'bg-primary';
 
   const messageText = toast.message || toast.description;
 

@@ -130,7 +130,7 @@ export const ReviewImageLightbox: React.FC<ReviewImageLightboxProps> = ({
                   handlePrev();
                 }}
                 aria-label="Previous image"
-                className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 rounded-full bg-black/60 hover:bg-[#DC2B53] text-white border border-white/20 transition-all cursor-pointer shadow-lg focus:outline-none focus:ring-2 focus:ring-[#DC2B53]"
+                className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 rounded-full bg-black/60 hover:bg-primary text-white border border-white/20 transition-all cursor-pointer shadow-lg focus:outline-none focus:ring-2 focus:ring-primary"
               >
                 <ChevronLeft size={22} />
               </button>
@@ -141,7 +141,7 @@ export const ReviewImageLightbox: React.FC<ReviewImageLightboxProps> = ({
                   handleNext();
                 }}
                 aria-label="Next image"
-                className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 rounded-full bg-black/60 hover:bg-[#DC2B53] text-white border border-white/20 transition-all cursor-pointer shadow-lg focus:outline-none focus:ring-2 focus:ring-[#DC2B53]"
+                className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 rounded-full bg-black/60 hover:bg-primary text-white border border-white/20 transition-all cursor-pointer shadow-lg focus:outline-none focus:ring-2 focus:ring-primary"
               >
                 <ChevronRight size={22} />
               </button>
@@ -160,7 +160,7 @@ export const ReviewImageLightbox: React.FC<ReviewImageLightboxProps> = ({
                 aria-label={`View photo ${idx + 1}`}
                 className={`relative w-12 h-12 sm:w-14 sm:h-14 rounded-md overflow-hidden border-2 transition-all cursor-pointer flex-shrink-0 ${
                   currentIndex === idx
-                    ? 'border-[#DC2B53] scale-105 shadow-md'
+                    ? 'border-primary scale-105 shadow-md'
                     : 'border-white/30 opacity-60 hover:opacity-100'
                 }`}
               >

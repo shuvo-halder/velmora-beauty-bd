@@ -401,7 +401,7 @@ export const CheckoutPage: React.FC = () => {
   if (isCartLoading) {
     return (
       <div className="py-24 flex flex-col items-center justify-center space-y-3">
-        <Loader2 size={32} className="animate-spin text-[#DC2B53]" />
+        <Loader2 size={32} className="animate-spin text-primary" />
         <p className="text-xs text-[#6B7280] font-semibold">Synchronizing secure checkout...</p>
       </div>
     );
@@ -417,7 +417,7 @@ export const CheckoutPage: React.FC = () => {
         <p className="text-xs text-[#6B7280] mt-1 mb-5">Add items to your cart before proceeding to checkout.</p>
         <button 
           onClick={() => navigateTo('shop')}
-          className="px-6 py-2.5 bg-[#DC2B53] hover:bg-[#C52247] text-white rounded-lg text-xs font-bold transition-colors shadow-xs"
+          className="px-6 py-2.5 bg-primary hover:bg-primary-hover text-white rounded-lg text-xs font-bold transition-colors shadow-xs"
         >
           Explore Shop
         </button>
@@ -523,7 +523,7 @@ export const CheckoutPage: React.FC = () => {
                         <button
                           type="button"
                           onClick={() => removeCartItem(item.id)}
-                          className="text-[#6B7280] hover:text-[#DC2B53] cursor-pointer"
+                          className="text-[#6B7280] hover:text-primary cursor-pointer"
                           title="Remove item"
                         >
                           <Trash2 size={14} />
@@ -570,7 +570,7 @@ export const CheckoutPage: React.FC = () => {
                   <input
                     type="checkbox"
                     {...register('billingAddress.sameAsShipping')}
-                    className="w-4 h-4 rounded text-[#DC2B53] border-[#E5E7EB] focus:ring-[#DC2B53] accent-[#DC2B53]"
+                    className="w-4 h-4 rounded text-primary border-[#E5E7EB] focus:ring-primary accent-primary"
                   />
                   <span className="text-xs sm:text-sm text-[#111827] font-medium">Billing address is the same as shipping address</span>
                 </label>
@@ -622,7 +622,7 @@ export const CheckoutPage: React.FC = () => {
                   </div>
                   
                   {cart.discount > 0 && (
-                    <div className="flex justify-between text-[#DC2B53] font-medium">
+                    <div className="flex justify-between text-primary font-medium">
                       <span>Discount ({cart.appliedCoupon || 'Promo'})</span>
                       <span className="font-semibold">-{formatPrice(cart.discount, currency, currencySymbol)}</span>
                     </div>
@@ -633,7 +633,7 @@ export const CheckoutPage: React.FC = () => {
                     <span className="font-semibold text-[#111827]">
                       {isSessionLoading ? (
                         <span className="text-xs text-[#6B7280] italic flex items-center gap-1">
-                          <Loader2 size={12} className="animate-spin text-[#DC2B53]" /> Calculating...
+                          <Loader2 size={12} className="animate-spin text-primary" /> Calculating...
                         </span>
                       ) : isFreeShipping ? (
                         <span className="text-[#16A34A] font-semibold">FREE</span>
@@ -652,7 +652,7 @@ export const CheckoutPage: React.FC = () => {
                     <span className="font-semibold text-[#111827]">
                       {isSessionLoading ? (
                         <span className="text-xs text-[#6B7280] italic flex items-center gap-1">
-                          <Loader2 size={12} className="animate-spin text-[#DC2B53]" /> Calculating...
+                          <Loader2 size={12} className="animate-spin text-primary" /> Calculating...
                         </span>
                       ) : (
                         formatPrice(effectiveTax, currency, currencySymbol)
@@ -677,10 +677,10 @@ export const CheckoutPage: React.FC = () => {
                 {/* Final Total */}
                 <div className="flex justify-between items-center pt-2">
                   <span className="text-base font-bold text-[#111827]">Total Amount</span>
-                  <span className="text-xl font-bold text-[#DC2B53]">
+                  <span className="text-xl font-bold text-primary">
                     {isSessionLoading ? (
                       <span className="text-sm font-normal italic text-[#6B7280] flex items-center gap-1">
-                        <Loader2 size={14} className="animate-spin text-[#DC2B53]" /> Calculating...
+                        <Loader2 size={14} className="animate-spin text-primary" /> Calculating...
                       </span>
                     ) : (
                       formatPrice(effectiveTotal, currency, currencySymbol)
@@ -694,7 +694,7 @@ export const CheckoutPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setIsCouponExpanded(!isCouponExpanded)}
-                  className="flex items-center gap-2 text-xs font-semibold text-[#111827] hover:text-[#DC2B53] transition-colors w-full text-left cursor-pointer"
+                  className="flex items-center gap-2 text-xs font-semibold text-[#111827] hover:text-primary transition-colors w-full text-left cursor-pointer"
                 >
                   <Tag size={15} className="text-[#6B7280]" />
                   <span>Have a promo coupon or gift code?</span>
@@ -724,7 +724,7 @@ export const CheckoutPage: React.FC = () => {
                             value={localCoupon}
                             onChange={(e) => setLocalCoupon(e.target.value)}
                             placeholder="Enter coupon code (e.g. MONSOON-5)"
-                            className="flex-1 px-3 py-2 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] uppercase placeholder:normal-case focus:outline-none focus:border-[#DC2B53]"
+                            className="flex-1 px-3 py-2 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] uppercase placeholder:normal-case focus:outline-none focus:border-primary"
                           />
                           <button
                             type="button"
@@ -748,7 +748,7 @@ export const CheckoutPage: React.FC = () => {
                                   }}
                                   className="inline-flex items-center gap-1 text-[11px] font-semibold bg-[#F3F4F6] hover:bg-[#E5E7EB] text-[#111827] px-2 py-1 rounded border border-[#E5E7EB] transition-colors cursor-pointer"
                                 >
-                                  <Tag size={10} className="text-[#DC2B53]" />
+                                  <Tag size={10} className="text-primary" />
                                   {c.code} {c.minOrderAmount ? `(Min BDT ${c.minOrderAmount})` : ''}
                                 </button>
                               ))}
@@ -766,7 +766,7 @@ export const CheckoutPage: React.FC = () => {
                 <label className="block text-xs font-semibold text-[#111827] mb-1.5">Order Notes <span className="text-[11px] font-normal text-[#6B7280]">(Optional)</span></label>
                 <textarea
                   {...register('orderNotes')}
-                  className="w-full px-3 py-2 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] focus:outline-none focus:border-[#DC2B53] resize-none"
+                  className="w-full px-3 py-2 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] focus:outline-none focus:border-primary resize-none"
                   rows={2}
                   placeholder="Special instructions for packaging or delivery..."
                 />
@@ -778,17 +778,17 @@ export const CheckoutPage: React.FC = () => {
                   <input
                     type="checkbox"
                     required
-                    className="mt-0.5 w-4 h-4 rounded text-[#DC2B53] border-[#E5E7EB] focus:ring-[#DC2B53] accent-[#DC2B53]"
+                    className="mt-0.5 w-4 h-4 rounded text-primary border-[#E5E7EB] focus:ring-primary accent-primary"
                   />
                   <span className="text-[11px] text-[#6B7280] leading-tight">
-                    I agree to the <a href="/terms" className="text-[#DC2B53] hover:underline font-medium" target="_blank">Terms & Conditions</a>, <a href="/privacy" className="text-[#DC2B53] hover:underline font-medium" target="_blank">Privacy Policy</a>, and <a href="/refund-policy" className="text-[#DC2B53] hover:underline font-medium" target="_blank">Return Policy</a>.
+                    I agree to the <a href="/terms" className="text-primary hover:underline font-medium" target="_blank">Terms & Conditions</a>, <a href="/privacy" className="text-primary hover:underline font-medium" target="_blank">Privacy Policy</a>, and <a href="/refund-policy" className="text-primary hover:underline font-medium" target="_blank">Return Policy</a>.
                   </span>
                 </label>
 
                 <button
                   type="submit"
                   disabled={isSubmitting || cart.items.length === 0}
-                  className="w-full flex items-center justify-center gap-2 py-3.5 bg-[#DC2B53] hover:bg-[#C52247] disabled:bg-gray-300 disabled:cursor-not-allowed text-white rounded-lg text-xs font-bold uppercase tracking-wider transition-colors shadow-xs cursor-pointer"
+                  className="w-full flex items-center justify-center gap-2 py-3.5 bg-primary hover:bg-primary-hover disabled:bg-gray-300 disabled:cursor-not-allowed text-white rounded-lg text-xs font-bold uppercase tracking-wider transition-colors shadow-xs cursor-pointer"
                 >
                   {isSubmitting ? (
                     <>

@@ -65,7 +65,7 @@ export const CategorySection: React.FC = () => {
       {/* Section Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2.5 mb-3.5 sm:mb-4">
         <div className="space-y-0.5">
-          <div className="flex items-center gap-1.5 text-[#DC2B53] font-semibold text-xs uppercase tracking-wider">
+          <div className="flex items-center gap-1.5 text-primary font-semibold text-xs uppercase tracking-wider">
             <Layers size={14} />
             <span>Featured Collections</span>
           </div>
@@ -79,7 +79,7 @@ export const CategorySection: React.FC = () => {
           onClick={() => {
             setFilters(prev => ({ ...prev, categorySlug: null }));
           }}
-          className="group inline-flex items-center justify-center gap-1.5 px-3 py-1.5 bg-[#DC2B53] hover:bg-[#C52247] text-white rounded-lg font-semibold text-xs transition-colors shrink-0 self-start sm:self-auto shadow-2xs min-h-[32px]"
+          className="group inline-flex items-center justify-center gap-1.5 px-3 py-1.5 bg-primary hover:bg-primary-hover text-white rounded-lg font-semibold text-xs transition-colors shrink-0 self-start sm:self-auto shadow-2xs min-h-[32px]"
         >
           <span>View All Categories</span>
           <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
@@ -111,11 +111,11 @@ export const CategorySection: React.FC = () => {
             <div className="absolute inset-0 p-2 sm:p-2.5 flex flex-col justify-end">
               <div className="space-y-0.5">
                 <div className="flex items-center justify-between">
-                  <span className="bg-[#DC2B53]/40 text-white font-semibold text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded backdrop-blur-2xs">
+                  <span className="bg-primary/40 text-white font-semibold text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded backdrop-blur-2xs">
                     {cat.itemCount || 0} Items
                   </span>
                 </div>
-                <h3 className="text-xs sm:text-xs md:text-sm font-bold text-white tracking-tight leading-tight group-hover:text-[#DC2B53] transition-colors line-clamp-1">
+                <h3 className="text-xs sm:text-xs md:text-sm font-bold text-white tracking-tight leading-tight group-hover:text-primary transition-colors line-clamp-1">
                   {cat.name}
                 </h3>
               </div>

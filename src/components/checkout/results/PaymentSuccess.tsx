@@ -44,7 +44,7 @@ export const PaymentSuccess: React.FC = () => {
               particleCount: 150,
               spread: 70,
               origin: { y: 0.6 },
-              colors: ['#101A25', '#DC2B53', '#fb7185']
+              colors: ['#101A25', '#315B46', '#D4AF37']
             });
           } catch {}
 
@@ -65,7 +65,7 @@ export const PaymentSuccess: React.FC = () => {
   if (isVerifying) {
     return (
       <div className="py-24 flex flex-col items-center justify-center space-y-3 bg-[#F9FAFB] min-h-screen">
-        <Loader2 size={32} className="animate-spin text-[#DC2B53]" />
+        <Loader2 size={32} className="animate-spin text-primary" />
         <p className="text-xs text-[#6B7280] font-semibold">Verifying payment with gateway...</p>
       </div>
     );

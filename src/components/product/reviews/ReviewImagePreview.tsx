@@ -47,7 +47,7 @@ export const ReviewImagePreview: React.FC<ReviewImagePreviewProps> = ({
     <div className="space-y-2 pt-1">
       <div className="flex items-center justify-between text-xs">
         <span className="font-semibold text-[#111827] flex items-center gap-1.5">
-          <ImageIcon size={14} className="text-[#DC2B53]" />
+          <ImageIcon size={14} className="text-primary" />
           Selected Photos
         </span>
         <span className="font-medium text-[#6B7280]">
@@ -83,7 +83,7 @@ export const ReviewImagePreview: React.FC<ReviewImagePreviewProps> = ({
                     onRemove(index);
                   }}
                   aria-label={`Remove photo ${index + 1} (${item.file.name})`}
-                  className="absolute top-1 right-1 p-1 rounded-full bg-black/70 hover:bg-[#DC2B53] text-white border border-white/30 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#DC2B53]"
+                  className="absolute top-1 right-1 p-1 rounded-full bg-black/70 hover:bg-primary text-white border border-white/30 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary"
                 >
                   <X size={12} />
                 </button>

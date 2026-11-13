@@ -13,6 +13,7 @@ import { getHomepageMetadata, getPublicSiteSettings } from '../src/lib/seo';
 import { storefrontApi } from '../src/services/storefrontApi';
 import { DEFAULT_SETTINGS } from '../src/services/settingsService';
 import { PublicSettings } from '../src/types/storefront';
+import { deriveBrandColors } from '../src/lib/brandColor';
 
 export const dynamic = 'force-dynamic';
 
@@ -27,6 +28,7 @@ export default async function RootLayout({
 }) {
   const settings = await getPublicSiteSettings();
   const initialSettings: PublicSettings = settings || DEFAULT_SETTINGS;
+  const brandColors = deriveBrandColors(initialSettings?.branding?.primaryColor);
 
   let initialAnalyticsConfig = null;
   try {
@@ -38,8 +40,17 @@ export default async function RootLayout({
   } catch (err) {
     console.warn('Failed to fetch initial analytics config within 3s timeout:', err);
   }
-return (
+
+  return (
     <html lang="en" className="light">
+      <head>
+        <style
+          id="brand-primary-tokens"
+          dangerouslySetInnerHTML={{
+            __html: `:root{--color-primary:${brandColors.primary};--color-primary-hover:${brandColors.hover};--color-primary-light:${brandColors.light};--color-primary-text:${brandColors.text};--color-accent:${brandColors.primary};--color-accent-hover:${brandColors.hover};--color-accent-muted:${brandColors.light};}`,
+          }}
+        />
+      </head>
       <body className="min-h-screen bg-white text-[#111827] font-sans flex flex-col justify-between selection:bg-primary selection:text-white antialiased overflow-x-hidden">
         <StorefrontProviders initialSettings={initialSettings}>
           <AnalyticsProvider initialConfig={initialAnalyticsConfig} />

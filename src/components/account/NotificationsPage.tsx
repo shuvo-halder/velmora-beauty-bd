@@ -126,11 +126,11 @@ export const NotificationsPage: React.FC = () => {
             <div>
               <div className="flex items-center gap-3">
                 <h1 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight flex items-center gap-2.5">
-                  <Bell size={24} className="text-[#DC2B53]" />
+                  <Bell size={24} className="text-primary" />
                   <span>Notifications</span>
                 </h1>
                 {unreadCount > 0 && (
-                  <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#DC2B53] text-white">
+                  <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary text-white">
                     {unreadCount > 99 ? '99+' : unreadCount} new
                   </span>
                 )}
@@ -148,18 +148,18 @@ export const NotificationsPage: React.FC = () => {
                 title="Refresh notifications"
                 aria-label="Refresh notifications"
               >
-                <RefreshCw size={15} className={isFetching ? 'animate-spin text-[#DC2B53]' : ''} />
+                <RefreshCw size={15} className={isFetching ? 'animate-spin text-primary' : ''} />
               </button>
 
               {unreadCount > 0 && (
                 <button
                   onClick={handleMarkAllAsRead}
                   disabled={markAllReadMutation.isPending}
-                  className="px-3.5 py-2 bg-white hover:bg-gray-50 text-gray-700 hover:text-[#DC2B53] text-xs font-bold rounded-lg border border-gray-200 shadow-2xs transition-colors flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+                  className="px-3.5 py-2 bg-white hover:bg-gray-50 text-gray-700 hover:text-primary text-xs font-bold rounded-lg border border-gray-200 shadow-2xs transition-colors flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
                   aria-label="Mark all notifications as read"
                 >
                   {markAllReadMutation.isPending ? (
-                    <Loader2 size={14} className="animate-spin text-[#DC2B53]" />
+                    <Loader2 size={14} className="animate-spin text-primary" />
                   ) : (
                     <CheckCheck size={15} className="text-gray-500" />
                   )}
@@ -205,8 +205,8 @@ export const NotificationsPage: React.FC = () => {
               {unreadCount > 0 && (
                 <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-extrabold ${
                   activeFilter === 'unread' 
-                    ? 'bg-[#DC2B53] text-white' 
-                    : 'bg-rose-100 text-[#DC2B53]'
+                    ? 'bg-primary text-white' 
+                    : 'bg-rose-100 text-primary'
                 }`}>
                   {unreadCount > 99 ? '99+' : unreadCount}
                 </span>
@@ -249,7 +249,7 @@ export const NotificationsPage: React.FC = () => {
             </div>
             <button
               onClick={() => refetch()}
-              className="px-4 py-2 bg-[#DC2B53] hover:bg-[#C52247] text-white text-xs font-semibold rounded-lg transition-colors cursor-pointer inline-flex items-center gap-1.5"
+              className="px-4 py-2 bg-primary hover:bg-primary-hover text-white text-xs font-semibold rounded-lg transition-colors cursor-pointer inline-flex items-center gap-1.5"
             >
               <RefreshCw size={13} />
               <span>Retry</span>
@@ -323,7 +323,7 @@ export const NotificationsPage: React.FC = () => {
                           onClick={() => setPage(p)}
                           className={`w-7 h-7 rounded-md font-bold text-xs flex items-center justify-center transition-colors cursor-pointer ${
                             page === p
-                              ? 'bg-[#DC2B53] text-white'
+                              ? 'bg-primary text-white'
                               : 'bg-white hover:bg-gray-100 text-gray-700 border border-gray-200'
                           }`}
                         >

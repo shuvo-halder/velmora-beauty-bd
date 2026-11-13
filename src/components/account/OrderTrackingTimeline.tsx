@@ -154,7 +154,7 @@ export const OrderTrackingTimeline: React.FC<OrderTrackingTimelineProps> = ({
       {shipmentsList.length > 1 && (
         <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none border-b border-gray-100">
           <div className="flex items-center gap-1.5 text-xs font-bold text-gray-600 mr-2 flex-shrink-0">
-            <Layers size={14} className="text-[#DC2B53]" />
+            <Layers size={14} className="text-primary" />
             <span>Packages ({shipmentsList.length}):</span>
           </div>
           {shipmentsList.map((shp, idx) => {
@@ -193,7 +193,7 @@ export const OrderTrackingTimeline: React.FC<OrderTrackingTimelineProps> = ({
           </div>
           <div className="flex items-center gap-2 text-xs text-gray-500 font-medium">
             <span>Tracking #:</span>
-            <span className="font-mono font-bold text-[#DC2B53]">
+            <span className="font-mono font-bold text-primary">
               {trackingNumber || 'Pending assignment'}
             </span>
           </div>
@@ -213,7 +213,7 @@ export const OrderTrackingTimeline: React.FC<OrderTrackingTimelineProps> = ({
             className="inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-white hover:bg-gray-50 text-gray-800 border border-gray-200 rounded-lg text-xs font-semibold transition-colors shadow-2xs group flex-shrink-0"
             title="Open tracking page in new tab"
           >
-            <Truck size={14} className="text-[#DC2B53]" />
+            <Truck size={14} className="text-primary" />
             <span>Track with Courier</span>
             <ExternalLink size={12} className="text-gray-400 group-hover:text-gray-700" />
           </a>
@@ -238,7 +238,7 @@ export const OrderTrackingTimeline: React.FC<OrderTrackingTimelineProps> = ({
                 <div
                   className={`w-7 h-7 rounded-full flex items-center justify-center z-10 text-xs flex-shrink-0 transition-all ${
                     isCurrent
-                      ? 'bg-[#DC2B53] text-white ring-4 ring-[#DC2B53]/20 shadow-xs'
+                      ? 'bg-primary text-white ring-4 ring-primary/20 shadow-xs'
                       : isCompleted
                       ? 'bg-emerald-600 text-white'
                       : 'bg-white border-2 border-gray-300 text-gray-400'
@@ -261,7 +261,7 @@ export const OrderTrackingTimeline: React.FC<OrderTrackingTimelineProps> = ({
                         {event.label || event.title || eventMeta.label}
                       </span>
                       {isCurrent && (
-                        <span className="px-1.5 py-0.5 bg-[#DC2B53]/10 text-[#DC2B53] rounded text-[10px] font-bold">
+                        <span className="px-1.5 py-0.5 bg-primary/10 text-primary rounded text-[10px] font-bold">
                           Latest Update
                         </span>
                       )}
@@ -281,7 +281,7 @@ export const OrderTrackingTimeline: React.FC<OrderTrackingTimelineProps> = ({
 
                   {event.location && (
                     <div className="flex items-center gap-1.5 text-[11px] text-gray-500 font-medium mt-1.5">
-                      <MapPin size={12} className="text-[#DC2B53]" />
+                      <MapPin size={12} className="text-primary" />
                       <span>{event.location}</span>
                     </div>
                   )}

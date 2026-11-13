@@ -76,8 +76,8 @@ export const GatewaySimulation: React.FC = () => {
         {status !== 'failed' ? (
           <>
             <div className="flex flex-col items-center">
-              <div className="w-14 h-14 bg-[#FDF0F3] rounded-full flex items-center justify-center mb-3 border border-[#DC2B53]/20">
-                <Landmark className="text-[#DC2B53]" size={26} />
+              <div className="w-14 h-14 bg-primary-light rounded-full flex items-center justify-center mb-3 border border-primary/20">
+                <Landmark className="text-primary" size={26} />
               </div>
               <h1 className="text-base font-bold text-[#111827] mb-1">
                 {methodNames[method as string] || 'Secure Payment Gateway'}
@@ -88,7 +88,7 @@ export const GatewaySimulation: React.FC = () => {
             </div>
 
             <div className="space-y-3 py-2 flex flex-col items-center justify-center">
-              <Loader2 size={28} className="animate-spin text-[#DC2B53]" />
+              <Loader2 size={28} className="animate-spin text-primary" />
               <p className="text-xs font-semibold text-[#111827]">
                 {status === 'initiating' ? 'Connecting to payment provider' : 'Authorizing transaction'}
               </p>
@@ -128,7 +128,7 @@ export const GatewaySimulation: React.FC = () => {
                   setErrorMessage(null);
                   window.location.reload();
                 }}
-                className="w-full py-2.5 bg-[#DC2B53] hover:bg-[#C52247] text-white font-semibold text-xs rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                className="w-full py-2.5 bg-primary hover:bg-primary-hover text-white font-semibold text-xs rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-xs"
               >
                 <RefreshCw size={14} />
                 <span>Retry Payment</span>

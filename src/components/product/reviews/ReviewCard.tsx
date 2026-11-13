@@ -92,7 +92,7 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({
                   type="button"
                   onClick={() => onOpenLightbox?.(images, index, review.author)}
                   aria-label={`View photo ${index + 1} from review by ${review.author}`}
-                  className="group relative w-16 h-16 sm:w-18 sm:h-18 rounded-lg overflow-hidden border border-[#E5E7EB] bg-[#F9FAFB] hover:border-[#DC2B53] focus:outline-none focus:ring-2 focus:ring-[#DC2B53] transition-all cursor-pointer flex-shrink-0"
+                  className="group relative w-16 h-16 sm:w-18 sm:h-18 rounded-lg overflow-hidden border border-[#E5E7EB] bg-[#F9FAFB] hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary transition-all cursor-pointer flex-shrink-0"
                 >
                   <SmartImage
                     src={imgUrl}

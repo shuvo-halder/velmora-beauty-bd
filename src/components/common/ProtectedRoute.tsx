@@ -32,7 +32,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, fallba
     if (fallback) return <>{fallback}</>;
     return (
       <div className="min-h-[60vh] flex flex-col items-center justify-center space-y-4">
-        <Loader2 className="w-8 h-8 text-[#DC2B53] animate-spin" />
+        <Loader2 className="w-8 h-8 text-primary animate-spin" />
         <p className="text-gray-500 font-semibold text-xs uppercase tracking-wider">Verifying Account Session...</p>
       </div>
     );

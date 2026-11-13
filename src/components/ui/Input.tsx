@@ -52,7 +52,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             } ${rightElement ? 'pr-10' : 'pr-3.5'} py-2.5 ${
               error
                 ? 'border-[#DC2626] focus:border-[#DC2626] focus:ring-2 focus:ring-red-100'
-                : 'border-[#E5E7EB] hover:border-gray-300 focus:border-[#DC2B53] focus:ring-2 focus:ring-[#DC2B53]/15'
+                : 'border-[#E5E7EB] hover:border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/15'
             } ${className}`}
             {...props}
           />

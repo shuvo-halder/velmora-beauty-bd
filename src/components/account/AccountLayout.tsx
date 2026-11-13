@@ -122,7 +122,7 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({ children, activeTa
               </div>
               <button
                 onClick={handleLogout}
-                className="p-2 text-gray-500 hover:text-[#DC2B53] hover:bg-gray-50 rounded-lg transition-colors cursor-pointer"
+                className="p-2 text-gray-500 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors cursor-pointer"
                 title="Sign Out"
               >
                 <LogOut size={18} />
@@ -166,7 +166,7 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({ children, activeTa
                 <MoreHorizontal size={16} />
                 <span>More</span>
                 {unreadNotificationsCount > 0 && (
-                  <span className="w-2 h-2 rounded-full bg-[#DC2B53]" />
+                  <span className="w-2 h-2 rounded-full bg-primary" />
                 )}
               </button>
             </div>
@@ -218,7 +218,7 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({ children, activeTa
                           <span className="truncate">{item.label}</span>
                         </div>
                         {showBadge && (
-                          <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-[#DC2B53] text-white shrink-0">
+                          <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-primary text-white shrink-0">
                             {unreadNotificationsCount > 99 ? '99+' : unreadNotificationsCount}
                           </span>
                         )}
@@ -269,7 +269,7 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({ children, activeTa
                       <div className="min-w-0">
                         <h3 className="font-bold text-base text-white truncate">{displayName}</h3>
                         <div className="flex items-center gap-1.5 text-xs mt-0.5">
-                          <ShieldCheck size={14} className="text-[#DC2B53]" />
+                          <ShieldCheck size={14} className="text-primary" />
                           <span className="text-[11px] font-medium text-gray-300">
                             {activeUser?.phoneVerified || activeUser?.emailVerified ? 'Verified Account' : 'Customer Account'}
                           </span>
@@ -295,17 +295,17 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({ children, activeTa
                           className={`
                             w-full flex items-center justify-between px-3.5 py-2.5 rounded-lg text-xs font-semibold transition-colors group
                             ${isActive 
-                              ? 'bg-[#FDF0F3] text-[#DC2B53]' 
+                              ? 'bg-primary-light text-primary' 
                               : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'}
                           `}
                         >
                           <div className="flex items-center gap-3">
-                            <Icon size={17} className={isActive ? 'text-[#DC2B53]' : 'text-gray-400 group-hover:text-gray-600'} />
+                            <Icon size={17} className={isActive ? 'text-primary' : 'text-gray-400 group-hover:text-gray-600'} />
                             <span>{item.label}</span>
                           </div>
                           <div className="flex items-center gap-2">
                             {showBadge && (
-                              <span className="px-1.5 py-0.2 rounded-full text-[10px] font-extrabold bg-[#DC2B53] text-white">
+                              <span className="px-1.5 py-0.2 rounded-full text-[10px] font-extrabold bg-primary text-white">
                                 {unreadNotificationsCount > 99 ? '99+' : unreadNotificationsCount}
                               </span>
                             )}
@@ -313,7 +313,7 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({ children, activeTa
                               size={14} 
                               className={`transition-transform duration-200 ${
                                 isActive 
-                                  ? 'text-[#DC2B53] translate-x-0.5' 
+                                  ? 'text-primary translate-x-0.5' 
                                   : 'opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 text-gray-400'
                               }`} 
                             />
@@ -326,7 +326,7 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({ children, activeTa
                   <div className="mt-4 pt-3 border-t border-gray-100">
                     <button
                       onClick={handleLogout}
-                      className="w-full flex items-center gap-3 px-3.5 py-2.5 text-gray-600 hover:text-[#DC2B53] hover:bg-[#FDF0F3] rounded-lg transition-colors font-semibold text-xs cursor-pointer"
+                      className="w-full flex items-center gap-3 px-3.5 py-2.5 text-gray-600 hover:text-primary hover:bg-primary-light rounded-lg transition-colors font-semibold text-xs cursor-pointer"
                     >
                       <LogOut size={17} />
                       <span>Sign Out</span>
@@ -336,7 +336,7 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({ children, activeTa
 
                 <div className="px-5 py-3 bg-gray-50 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500 font-medium">
                   <div className="flex items-center gap-2">
-                    <Sparkles size={14} className="text-[#DC2B53]" />
+                    <Sparkles size={14} className="text-primary" />
                     <span className="text-[11px] text-gray-600">{siteName} Customer Portal</span>
                   </div>
                 </div>

@@ -151,7 +151,7 @@ export const AccountDashboard: React.FC = () => {
                       href="/account/profile"
                       className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-gray-50 hover:bg-gray-100 text-gray-700 border border-gray-200 rounded-lg text-xs font-semibold transition-colors"
                     >
-                      <User size={14} className="text-[#DC2B53]" />
+                      <User size={14} className="text-primary" />
                       <span>Edit Profile</span>
                     </Link>
                   </div>
@@ -219,7 +219,7 @@ export const AccountDashboard: React.FC = () => {
 
               {/* Total Spent */}
               <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-xs">
-                <div className="w-10 h-10 bg-[#FDF0F3] text-[#DC2B53] rounded-lg flex items-center justify-center mb-3">
+                <div className="w-10 h-10 bg-primary-light text-primary rounded-lg flex items-center justify-center mb-3">
                   <DollarSign size={20} />
                 </div>
                 <div className="text-2xl font-bold text-gray-900">
@@ -241,7 +241,7 @@ export const AccountDashboard: React.FC = () => {
                   </div>
                   <Link 
                     href="/account/orders" 
-                    className="text-xs font-semibold text-[#DC2B53] hover:underline inline-flex items-center gap-1"
+                    className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1"
                   >
                     <span>View All</span>
                     <ArrowRight size={13} />
@@ -286,11 +286,11 @@ export const AccountDashboard: React.FC = () => {
                           className="flex items-center justify-between p-3.5 bg-gray-50 hover:bg-gray-100/80 rounded-lg border border-gray-100 transition-colors group cursor-pointer"
                         >
                           <div className="flex items-center gap-3">
-                            <div className="w-9 h-9 bg-white rounded-lg flex items-center justify-center text-gray-500 group-hover:bg-[#FDF0F3] group-hover:text-[#DC2B53] border border-gray-200 flex-shrink-0 transition-colors">
+                            <div className="w-9 h-9 bg-white rounded-lg flex items-center justify-center text-gray-500 group-hover:bg-primary-light group-hover:text-primary border border-gray-200 flex-shrink-0 transition-colors">
                               <ShoppingBag size={16} />
                             </div>
                             <div>
-                              <div className="text-xs font-bold text-gray-900 group-hover:text-[#DC2B53] transition-colors">#{orderCode}</div>
+                              <div className="text-xs font-bold text-gray-900 group-hover:text-primary transition-colors">#{orderCode}</div>
                               <div className="text-xs text-gray-500 font-medium mt-0.5">{orderDate}</div>
                             </div>
                           </div>
@@ -321,7 +321,7 @@ export const AccountDashboard: React.FC = () => {
                         <Bell size={16} />
                       </div>
                       <div>
-                        <h4 className="text-xs font-bold text-gray-900 group-hover:text-[#DC2B53] transition-colors">
+                        <h4 className="text-xs font-bold text-gray-900 group-hover:text-primary transition-colors">
                           Notifications
                         </h4>
                         <div className="text-[11px] text-gray-500">Unread updates</div>
@@ -349,7 +349,7 @@ export const AccountDashboard: React.FC = () => {
                         <Star size={16} />
                       </div>
                       <div>
-                        <h4 className="text-xs font-bold text-gray-900 group-hover:text-[#DC2B53] transition-colors">
+                        <h4 className="text-xs font-bold text-gray-900 group-hover:text-primary transition-colors">
                           Product Reviews
                         </h4>
                         <div className="text-[11px] text-gray-500">Eligible items</div>
@@ -374,7 +374,7 @@ export const AccountDashboard: React.FC = () => {
                   </p>
                   <Link
                     href="/products"
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#DC2B53] hover:underline"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:underline"
                   >
                     <span>Browse Store</span>
                     <ArrowRight size={13} />

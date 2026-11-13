@@ -64,7 +64,7 @@ export const ProductSection: React.FC<ProductSectionProps> = ({
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-4 sm:mb-5">
         <div className="space-y-1">
           {badge && (
-            <div className="inline-flex items-center gap-1.5 text-[#DC2B53] font-semibold text-xs uppercase tracking-wider mb-0.5">
+            <div className="inline-flex items-center gap-1.5 text-primary font-semibold text-xs uppercase tracking-wider mb-0.5">
               {icon || <Sparkles size={14} />}
               <span>{badge}</span>
             </div>
@@ -102,7 +102,7 @@ export const ProductSection: React.FC<ProductSectionProps> = ({
           {viewAllAction && (
             <button
               onClick={viewAllAction}
-              className="text-xs font-semibold text-[#DC2B53] hover:text-[#C52247] flex items-center gap-1 transition-colors cursor-pointer min-h-[32px]"
+              className="text-xs font-semibold text-primary hover:text-primary-hover flex items-center gap-1 transition-colors cursor-pointer min-h-[32px]"
             >
               <span>{viewAllText}</span>
               <ArrowRight size={14} />

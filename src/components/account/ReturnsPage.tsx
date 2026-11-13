@@ -79,7 +79,7 @@ export const ReturnsPage: React.FC = () => {
         {/* Header Banner */}
         <div className="bg-white rounded-xl p-6 sm:p-7 border border-gray-200 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2 text-xs font-bold text-[#DC2B53] uppercase tracking-wider mb-1">
+            <div className="flex items-center gap-2 text-xs font-bold text-primary uppercase tracking-wider mb-1">
               <RotateCcw size={14} />
               <span>Customer Returns</span>
             </div>
@@ -219,7 +219,7 @@ export const ReturnsPage: React.FC = () => {
                           <span className="text-gray-300">•</span>
                           <Link
                             href={`/account/orders/${ret.orderId}`}
-                            className="font-medium text-[#DC2B53] hover:underline inline-flex items-center gap-1"
+                            className="font-medium text-primary hover:underline inline-flex items-center gap-1"
                           >
                             <span>Order #{ret.orderNumber}</span>
                             <ExternalLink size={12} />
@@ -334,7 +334,7 @@ export const ReturnsPage: React.FC = () => {
                       <div>
                         <Link
                           href={`/account/orders/${ret.orderId}`}
-                          className="font-semibold text-[#DC2B53] hover:underline inline-flex items-center gap-1"
+                          className="font-semibold text-primary hover:underline inline-flex items-center gap-1"
                         >
                           <span>View Order Details</span>
                           <ExternalLink size={13} />

@@ -41,7 +41,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ onClose }) => {
         {/* Top Header Bar inside Mega Menu */}
         <div className="flex items-center justify-between pb-4 mb-6 border-b border-[#F3F4F6]">
           <div className="flex items-center gap-2">
-            <span className="p-1.5 rounded-md bg-[#FDF0F3] text-[#DC2B53]">
+            <span className="p-1.5 rounded-md bg-primary-light text-primary">
               <Layers size={16} />
             </span>
             <h2 className="text-xs font-extrabold uppercase tracking-wider text-[#111827]">
@@ -51,7 +51,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ onClose }) => {
           <Link
             href="/categories"
             onClick={onClose}
-            className="text-xs font-bold text-[#DC2B53] hover:text-[#C52247] hover:underline flex items-center gap-1 transition-colors cursor-pointer"
+            className="text-xs font-bold text-primary hover:text-primary-hover hover:underline flex items-center gap-1 transition-colors cursor-pointer"
           >
             <span>Explore All Catalog</span>
             <ArrowRight size={13} />
@@ -80,7 +80,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ onClose }) => {
             <Link
               href="/categories"
               onClick={onClose}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-[#DC2B53] text-white text-xs font-bold rounded-lg hover:bg-[#C52247] transition-colors cursor-pointer"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-xs font-bold rounded-lg hover:bg-primary-hover transition-colors cursor-pointer"
             >
               <span>View All Categories</span>
               <ArrowRight size={14} />
@@ -101,14 +101,14 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ onClose }) => {
                     <Link
                       href={`/categories/${mainCategory.slug}`}
                       onClick={onClose}
-                      className="text-sm font-bold text-[#111827] group-hover:text-[#DC2B53] uppercase tracking-wide transition-colors truncate cursor-pointer"
+                      className="text-sm font-bold text-[#111827] group-hover:text-primary uppercase tracking-wide transition-colors truncate cursor-pointer"
                     >
                       {mainCategory.name}
                     </Link>
                     <Link
                       href={`/categories/${mainCategory.slug}`}
                       onClick={onClose}
-                      className="text-[#6B7280] group-hover:text-[#DC2B53] transition-colors shrink-0 ml-1 cursor-pointer"
+                      className="text-[#6B7280] group-hover:text-primary transition-colors shrink-0 ml-1 cursor-pointer"
                       aria-label={`View ${mainCategory.name}`}
                     >
                       <ChevronRight size={15} />
@@ -121,10 +121,10 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ onClose }) => {
                       <Link
                         href={`/categories/${mainCategory.slug}`}
                         onClick={onClose}
-                        className="text-xs text-[#6B7280] hover:text-[#DC2B53] font-medium transition-colors inline-flex items-center gap-1.5 group py-1 cursor-pointer"
+                        className="text-xs text-[#6B7280] hover:text-primary font-medium transition-colors inline-flex items-center gap-1.5 group py-1 cursor-pointer"
                       >
                         <span>Explore {mainCategory.name}</span>
-                        <ArrowRight size={12} className="text-[#DC2B53] group-hover:translate-x-0.5 transition-transform" />
+                        <ArrowRight size={12} className="text-primary group-hover:translate-x-0.5 transition-transform" />
                       </Link>
                     </div>
                   ) : (
@@ -134,14 +134,14 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ onClose }) => {
                           <Link
                             href={`/categories/${sub.slug}`}
                             onClick={onClose}
-                            className="text-xs sm:text-sm text-[#4B5563] hover:text-[#DC2B53] font-medium transition-colors flex items-center justify-between w-full group py-0.5 cursor-pointer"
+                            className="text-xs sm:text-sm text-[#4B5563] hover:text-primary font-medium transition-colors flex items-center justify-between w-full group py-0.5 cursor-pointer"
                           >
                             <span className="truncate group-hover:translate-x-0.5 transition-transform duration-150">
                               {sub.name}
                             </span>
                             <ChevronRight
                               size={13}
-                              className="opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all text-[#DC2B53] shrink-0 ml-1"
+                              className="opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all text-primary shrink-0 ml-1"
                             />
                           </Link>
                         </li>
@@ -153,7 +153,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ onClose }) => {
                           <Link
                             href={`/categories/${mainCategory.slug}`}
                             onClick={onClose}
-                            className="text-xs text-[#DC2B53] font-bold hover:underline inline-flex items-center gap-1 group cursor-pointer"
+                            className="text-xs text-primary font-bold hover:underline inline-flex items-center gap-1 group cursor-pointer"
                           >
                             <span>View all ({subcategories.length})</span>
                             <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
@@ -184,7 +184,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ onClose }) => {
                 key={link.label}
                 href={link.href}
                 onClick={onClose}
-                className="text-xs font-semibold text-[#111827] hover:text-[#DC2B53] transition-colors cursor-pointer"
+                className="text-xs font-semibold text-[#111827] hover:text-primary transition-colors cursor-pointer"
               >
                 {link.label}
               </Link>
@@ -197,7 +197,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ onClose }) => {
             className="flex items-center gap-2 px-3.5 py-1.5 bg-[#F9FAFB] hover:bg-gray-100 text-[#111827] border border-[#E5E7EB] rounded-lg font-bold text-xs transition-colors group shadow-2xs cursor-pointer"
           >
             <span>Browse All Collections</span>
-            <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform text-[#DC2B53]" />
+            <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform text-primary" />
           </Link>
         </div>
 

@@ -254,7 +254,7 @@ export const ShopCatalogView: React.FC = () => {
         {/* Catalog Banner / Header */}
         <div className="mb-6 bg-white border border-[#E5E7EB] rounded-xl p-6 sm:p-8 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="text-xs font-bold text-[#DC2B53] uppercase tracking-wider mb-1 flex items-center gap-1.5">
+            <div className="text-xs font-bold text-primary uppercase tracking-wider mb-1 flex items-center gap-1.5">
               <Sparkles size={14} />
               <span>Official Store Catalog</span>
             </div>
@@ -294,29 +294,29 @@ export const ShopCatalogView: React.FC = () => {
             </span>
 
             {filters.searchQuery && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#FDF0F3] border border-[#DC2B53]/20 text-[#DC2B53] text-xs font-semibold rounded-full">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary-light border border-primary/20 text-primary text-xs font-semibold rounded-full">
                 Search: "{filters.searchQuery}"
-                <button onClick={() => setFilters(prev => ({ ...prev, searchQuery: '', page: 1 }))} className="hover:text-[#C52247] cursor-pointer">
+                <button onClick={() => setFilters(prev => ({ ...prev, searchQuery: '', page: 1 }))} className="hover:text-primary-hover cursor-pointer">
                   <X size={12} />
                 </button>
               </span>
             )}
 
             {filters.categorySlug && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#FDF0F3] border border-[#DC2B53]/20 text-[#DC2B53] text-xs font-semibold rounded-full">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary-light border border-primary/20 text-primary text-xs font-semibold rounded-full">
                 Dept: {activeCategoryObj?.name || filters.categorySlug}
-                <button onClick={() => setFilters(prev => ({ ...prev, categorySlug: null, page: 1 }))} className="hover:text-[#C52247] cursor-pointer">
+                <button onClick={() => setFilters(prev => ({ ...prev, categorySlug: null, page: 1 }))} className="hover:text-primary-hover cursor-pointer">
                   <X size={12} />
                 </button>
               </span>
             )}
 
             {filters.brandSlugs.map((bs) => (
-              <span key={bs} className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#FDF0F3] border border-[#DC2B53]/20 text-[#DC2B53] text-xs font-semibold rounded-full capitalize">
+              <span key={bs} className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary-light border border-primary/20 text-primary text-xs font-semibold rounded-full capitalize">
                 Brand: {bs}
                 <button 
                   onClick={() => setFilters(prev => ({ ...prev, brandSlugs: prev.brandSlugs.filter(s => s !== bs), page: 1 }))}
-                  className="hover:text-[#C52247] cursor-pointer"
+                  className="hover:text-primary-hover cursor-pointer"
                 >
                   <X size={12} />
                 </button>
@@ -324,9 +324,9 @@ export const ShopCatalogView: React.FC = () => {
             ))}
 
             {(filters.minPrice > 0 || filters.maxPrice < 1000) && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#FDF0F3] border border-[#DC2B53]/20 text-[#DC2B53] text-xs font-semibold rounded-full">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary-light border border-primary/20 text-primary text-xs font-semibold rounded-full">
                 Price: ${filters.minPrice} - ${filters.maxPrice}
-                <button onClick={() => setFilters(prev => ({ ...prev, minPrice: 0, maxPrice: 1000, page: 1 }))} className="hover:text-[#C52247] cursor-pointer">
+                <button onClick={() => setFilters(prev => ({ ...prev, minPrice: 0, maxPrice: 1000, page: 1 }))} className="hover:text-primary-hover cursor-pointer">
                   <X size={12} />
                 </button>
               </span>
@@ -352,7 +352,7 @@ export const ShopCatalogView: React.FC = () => {
 
             <button
               onClick={resetFilters}
-              className="text-xs font-semibold text-[#DC2B53] hover:text-[#C52247] hover:underline ml-auto cursor-pointer"
+              className="text-xs font-semibold text-primary hover:text-primary-hover hover:underline ml-auto cursor-pointer"
             >
               Clear All Filters
             </button>
@@ -380,7 +380,7 @@ export const ShopCatalogView: React.FC = () => {
               <select
                 value={filters.sortBy}
                 onChange={(e) => setFilters(prev => ({ ...prev, sortBy: e.target.value as any, page: 1 }))}
-                className="appearance-none bg-[#F9FAFB] border border-[#E5E7EB] hover:border-[#111827] py-2 pl-3.5 pr-8 text-xs font-semibold text-[#111827] rounded-lg focus:outline-none focus:border-[#DC2B53] cursor-pointer"
+                className="appearance-none bg-[#F9FAFB] border border-[#E5E7EB] hover:border-[#111827] py-2 pl-3.5 pr-8 text-xs font-semibold text-[#111827] rounded-lg focus:outline-none focus:border-primary cursor-pointer"
               >
                 <option value="featured">Featured / Best Sellers</option>
                 <option value="newest">Newest Releases</option>
@@ -400,7 +400,7 @@ export const ShopCatalogView: React.FC = () => {
             <button
               onClick={() => setViewMode('grid')}
               className={`p-2 rounded-md transition-colors cursor-pointer ${
-                viewMode === 'grid' ? 'bg-white text-[#DC2B53] shadow-xs font-bold' : 'text-[#6B7280] hover:text-[#111827]'
+                viewMode === 'grid' ? 'bg-white text-primary shadow-xs font-bold' : 'text-[#6B7280] hover:text-[#111827]'
               }`}
               title="Grid View"
             >
@@ -409,7 +409,7 @@ export const ShopCatalogView: React.FC = () => {
             <button
               onClick={() => setViewMode('list')}
               className={`p-2 rounded-md transition-colors cursor-pointer ${
-                viewMode === 'list' ? 'bg-white text-[#DC2B53] shadow-xs font-bold' : 'text-[#6B7280] hover:text-[#111827]'
+                viewMode === 'list' ? 'bg-white text-primary shadow-xs font-bold' : 'text-[#6B7280] hover:text-[#111827]'
               }`}
               title="List View"
             >
@@ -444,15 +444,15 @@ export const ShopCatalogView: React.FC = () => {
               </div>
             ) : error ? (
               /* Error State */
-              <div className="bg-[#FDF0F3] border border-[#DC2B53]/20 rounded-xl p-8 text-center space-y-4">
-                <div className="w-12 h-12 rounded-full bg-[#FDF0F3] text-[#DC2B53] flex items-center justify-center mx-auto border border-[#DC2B53]/20">
+              <div className="bg-primary-light border border-primary/20 rounded-xl p-8 text-center space-y-4">
+                <div className="w-12 h-12 rounded-full bg-primary-light text-primary flex items-center justify-center mx-auto border border-primary/20">
                   <AlertTriangle size={24} />
                 </div>
                 <h3 className="text-base font-bold text-[#111827]">Catalog Loading Error</h3>
                 <p className="text-xs text-[#6B7280] max-w-md mx-auto leading-relaxed">{error}</p>
                 <button
                   onClick={fetchProducts}
-                  className="px-5 py-2.5 bg-[#DC2B53] hover:bg-[#C52247] text-white font-semibold text-xs rounded-lg transition-colors cursor-pointer inline-flex items-center gap-2 shadow-xs"
+                  className="px-5 py-2.5 bg-primary hover:bg-primary-hover text-white font-semibold text-xs rounded-lg transition-colors cursor-pointer inline-flex items-center gap-2 shadow-xs"
                 >
                   <RotateCcw size={14} />
                   <span>Retry Loading Catalog</span>
@@ -471,7 +471,7 @@ export const ShopCatalogView: React.FC = () => {
                 <div className="pt-2">
                   <button
                     onClick={resetFilters}
-                    className="px-6 py-2.5 bg-[#DC2B53] hover:bg-[#C52247] text-white font-semibold text-xs uppercase tracking-wider rounded-lg transition-colors cursor-pointer shadow-xs"
+                    className="px-6 py-2.5 bg-primary hover:bg-primary-hover text-white font-semibold text-xs uppercase tracking-wider rounded-lg transition-colors cursor-pointer shadow-xs"
                   >
                     Reset All Filters
                   </button>
@@ -539,7 +539,7 @@ export const ShopCatalogView: React.FC = () => {
                             onClick={() => handlePageChange(pageNum)}
                             className={`w-9 h-9 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
                               isActive
-                                ? 'bg-[#DC2B53] text-white shadow-xs'
+                                ? 'bg-primary text-white shadow-xs'
                                 : 'bg-white border border-[#E5E7EB] text-[#111827] hover:bg-[#F9FAFB]'
                             }`}
                           >
@@ -592,7 +592,7 @@ export const ShopCatalogView: React.FC = () => {
             <div className="pt-6 border-t border-[#E5E7EB] mt-6">
               <button
                 onClick={() => setIsMobileFilterOpen(false)}
-                className="w-full py-2.5 bg-[#DC2B53] hover:bg-[#C52247] text-white font-semibold text-xs uppercase tracking-wider rounded-lg shadow-xs cursor-pointer"
+                className="w-full py-2.5 bg-primary hover:bg-primary-hover text-white font-semibold text-xs uppercase tracking-wider rounded-lg shadow-xs cursor-pointer"
               >
                 Apply Filters & View ({totalCount})
               </button>

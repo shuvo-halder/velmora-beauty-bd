@@ -166,7 +166,7 @@ export const OrdersPage: React.FC = () => {
               className="flex items-center gap-2 px-3.5 py-2 bg-white text-gray-700 font-semibold text-xs rounded-lg border border-gray-200 hover:bg-gray-50 active:bg-gray-100 transition-colors shadow-2xs disabled:opacity-60 cursor-pointer"
               title="Refresh Orders"
             >
-              <RefreshCw size={14} className={isFetching ? 'animate-spin text-[#DC2B53]' : ''} />
+              <RefreshCw size={14} className={isFetching ? 'animate-spin text-primary' : ''} />
               <span className="hidden sm:inline">Refresh</span>
             </button>
           </div>
@@ -183,7 +183,7 @@ export const OrdersPage: React.FC = () => {
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
                 placeholder="Search by order number (e.g. ORD-2026...)"
-                className="w-full pl-9.5 pr-8 py-2 text-xs bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder:text-gray-400 focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-[#DC2B53]/20 focus:border-[#DC2B53] transition-all"
+                className="w-full pl-9.5 pr-8 py-2 text-xs bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder:text-gray-400 focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
               />
               {searchInput && (
                 <button
@@ -211,7 +211,7 @@ export const OrdersPage: React.FC = () => {
                       onClick={() => handleStatusChange(tab.value)}
                       className={`min-h-[44px] px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold whitespace-nowrap transition-colors cursor-pointer shrink-0 flex items-center justify-center ${
                         isActive
-                          ? 'bg-[#DC2B53] text-white shadow-xs'
+                          ? 'bg-primary text-white shadow-xs'
                           : 'bg-gray-100 text-gray-700 hover:bg-gray-200/80'
                       }`}
                     >
@@ -242,7 +242,7 @@ export const OrdersPage: React.FC = () => {
               </div>
               <button
                 onClick={handleClearFilters}
-                className="text-xs font-semibold text-[#DC2B53] hover:underline cursor-pointer"
+                className="text-xs font-semibold text-primary hover:underline cursor-pointer"
               >
                 Clear all filters
               </button>
@@ -384,7 +384,7 @@ export const OrdersPage: React.FC = () => {
                   {/* Card Top Row: Order Code, Date & Total */}
                   <div className="flex flex-wrap items-start justify-between gap-3 pb-3 border-b border-gray-100">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-gray-50 rounded-lg flex items-center justify-center text-gray-500 group-hover:bg-[#FDF0F3] group-hover:text-[#DC2B53] transition-colors border border-gray-200/80 flex-shrink-0">
+                      <div className="w-10 h-10 bg-gray-50 rounded-lg flex items-center justify-center text-gray-500 group-hover:bg-primary-light group-hover:text-primary transition-colors border border-gray-200/80 flex-shrink-0">
                         <ShoppingBag size={18} />
                       </div>
                       <div>
@@ -507,7 +507,7 @@ export const OrdersPage: React.FC = () => {
                       }}
                       className="min-h-[44px] px-4 py-2.5 bg-white hover:bg-gray-50 text-gray-700 font-semibold text-xs sm:text-sm rounded-lg border border-gray-200 flex items-center justify-center gap-2 transition-colors cursor-pointer"
                     >
-                      <Truck size={16} className="text-[#DC2B53]" />
+                      <Truck size={16} className="text-primary" />
                       <span>Track Order</span>
                     </button>
                   </div>
@@ -552,7 +552,7 @@ export const OrdersPage: React.FC = () => {
                             onClick={() => setPage(p)}
                             className={`min-h-[44px] min-w-[44px] px-3 rounded-lg text-xs sm:text-sm font-bold transition-colors cursor-pointer flex items-center justify-center ${
                               page === p
-                                ? 'bg-[#DC2B53] text-white shadow-xs'
+                                ? 'bg-primary text-white shadow-xs'
                                 : 'bg-gray-50 border border-gray-200 text-gray-700 hover:bg-gray-100'
                             }`}
                           >

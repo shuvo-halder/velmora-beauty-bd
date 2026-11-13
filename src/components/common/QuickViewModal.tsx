@@ -110,13 +110,12 @@ export const QuickViewModal: React.FC = () => {
 
   const currentProduct = fullProduct || quickViewProduct;
   const selectedVariant = currentProduct.variants?.find(v => v.id === selectedVariantId);
-
-  const activePrice = selectedVariant ? selectedVariant.price : currentProduct.price;
-  const activeComparePrice = selectedVariant?.compareAtPrice ?? currentProduct.compareAtPrice;
+  const discountInfo = getDiscountInfo(currentProduct, selectedVariant);
+  const activePrice = discountInfo.price;
+  const activeComparePrice = discountInfo.compareAtPrice;
   const activeStock = selectedVariant ? selectedVariant.stock : currentProduct.stock;
   const activeSKU = selectedVariant?.sku || currentProduct.id;
 
-  const discountInfo = getDiscountInfo(currentProduct, selectedVariant);
   const inWishlist = isInWishlist(currentProduct.id);
 
   const handleSelectVariant = (variant: ProductVariant) => {

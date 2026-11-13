@@ -277,15 +277,15 @@ export const ProductDetailPage: React.FC = () => {
   const currencySymbol = publicSettings?.general?.currencySymbol || (publicSettings?.general?.currency === 'BDT' ? '৳' : '৳');
   const currencyCode = publicSettings?.general?.currency || 'BDT';
   const selectedVariant = product.variants?.find(v => v.id === selectedVariantId);
-  const activePrice = selectedVariant ? selectedVariant.price : product.price;
-  const activeComparePrice = selectedVariant?.compareAtPrice ?? product.compareAtPrice;
+  const discountInfo = getDiscountInfo(product, selectedVariant);
+  const activePrice = discountInfo.price;
+  const activeComparePrice = discountInfo.compareAtPrice;
   // Use product-level stock as availability source if variant stock is 0 but product.stock > 0
   const activeStock = (selectedVariant && selectedVariant.stock > 0)
     ? selectedVariant.stock
     : (product.stock > 0 ? product.stock : 0);
   const activeSKU = selectedVariant ? selectedVariant.sku : `AURA-PRD-${product.id}`;
 
-  const discountInfo = getDiscountInfo(product, selectedVariant);
   const hasDiscount = discountInfo.hasDiscount;
   const computedDiscount = discountInfo.hasDiscount ? discountInfo.discountPercent : undefined;
 

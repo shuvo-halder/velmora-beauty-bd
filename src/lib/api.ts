@@ -400,17 +400,11 @@ export function normalizeProduct(raw: any): Product {
     raw.seoTitle || 
     (slug ? slug.replace(/[-_]/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase()) : '');
 
-  const rawPrice = raw.price ?? raw.regularPrice ?? raw.regular_price ?? raw.unit_price ?? raw.unitPrice ?? raw.sale_price ?? raw.salePrice ?? raw.amount ?? raw.cost;
-  const price = (rawPrice !== undefined && rawPrice !== null && !isNaN(Number(rawPrice))) ? Number(rawPrice) : 0;
+  const rawRootPrice = raw.price ?? raw.regularPrice ?? raw.regular_price ?? raw.unit_price ?? raw.unitPrice ?? raw.sale_price ?? raw.salePrice ?? raw.amount ?? raw.cost;
+  const rootPrice = (rawRootPrice !== undefined && rawRootPrice !== null && !isNaN(Number(rawRootPrice))) ? Number(rawRootPrice) : 0;
 
-  const rawCompare = raw.compareAtPrice ?? raw.compare_at_price ?? raw.originalPrice ?? raw.original_price ?? raw.mrp ?? raw.old_price ?? raw.oldPrice ?? raw.listPrice ?? raw.list_price ?? (Array.isArray(raw.variants) ? (raw.variants[0]?.compareAtPrice ?? raw.variants[0]?.compare_at_price ?? raw.variants[0]?.originalPrice) : undefined);
-  const compareAtPrice = (rawCompare !== undefined && rawCompare !== null && !isNaN(Number(rawCompare)) && Number(rawCompare) > price) ? Number(rawCompare) : undefined;
-
-  const rawDiscount = raw.discountPercent ?? raw.discount_percent ?? raw.discount_percentage ?? raw.discount ?? (Array.isArray(raw.variants) ? (raw.variants[0]?.discountPercent ?? raw.variants[0]?.discount_percent ?? raw.variants[0]?.discount) : undefined);
-  let discountPercent: number | undefined = (rawDiscount !== undefined && rawDiscount !== null && !isNaN(Number(rawDiscount))) ? Number(rawDiscount) : undefined;
-  if (discountPercent === undefined && compareAtPrice && compareAtPrice > price && price > 0) {
-    discountPercent = Math.round(((compareAtPrice - price) / compareAtPrice) * 100);
-  }
+  const rawRootCompare = raw.compareAtPrice ?? raw.compare_at_price ?? raw.originalPrice ?? raw.original_price ?? raw.mrp ?? raw.old_price ?? raw.oldPrice ?? raw.listPrice ?? raw.list_price;
+  const rootCompareAtPrice = (rawRootCompare !== undefined && rawRootCompare !== null && !isNaN(Number(rawRootCompare)) && Number(rawRootCompare) > rootPrice) ? Number(rawRootCompare) : undefined;
 
   const variants: ProductVariant[] = Array.isArray(raw.variants) ? raw.variants.map((v: any) => {
     const vInStock = v.inStock ?? v.in_stock ?? v.is_in_stock ?? v.isAvailable ?? v.is_available;
@@ -424,19 +418,48 @@ export function normalizeProduct(raw: any): Product {
       vStock = 10;
     }
     const vName = v.name || v.title || v.variant_name || v.variantName || v.sku || 'Variant';
-    const vPrice = Number(v.price ?? v.unit_price ?? v.regular_price ?? price ?? 0);
+    const vPrice = Number(v.price ?? v.unit_price ?? v.regular_price ?? rootPrice ?? 0);
+    const rawVCompare = v.compareAtPrice ?? v.compare_at_price ?? v.originalPrice ?? v.mrp ?? v.old_price ?? v.oldPrice;
+    const vCompareAtPrice = (rawVCompare !== undefined && rawVCompare !== null && !isNaN(Number(rawVCompare)) && Number(rawVCompare) > vPrice)
+      ? Number(rawVCompare)
+      : undefined;
     const vImg = v.image ? (typeof v.image === 'string' ? v.image : (v.image.url || v.image.src || v.image.imageUrl)) : undefined;
     return {
       id: String(v.id || v._id || v.sku || ''),
       name: String(vName),
       sku: String(v.sku || ''),
       price: vPrice,
-      compareAtPrice: (v.compareAtPrice || v.compare_at_price || v.originalPrice) ? Number(v.compareAtPrice || v.compare_at_price || v.originalPrice) : undefined,
+      compareAtPrice: vCompareAtPrice,
       stock: vStock,
       image: vImg,
       colorHex: v.colorHex || v.color_hex || v.hex || undefined
     };
   }) : [];
+
+  // Guarantee single-source price and compareAtPrice: both MUST come from the SAME variant
+  let price = rootPrice;
+  let compareAtPrice = rootCompareAtPrice;
+
+  if (variants.length > 0) {
+    let lowestVariant = variants[0];
+    for (let i = 1; i < variants.length; i++) {
+      const v = variants[i];
+      if (v.price < lowestVariant.price) {
+        lowestVariant = v;
+      } else if (v.price === lowestVariant.price) {
+        if (!lowestVariant.compareAtPrice && v.compareAtPrice) {
+          lowestVariant = v;
+        }
+      }
+    }
+    price = lowestVariant.price;
+    compareAtPrice = lowestVariant.compareAtPrice;
+  }
+
+  let discountPercent: number | undefined;
+  if (compareAtPrice && compareAtPrice > price && price > 0) {
+    discountPercent = Math.round(((compareAtPrice - price) / compareAtPrice) * 100);
+  }
 
   // Determine product-level stock from raw fields & variants
   const rawStock = raw.stock ?? raw.quantity ?? raw.inventory ?? raw.stock_quantity ?? raw.inventory_quantity ?? raw.stockQuantity ?? raw.inventoryQuantity;

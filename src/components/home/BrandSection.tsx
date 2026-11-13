@@ -68,7 +68,7 @@ export const BrandSection: React.FC = () => {
               {brand.name}
             </div>
 
-            <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-sage/20 border border-champagne/40 text-[10px] font-semibold text-taupe">
+            <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-sage/20 border border-champagne/40 text-[10px] font-semibold text-muted">
               {brand.itemCount ?? 0} Items
             </span>
           </div>

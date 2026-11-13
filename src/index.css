@@ -20,11 +20,12 @@
     --color-beige: #C7A892;
     --color-champagne: #D6C3B1;
     --color-taupe: #94816C;
+    --color-muted: #6E5F4F;
     --color-ink: #372F26;
 
     /* Neutrals & Surfaces */
     --color-text-main: #372F26;
-    --color-text-muted: #94816C;
+    --color-text-muted: #6E5F4F;
     --color-border: #D6C3B1;
     --color-bg-page: #F5F4EC;
     --color-bg-subtle: #EAEBDD;
@@ -92,6 +93,7 @@
   --color-beige: #C7A892;
   --color-champagne: #D6C3B1;
   --color-taupe: #94816C;
+  --color-muted: #6E5F4F;
   --color-ink: #372F26;
   
   /* Backgrounds */

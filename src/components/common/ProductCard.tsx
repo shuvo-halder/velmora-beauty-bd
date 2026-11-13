@@ -102,7 +102,7 @@ export const ProductCard = React.memo(({
             </h3>
 
             {product.description ? (
-              <div className="text-sm text-taupe line-clamp-2 mt-1.5 leading-relaxed overflow-hidden [&_p]:mb-0 [&_p]:inline [&_ul]:inline [&_ol]:inline [&_li]:inline [&_h1]:inline [&_h2]:inline [&_h3]:inline [&_h4]:inline [&_h5]:inline [&_h6]:inline [&_blockquote]:my-0 [&_pre]:my-0 [&_img]:hidden [&_table]:hidden [&_*]:text-sm [&_*]:text-taupe [&_strong]:font-semibold [&_b]:font-semibold">
+              <div className="text-sm text-muted line-clamp-2 mt-1.5 leading-relaxed overflow-hidden [&_p]:mb-0 [&_p]:inline [&_ul]:inline [&_ol]:inline [&_li]:inline [&_h1]:inline [&_h2]:inline [&_h3]:inline [&_h4]:inline [&_h5]:inline [&_h6]:inline [&_blockquote]:my-0 [&_pre]:my-0 [&_img]:hidden [&_table]:hidden [&_*]:text-sm [&_*]:text-muted [&_strong]:font-semibold [&_b]:font-semibold">
                 <RichTextRenderer content={product.description} />
               </div>
             ) : null}
@@ -114,7 +114,7 @@ export const ProductCard = React.memo(({
                 {formatPrice(product.price, currencyCode, currencySymbol)}
               </span>
               {product.compareAtPrice && (
-                <span className="text-xs text-taupe line-through">
+                <span className="text-xs text-muted line-through">
                   {formatPrice(product.compareAtPrice, currencyCode, currencySymbol)}
                 </span>
               )}
@@ -131,7 +131,7 @@ export const ProductCard = React.memo(({
               <button
                 onClick={() => toggleWishlist(product)}
                 className={`p-2 rounded-lg border transition-colors cursor-pointer ${
-                  inWishlist ? 'bg-sage/30 border-primary/20 text-primary' : 'bg-[#F9FAFB] border-champagne/50 text-taupe hover:text-primary'
+                  inWishlist ? 'bg-sage/30 border-primary/20 text-primary' : 'bg-[#F9FAFB] border-champagne/50 text-muted hover:text-primary'
                 }`}
                 title="Wishlist"
               >
@@ -175,7 +175,7 @@ export const ProductCard = React.memo(({
         className={`absolute top-2 right-2 z-10 p-1 sm:p-1.5 rounded-full border transition-colors cursor-pointer ${
           inWishlist 
             ? 'bg-sage/30 text-primary border-primary/20' 
-            : 'bg-white/90 text-taupe border-champagne/50 hover:text-primary hover:bg-white'
+            : 'bg-white/90 text-muted border-champagne/50 hover:text-primary hover:bg-white'
         }`}
         aria-label="Wishlist"
       >
@@ -224,7 +224,7 @@ export const ProductCard = React.memo(({
       {/* Product Information */}
       <div className="space-y-1 flex-1 flex flex-col justify-between">
         <div>
-          <div className="flex items-center justify-between text-[9px] sm:text-[10px] font-medium text-taupe min-h-[14px]">
+          <div className="flex items-center justify-between text-[9px] sm:text-[10px] font-medium text-muted min-h-[14px]">
             <span className="text-primary font-semibold uppercase tracking-wider truncate max-w-[55%]">{product.brand}</span>
             <RatingStars rating={product.rating} count={product.reviewCount} showNumber={false} size={11} />
           </div>
@@ -250,7 +250,7 @@ export const ProductCard = React.memo(({
               />
             ))}
             {product.variants.length > 3 && (
-              <span className="text-[8px] text-taupe font-medium pl-0.5">
+              <span className="text-[8px] text-muted font-medium pl-0.5">
                 +{product.variants.length - 3}
               </span>
             )}
@@ -261,7 +261,7 @@ export const ProductCard = React.memo(({
         <div className="pt-1.5 flex items-center justify-between mt-auto border-t border-champagne/50/80">
           <div className="flex flex-col">
             {product.compareAtPrice ? (
-              <span className="text-[9px] sm:text-[10px] text-taupe line-through font-medium leading-none mb-0.5">
+              <span className="text-[9px] sm:text-[10px] text-muted line-through font-medium leading-none mb-0.5">
                 {formatPrice(product.compareAtPrice, currencyCode, currencySymbol)}
               </span>
             ) : null}

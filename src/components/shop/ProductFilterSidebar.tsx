@@ -63,7 +63,7 @@ export const ProductFilterSidebar: React.FC<FilterSidebarProps> = ({ onCloseMobi
 
       {/* Quick Search inside Sidebar */}
       <div className="space-y-1.5">
-        <h4 className="text-[11px] font-bold uppercase tracking-wider text-taupe">
+        <h4 className="text-[11px] font-bold uppercase tracking-wider text-muted">
           Quick Search
         </h4>
         <div className="relative">
@@ -80,7 +80,7 @@ export const ProductFilterSidebar: React.FC<FilterSidebarProps> = ({ onCloseMobi
 
       {/* Category Filter */}
       <div className="space-y-2 pt-3 border-t border-champagne/50">
-        <h4 className="text-[11px] font-bold uppercase tracking-wider text-taupe">
+        <h4 className="text-[11px] font-bold uppercase tracking-wider text-muted">
           Category / Department
         </h4>
         <div className="space-y-1">
@@ -107,7 +107,7 @@ export const ProductFilterSidebar: React.FC<FilterSidebarProps> = ({ onCloseMobi
                   }`}
                 >
                   <span>{cat.name}</span>
-                  <span className="text-[10px] bg-sage/20 border border-champagne/40 text-taupe px-2 py-0.5 rounded-full font-medium">
+                  <span className="text-[10px] bg-sage/20 border border-champagne/40 text-muted px-2 py-0.5 rounded-full font-medium">
                     {cat.itemCount}
                   </span>
                 </button>
@@ -140,7 +140,7 @@ export const ProductFilterSidebar: React.FC<FilterSidebarProps> = ({ onCloseMobi
 
       {/* Brand Filter Checkboxes */}
       <div className="space-y-2 pt-3 border-t border-champagne/50">
-        <h4 className="text-[11px] font-bold uppercase tracking-wider text-taupe">
+        <h4 className="text-[11px] font-bold uppercase tracking-wider text-muted">
           Brand
         </h4>
         <div className="space-y-1.5 max-h-48 overflow-y-auto pr-1">
@@ -168,7 +168,7 @@ export const ProductFilterSidebar: React.FC<FilterSidebarProps> = ({ onCloseMobi
 
       {/* Price Range Controls */}
       <div className="space-y-3 pt-3 border-t border-champagne/50">
-        <div className="flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-taupe">
+        <div className="flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-muted">
           <span>Price Range</span>
           <span className="text-primary font-mono font-bold text-xs">
             {formatPrice(filters.minPrice)} - {formatPrice(filters.maxPrice)}
@@ -177,7 +177,7 @@ export const ProductFilterSidebar: React.FC<FilterSidebarProps> = ({ onCloseMobi
 
         <div className="grid grid-cols-2 gap-2">
           <div>
-            <label className="text-[10px] font-medium text-taupe block mb-1">Min (৳)</label>
+            <label className="text-[10px] font-medium text-muted block mb-1">Min (৳)</label>
             <input
               type="number"
               min={0}
@@ -188,7 +188,7 @@ export const ProductFilterSidebar: React.FC<FilterSidebarProps> = ({ onCloseMobi
             />
           </div>
           <div>
-            <label className="text-[10px] font-medium text-taupe block mb-1">Max (৳)</label>
+            <label className="text-[10px] font-medium text-muted block mb-1">Max (৳)</label>
             <input
               type="number"
               min={filters.minPrice}
@@ -213,7 +213,7 @@ export const ProductFilterSidebar: React.FC<FilterSidebarProps> = ({ onCloseMobi
 
       {/* Minimum Rating Filter */}
       <div className="space-y-2 pt-3 border-t border-champagne/50">
-        <h4 className="text-[11px] font-bold uppercase tracking-wider text-taupe">
+        <h4 className="text-[11px] font-bold uppercase tracking-wider text-muted">
           Minimum Rating
         </h4>
         <div className="space-y-1">

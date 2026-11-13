@@ -290,7 +290,7 @@ export const AddressesPage: React.FC = () => {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-champagne/50">
           <div>
             <h1 className="text-xl sm:text-2xl font-bold text-ink tracking-tight">Saved Addresses</h1>
-            <p className="text-taupe text-xs sm:text-sm font-medium mt-1">Manage your delivery and billing locations for faster checkout.</p>
+            <p className="text-muted text-xs sm:text-sm font-medium mt-1">Manage your delivery and billing locations for faster checkout.</p>
           </div>
           <button 
             onClick={handleOpenCreateModal}
@@ -327,7 +327,7 @@ export const AddressesPage: React.FC = () => {
             <AlertCircle size={32} className="text-primary mx-auto" />
             <div className="space-y-1">
               <h3 className="text-sm font-semibold text-ink">Unable to load addresses</h3>
-              <p className="text-xs text-taupe">{error}</p>
+              <p className="text-xs text-muted">{error}</p>
             </div>
             <button
               onClick={fetchAddresses}
@@ -342,12 +342,12 @@ export const AddressesPage: React.FC = () => {
         {/* Empty State */}
         {!isLoading && !error && addresses.length === 0 && (
           <div className="bg-white border border-champagne/50 rounded-xl p-10 text-center space-y-4">
-            <div className="w-12 h-12 bg-[#F9FAFB] border border-champagne/50 rounded-full flex items-center justify-center mx-auto text-taupe">
+            <div className="w-12 h-12 bg-[#F9FAFB] border border-champagne/50 rounded-full flex items-center justify-center mx-auto text-muted">
               <MapPin size={24} className="text-primary" />
             </div>
             <div className="max-w-sm mx-auto space-y-1">
               <h3 className="text-base font-bold text-ink">No saved addresses yet</h3>
-              <p className="text-xs text-taupe leading-relaxed">
+              <p className="text-xs text-muted leading-relaxed">
                 Add your delivery address now to enjoy a smoother and faster checkout experience.
               </p>
             </div>
@@ -382,7 +382,7 @@ export const AddressesPage: React.FC = () => {
                   <div>
                     <div className="flex items-start justify-between gap-3 mb-3">
                       <div className="flex items-center gap-2.5">
-                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${isDefault ? 'bg-primary text-white' : 'bg-[#F9FAFB] text-taupe border border-champagne/50'}`}>
+                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${isDefault ? 'bg-primary text-white' : 'bg-[#F9FAFB] text-muted border border-champagne/50'}`}>
                           {addr.label?.toLowerCase() === 'work' || addr.label?.toLowerCase() === 'office' ? (
                             <Briefcase size={15} />
                           ) : (
@@ -409,14 +409,14 @@ export const AddressesPage: React.FC = () => {
                         <button 
                           onClick={() => handleOpenEditModal(addr)}
                           title="Edit Address"
-                          className="p-1.5 text-taupe hover:text-ink hover:bg-gray-100 rounded-md transition-colors cursor-pointer"
+                          className="p-1.5 text-muted hover:text-ink hover:bg-gray-100 rounded-md transition-colors cursor-pointer"
                         >
                           <Edit2 size={14}/>
                         </button>
                         <button 
                           onClick={() => setDeletingAddress(addr)}
                           title="Delete Address"
-                          className="p-1.5 text-taupe hover:text-primary hover:bg-rose-50 rounded-md transition-colors cursor-pointer"
+                          className="p-1.5 text-muted hover:text-primary hover:bg-rose-50 rounded-md transition-colors cursor-pointer"
                         >
                           <Trash2 size={14}/>
                         </button>
@@ -424,7 +424,7 @@ export const AddressesPage: React.FC = () => {
                     </div>
 
                     {/* Address Content */}
-                    <div className="space-y-1.5 text-xs text-taupe">
+                    <div className="space-y-1.5 text-xs text-muted">
                       <div className="text-sm font-semibold text-ink truncate">
                         {addr.fullName}
                       </div>
@@ -436,7 +436,7 @@ export const AddressesPage: React.FC = () => {
                         <p className="font-medium text-ink">{addr.country}</p>
                       </div>
 
-                      <div className="pt-2 flex flex-col gap-1 text-[11px] font-medium text-taupe">
+                      <div className="pt-2 flex flex-col gap-1 text-[11px] font-medium text-muted">
                         <div className="flex items-center gap-1.5">
                           <Phone size={12} className="text-primary shrink-0" />
                           <span>{addr.phone}</span>
@@ -462,7 +462,7 @@ export const AddressesPage: React.FC = () => {
                       <button
                         onClick={() => handleSetDefault(addr)}
                         disabled={isSettingThisDefault}
-                        className="text-xs font-semibold text-taupe hover:text-primary transition-colors inline-flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+                        className="text-xs font-semibold text-muted hover:text-primary transition-colors inline-flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
                       >
                         {isSettingThisDefault ? (
                           <>
@@ -498,14 +498,14 @@ export const AddressesPage: React.FC = () => {
                 <h3 className="text-base font-bold text-ink">
                   {editingAddress ? 'Edit Address' : 'Add New Address'}
                 </h3>
-                <p className="text-xs text-taupe">
+                <p className="text-xs text-muted">
                   {editingAddress ? 'Update your saved delivery address' : 'Save a new delivery address for checkout'}
                 </p>
               </div>
               <button
                 onClick={handleCloseModal}
                 disabled={isSubmitting}
-                className="p-1.5 text-taupe hover:text-ink rounded-lg transition-colors cursor-pointer"
+                className="p-1.5 text-muted hover:text-ink rounded-lg transition-colors cursor-pointer"
               >
                 <X size={18} />
               </button>
@@ -534,7 +534,7 @@ export const AddressesPage: React.FC = () => {
                         px-3 py-1.5 text-xs font-semibold rounded-lg border transition-colors cursor-pointer flex-1
                         ${formData.label === lbl 
                           ? 'bg-primary text-white border-primary' 
-                          : 'bg-white text-taupe border-champagne/50 hover:bg-gray-50'}
+                          : 'bg-white text-muted border-champagne/50 hover:bg-gray-50'}
                       `}
                     >
                       {lbl}
@@ -577,7 +577,7 @@ export const AddressesPage: React.FC = () => {
               {/* Email */}
               <div>
                 <label className="block text-xs font-semibold text-ink mb-1">
-                  Email Address <span className="text-taupe font-normal">(Optional)</span>
+                  Email Address <span className="text-muted font-normal">(Optional)</span>
                 </label>
                 <input
                   type="email"
@@ -606,7 +606,7 @@ export const AddressesPage: React.FC = () => {
               {/* Address Line 2 */}
               <div>
                 <label className="block text-xs font-semibold text-ink mb-1">
-                  Apartment, Suite, Unit <span className="text-taupe font-normal">(Optional)</span>
+                  Apartment, Suite, Unit <span className="text-muted font-normal">(Optional)</span>
                 </label>
                 <input
                   type="text"
@@ -734,7 +734,7 @@ export const AddressesPage: React.FC = () => {
 
             <div className="space-y-1">
               <h3 className="text-base font-bold text-ink">Delete Saved Address?</h3>
-              <p className="text-xs text-taupe">
+              <p className="text-xs text-muted">
                 Are you sure you want to delete <span className="font-semibold text-ink">{deletingAddress.fullName}</span>'s address? This action cannot be undone.
               </p>
             </div>

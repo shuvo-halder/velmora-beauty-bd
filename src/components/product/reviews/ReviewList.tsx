@@ -51,7 +51,7 @@ export const ReviewList: React.FC<ReviewListProps> = ({
     return (
       <div className="py-12 flex flex-col items-center justify-center space-y-3 bg-[#F9FAFB] border border-champagne/50 rounded-xl text-center">
         <Loader2 size={24} className="animate-spin text-primary" />
-        <p className="text-xs text-taupe">Loading verified reviews...</p>
+        <p className="text-xs text-muted">Loading verified reviews...</p>
       </div>
     );
   }
@@ -59,12 +59,12 @@ export const ReviewList: React.FC<ReviewListProps> = ({
   if (reviews.length === 0) {
     return (
       <div className="text-center py-10 px-4 bg-[#F9FAFB] border border-dashed border-champagne/50 rounded-xl space-y-3">
-        <div className="w-12 h-12 rounded-full bg-white border border-champagne/50 mx-auto flex items-center justify-center text-taupe shadow-2xs">
+        <div className="w-12 h-12 rounded-full bg-white border border-champagne/50 mx-auto flex items-center justify-center text-muted shadow-2xs">
           <MessageSquare size={22} className="text-primary" />
         </div>
         <div className="space-y-1">
           <h5 className="font-bold text-sm text-ink">No customer reviews yet</h5>
-          <p className="text-xs text-taupe max-w-sm mx-auto">
+          <p className="text-xs text-muted max-w-sm mx-auto">
             Be the first to rate and review this product. Upload photos to help other shoppers!
           </p>
         </div>
@@ -148,7 +148,7 @@ export const ReviewList: React.FC<ReviewListProps> = ({
           ))}
         </div>
       ) : (
-        <p className="text-xs text-taupe py-6 text-center">
+        <p className="text-xs text-muted py-6 text-center">
           No reviews match the selected filter.
         </p>
       )}
@@ -166,7 +166,7 @@ export const ReviewList: React.FC<ReviewListProps> = ({
             Previous
           </button>
 
-          <span className="text-taupe font-medium">
+          <span className="text-muted font-medium">
             Page {page} of {totalPages}
           </span>
 

@@ -15,13 +15,13 @@ export const PaymentFailed: React.FC = () => {
         </div>
         
         <h1 className="text-xl font-bold text-ink mb-1.5">Payment Failed</h1>
-        <p className="text-taupe text-xs font-normal mb-6">
+        <p className="text-muted text-xs font-normal mb-6">
           We couldn't process your payment for order <span className="text-ink font-semibold">#{orderId}</span>. No funds were captured.
         </p>
 
         <div className="bg-[#F9FAFB] rounded-lg p-4 mb-6 text-left border border-champagne/50">
           <h4 className="text-xs font-bold text-ink mb-2">Possible Reasons</h4>
-          <ul className="text-xs text-taupe space-y-1.5 list-disc pl-4">
+          <ul className="text-xs text-muted space-y-1.5 list-disc pl-4">
             <li>Insufficient balance in your account</li>
             <li>Incorrect card details or expired card</li>
             <li>Transaction was declined by your bank</li>

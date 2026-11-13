@@ -122,7 +122,7 @@ export const CartDrawer: React.FC = () => {
                   }
                 }}
                 disabled={isClearingCart}
-                className="p-1.5 text-taupe hover:text-primary hover:bg-sage/30 rounded-lg transition-colors cursor-pointer"
+                className="p-1.5 text-muted hover:text-primary hover:bg-sage/30 rounded-lg transition-colors cursor-pointer"
                 title="Clear Entire Cart"
               >
                 {isClearingCart ? <Loader2 size={16} className="animate-spin" /> : <Trash2 size={16} />}
@@ -130,7 +130,7 @@ export const CartDrawer: React.FC = () => {
             )}
             <button
               onClick={() => setIsCartOpen(false)}
-              className="p-1.5 text-taupe hover:text-ink hover:bg-gray-100 rounded-lg transition-colors cursor-pointer"
+              className="p-1.5 text-muted hover:text-ink hover:bg-gray-100 rounded-lg transition-colors cursor-pointer"
             >
               <X size={18} />
             </button>
@@ -150,7 +150,7 @@ export const CartDrawer: React.FC = () => {
                 </span>
               )}
             </span>
-            <span className="text-taupe text-xs font-mono">{shippingPercent}%</span>
+            <span className="text-muted text-xs font-mono">{shippingPercent}%</span>
           </div>
           <div className="w-full h-1.5 bg-[#E5E7EB] rounded-full overflow-hidden">
             <div 
@@ -163,18 +163,18 @@ export const CartDrawer: React.FC = () => {
         {/* Items List */}
         <div className="flex-1 overflow-y-auto p-4 space-y-2 divide-y divide-champagne/50">
           {isLoading ? (
-            <div className="h-full flex flex-col items-center justify-center py-12 text-taupe">
+            <div className="h-full flex flex-col items-center justify-center py-12 text-muted">
               <Loader2 size={28} className="animate-spin text-primary mb-2" />
               <p className="text-xs font-semibold">Synchronizing cart...</p>
             </div>
           ) : cart.items.length === 0 ? (
             <div className="h-full flex flex-col items-center justify-center text-center py-12 px-4 space-y-3">
-              <div className="w-14 h-14 rounded-full bg-[#F9FAFB] border border-champagne/50 flex items-center justify-center text-taupe">
+              <div className="w-14 h-14 rounded-full bg-[#F9FAFB] border border-champagne/50 flex items-center justify-center text-muted">
                 <ShoppingBag size={24} />
               </div>
               <div>
                 <h4 className="font-bold text-ink text-base">Your cart is empty</h4>
-                <p className="text-xs text-taupe mt-1 max-w-xs">
+                <p className="text-xs text-muted mt-1 max-w-xs">
                   Discover quality products and add items to your cart.
                 </p>
               </div>
@@ -221,7 +221,7 @@ export const CartDrawer: React.FC = () => {
                     onChange={(e) => setCouponInput(e.target.value)}
                     className="w-full py-2 pl-8 pr-3 bg-white border border-champagne/50 rounded-lg text-xs uppercase placeholder:normal-case font-medium text-ink focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
                   />
-                  <Tag size={13} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-taupe" />
+                  <Tag size={13} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted" />
                 </div>
                 <button
                   type="submit"
@@ -259,7 +259,7 @@ export const CartDrawer: React.FC = () => {
             </form>
 
             {/* Calculations Breakdown */}
-            <div className="space-y-1.5 text-xs text-taupe pt-1 border-t border-champagne/50">
+            <div className="space-y-1.5 text-xs text-muted pt-1 border-t border-champagne/50">
               <div className="flex justify-between">
                 <span>Subtotal</span>
                 <span className="font-semibold text-ink">{formatPrice(cart.subtotal, currencyCode, currencySymbol)}</span>
@@ -288,7 +288,7 @@ export const CartDrawer: React.FC = () => {
                 <span>Shipping</span>
                 <span className="font-semibold text-ink">
                   {isSessionLoading && cart.shippingFee === undefined ? (
-                    <span className="text-taupe font-normal text-xs flex items-center gap-1 justify-end">
+                    <span className="text-muted font-normal text-xs flex items-center gap-1 justify-end">
                       <Loader2 size={12} className="animate-spin text-primary" /> Calculating...
                     </span>
                   ) : isFreeShipping ? (
@@ -296,7 +296,7 @@ export const CartDrawer: React.FC = () => {
                   ) : cart.shippingFee !== undefined && cart.shippingFee > 0 ? (
                     formatPrice(cart.shippingFee, currencyCode, currencySymbol)
                   ) : (
-                    <span className="text-taupe font-normal text-xs">Calculated at checkout</span>
+                    <span className="text-muted font-normal text-xs">Calculated at checkout</span>
                   )}
                 </span>
               </div>
@@ -334,7 +334,7 @@ export const CartDrawer: React.FC = () => {
               </button>
             </div>
 
-            <div className="text-[11px] text-taupe text-center flex items-center justify-center gap-1">
+            <div className="text-[11px] text-muted text-center flex items-center justify-center gap-1">
               <ShieldCheck size={13} className="text-[#16A34A]" />
               <span>Guaranteed safe & secure checkout</span>
             </div>

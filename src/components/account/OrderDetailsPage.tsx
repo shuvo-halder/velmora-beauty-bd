@@ -1044,7 +1044,7 @@ export const OrderDetailsPage: React.FC = () => {
             </div>
 
             {/* Customer Support Card */}
-            <div className="bg-gray-900 rounded-xl p-5 sm:p-6 text-white shadow-xs">
+            <div className="bg-ink rounded-xl p-5 sm:p-6 text-white shadow-xs">
               <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-300 mb-2">
                 <ShieldCheck size={16} className="text-primary" />
                 <span>Customer Care</span>

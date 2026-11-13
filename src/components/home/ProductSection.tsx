@@ -73,7 +73,7 @@ export const ProductSection: React.FC<ProductSectionProps> = ({
             {title}
           </h2>
           {subtitle && (
-            <p className="text-xs sm:text-sm text-taupe max-w-2xl font-normal leading-relaxed">
+            <p className="text-xs sm:text-sm text-muted max-w-2xl font-normal leading-relaxed">
               {subtitle}
             </p>
           )}
@@ -90,7 +90,7 @@ export const ProductSection: React.FC<ProductSectionProps> = ({
                   className={`px-3 py-1 rounded-md text-xs font-semibold transition-colors cursor-pointer ${
                     activeTabId === tab.id
                       ? 'bg-white text-ink shadow-xs border border-champagne/50'
-                      : 'text-taupe hover:text-ink'
+                      : 'text-muted hover:text-ink'
                   }`}
                 >
                   {tab.label}
@@ -136,7 +136,7 @@ export const ProductSection: React.FC<ProductSectionProps> = ({
           ))}
         </div>
       ) : (
-        <div className="bg-[#F9FAFB] border border-champagne/50 rounded-xl p-8 text-center text-taupe">
+        <div className="bg-[#F9FAFB] border border-champagne/50 rounded-xl p-8 text-center text-muted">
           <p className="text-xs font-semibold">No products found in this section.</p>
         </div>
       )}

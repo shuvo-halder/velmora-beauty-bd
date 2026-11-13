@@ -402,7 +402,7 @@ export const CheckoutPage: React.FC = () => {
     return (
       <div className="py-24 flex flex-col items-center justify-center space-y-3">
         <Loader2 size={32} className="animate-spin text-primary" />
-        <p className="text-xs text-taupe font-semibold">Synchronizing secure checkout...</p>
+        <p className="text-xs text-muted font-semibold">Synchronizing secure checkout...</p>
       </div>
     );
   }
@@ -410,11 +410,11 @@ export const CheckoutPage: React.FC = () => {
   if (cart.items.length === 0 && !isSubmitting) {
     return (
       <div className="py-20 text-center max-w-md mx-auto px-4">
-        <div className="w-14 h-14 bg-[#F9FAFB] rounded-full flex items-center justify-center mx-auto text-taupe mb-4 border border-champagne/50">
+        <div className="w-14 h-14 bg-[#F9FAFB] rounded-full flex items-center justify-center mx-auto text-muted mb-4 border border-champagne/50">
           <ShoppingBag size={24} />
         </div>
         <h2 className="text-lg font-bold text-ink">Your cart is empty</h2>
-        <p className="text-xs text-taupe mt-1 mb-5">Add items to your cart before proceeding to checkout.</p>
+        <p className="text-xs text-muted mt-1 mb-5">Add items to your cart before proceeding to checkout.</p>
         <button 
           onClick={() => navigateTo('shop')}
           className="px-6 py-2.5 bg-primary hover:bg-primary-hover text-white rounded-lg text-xs font-bold transition-colors shadow-xs"
@@ -434,7 +434,7 @@ export const CheckoutPage: React.FC = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <button 
             onClick={() => navigateTo('cart')} 
-            className="flex items-center gap-1.5 text-xs font-semibold text-taupe hover:text-ink transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 text-xs font-semibold text-muted hover:text-ink transition-colors cursor-pointer"
           >
             <ArrowLeft size={16} />
             <span className="hidden sm:inline">Back to Cart</span>
@@ -446,7 +446,7 @@ export const CheckoutPage: React.FC = () => {
           
           <div className="flex items-center gap-1.5">
             <ShieldCheck className="text-emerald-600 hidden sm:block" size={16} />
-            <span className="text-[10px] sm:text-xs font-semibold text-taupe uppercase tracking-wider">
+            <span className="text-[10px] sm:text-xs font-semibold text-muted uppercase tracking-wider">
               <span className="hidden sm:inline">SSL </span>Secure
             </span>
           </div>
@@ -510,7 +510,7 @@ export const CheckoutPage: React.FC = () => {
                     <div className="flex-1 min-w-0">
                       <h4 className="text-xs font-bold text-ink truncate">{item.product.name}</h4>
                       {item.selectedVariant && (
-                        <p className="text-[11px] text-taupe mt-0.5">{item.selectedVariant.name}</p>
+                        <p className="text-[11px] text-muted mt-0.5">{item.selectedVariant.name}</p>
                       )}
                       
                       <div className="flex items-center gap-3 mt-2">
@@ -523,7 +523,7 @@ export const CheckoutPage: React.FC = () => {
                         <button
                           type="button"
                           onClick={() => removeCartItem(item.id)}
-                          className="text-taupe hover:text-primary cursor-pointer"
+                          className="text-muted hover:text-primary cursor-pointer"
                           title="Remove item"
                         >
                           <Trash2 size={14} />
@@ -535,7 +535,7 @@ export const CheckoutPage: React.FC = () => {
                         {formatPrice(item.totalPrice, currency, currencySymbol)}
                       </div>
                       {item.quantity > 1 && (
-                        <div className="text-[10px] text-taupe mt-1">
+                        <div className="text-[10px] text-muted mt-1">
                           {formatPrice(item.unitPrice, currency, currencySymbol)} each
                         </div>
                       )}
@@ -616,7 +616,7 @@ export const CheckoutPage: React.FC = () => {
                 
                 {/* Breakdown */}
                 <div className="space-y-3 pb-4 border-b border-champagne/50 text-sm">
-                  <div className="flex justify-between text-taupe">
+                  <div className="flex justify-between text-muted">
                     <span>Subtotal</span>
                     <span className="font-semibold text-ink">{formatPrice(cart.subtotal, currency, currencySymbol)}</span>
                   </div>
@@ -628,11 +628,11 @@ export const CheckoutPage: React.FC = () => {
                     </div>
                   )}
                   
-                  <div className="flex justify-between text-taupe">
+                  <div className="flex justify-between text-muted">
                     <span>Shipping</span>
                     <span className="font-semibold text-ink">
                       {isSessionLoading ? (
-                        <span className="text-xs text-taupe italic flex items-center gap-1">
+                        <span className="text-xs text-muted italic flex items-center gap-1">
                           <Loader2 size={12} className="animate-spin text-primary" /> Calculating...
                         </span>
                       ) : isFreeShipping ? (
@@ -642,16 +642,16 @@ export const CheckoutPage: React.FC = () => {
                       ) : cart.shippingFee !== undefined && cart.shippingFee > 0 ? (
                         formatPrice(cart.shippingFee, currency, currencySymbol)
                       ) : (
-                        <span className="text-xs text-taupe font-normal">Calculated at checkout</span>
+                        <span className="text-xs text-muted font-normal">Calculated at checkout</span>
                       )}
                     </span>
                   </div>
                   
-                  <div className="flex justify-between text-taupe">
+                  <div className="flex justify-between text-muted">
                     <span>Estimated Tax ({taxPercentDisplay}%)</span>
                     <span className="font-semibold text-ink">
                       {isSessionLoading ? (
-                        <span className="text-xs text-taupe italic flex items-center gap-1">
+                        <span className="text-xs text-muted italic flex items-center gap-1">
                           <Loader2 size={12} className="animate-spin text-primary" /> Calculating...
                         </span>
                       ) : (
@@ -679,7 +679,7 @@ export const CheckoutPage: React.FC = () => {
                   <span className="text-base font-bold text-ink">Total Amount</span>
                   <span className="text-xl font-bold text-primary">
                     {isSessionLoading ? (
-                      <span className="text-sm font-normal italic text-taupe flex items-center gap-1">
+                      <span className="text-sm font-normal italic text-muted flex items-center gap-1">
                         <Loader2 size={14} className="animate-spin text-primary" /> Calculating...
                       </span>
                     ) : (
@@ -696,7 +696,7 @@ export const CheckoutPage: React.FC = () => {
                   onClick={() => setIsCouponExpanded(!isCouponExpanded)}
                   className="flex items-center gap-2 text-xs font-semibold text-ink hover:text-primary transition-colors w-full text-left cursor-pointer"
                 >
-                  <Tag size={15} className="text-taupe" />
+                  <Tag size={15} className="text-muted" />
                   <span>Have a promo coupon or gift code?</span>
                 </button>
                 
@@ -736,7 +736,7 @@ export const CheckoutPage: React.FC = () => {
                         </div>
                         {availableCoupons && availableCoupons.length > 0 && (
                           <div className="pt-1">
-                            <p className="text-[11px] text-taupe mb-1 font-medium">Available Offers:</p>
+                            <p className="text-[11px] text-muted mb-1 font-medium">Available Offers:</p>
                             <div className="flex flex-wrap gap-1.5">
                               {availableCoupons.map((c) => (
                                 <button
@@ -763,7 +763,7 @@ export const CheckoutPage: React.FC = () => {
               
               {/* Customer Note */}
               <div className="bg-[#F9FAFB] border-t border-champagne/50 p-5">
-                <label className="block text-xs font-semibold text-ink mb-1.5">Order Notes <span className="text-[11px] font-normal text-taupe">(Optional)</span></label>
+                <label className="block text-xs font-semibold text-ink mb-1.5">Order Notes <span className="text-[11px] font-normal text-muted">(Optional)</span></label>
                 <textarea
                   {...register('orderNotes')}
                   className="w-full px-3 py-2 bg-white border border-champagne/50 rounded-lg text-xs text-ink focus:outline-none focus:border-primary resize-none"
@@ -780,7 +780,7 @@ export const CheckoutPage: React.FC = () => {
                     required
                     className="mt-0.5 w-4 h-4 rounded text-primary border-champagne/50 focus:ring-primary accent-primary"
                   />
-                  <span className="text-[11px] text-taupe leading-tight">
+                  <span className="text-[11px] text-muted leading-tight">
                     I agree to the <a href="/terms" className="text-primary hover:underline font-medium" target="_blank">Terms & Conditions</a>, <a href="/privacy" className="text-primary hover:underline font-medium" target="_blank">Privacy Policy</a>, and <a href="/refund-policy" className="text-primary hover:underline font-medium" target="_blank">Return Policy</a>.
                   </span>
                 </label>

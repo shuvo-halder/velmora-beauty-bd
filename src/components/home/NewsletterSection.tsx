@@ -44,7 +44,7 @@ export const NewsletterSection: React.FC = () => {
               Subscribe for Deals & Updates
             </h2>
 
-            <p className="text-xs sm:text-sm text-taupe font-normal leading-relaxed">
+            <p className="text-xs sm:text-sm text-muted font-normal leading-relaxed">
               Get exclusive access to new arrivals, special promotions, and private discounts directly in your inbox.
             </p>
           </div>
@@ -53,7 +53,7 @@ export const NewsletterSection: React.FC = () => {
             <div className="p-6 bg-white border border-champagne/50 rounded-xl space-y-2">
               <CheckCircle2 size={32} className="text-[#16A34A] mx-auto" />
               <h4 className="font-bold text-lg text-ink">You're on the list</h4>
-              <p className="text-xs text-taupe">
+              <p className="text-xs text-muted">
                 Check your inbox for your welcome discount code.
               </p>
             </div>
@@ -77,7 +77,7 @@ export const NewsletterSection: React.FC = () => {
                   Subscribe
                 </button>
               </div>
-              <p className="text-xs text-taupe">
+              <p className="text-xs text-muted">
                 No spam. You can unsubscribe at any time.
               </p>
             </form>

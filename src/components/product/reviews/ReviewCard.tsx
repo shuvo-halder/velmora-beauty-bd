@@ -56,7 +56,7 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({
                 </span>
               )}
             </div>
-            <span className="text-[11px] text-taupe">{review.date}</span>
+            <span className="text-[11px] text-muted">{review.date}</span>
           </div>
         </div>
 

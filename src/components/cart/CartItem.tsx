@@ -60,7 +60,7 @@ export const CartItem = React.memo<CartItemProps>(({
             >
               {item.product.name}
             </h4>
-            <div className="text-[11px] text-taupe font-normal">
+            <div className="text-[11px] text-muted font-normal">
               Brand: {item.product.brand}
             </div>
             {item.selectedVariant && (
@@ -75,7 +75,7 @@ export const CartItem = React.memo<CartItemProps>(({
           <button
             onClick={() => onRemove(item.id)}
             disabled={isRemoving}
-            className="text-taupe hover:text-primary p-1 transition-colors disabled:opacity-40 cursor-pointer"
+            className="text-muted hover:text-primary p-1 transition-colors disabled:opacity-40 cursor-pointer"
             title="Remove from cart"
           >
             <Trash2 size={15} />
@@ -96,7 +96,7 @@ export const CartItem = React.memo<CartItemProps>(({
               {formatPrice(item.totalPrice, currencyCode, currencySymbol)}
             </div>
             {item.quantity > 1 && (
-              <div className="text-[10px] text-taupe font-normal">
+              <div className="text-[10px] text-muted font-normal">
                 {formatPrice(item.unitPrice, currencyCode, currencySymbol)} / unit
               </div>
             )}

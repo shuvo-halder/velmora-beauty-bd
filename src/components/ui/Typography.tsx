@@ -97,7 +97,7 @@ export const TextSmall: React.FC<TypographyProps> = ({
   ...props
 }) => (
   <Component
-    className={`text-xs sm:text-sm text-taupe font-medium leading-normal ${className}`}
+    className={`text-xs sm:text-sm text-muted font-medium leading-normal ${className}`}
     {...props}
   >
     {children}
@@ -111,7 +111,7 @@ export const TextCaption: React.FC<TypographyProps> = ({
   ...props
 }) => (
   <Component
-    className={`text-xs text-taupe font-normal leading-tight ${className}`}
+    className={`text-xs text-muted font-normal leading-tight ${className}`}
     {...props}
   >
     {children}

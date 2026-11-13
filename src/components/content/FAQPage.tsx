@@ -148,18 +148,18 @@ export const FAQPage: React.FC = () => {
         </div>
 
         {/* Footer Support */}
-        <div className="bg-slate-900 rounded-[48px] p-8 sm:p-12 text-center space-y-6 shadow-2xl shadow-slate-900/20">
+        <div className="bg-ink rounded-[48px] p-8 sm:p-12 text-center space-y-6 shadow-2xl shadow-ink/20">
           <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto text-white shadow-xl shadow-primary/30">
             <MessageCircle size={32} />
           </div>
           <div className="space-y-2">
             <h3 className="text-2xl font-black text-white">Still have questions?</h3>
-            <p className="text-slate-400 font-medium max-w-sm mx-auto">Our support team is available to help with any product or order questions.</p>
+            <p className="text-gray-300 font-medium max-w-sm mx-auto">Our support team is available to help with any product or order questions.</p>
           </div>
           <div className="pt-4">
             <button 
               onClick={() => navigateTo('cms-page', { cmsPageType: 'contact-us' })}
-              className="px-8 py-4 bg-white text-slate-900 font-black rounded-2xl uppercase tracking-widest text-xs hover:bg-primary hover:text-white transition-all transform hover:scale-105"
+              className="px-8 py-4 bg-white text-ink font-black rounded-2xl uppercase tracking-widest text-xs hover:bg-primary hover:text-white transition-all transform hover:scale-105"
             >
               Contact Support Team
             </button>

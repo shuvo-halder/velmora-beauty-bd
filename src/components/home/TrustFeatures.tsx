@@ -57,7 +57,7 @@ export const TrustFeatures: React.FC = () => {
                 <span className="text-xs font-semibold text-ink leading-snug">
                   {feature.title}
                 </span>
-                <span className="text-[11px] text-taupe font-normal leading-tight">
+                <span className="text-[11px] text-muted font-normal leading-tight">
                   {feature.description}
                 </span>
               </div>

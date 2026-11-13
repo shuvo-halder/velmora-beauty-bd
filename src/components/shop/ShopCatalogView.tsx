@@ -279,7 +279,7 @@ export const ShopCatalogView: React.FC = () => {
           </div>
 
           <div className="text-right">
-            <span className="text-[11px] font-bold text-taupe uppercase tracking-wider block">Catalog Range</span>
+            <span className="text-[11px] font-bold text-muted uppercase tracking-wider block">Catalog Range</span>
             <div className="text-xl sm:text-2xl font-bold text-ink font-mono">
               {totalCount > 0 ? `${startIndex}–${endIndex} of ${totalCount}` : '0 Items'}
             </div>
@@ -289,7 +289,7 @@ export const ShopCatalogView: React.FC = () => {
         {/* Active Filters Bar */}
         {(filters.categorySlug || filters.brandSlugs.length > 0 || filters.searchQuery || filters.minPrice > 0 || filters.maxPrice < 1000 || filters.ratingMin > 0 || filters.inStockOnly) && (
           <div className="mb-6 flex flex-wrap items-center gap-2 bg-white p-3.5 border border-champagne/50 rounded-xl shadow-xs">
-            <span className="text-xs font-bold text-taupe uppercase tracking-wider mr-1">
+            <span className="text-xs font-bold text-muted uppercase tracking-wider mr-1">
               Active Filters:
             </span>
 
@@ -373,7 +373,7 @@ export const ShopCatalogView: React.FC = () => {
 
           {/* Sorting Dropdown */}
           <div className="flex items-center gap-2">
-            <span className="text-xs font-bold text-taupe uppercase tracking-wider hidden sm:inline">
+            <span className="text-xs font-bold text-muted uppercase tracking-wider hidden sm:inline">
               Sort By:
             </span>
             <div className="relative">
@@ -400,7 +400,7 @@ export const ShopCatalogView: React.FC = () => {
             <button
               onClick={() => setViewMode('grid')}
               className={`p-2 rounded-md transition-colors cursor-pointer ${
-                viewMode === 'grid' ? 'bg-white text-primary shadow-xs font-bold' : 'text-taupe hover:text-ink'
+                viewMode === 'grid' ? 'bg-white text-primary shadow-xs font-bold' : 'text-muted hover:text-ink'
               }`}
               title="Grid View"
             >
@@ -409,7 +409,7 @@ export const ShopCatalogView: React.FC = () => {
             <button
               onClick={() => setViewMode('list')}
               className={`p-2 rounded-md transition-colors cursor-pointer ${
-                viewMode === 'list' ? 'bg-white text-primary shadow-xs font-bold' : 'text-taupe hover:text-ink'
+                viewMode === 'list' ? 'bg-white text-primary shadow-xs font-bold' : 'text-muted hover:text-ink'
               }`}
               title="List View"
             >
@@ -449,7 +449,7 @@ export const ShopCatalogView: React.FC = () => {
                   <AlertTriangle size={24} />
                 </div>
                 <h3 className="text-base font-bold text-ink">Catalog Loading Error</h3>
-                <p className="text-xs text-taupe max-w-md mx-auto leading-relaxed">{error}</p>
+                <p className="text-xs text-muted max-w-md mx-auto leading-relaxed">{error}</p>
                 <button
                   onClick={fetchProducts}
                   className="px-5 py-2.5 bg-primary hover:bg-primary-hover text-white font-semibold text-xs rounded-lg transition-colors cursor-pointer inline-flex items-center gap-2 shadow-xs"
@@ -461,11 +461,11 @@ export const ShopCatalogView: React.FC = () => {
             ) : products.length === 0 ? (
               /* Empty State */
               <div className="bg-white border border-champagne/50 rounded-xl p-12 text-center space-y-4 shadow-xs">
-                <div className="w-16 h-16 rounded-xl bg-[#F9FAFB] border border-champagne/50 flex items-center justify-center text-taupe mx-auto">
+                <div className="w-16 h-16 rounded-xl bg-[#F9FAFB] border border-champagne/50 flex items-center justify-center text-muted mx-auto">
                   <PackageX size={32} />
                 </div>
                 <h3 className="text-lg font-bold text-ink">No products match your criteria</h3>
-                <p className="text-xs text-taupe max-w-sm mx-auto leading-relaxed font-medium">
+                <p className="text-xs text-muted max-w-sm mx-auto leading-relaxed font-medium">
                   We couldn't find any products matching your current filter settings. Try adjusting your search query, price range, or category filter.
                 </p>
                 <div className="pt-2">
@@ -516,7 +516,7 @@ export const ShopCatalogView: React.FC = () => {
                 {/* Pagination Controls */}
                 {totalPages > 1 && (
                   <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-champagne/50">
-                    <div className="text-xs text-taupe font-medium">
+                    <div className="text-xs text-muted font-medium">
                       Showing <span className="font-bold text-ink">{startIndex}</span> to <span className="font-bold text-ink">{endIndex}</span> of <span className="font-bold text-ink">{totalCount}</span> items
                     </div>
 
@@ -581,7 +581,7 @@ export const ShopCatalogView: React.FC = () => {
                 <h3 className="font-bold text-base text-ink">Filter Catalog</h3>
                 <button 
                   onClick={() => setIsMobileFilterOpen(false)} 
-                  className="p-1.5 text-taupe hover:text-ink rounded-lg cursor-pointer"
+                  className="p-1.5 text-muted hover:text-ink rounded-lg cursor-pointer"
                 >
                   <X size={20} />
                 </button>

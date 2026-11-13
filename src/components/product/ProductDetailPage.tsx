@@ -255,7 +255,7 @@ export const ProductDetailPage: React.FC = () => {
             <AlertCircle size={28} />
           </div>
           <h2 className="text-xl font-bold text-ink">Product Unavailable</h2>
-          <p className="text-xs text-taupe leading-relaxed">
+          <p className="text-xs text-muted leading-relaxed">
             {error || "The requested item slug could not be located in our inventory."}
           </p>
           <div className="pt-2">
@@ -427,7 +427,7 @@ export const ProductDetailPage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         
         {/* Breadcrumb Navigation */}
-        <nav className="flex items-center gap-2 text-xs text-taupe font-medium overflow-x-auto pb-1">
+        <nav className="flex items-center gap-2 text-xs text-muted font-medium overflow-x-auto pb-1">
           <button onClick={() => navigateTo('home')} className="hover:text-primary transition-colors cursor-pointer">
             Home
           </button>
@@ -597,7 +597,7 @@ export const ProductDetailPage: React.FC = () => {
                     Read Reviews
                   </button>
                 </div>
-                <span className="text-xs font-mono text-taupe">
+                <span className="text-xs font-mono text-muted">
                   SKU: <span className="font-semibold text-ink">{activeSKU}</span>
                 </span>
               </div>
@@ -608,7 +608,7 @@ export const ProductDetailPage: React.FC = () => {
                   {formatPrice(activePrice, currencyCode, currencySymbol)}
                 </span>
                 {activeComparePrice && activeComparePrice > activePrice && (
-                  <span className="text-base font-medium text-taupe line-through">
+                  <span className="text-base font-medium text-muted line-through">
                     {formatPrice(activeComparePrice, currencyCode, currencySymbol)}
                   </span>
                 )}
@@ -620,7 +620,7 @@ export const ProductDetailPage: React.FC = () => {
               </div>
 
               {product.subtitle && (
-                <p className="text-xs sm:text-sm text-taupe leading-relaxed pt-1 line-clamp-3">
+                <p className="text-xs sm:text-sm text-muted leading-relaxed pt-1 line-clamp-3">
                   {product.subtitle}
                 </p>
               )}
@@ -631,7 +631,7 @@ export const ProductDetailPage: React.FC = () => {
               <div className="space-y-2.5 pt-3 border-t border-champagne/50">
                 <div className="flex items-center justify-between text-xs">
                   <span className="font-bold text-ink">Select Option:</span>
-                  <span className="text-taupe">{selectedVariant?.name}</span>
+                  <span className="text-muted">{selectedVariant?.name}</span>
                 </div>
 
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -656,7 +656,7 @@ export const ProductDetailPage: React.FC = () => {
                             />
                           )}
                         </div>
-                        <div className="text-taupe text-[11px] flex items-center justify-between">
+                        <div className="text-muted text-[11px] flex items-center justify-between">
                           <span>{formatPrice(v.price, currencyCode, currencySymbol)}</span>
                           {v.stock === 0 && <span className="text-[#DC2626] text-[10px]">Out of stock</span>}
                         </div>
@@ -676,7 +676,7 @@ export const ProductDetailPage: React.FC = () => {
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
                     disabled={activeStock === 0}
-                    className="px-3 py-2 text-taupe hover:bg-[#F9FAFB] rounded-l-lg transition-colors font-bold disabled:opacity-40 cursor-pointer"
+                    className="px-3 py-2 text-muted hover:bg-[#F9FAFB] rounded-l-lg transition-colors font-bold disabled:opacity-40 cursor-pointer"
                   >
                     <Minus size={13} />
                   </button>
@@ -686,7 +686,7 @@ export const ProductDetailPage: React.FC = () => {
                   <button
                     onClick={() => setQuantity(Math.min(activeStock, quantity + 1))}
                     disabled={activeStock === 0 || quantity >= activeStock}
-                    className="px-3 py-2 text-taupe hover:bg-[#F9FAFB] rounded-r-lg transition-colors font-bold disabled:opacity-40 cursor-pointer"
+                    className="px-3 py-2 text-muted hover:bg-[#F9FAFB] rounded-r-lg transition-colors font-bold disabled:opacity-40 cursor-pointer"
                   >
                     <Plus size={13} />
                   </button>
@@ -716,7 +716,7 @@ export const ProductDetailPage: React.FC = () => {
                   <button
                     onClick={() => toggleWishlist(product)}
                     className={`p-2.5 rounded-lg border transition-colors cursor-pointer min-h-[42px] min-w-[42px] flex items-center justify-center ${
-                      inWishlist ? 'bg-sage/30 border-primary/30 text-primary' : 'bg-white border-champagne/50 text-taupe hover:text-primary'
+                      inWishlist ? 'bg-sage/30 border-primary/30 text-primary' : 'bg-white border-champagne/50 text-muted hover:text-primary'
                     }`}
                     title={inWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}
                   >
@@ -725,7 +725,7 @@ export const ProductDetailPage: React.FC = () => {
 
                   <button
                     onClick={handleShare}
-                    className="p-2.5 bg-white border border-champagne/50 text-taupe hover:text-ink rounded-lg transition-colors cursor-pointer min-h-[42px] min-w-[42px] flex items-center justify-center"
+                    className="p-2.5 bg-white border border-champagne/50 text-muted hover:text-ink rounded-lg transition-colors cursor-pointer min-h-[42px] min-w-[42px] flex items-center justify-center"
                     title="Share Canonical Link"
                   >
                     <Share2 size={16} />
@@ -776,7 +776,7 @@ export const ProductDetailPage: React.FC = () => {
                 className={`pb-3 border-b-2 transition-colors cursor-pointer whitespace-nowrap ${
                   activeTab === tab.id 
                     ? 'border-primary text-primary' 
-                    : 'border-transparent text-taupe hover:text-ink'
+                    : 'border-transparent text-muted hover:text-ink'
                 }`}
               >
                 {tab.label}
@@ -817,7 +817,7 @@ export const ProductDetailPage: React.FC = () => {
               <div className="bg-[#F9FAFB] border border-champagne/50 rounded-lg overflow-hidden divide-y divide-champagne/50 text-xs">
                 {product.specifications?.map((spec, i) => (
                   <div key={i} className="py-2.5 px-4 flex justify-between gap-4 odd:bg-white">
-                    <span className="font-medium text-taupe w-1/3">{spec.key}</span>
+                    <span className="font-medium text-muted w-1/3">{spec.key}</span>
                     <span className="font-semibold text-ink w-2/3 text-right">{spec.value}</span>
                   </div>
                 ))}
@@ -866,7 +866,7 @@ export const ProductDetailPage: React.FC = () => {
                           className="w-full flex items-center justify-between gap-4 p-4 sm:p-4.5 text-left font-semibold text-xs sm:text-sm text-ink hover:bg-[#F9FAFB] transition-colors focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer"
                         >
                           <span className="flex-1 leading-snug">{faq.question}</span>
-                          <span className="p-1 rounded-md bg-[#F3F4F6] text-taupe shrink-0">
+                          <span className="p-1 rounded-md bg-[#F3F4F6] text-muted shrink-0">
                             {isOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                           </span>
                         </button>
@@ -880,7 +880,7 @@ export const ProductDetailPage: React.FC = () => {
                   })}
                 </div>
               ) : (
-                <div className="p-6 text-center text-xs sm:text-sm text-taupe bg-[#F9FAFB] border border-champagne/50 rounded-lg">
+                <div className="p-6 text-center text-xs sm:text-sm text-muted bg-[#F9FAFB] border border-champagne/50 rounded-lg">
                   No questions or answers have been added for this product yet.
                 </div>
               )}
@@ -894,7 +894,7 @@ export const ProductDetailPage: React.FC = () => {
           <div className="space-y-4 pt-10 border-t border-champagne/50 mt-8">
             <div className="flex flex-col mb-6">
               <h3 className="text-xl sm:text-2xl font-bold text-ink tracking-tight">Related Products</h3>
-              <span className="text-sm font-medium text-taupe block mt-1">You may also like these products</span>
+              <span className="text-sm font-medium text-muted block mt-1">You may also like these products</span>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-3.5">

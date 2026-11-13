@@ -39,7 +39,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
         <div className="relative flex items-center">
           {leftIcon && (
-            <div className="absolute left-3.5 pointer-events-none text-taupe">
+            <div className="absolute left-3.5 pointer-events-none text-muted">
               {leftIcon}
             </div>
           )}
@@ -71,7 +71,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         )}
 
         {!error && helperText && (
-          <p className="text-xs text-taupe">{helperText}</p>
+          <p className="text-xs text-muted">{helperText}</p>
         )}
       </div>
     );

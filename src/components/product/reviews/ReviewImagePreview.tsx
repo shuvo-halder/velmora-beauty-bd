@@ -50,7 +50,7 @@ export const ReviewImagePreview: React.FC<ReviewImagePreviewProps> = ({
           <ImageIcon size={14} className="text-primary" />
           Selected Photos
         </span>
-        <span className="font-medium text-taupe">
+        <span className="font-medium text-muted">
           {files.length} / {MAX_REVIEW_IMAGES} photos
         </span>
       </div>

@@ -23,7 +23,7 @@ export const OrderReview: React.FC<OrderReviewProps> = ({ cart, formData }) => {
         <div className="space-y-2.5">
           {cart.items.map((item) => (
             <div key={item.id} className="flex justify-between items-center text-xs">
-              <span className="text-taupe font-medium truncate max-w-[240px]">
+              <span className="text-muted font-medium truncate max-w-[240px]">
                 {item.product.name} <span className="text-ink font-semibold">× {item.quantity}</span>
               </span>
               <span className="font-semibold text-ink">{formatPrice(item.totalPrice)}</span>
@@ -39,7 +39,7 @@ export const OrderReview: React.FC<OrderReviewProps> = ({ cart, formData }) => {
             <MapPin size={14} className="text-primary" />
             <span className="text-xs font-bold text-ink">Delivery Address</span>
           </div>
-          <div className="text-xs text-taupe leading-relaxed">
+          <div className="text-xs text-muted leading-relaxed">
             <div className="text-ink font-semibold mb-0.5">{formData.shippingAddress.fullName}</div>
             <div>{formData.shippingAddress.addressLine1}</div>
             <div>{formData.shippingAddress.city}, {formData.shippingAddress.state} {formData.shippingAddress.postalCode}</div>
@@ -53,7 +53,7 @@ export const OrderReview: React.FC<OrderReviewProps> = ({ cart, formData }) => {
             <Wallet size={14} className="text-primary" />
             <span className="text-xs font-bold text-ink">Payment & Method</span>
           </div>
-          <div className="text-xs text-taupe space-y-1">
+          <div className="text-xs text-muted space-y-1">
             <div className="flex justify-between">
               <span>Payment:</span>
               <span className="text-ink font-semibold uppercase">{formData.paymentMethod}</span>

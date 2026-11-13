@@ -41,13 +41,13 @@ export const PaymentStep: React.FC<PaymentStepProps> = ({ register, watch }) => 
               className="hidden"
             />
             
-            <div className={`p-2 rounded-md ${isActive ? 'bg-primary text-white' : 'bg-[#F9FAFB] text-taupe border border-champagne/50'}`}>
+            <div className={`p-2 rounded-md ${isActive ? 'bg-primary text-white' : 'bg-[#F9FAFB] text-muted border border-champagne/50'}`}>
               <Icon size={18} />
             </div>
             
             <div className="flex-1">
               <div className="text-xs font-bold text-ink">{method.name}</div>
-              <div className="text-[11px] text-taupe">{method.description}</div>
+              <div className="text-[11px] text-muted">{method.description}</div>
             </div>
             
             <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${isActive ? 'border-primary' : 'border-champagne/50'}`}>

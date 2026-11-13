@@ -58,11 +58,11 @@ export const PaymentPending: React.FC = () => {
             </div>
             
             <h1 className="text-xl font-bold text-ink mb-1.5">Verifying Payment...</h1>
-            <p className="text-taupe text-xs font-normal mb-6 leading-relaxed">
+            <p className="text-muted text-xs font-normal mb-6 leading-relaxed">
               We are connecting with the payment gateway to confirm your transaction for Order <span className="text-ink font-semibold">#{orderId}</span>.
             </p>
 
-            <div className="p-3 bg-[#F9FAFB] border border-champagne/50 rounded-lg flex items-center justify-center gap-2 text-taupe text-xs font-medium mb-6">
+            <div className="p-3 bg-[#F9FAFB] border border-champagne/50 rounded-lg flex items-center justify-center gap-2 text-muted text-xs font-medium mb-6">
               <ShieldCheck size={16} className="text-emerald-500" />
               <span>Verifying with Payment Provider</span>
             </div>
@@ -74,7 +74,7 @@ export const PaymentPending: React.FC = () => {
             </div>
 
             <h1 className="text-xl font-bold text-ink mb-1.5">Payment Awaiting Confirmation</h1>
-            <p className="text-taupe text-xs font-normal mb-6 leading-relaxed">
+            <p className="text-muted text-xs font-normal mb-6 leading-relaxed">
               Your transaction is being processed by the provider. You can check back shortly or view your order history.
             </p>
 
@@ -94,7 +94,7 @@ export const PaymentPending: React.FC = () => {
             </div>
 
             <h1 className="text-xl font-bold text-ink mb-1.5">Verification Error</h1>
-            <p className="text-taupe text-xs font-normal mb-6 leading-relaxed">
+            <p className="text-muted text-xs font-normal mb-6 leading-relaxed">
               {errorMessage || 'Unable to verify payment status.'}
             </p>
 
@@ -113,7 +113,7 @@ export const PaymentPending: React.FC = () => {
           </>
         )}
 
-        <div className="mt-6 pt-5 border-t border-champagne/50 flex items-center justify-center gap-1.5 text-taupe text-[11px] font-medium">
+        <div className="mt-6 pt-5 border-t border-champagne/50 flex items-center justify-center gap-1.5 text-muted text-[11px] font-medium">
           <Lock size={12} />
           <span>PCI-DSS Compliant Gateway</span>
         </div>

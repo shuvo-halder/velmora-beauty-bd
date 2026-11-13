@@ -37,7 +37,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               </label>
             )}
             {description && (
-              <p className="text-taupe mt-0.5">{description}</p>
+              <p className="text-muted mt-0.5">{description}</p>
             )}
           </div>
         )}

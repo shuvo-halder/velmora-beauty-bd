@@ -91,11 +91,11 @@ export const CartPage: React.FC = () => {
     return (
       <div className="py-16 bg-bg min-h-screen flex items-center justify-center">
         <div className="max-w-md w-full bg-white border border-champagne/50 rounded-xl p-8 text-center space-y-4 shadow-xs">
-          <div className="w-16 h-16 bg-[#F9FAFB] border border-champagne/50 rounded-full flex items-center justify-center text-taupe mx-auto">
+          <div className="w-16 h-16 bg-[#F9FAFB] border border-champagne/50 rounded-full flex items-center justify-center text-muted mx-auto">
             <ShoppingBag size={28} />
           </div>
           <h2 className="text-xl font-bold text-ink">Your Cart is Empty</h2>
-          <p className="text-xs text-taupe">
+          <p className="text-xs text-muted">
             Browse our catalog to discover quality products and latest arrivals.
           </p>
           <button
@@ -119,7 +119,7 @@ export const CartPage: React.FC = () => {
             <h1 className="text-2xl sm:text-3xl font-bold text-ink tracking-tight">
               Shopping Cart ({totalItemCount} Items)
             </h1>
-            <p className="text-xs text-taupe mt-1">
+            <p className="text-xs text-muted mt-1">
               Review items, apply promo codes, and proceed to checkout.
             </p>
           </div>
@@ -132,7 +132,7 @@ export const CartPage: React.FC = () => {
                 }
               }}
               disabled={isClearingCart}
-              className="px-3.5 py-2 text-taupe hover:text-primary border border-champagne/50 hover:border-primary/30 bg-white rounded-lg text-xs font-semibold transition-colors flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+              className="px-3.5 py-2 text-muted hover:text-primary border border-champagne/50 hover:border-primary/30 bg-white rounded-lg text-xs font-semibold transition-colors flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
             >
               {isClearingCart ? <Loader2 size={13} className="animate-spin" /> : <Trash2 size={13} />}
               <span>Clear Cart</span>
@@ -183,7 +183,7 @@ export const CartPage: React.FC = () => {
                     onChange={(e) => setCouponCode(e.target.value)}
                     className="w-full py-2 px-3 pl-8 bg-white border border-champagne/50 rounded-lg text-xs uppercase font-medium text-ink focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
                   />
-                  <Tag size={13} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-taupe" />
+                  <Tag size={13} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted" />
                 </div>
                 <button
                   type="submit"
@@ -196,7 +196,7 @@ export const CartPage: React.FC = () => {
 
               {availableCoupons && availableCoupons.length > 0 && !cart.appliedCoupon && (
                 <div className="pt-1">
-                  <p className="text-[11px] text-taupe mb-1 font-medium">Available Offers:</p>
+                  <p className="text-[11px] text-muted mb-1 font-medium">Available Offers:</p>
                   <div className="flex flex-wrap gap-1.5">
                     {availableCoupons.map((c) => (
                       <button
@@ -223,7 +223,7 @@ export const CartPage: React.FC = () => {
               )}
             </form>
 
-            <div className="space-y-2 text-xs text-taupe border-t border-champagne/50 pt-3.5">
+            <div className="space-y-2 text-xs text-muted border-t border-champagne/50 pt-3.5">
               <div className="flex justify-between">
                 <span>Items Subtotal</span>
                 <span className="font-semibold text-ink">{formatPrice(cart.subtotal, currencyCode, currencySymbol)}</span>
@@ -252,7 +252,7 @@ export const CartPage: React.FC = () => {
                 <span>Shipping Fee</span>
                 <span className="font-semibold text-ink">
                   {isSessionLoading && cart.shippingFee === undefined ? (
-                    <span className="text-taupe font-normal text-xs flex items-center gap-1 justify-end">
+                    <span className="text-muted font-normal text-xs flex items-center gap-1 justify-end">
                       <Loader2 size={12} className="animate-spin text-primary" /> Calculating...
                     </span>
                   ) : isFreeShipping ? (
@@ -260,7 +260,7 @@ export const CartPage: React.FC = () => {
                   ) : cart.shippingFee !== undefined && cart.shippingFee > 0 ? (
                     formatPrice(cart.shippingFee, currencyCode, currencySymbol)
                   ) : (
-                    <span className="text-taupe font-normal text-xs">Calculated at checkout</span>
+                    <span className="text-muted font-normal text-xs">Calculated at checkout</span>
                   )}
                 </span>
               </div>
@@ -282,7 +282,7 @@ export const CartPage: React.FC = () => {
               <ArrowRight size={15} />
             </button>
 
-            <div className="text-[11px] text-taupe text-center flex items-center justify-center gap-1">
+            <div className="text-[11px] text-muted text-center flex items-center justify-center gap-1">
               <ShieldCheck size={13} className="text-[#16A34A]" />
               <span>Guaranteed safe & secure checkout</span>
             </div>

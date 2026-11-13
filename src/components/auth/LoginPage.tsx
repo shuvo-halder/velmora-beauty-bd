@@ -212,7 +212,7 @@ export const LoginPage: React.FC = () => {
           <ShieldCheck size={24} className="text-primary" />
         </div>
         <h1 className="text-2xl font-bold text-ink">Customer Sign In</h1>
-        <p className="mt-1 text-xs text-taupe">
+        <p className="mt-1 text-xs text-muted">
           Don't have an account?{' '}
           <Link
             href={`/register${redirectTarget !== '/account' ? `?redirect=${encodeURIComponent(redirectTarget)}` : ''}`}
@@ -249,7 +249,7 @@ export const LoginPage: React.FC = () => {
               className={`py-2 text-xs font-semibold rounded-md transition-colors cursor-pointer flex items-center justify-center gap-1.5 ${
                 authMethod === 'email'
                   ? 'bg-white text-ink shadow-xs'
-                  : 'text-taupe hover:text-ink'
+                  : 'text-muted hover:text-ink'
               }`}
             >
               <Mail size={14} />
@@ -265,7 +265,7 @@ export const LoginPage: React.FC = () => {
               className={`py-2 text-xs font-semibold rounded-md transition-colors cursor-pointer flex items-center justify-center gap-1.5 ${
                 authMethod === 'mobile'
                   ? 'bg-white text-ink shadow-xs'
-                  : 'text-taupe hover:text-ink'
+                  : 'text-muted hover:text-ink'
               }`}
             >
               <Smartphone size={14} />
@@ -290,14 +290,14 @@ export const LoginPage: React.FC = () => {
               <div>
                 <label className="block text-xs font-semibold text-ink mb-1">Email Address</label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-taupe">
+                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-muted">
                     <Mail size={16} />
                   </div>
                   <input
                     {...registerEmail('email')}
                     type="email"
                     autoComplete="email"
-                    className="block w-full pl-10 pr-3.5 py-2.5 bg-white border border-champagne/50 rounded-lg text-xs text-ink placeholder:text-taupe focus:outline-none focus:border-primary"
+                    className="block w-full pl-10 pr-3.5 py-2.5 bg-white border border-champagne/50 rounded-lg text-xs text-ink placeholder:text-muted focus:outline-none focus:border-primary"
                     placeholder="name@example.com"
                   />
                 </div>
@@ -311,26 +311,26 @@ export const LoginPage: React.FC = () => {
                   <label className="block text-xs font-semibold text-ink">Password</label>
                   <Link
                     href="/forgot-password"
-                    className="text-[11px] font-medium text-taupe hover:text-primary transition-colors"
+                    className="text-[11px] font-medium text-muted hover:text-primary transition-colors"
                   >
                     Forgot password?
                   </Link>
                 </div>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-taupe">
+                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-muted">
                     <Lock size={16} />
                   </div>
                   <input
                     {...registerEmail('password')}
                     type={showPassword ? 'text' : 'password'}
                     autoComplete="current-password"
-                    className="block w-full pl-10 pr-10 py-2.5 bg-white border border-champagne/50 rounded-lg text-xs text-ink placeholder:text-taupe focus:outline-none focus:border-primary"
+                    className="block w-full pl-10 pr-10 py-2.5 bg-white border border-champagne/50 rounded-lg text-xs text-ink placeholder:text-muted focus:outline-none focus:border-primary"
                     placeholder="••••••••"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-taupe hover:text-ink transition-colors cursor-pointer"
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-muted hover:text-ink transition-colors cursor-pointer"
                     aria-label={showPassword ? 'Hide password' : 'Show password'}
                   >
                     {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
@@ -348,7 +348,7 @@ export const LoginPage: React.FC = () => {
                   type="checkbox"
                   className="h-4 w-4 text-primary focus:ring-primary border-champagne/50 rounded accent-primary"
                 />
-                <label htmlFor="remember-me" className="ml-2 block text-xs font-medium text-taupe">
+                <label htmlFor="remember-me" className="ml-2 block text-xs font-medium text-muted">
                   Remember me on this device
                 </label>
               </div>
@@ -376,18 +376,18 @@ export const LoginPage: React.FC = () => {
                       Bangladesh Mobile Number
                     </label>
                     <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-taupe">
+                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-muted">
                         <Smartphone size={16} />
                       </div>
                       <input
                         {...registerMobileReq('phone')}
                         type="tel"
                         autoComplete="tel"
-                        className="block w-full pl-10 pr-3.5 py-2.5 bg-white border border-champagne/50 rounded-lg text-xs text-ink placeholder:text-taupe focus:outline-none focus:border-primary"
+                        className="block w-full pl-10 pr-3.5 py-2.5 bg-white border border-champagne/50 rounded-lg text-xs text-ink placeholder:text-muted focus:outline-none focus:border-primary"
                         placeholder="01XXXXXXXXX"
                       />
                     </div>
-                    <p className="mt-1 text-[11px] text-taupe">
+                    <p className="mt-1 text-[11px] text-muted">
                       We will send a 6-digit one-time verification code via SMS.
                     </p>
                     {mobileReqErrors.phone && (
@@ -410,7 +410,7 @@ export const LoginPage: React.FC = () => {
                 <form className="space-y-4" onSubmit={handleSubmitMobileVerify(onMobileVerifySubmit)}>
                   <div className="p-3 bg-gray-50 border border-champagne/50 rounded-lg flex items-center justify-between">
                     <div className="min-w-0">
-                      <span className="text-[11px] text-taupe block">Code sent to</span>
+                      <span className="text-[11px] text-muted block">Code sent to</span>
                       <span className="text-xs font-bold text-ink truncate block">{mobilePhone}</span>
                     </div>
                     <button
@@ -430,7 +430,7 @@ export const LoginPage: React.FC = () => {
                       6-Digit Verification Code
                     </label>
                     <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-taupe">
+                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-muted">
                         <KeyRound size={16} />
                       </div>
                       <input
@@ -439,7 +439,7 @@ export const LoginPage: React.FC = () => {
                         maxLength={6}
                         autoFocus
                         inputMode="numeric"
-                        className="block w-full pl-10 pr-3.5 py-2.5 bg-white border border-champagne/50 rounded-lg text-xs font-bold tracking-widest text-ink placeholder:text-taupe focus:outline-none focus:border-primary text-center"
+                        className="block w-full pl-10 pr-3.5 py-2.5 bg-white border border-champagne/50 rounded-lg text-xs font-bold tracking-widest text-ink placeholder:text-muted focus:outline-none focus:border-primary text-center"
                         placeholder="123456"
                       />
                     </div>
@@ -451,7 +451,7 @@ export const LoginPage: React.FC = () => {
                   </div>
 
                   <div className="flex items-center justify-between text-xs">
-                    <span className="text-taupe">Didn't receive the code?</span>
+                    <span className="text-muted">Didn't receive the code?</span>
                     <button
                       type="button"
                       disabled={resendCooldown > 0 || isSubmittingOtp}
@@ -477,7 +477,7 @@ export const LoginPage: React.FC = () => {
           )}
 
           <div className="mt-6 pt-5 border-t border-champagne/50">
-            <p className="text-[11px] text-center text-taupe">
+            <p className="text-[11px] text-center text-muted">
               Secure customer authentication powered by {siteName}
             </p>
           </div>

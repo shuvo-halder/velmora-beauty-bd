@@ -57,7 +57,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
             ))}
           </select>
 
-          <div className="absolute right-3.5 pointer-events-none text-taupe">
+          <div className="absolute right-3.5 pointer-events-none text-muted">
             <ChevronDown size={16} />
           </div>
         </div>

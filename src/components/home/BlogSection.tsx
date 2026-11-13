@@ -102,7 +102,7 @@ export const BlogSection: React.FC = () => {
               </div>
 
               <div className="p-4 space-y-1.5">
-                <div className="flex items-center gap-2.5 text-[11px] text-taupe">
+                <div className="flex items-center gap-2.5 text-[11px] text-muted">
                   <span className="flex items-center gap-1">
                     <User size={12} />
                     {article.author}
@@ -121,7 +121,7 @@ export const BlogSection: React.FC = () => {
                 <RichTextRenderer
                   content={article.excerpt}
                   inline
-                  className="text-xs text-taupe line-clamp-2 leading-relaxed [&_p]:inline [&_p]:m-0"
+                  className="text-xs text-muted line-clamp-2 leading-relaxed [&_p]:inline [&_p]:m-0"
                 />
               </div>
             </div>

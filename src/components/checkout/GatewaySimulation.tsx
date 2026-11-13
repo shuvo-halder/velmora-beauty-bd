@@ -82,7 +82,7 @@ export const GatewaySimulation: React.FC = () => {
               <h1 className="text-base font-bold text-ink mb-1">
                 {methodNames[method as string] || 'Secure Payment Gateway'}
               </h1>
-              <p className="text-xs text-taupe">
+              <p className="text-xs text-muted">
                 {status === 'initiating' ? `Initiating session for Order #${orderId}...` : `Verifying payment with provider...`}
               </p>
             </div>
@@ -99,10 +99,10 @@ export const GatewaySimulation: React.FC = () => {
                 <ShieldCheck size={16} />
                 <span className="text-xs font-semibold">256-Bit Bank-Grade Encryption</span>
               </div>
-              <p className="text-[11px] text-taupe leading-relaxed max-w-[260px] mx-auto">
+              <p className="text-[11px] text-muted leading-relaxed max-w-[260px] mx-auto">
                 Please do not close this window or navigate back while your transaction is being processed.
               </p>
-              <div className="flex items-center justify-center gap-2 pt-1 text-taupe text-[10px] font-medium">
+              <div className="flex items-center justify-center gap-2 pt-1 text-muted text-[10px] font-medium">
                 <Lock size={12} />
                 <span>PCI-DSS Compliant</span>
               </div>
@@ -115,7 +115,7 @@ export const GatewaySimulation: React.FC = () => {
                 <AlertCircle size={26} />
               </div>
               <h1 className="text-base font-bold text-ink mb-1">Payment Initialization Failed</h1>
-              <p className="text-xs text-taupe mt-1">
+              <p className="text-xs text-muted mt-1">
                 {errorMessage || 'Unable to establish connection with payment provider.'}
               </p>
             </div>

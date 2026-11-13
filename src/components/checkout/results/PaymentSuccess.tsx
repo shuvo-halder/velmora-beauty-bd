@@ -66,7 +66,7 @@ export const PaymentSuccess: React.FC = () => {
     return (
       <div className="py-24 flex flex-col items-center justify-center space-y-3 bg-bg min-h-screen">
         <Loader2 size={32} className="animate-spin text-primary" />
-        <p className="text-xs text-taupe font-semibold">Verifying payment with gateway...</p>
+        <p className="text-xs text-muted font-semibold">Verifying payment with gateway...</p>
       </div>
     );
   }
@@ -81,21 +81,21 @@ export const PaymentSuccess: React.FC = () => {
         </div>
         
         <h1 className="text-xl font-bold text-ink mb-1.5">Payment Successful</h1>
-        <p className="text-taupe text-xs font-normal mb-6">
+        <p className="text-muted text-xs font-normal mb-6">
           Thank you for your purchase. Your order <span className="text-ink font-semibold">#{displayOrderIdentifier}</span> has been confirmed.
         </p>
 
         <div className="bg-[#F9FAFB] rounded-lg p-4 mb-6 text-left space-y-2.5 border border-champagne/50">
           <div className="flex justify-between text-xs">
-            <span className="text-taupe">Order Reference</span>
+            <span className="text-muted">Order Reference</span>
             <span className="text-ink font-mono font-medium">{displayOrderIdentifier}</span>
           </div>
           <div className="flex justify-between text-xs">
-            <span className="text-taupe">Total Amount</span>
+            <span className="text-muted">Total Amount</span>
             <span className="text-ink font-bold">{formatPrice(order?.totalAmount || order?.total || 0, currency)}</span>
           </div>
           <div className="flex justify-between items-center text-xs">
-            <span className="text-taupe">Status</span>
+            <span className="text-muted">Status</span>
             <span className="px-2 py-0.5 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-md font-semibold text-[10px] uppercase">
               CONFIRMED
             </span>

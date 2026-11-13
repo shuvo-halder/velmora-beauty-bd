@@ -69,7 +69,7 @@ export const CardDescription: React.FC<React.HTMLAttributes<HTMLParagraphElement
   className = '',
   ...props
 }) => (
-  <p className={`text-xs text-taupe mt-0.5 leading-relaxed ${className}`} {...props}>
+  <p className={`text-xs text-muted mt-0.5 leading-relaxed ${className}`} {...props}>
     {children}
   </p>
 );

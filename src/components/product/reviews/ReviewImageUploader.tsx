@@ -138,9 +138,9 @@ export const ReviewImageUploader: React.FC<ReviewImageUploaderProps> = ({
           className="font-semibold text-xs text-ink flex items-center gap-1.5 cursor-pointer"
         >
           <Camera size={14} className="text-primary" />
-          Add Photos <span className="text-taupe font-normal">(Optional)</span>
+          Add Photos <span className="text-muted font-normal">(Optional)</span>
         </label>
-        <span className="text-[11px] text-taupe">
+        <span className="text-[11px] text-muted">
           Up to {MAX_REVIEW_IMAGES} photos
         </span>
       </div>
@@ -190,7 +190,7 @@ export const ReviewImageUploader: React.FC<ReviewImageUploaderProps> = ({
             <p className="text-xs font-semibold text-ink">
               <span className="text-primary underline underline-offset-2">Click to choose photos</span> or drag & drop
             </p>
-            <p className="text-[11px] text-taupe">
+            <p className="text-[11px] text-muted">
               {ACCEPTED_EXTENSIONS_LABEL} • Max 5 MB per image
             </p>
           </div>

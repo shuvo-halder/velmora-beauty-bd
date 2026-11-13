@@ -240,7 +240,7 @@ export const ReviewFormModal: React.FC<ReviewFormModalProps> = ({
           <div className="flex items-center justify-between px-5 py-4 border-b border-champagne/50 bg-white sticky top-0 z-10">
             <div>
               <h3 className="font-bold text-base text-ink">Write a Review</h3>
-              <p className="text-xs text-taupe truncate max-w-xs sm:max-w-sm">
+              <p className="text-xs text-muted truncate max-w-xs sm:max-w-sm">
                 {productName}
               </p>
             </div>
@@ -249,7 +249,7 @@ export const ReviewFormModal: React.FC<ReviewFormModalProps> = ({
               type="button"
               onClick={onClose}
               aria-label="Close review dialog"
-              className="p-1.5 text-taupe hover:text-ink hover:bg-[#F9FAFB] rounded-lg transition-colors cursor-pointer"
+              className="p-1.5 text-muted hover:text-ink hover:bg-[#F9FAFB] rounded-lg transition-colors cursor-pointer"
             >
               <X size={18} />
             </button>
@@ -267,7 +267,7 @@ export const ReviewFormModal: React.FC<ReviewFormModalProps> = ({
                   <h4 className="font-bold text-base text-ink">
                     Thank You for Your Feedback!
                   </h4>
-                  <p className="text-xs text-taupe max-w-xs mx-auto leading-relaxed">
+                  <p className="text-xs text-muted max-w-xs mx-auto leading-relaxed">
                     Your rating and photos have been received. They help the community make informed decisions.
                   </p>
                 </div>
@@ -317,7 +317,7 @@ export const ReviewFormModal: React.FC<ReviewFormModalProps> = ({
                     })}
                   </div>
 
-                  <p className="text-[11px] font-medium text-taupe pt-0.5">
+                  <p className="text-[11px] font-medium text-muted pt-0.5">
                     {ratingDescriptions[currentDisplayRating] || 'Select your rating'}
                   </p>
                 </div>
@@ -381,7 +381,7 @@ export const ReviewFormModal: React.FC<ReviewFormModalProps> = ({
 
                     <div>
                       <label className="font-medium text-[11px] text-[#4B5563] block mb-1">
-                        Email Address <span className="text-taupe font-normal">(Optional)</span>
+                        Email Address <span className="text-muted font-normal">(Optional)</span>
                       </label>
                       <input
                         type="email"
@@ -397,7 +397,7 @@ export const ReviewFormModal: React.FC<ReviewFormModalProps> = ({
                 {/* 3. Review Headline / Title */}
                 <div>
                   <label className="font-semibold text-xs text-ink block mb-1">
-                    Review Headline <span className="text-taupe font-normal">(Optional)</span>
+                    Review Headline <span className="text-muted font-normal">(Optional)</span>
                   </label>
                   <input
                     type="text"
@@ -414,7 +414,7 @@ export const ReviewFormModal: React.FC<ReviewFormModalProps> = ({
                     <label className="font-semibold text-xs text-ink">
                       Your Detailed Review <span className="text-primary">*</span>
                     </label>
-                    <span className="text-[10px] text-taupe">
+                    <span className="text-[10px] text-muted">
                       {formData.comment.length} / 1000 characters
                     </span>
                   </div>

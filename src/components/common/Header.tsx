@@ -300,7 +300,7 @@ function HeaderContent() {
         <div className="p-4 space-y-4">
           {searchHistory.length > 0 && (
             <div>
-              <div className="flex items-center justify-between text-xs font-semibold text-taupe uppercase tracking-wider mb-2">
+              <div className="flex items-center justify-between text-xs font-semibold text-muted uppercase tracking-wider mb-2">
                 <span>Recent Searches</span>
                 <button onClick={clearSearchHistory} className="text-[10px] text-primary hover:underline cursor-pointer">Clear All</button>
               </div>
@@ -331,7 +331,7 @@ function HeaderContent() {
           )}
 
           <div>
-            <div className="text-xs font-semibold text-taupe uppercase tracking-wider mb-2">Popular Categories</div>
+            <div className="text-xs font-semibold text-muted uppercase tracking-wider mb-2">Popular Categories</div>
             <div className="grid grid-cols-2 gap-2">
               {categories.slice(0, 6).map((cat) => (
                 <Link
@@ -353,7 +353,7 @@ function HeaderContent() {
         <div>
           {categorySuggestions.length > 0 && (
             <div className="p-3 bg-[#F9FAFB] border-b border-champagne/50 flex items-center gap-2 flex-wrap">
-              <span className="text-[11px] font-semibold text-taupe uppercase">Categories:</span>
+              <span className="text-[11px] font-semibold text-muted uppercase">Categories:</span>
               {categorySuggestions.map(cat => (
                 <Link
                   key={cat.slug}
@@ -425,7 +425,7 @@ function HeaderContent() {
       }`}>
         {/* 1. TOP UTILITY BAR */}
         <div className="bg-white border-b border-champagne/50 py-2 hidden lg:block">
-          <div className="container-vyzobd flex items-center justify-between text-xs font-medium text-taupe">
+          <div className="container-vyzobd flex items-center justify-between text-xs font-medium text-muted">
             <div className="flex items-center gap-6">
               {(publicSettings?.supportPhone || publicSettings?.general?.storePhone || publicSettings?.store?.supportPhone || publicSettings?.store?.callOrderNumber) && (
                 <a 
@@ -545,7 +545,7 @@ function HeaderContent() {
                   <button
                     type="button"
                     onClick={() => setSearchInput('')}
-                    className="p-1 mr-2 text-taupe hover:text-ink transition-colors cursor-pointer"
+                    className="p-1 mr-2 text-muted hover:text-ink transition-colors cursor-pointer"
                   >
                     <X size={15} />
                   </button>
@@ -648,7 +648,7 @@ function HeaderContent() {
                   )}
                 </div>
                 <div className="hidden xl:block text-left">
-                  <div className="text-[10px] text-taupe uppercase font-medium leading-tight">
+                  <div className="text-[10px] text-muted uppercase font-medium leading-tight">
                     {user ? 'Welcome' : 'Account'}
                   </div>
                   <div className="text-xs font-semibold text-ink leading-tight truncate max-w-[110px]">
@@ -663,7 +663,7 @@ function HeaderContent() {
                 <div className="absolute right-0 top-full mt-2 w-56 max-w-[calc(100vw-2rem)] bg-white rounded-xl shadow-lg border border-champagne/50 p-1.5 z-50">
                   <div className="p-2.5 bg-[#F9FAFB] rounded-lg mb-1 border border-champagne/50">
                     <div className="text-xs font-bold text-ink">{user.fullName || 'Customer'}</div>
-                    <div className="text-[11px] text-taupe truncate">{user.email || user.phone || ''}</div>
+                    <div className="text-[11px] text-muted truncate">{user.email || user.phone || ''}</div>
                   </div>
 
                   <div className="space-y-0.5">
@@ -996,7 +996,7 @@ function HeaderContent() {
                       <button
                         type="button"
                         onClick={() => setSearchInput('')}
-                        className="text-taupe hover:text-ink transition-colors cursor-pointer p-1"
+                        className="text-muted hover:text-ink transition-colors cursor-pointer p-1"
                         aria-label="Clear search input"
                       >
                         <X size={15} />
@@ -1008,7 +1008,7 @@ function HeaderContent() {
                         setIsMobileSearchOpen(false);
                         setIsSearchFocused(false);
                       }}
-                      className="text-xs font-medium text-taupe hover:text-ink px-1.5 py-1 rounded cursor-pointer"
+                      className="text-xs font-medium text-muted hover:text-ink px-1.5 py-1 rounded cursor-pointer"
                       aria-label="Close search"
                     >
                       Cancel
@@ -1048,14 +1048,14 @@ function HeaderContent() {
               <div className="grid grid-cols-2 gap-2">
                 <button className="flex items-center justify-center gap-1.5 p-2 rounded-lg bg-white border border-champagne/50 hover:border-primary transition-colors group cursor-pointer">
                   <ShieldCheck size={15} className="text-ink group-hover:text-primary" />
-                  <span className="text-[11px] font-semibold text-taupe group-hover:text-ink">Warranty</span>
+                  <span className="text-[11px] font-semibold text-muted group-hover:text-ink">Warranty</span>
                 </button>
                 <button className="flex items-center justify-center gap-1.5 p-2 rounded-lg bg-white border border-champagne/50 hover:border-primary transition-colors group cursor-pointer">
                   <Truck size={15} className="text-ink group-hover:text-primary" />
-                  <span className="text-[11px] font-semibold text-taupe group-hover:text-ink">Track Order</span>
+                  <span className="text-[11px] font-semibold text-muted group-hover:text-ink">Track Order</span>
                 </button>
               </div>
-              <div className="flex items-center justify-center gap-1.5 text-[11px] text-taupe">
+              <div className="flex items-center justify-center gap-1.5 text-[11px] text-muted">
                 <HelpCircle size={13} />
                 <span>Support Available 24/7</span>
               </div>
@@ -1104,7 +1104,7 @@ function HeaderContent() {
 
             {/* Main Navigation Links */}
             <div className="space-y-0.5">
-              <div className="px-2 text-[10px] font-semibold text-taupe uppercase tracking-wider mb-1">Navigation</div>
+              <div className="px-2 text-[10px] font-semibold text-muted uppercase tracking-wider mb-1">Navigation</div>
               {[
                 { label: 'Shop All Products', href: '/products', icon: LayoutGrid },
                 { label: 'Deals & Offers', href: '/products?deals=true', icon: Zap, isHot: true },
@@ -1137,7 +1137,7 @@ function HeaderContent() {
             {/* Product Categories Section */}
             <div>
               <div className="px-2 flex items-center justify-between mb-2">
-                <span className="text-[10px] font-semibold text-taupe uppercase tracking-wider">Categories</span>
+                <span className="text-[10px] font-semibold text-muted uppercase tracking-wider">Categories</span>
                 <Link 
                   href="/categories" 
                   onClick={() => setIsMobileMenuOpen(false)} 
@@ -1166,7 +1166,7 @@ function HeaderContent() {
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="text-xs font-semibold text-ink truncate">{cat.name}</div>
-                      <div className="text-[10px] text-taupe">{cat.itemCount || 0} Items</div>
+                      <div className="text-[10px] text-muted">{cat.itemCount || 0} Items</div>
                     </div>
                   </Link>
                 ))}
@@ -1186,7 +1186,7 @@ function HeaderContent() {
                     key={item.label}
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-left px-2 py-1 text-xs font-medium text-taupe hover:text-primary transition-colors block truncate"
+                    className="text-left px-2 py-1 text-xs font-medium text-muted hover:text-primary transition-colors block truncate"
                   >
                     {item.label}
                   </Link>

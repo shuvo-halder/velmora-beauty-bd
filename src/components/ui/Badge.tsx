@@ -37,7 +37,7 @@ export const Badge: React.FC<BadgeProps> = ({
     warning: 'bg-amber-50 text-[#D97706] border border-amber-200 font-semibold',
     error: 'bg-red-50 text-[#DC2626] border border-red-200 font-semibold',
     info: 'bg-sky-50 text-sky-700 border border-sky-200 font-semibold',
-    outline: 'bg-white text-taupe border border-champagne/50 font-semibold',
+    outline: 'bg-white text-muted border border-champagne/50 font-semibold',
     deal: 'bg-champagne text-ink font-bold border border-champagne',
     new: 'bg-beige text-ink font-bold border border-beige',
   };

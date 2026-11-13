@@ -20,7 +20,7 @@ export const AddressForm: React.FC<AddressFormProps> = ({ register, errors, pref
         <div className="sm:col-span-2">
           <label className="block text-xs font-semibold text-ink mb-1">
             Mobile Number <span className="text-primary">*</span>
-            <span className="ml-1 text-[11px] font-normal text-taupe">(e.g. 017XXXXXXXX)</span>
+            <span className="ml-1 text-[11px] font-normal text-muted">(e.g. 017XXXXXXXX)</span>
           </label>
           <input
             {...register(`${prefix}.phone`)}
@@ -43,7 +43,7 @@ export const AddressForm: React.FC<AddressFormProps> = ({ register, errors, pref
         </div>
         
         <div>
-          <label className="block text-xs font-semibold text-ink mb-1">Email Address <span className="text-[11px] font-normal text-taupe">(Optional)</span></label>
+          <label className="block text-xs font-semibold text-ink mb-1">Email Address <span className="text-[11px] font-normal text-muted">(Optional)</span></label>
           <input
             {...register(`${prefix}.email`)}
             type="email"
@@ -87,7 +87,7 @@ export const AddressForm: React.FC<AddressFormProps> = ({ register, errors, pref
         </div>
 
         <div>
-          <label className="block text-xs font-semibold text-ink mb-1">Postal Code <span className="text-[11px] font-normal text-taupe">(Optional)</span></label>
+          <label className="block text-xs font-semibold text-ink mb-1">Postal Code <span className="text-[11px] font-normal text-muted">(Optional)</span></label>
           <input
             {...register(`${prefix}.postalCode`)}
             type="text"

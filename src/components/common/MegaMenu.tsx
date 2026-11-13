@@ -75,7 +75,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ onClose }) => {
           </div>
         ) : menuCategories.length === 0 ? (
           /* Graceful Fallback if empty */
-          <div className="py-8 text-center text-taupe space-y-3">
+          <div className="py-8 text-center text-muted space-y-3">
             <p className="text-sm font-medium">Browse our full range of product categories</p>
             <Link
               href="/categories"
@@ -108,7 +108,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ onClose }) => {
                     <Link
                       href={`/categories/${mainCategory.slug}`}
                       onClick={onClose}
-                      className="text-taupe group-hover:text-primary transition-colors shrink-0 ml-1 cursor-pointer"
+                      className="text-muted group-hover:text-primary transition-colors shrink-0 ml-1 cursor-pointer"
                       aria-label={`View ${mainCategory.name}`}
                     >
                       <ChevronRight size={15} />
@@ -121,7 +121,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ onClose }) => {
                       <Link
                         href={`/categories/${mainCategory.slug}`}
                         onClick={onClose}
-                        className="text-xs text-taupe hover:text-primary font-medium transition-colors inline-flex items-center gap-1.5 group py-1 cursor-pointer"
+                        className="text-xs text-muted hover:text-primary font-medium transition-colors inline-flex items-center gap-1.5 group py-1 cursor-pointer"
                       >
                         <span>Explore {mainCategory.name}</span>
                         <ArrowRight size={12} className="text-primary group-hover:translate-x-0.5 transition-transform" />
@@ -171,7 +171,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ onClose }) => {
         {/* Bottom Quick Access Bar */}
         <div className="mt-8 pt-5 border-t border-champagne/50 flex flex-wrap items-center justify-between gap-4">
           <div className="flex flex-wrap items-center gap-4 sm:gap-6">
-            <span className="text-xs font-extrabold text-taupe uppercase tracking-wider">
+            <span className="text-xs font-extrabold text-muted uppercase tracking-wider">
               Quick Links:
             </span>
             {[

@@ -22,7 +22,7 @@ export const ForgotPasswordPage: React.FC = () => {
           <ShieldAlert size={24} className="text-amber-600" />
         </div>
         <h1 className="text-2xl font-bold text-ink">Account Access & Recovery</h1>
-        <p className="mt-1.5 text-xs text-taupe">
+        <p className="mt-1.5 text-xs text-muted">
           Secure self-service access options for your {siteName} account
         </p>
       </div>
@@ -58,11 +58,11 @@ export const ForgotPasswordPage: React.FC = () => {
           </div>
 
           <div className="pt-4 border-t border-champagne/50 space-y-3">
-            <div className="flex items-start gap-2 text-xs text-taupe">
+            <div className="flex items-start gap-2 text-xs text-muted">
               <Headphones size={16} className="text-taupe shrink-0 mt-0.5" />
               <div>
                 <span className="font-semibold text-ink block">Need Help Recovering Your Account?</span>
-                <p className="text-[11px] text-taupe mt-0.5">
+                <p className="text-[11px] text-muted mt-0.5">
                   Contact customer support {supportEmail ? <>at <span className="font-semibold text-ink">{supportEmail}</span></> : null} or via live support for identity verification and account restoration.
                 </p>
               </div>
@@ -71,7 +71,7 @@ export const ForgotPasswordPage: React.FC = () => {
             <button
               type="button"
               onClick={() => navigateTo('login')}
-              className="w-full flex items-center justify-center gap-1.5 pt-2 text-xs font-medium text-taupe hover:text-ink transition-colors cursor-pointer"
+              className="w-full flex items-center justify-center gap-1.5 pt-2 text-xs font-medium text-muted hover:text-ink transition-colors cursor-pointer"
             >
               <ArrowLeft size={14} />
               <span>Back to Sign In</span>

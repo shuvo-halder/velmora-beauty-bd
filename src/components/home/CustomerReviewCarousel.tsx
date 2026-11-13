@@ -311,7 +311,7 @@ export const CustomerReviewCarousel: React.FC = () => {
                 <Pause size={10} /> Paused
               </span>
             )}
-            <span className="text-xs text-taupe font-medium">
+            <span className="text-xs text-muted font-medium">
               {activeIndex + 1} / {count}
             </span>
           </div>
@@ -349,7 +349,7 @@ export const CustomerReviewCarousel: React.FC = () => {
                             </span>
                           </div>
 
-                          <div className="flex items-center gap-1.5 text-[11px] text-taupe">
+                          <div className="flex items-center gap-1.5 text-[11px] text-muted">
                             {item.verifiedPurchase && (
                               <span className="inline-flex items-center gap-0.5 px-1.5 py-0.2 rounded-full bg-emerald-50 text-[#16A34A] text-[10px] font-semibold border border-emerald-200 shrink-0">
                                 <CheckCircle2 size={10} />
@@ -410,7 +410,7 @@ export const CustomerReviewCarousel: React.FC = () => {
                           </div>
 
                           {item.productName && (
-                            <div className="hidden xl:inline-flex items-center gap-1 text-[10px] text-taupe truncate max-w-[120px] bg-slate-50 px-1.5 py-0.5 rounded border border-slate-200">
+                            <div className="hidden xl:inline-flex items-center gap-1 text-[10px] text-muted truncate max-w-[120px] bg-slate-50 px-1.5 py-0.5 rounded border border-slate-200">
                               <ShoppingBag size={10} className="text-primary shrink-0" />
                               <span className="truncate">{item.productName}</span>
                             </div>

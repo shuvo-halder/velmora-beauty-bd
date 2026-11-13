@@ -54,7 +54,7 @@ export const ReviewSummary: React.FC<ReviewSummaryProps> = ({
           <div className="mt-1">
             <RatingStars rating={reviewCount > 0 ? rating : 0} showNumber={false} size={18} />
           </div>
-          <span className="text-xs text-taupe font-medium mt-1">
+          <span className="text-xs text-muted font-medium mt-1">
             Based on {reviewCount} verified {reviewCount === 1 ? 'review' : 'reviews'}
           </span>
 
@@ -88,7 +88,7 @@ export const ReviewSummary: React.FC<ReviewSummaryProps> = ({
                   />
                 </div>
 
-                <span className="w-10 text-right font-medium text-taupe text-[11px]">
+                <span className="w-10 text-right font-medium text-muted text-[11px]">
                   {percentage}%
                 </span>
               </div>

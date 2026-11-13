@@ -8,7 +8,8 @@ const getRawApiUrl = (): string => {
   if (envUrl && envUrl.trim() !== '') {
     return envUrl.trim();
   }
-  return 'https://admin.vyzobd.com/api/storefront/v1';
+  console.error('NEXT_PUBLIC_API_URL is not set');
+  return '';
 };
 
 const sanitizeBaseUrl = (url: string): string => {
@@ -75,6 +76,11 @@ export const setSessionId = (id: string): void => {
 };
 
 apiClient.interceptors.request.use((config) => {
+  if (!API_BASE_URL) {
+    const errorMsg = 'NEXT_PUBLIC_API_URL is not set';
+    console.error(errorMsg);
+    return Promise.reject(new Error(errorMsg));
+  }
   if (typeof window !== 'undefined') {
     const token = tokenStorage.getAccessToken();
     if (token) {

@@ -81,7 +81,10 @@ export async function getHomepageMetadata(): Promise<Metadata> {
 
   return {
     ...((() => { const u = getSiteUrl(); return u ? { metadataBase: new URL(u) } : {}; })()),
-    title,
+    title: {
+      default: title,
+      template: `%s | ${siteName}`,
+    },
     description,
     keywords,
     icons: {
@@ -117,7 +120,7 @@ export async function getHomepageMetadata(): Promise<Metadata> {
 export async function getProductsListingMetadata(): Promise<Metadata> {
   const settings = await getPublicSiteSettings();
   const siteName = getSiteName(settings);
-  const title = `All Products | ${siteName}`;
+  const title = 'All Products';
   const description = `Browse the complete collection of high-performance audio equipment, workstation accessories, and power solutions at ${siteName}.`;
   const canonical = (getSiteUrl() ? `${getSiteUrl()}/products` : undefined);
   const favicon = getFaviconUrl(settings);
@@ -149,7 +152,7 @@ export async function getProductsListingMetadata(): Promise<Metadata> {
 export async function getCategoriesIndexMetadata(): Promise<Metadata> {
   const settings = await getPublicSiteSettings();
   const siteName = getSiteName(settings);
-  const title = `Categories | ${siteName}`;
+  const title = 'Categories';
   const description = `Browse all product categories and departments at ${siteName}.`;
   const canonical = (getSiteUrl() ? `${getSiteUrl()}/categories` : undefined);
   const favicon = getFaviconUrl(settings);
@@ -171,7 +174,7 @@ export async function getCategoriesIndexMetadata(): Promise<Metadata> {
 export async function getBrandsIndexMetadata(): Promise<Metadata> {
   const settings = await getPublicSiteSettings();
   const siteName = getSiteName(settings);
-  const title = `Official Brands | ${siteName}`;
+  const title = 'Official Brands';
   const description = `Explore authentic collections and products from verified brand partners at ${siteName}.`;
   const canonical = (getSiteUrl() ? `${getSiteUrl()}/brands` : undefined);
   const favicon = getFaviconUrl(settings);
@@ -193,7 +196,7 @@ export async function getBrandsIndexMetadata(): Promise<Metadata> {
 export async function getBlogIndexMetadata(): Promise<Metadata> {
   const settings = await getPublicSiteSettings();
   const siteName = getSiteName(settings);
-  const title = `Journal & Articles | ${siteName}`;
+  const title = 'Journal & Articles';
   const description = `Read the latest shopping guides, articles, product highlights, and news at ${siteName}.`;
   const canonical = (getSiteUrl() ? `${getSiteUrl()}/blog` : undefined);
   const favicon = getFaviconUrl(settings);
@@ -221,7 +224,7 @@ export async function getProductDetailMetadata(slug: string): Promise<Metadata> 
   try {
     const product = await storefrontApi.getProductBySlug(slug);
     if (!product) {
-      const missingTitle = `Product Not Found | ${siteName}`;
+      const missingTitle = 'Product Not Found';
       const missingDesc = `The requested product could not be found on ${siteName}.`;
       return {
         title: missingTitle,
@@ -235,7 +238,7 @@ export async function getProductDetailMetadata(slug: string): Promise<Metadata> 
 
     const rawProduct = product as any;
     const entityTitle = product.name || rawProduct.title || rawProduct.seoTitle || rawProduct.productName || (product.slug ? product.slug.replace(/[-_]/g, ' ') : 'Product');
-    const pageTitle = `${entityTitle} | ${siteName}`;
+    const pageTitle = entityTitle;
     const description = rawProduct.seoDescription || product.description || product.subtitle || `Buy ${entityTitle} at ${siteName}. High quality and genuine products.`;
     const rawImage = rawProduct.ogImage || (product.images && product.images.length > 0 ? product.images[0] : rawProduct.thumbnail);
     const image = resolveOgImage(rawImage, settings);
@@ -262,7 +265,7 @@ export async function getProductDetailMetadata(slug: string): Promise<Metadata> 
       ...(canonical ? { alternates: { canonical } } : {}),
     };
   } catch (err) {
-    const errorTitle = `Product Not Found | ${siteName}`;
+    const errorTitle = 'Product Not Found';
     return {
       title: errorTitle,
       description: `The requested product could not be found on ${siteName}.`,
@@ -301,7 +304,7 @@ export async function getCategoryDetailMetadata(slug: string): Promise<Metadata>
     const category = findCat(categories);
 
     if (!category) {
-      const missingTitle = `Category Not Found | ${siteName}`;
+      const missingTitle = 'Category Not Found';
       const missingDesc = `The requested category could not be found on ${siteName}.`;
       return {
         title: missingTitle,
@@ -314,7 +317,7 @@ export async function getCategoryDetailMetadata(slug: string): Promise<Metadata>
     }
 
     const entityTitle = category.seoTitle || category.name || slug;
-    const pageTitle = `${entityTitle} | ${siteName}`;
+    const pageTitle = entityTitle;
     const description = category.seoDescription || category.description || `Shop the latest ${entityTitle} products and deals at ${siteName}.`;
     const rawImage = category.ogImage || category.image;
     const image = resolveOgImage(rawImage, settings);
@@ -340,7 +343,7 @@ export async function getCategoryDetailMetadata(slug: string): Promise<Metadata>
       ...(canonical ? { alternates: { canonical } } : {}),
     };
   } catch (err) {
-    const errorTitle = `Category Not Found | ${siteName}`;
+    const errorTitle = 'Category Not Found';
     return {
       title: errorTitle,
       description: `The requested category could not be found on ${siteName}.`,
@@ -365,7 +368,7 @@ export async function getBrandDetailMetadata(slug: string): Promise<Metadata> {
     const brand = brands.find(b => b.slug === slug || b.id === slug) as any;
 
     if (!brand) {
-      const missingTitle = `Brand Not Found | ${siteName}`;
+      const missingTitle = 'Brand Not Found';
       const missingDesc = `The requested brand could not be found on ${siteName}.`;
       return {
         title: missingTitle,
@@ -378,7 +381,7 @@ export async function getBrandDetailMetadata(slug: string): Promise<Metadata> {
     }
 
     const entityTitle = brand.seoTitle || brand.name || slug;
-    const pageTitle = `${entityTitle} | ${siteName}`;
+    const pageTitle = entityTitle;
     const description = brand.seoDescription || brand.description || `Discover authentic products from ${entityTitle} at ${siteName}.`;
     const rawImage = brand.ogImage || brand.logo || brand.logoUrl;
     const image = resolveOgImage(rawImage, settings);
@@ -404,7 +407,7 @@ export async function getBrandDetailMetadata(slug: string): Promise<Metadata> {
       ...(canonical ? { alternates: { canonical } } : {}),
     };
   } catch (err) {
-    const errorTitle = `Brand Not Found | ${siteName}`;
+    const errorTitle = 'Brand Not Found';
     return {
       title: errorTitle,
       description: `The requested brand could not be found on ${siteName}.`,
@@ -428,7 +431,7 @@ export async function getBlogDetailMetadata(slug: string): Promise<Metadata> {
     const article = await storefrontApi.getArticleBySlug(slug) as any;
 
     if (!article) {
-      const missingTitle = `Article Not Found | ${siteName}`;
+      const missingTitle = 'Article Not Found';
       const missingDesc = `The requested journal article could not be found on ${siteName}.`;
       return {
         title: missingTitle,
@@ -441,7 +444,7 @@ export async function getBlogDetailMetadata(slug: string): Promise<Metadata> {
     }
 
     const entityTitle = article.title || 'Journal Article';
-    const pageTitle = `${entityTitle} | ${siteName}`;
+    const pageTitle = entityTitle;
     const description = article.excerpt || article.content?.substring(0, 160) || `Read ${entityTitle} on the ${siteName} journal.`;
     const rawImage = article.coverImage || article.featuredImage?.secureUrl || article.featuredImage?.url;
     const image = resolveOgImage(rawImage, settings);
@@ -468,7 +471,7 @@ export async function getBlogDetailMetadata(slug: string): Promise<Metadata> {
       ...(canonical ? { alternates: { canonical } } : {}),
     };
   } catch (err) {
-    const errorTitle = `Article Not Found | ${siteName}`;
+    const errorTitle = 'Article Not Found';
     return {
       title: errorTitle,
       description: `The requested article could not be found on ${siteName}.`,
@@ -493,7 +496,7 @@ export async function getCMSPageMetadata(slug: string): Promise<Metadata> {
     const page = await storefrontApi.getCMSPageBySlug(slug) as any;
 
     if (!page) {
-      const missingTitle = `Page Not Found | ${siteName}`;
+      const missingTitle = 'Page Not Found';
       const missingDesc = `The requested page could not be found on ${siteName}.`;
       return {
         title: missingTitle,
@@ -506,7 +509,7 @@ export async function getCMSPageMetadata(slug: string): Promise<Metadata> {
     }
 
     const entityTitle = page.metaTitle || page.title || slug;
-    const pageTitle = `${entityTitle} | ${siteName}`;
+    const pageTitle = entityTitle;
     const description = page.metaDescription || page.content?.substring(0, 160) || `Learn more about ${entityTitle} at ${siteName}.`;
 
     return {
@@ -528,7 +531,7 @@ export async function getCMSPageMetadata(slug: string): Promise<Metadata> {
       ...(canonical ? { alternates: { canonical } } : {}),
     };
   } catch (err) {
-    const errorTitle = `Page Not Found | ${siteName}`;
+    const errorTitle = 'Page Not Found';
     return {
       title: errorTitle,
       description: `The requested page could not be found on ${siteName}.`,
@@ -549,7 +552,7 @@ export async function getSearchPageMetadata(query?: string): Promise<Metadata> {
   const ogImage = resolveOgImage(null, settings);
   const q = query?.trim();
 
-  const title = q ? `Search results for "${q}" | ${siteName}` : `Search Products | ${siteName}`;
+  const title = q ? `Search results for "${q}"` : 'Search Products';
   const description = q 
     ? `Browse search results for "${q}" at ${siteName}.` 
     : `Search our entire catalog of products, collections, and deals at ${siteName}.`;

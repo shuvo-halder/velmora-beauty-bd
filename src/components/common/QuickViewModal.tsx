@@ -9,6 +9,8 @@ import { Product, ProductVariant } from '../../types/storefront';
 import { RatingStars } from './RatingStars';
 import { RichTextRenderer } from './RichTextRenderer';
 import { formatPrice } from '../../utils/formatters';
+import { getDiscountInfo } from '../../utils/discount';
+import { DiscountBadge } from './DiscountBadge';
 import { 
   X, 
   ShoppingCart, 
@@ -114,6 +116,7 @@ export const QuickViewModal: React.FC = () => {
   const activeStock = selectedVariant ? selectedVariant.stock : currentProduct.stock;
   const activeSKU = selectedVariant?.sku || currentProduct.id;
 
+  const discountInfo = getDiscountInfo(currentProduct, selectedVariant);
   const inWishlist = isInWishlist(currentProduct.id);
 
   const handleSelectVariant = (variant: ProductVariant) => {
@@ -182,10 +185,13 @@ export const QuickViewModal: React.FC = () => {
                   fallbackLabel={currentProduct.name}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
                 />
-                {currentProduct.discountPercent && (
-                  <span className="absolute top-3 left-3 bg-primary text-white font-extrabold text-[11px] px-2.5 py-1 rounded-full shadow-sm">
-                    -{currentProduct.discountPercent}% OFF
-                  </span>
+                {discountInfo.hasDiscount && (
+                  <DiscountBadge
+                    discountInfo={discountInfo}
+                    size="sm"
+                    format="percent-off"
+                    className="absolute top-3 left-3 z-10 shadow-sm rounded-full pointer-events-none"
+                  />
                 )}
               </div>
 
@@ -234,16 +240,25 @@ export const QuickViewModal: React.FC = () => {
                 <RatingStars rating={currentProduct.rating} count={currentProduct.reviewCount} />
 
                 {/* Price Row */}
-                <div className="flex items-baseline gap-3 pt-1">
+                <div className="flex flex-wrap items-baseline gap-2.5 sm:gap-3 pt-1">
                   <span className="text-2xl font-black text-ink font-mono">
-                    {formatPrice(activePrice, currencyCode, currencySymbol)}
+                    {formatPrice(discountInfo.price, currencyCode, currencySymbol)}
                   </span>
-                  {activeComparePrice && activeComparePrice > activePrice && (
-                    <span className="text-sm font-semibold text-slate-400 line-through font-mono">
-                      {formatPrice(activeComparePrice, currencyCode, currencySymbol)}
+                  {discountInfo.hasDiscount && discountInfo.compareAtPrice && (
+                    <span className="text-sm font-semibold text-muted line-through font-mono">
+                      {formatPrice(discountInfo.compareAtPrice, currencyCode, currencySymbol)}
                     </span>
                   )}
+                  {discountInfo.hasDiscount && (
+                    <DiscountBadge discountInfo={discountInfo} size="sm" format="percent-off" />
+                  )}
                 </div>
+
+                {discountInfo.hasDiscount && (
+                  <div className="text-xs font-bold text-sale">
+                    You save {formatPrice(discountInfo.savingsAmount, currencyCode, currencySymbol)} ({discountInfo.discountPercent}%)
+                  </div>
+                )}
 
                 <div className="text-xs text-slate-600 line-clamp-3 leading-relaxed pt-1 overflow-hidden">
                   <RichTextRenderer content={currentProduct.description} />

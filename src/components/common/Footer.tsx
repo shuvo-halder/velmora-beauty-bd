@@ -87,10 +87,10 @@ export const Footer: React.FC = () => {
   }, [publicSettings?.branding?.logoDarkUrl, publicSettings?.branding?.logoUrl]);
 
   return (
-    <footer className="bg-bg-alt text-ink/80 pt-12 sm:pt-14 pb-5 border-t border-champagne/40">
+    <footer className="bg-footer text-bg pt-12 sm:pt-14 pb-5 border-t border-white/10">
       
       {/* Main Footer Links & Newsletter */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-10 pb-10 border-b border-champagne/40">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-10 pb-10 border-b border-white/10">
         
         {/* Col 1: Brand Info */}
         <div className="lg:col-span-2 space-y-5">
@@ -106,37 +106,37 @@ export const Footer: React.FC = () => {
                 onError={() => setLogoDarkError(true)}
               />
             ) : (
-              <span className="font-extrabold text-xl lg:text-2xl text-ink tracking-tight hover:text-primary transition-colors">{siteName}</span>
+              <span className="font-extrabold text-xl lg:text-2xl text-white tracking-tight hover:text-sage transition-colors">{siteName}</span>
             )}
           </Link>
 
-          <p className="text-xs sm:text-sm text-ink/75 leading-relaxed max-w-sm font-normal">
+          <p className="text-xs sm:text-sm text-bg/80 leading-relaxed max-w-sm font-normal">
             {publicSettings?.seo?.metaDescription || 'Quality products, trusted service, and a better shopping experience — all in one place.'}
           </p>
 
           <div className="flex flex-col items-start justify-start gap-4 pt-1 w-full">
-            <div className="space-y-2.5 text-xs font-medium text-ink min-w-0 w-full">
+            <div className="space-y-2.5 text-xs font-medium text-bg/90 min-w-0 w-full">
               {(publicSettings?.supportPhone || publicSettings?.general?.storePhone || publicSettings?.store?.supportPhone || publicSettings?.store?.callOrderNumber) && (
                 <div className="flex items-center gap-3 min-w-0">
-                  <Phone size={14} className="text-primary shrink-0" />
+                  <Phone size={14} className="text-sage shrink-0" />
                   <span className="truncate">{publicSettings?.supportPhone || publicSettings?.general?.storePhone || publicSettings?.store?.supportPhone || publicSettings?.store?.callOrderNumber}</span>
                 </div>
               )}
               {(publicSettings?.supportEmail || publicSettings?.general?.storeEmail || publicSettings?.store?.supportEmail) && (
                 <div className="flex items-center gap-3 min-w-0">
-                  <Mail size={14} className="text-primary shrink-0" />
+                  <Mail size={14} className="text-sage shrink-0" />
                   <span className="lowercase truncate">{publicSettings?.supportEmail || publicSettings?.general?.storeEmail || publicSettings?.store?.supportEmail}</span>
                 </div>
               )}
               {(publicSettings?.general?.storeAddress || publicSettings?.store?.address) && (
                 <div className="flex items-center gap-3 min-w-0">
-                  <MapPin size={14} className="text-primary shrink-0" />
+                  <MapPin size={14} className="text-sage shrink-0" />
                   <span className="capitalize truncate">{publicSettings?.general?.storeAddress || publicSettings?.store?.address}</span>
                 </div>
               )}
             </div>
 
-            {/* Social Media Icons (Mobile: centered row below contact info; Desktop: row below contact info) */}
+            {/* Social Media Icons */}
             {mounted && activeSocialLinks.length > 0 && (
               <div className="flex justify-center lg:justify-start shrink-0 pt-2 lg:pt-2 w-full">
                 <div className="flex flex-row flex-nowrap items-center justify-center lg:justify-start gap-6 sm:gap-7 lg:gap-5">
@@ -149,7 +149,7 @@ export const Footer: React.FC = () => {
                       aria-label={social.label}
                       className="flex items-center justify-center cursor-pointer shrink-0 transition-opacity hover:opacity-80 focus:outline-none"
                     >
-                      <social.Icon className="w-5 h-5 shrink-0 text-ink hover:text-primary transition-colors" />
+                      <social.Icon className="w-5 h-5 shrink-0 text-bg hover:text-sage transition-colors" />
                     </a>
                   ))}
                 </div>
@@ -162,10 +162,10 @@ export const Footer: React.FC = () => {
         <div className="lg:col-span-3 grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
           {/* Col 2: Shop */}
           <div>
-            <h4 className="text-xs font-semibold text-ink uppercase tracking-wider mb-3 sm:mb-4">
+            <h4 className="text-xs font-semibold text-white uppercase tracking-wider mb-3 sm:mb-4">
               Shop
             </h4>
-            <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm text-ink/80">
+            <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm text-bg/80">
               {[
                 { label: 'All Products', href: '/products' },
                 { label: 'Popular Products', href: '/products' },
@@ -176,7 +176,7 @@ export const Footer: React.FC = () => {
                 <li key={idx}>
                   <Link
                     href={link.href}
-                    className="hover:text-primary transition-colors text-ink/80 block"
+                    className="hover:text-sage transition-colors text-bg/80 block"
                   >
                     {link.label}
                   </Link>
@@ -187,10 +187,10 @@ export const Footer: React.FC = () => {
 
           {/* Col 3: Customer Service */}
           <div>
-            <h4 className="text-xs font-semibold text-ink uppercase tracking-wider mb-3 sm:mb-4">
+            <h4 className="text-xs font-semibold text-white uppercase tracking-wider mb-3 sm:mb-4">
               Service
             </h4>
-            <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm text-ink/80">
+            <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm text-bg/80">
               {[
                 { label: 'Track Order', href: '/account/orders' },
                 { label: 'Shipping Info', href: '/pages/shipping' },
@@ -201,7 +201,7 @@ export const Footer: React.FC = () => {
                 <li key={idx}>
                   <Link
                     href={link.href}
-                    className="hover:text-primary transition-colors text-ink/80 block"
+                    className="hover:text-sage transition-colors text-bg/80 block"
                   >
                     {link.label}
                   </Link>
@@ -212,10 +212,10 @@ export const Footer: React.FC = () => {
 
           {/* Col 4: Information */}
           <div>
-            <h4 className="text-xs font-semibold text-ink uppercase tracking-wider mb-3 sm:mb-4">
+            <h4 className="text-xs font-semibold text-white uppercase tracking-wider mb-3 sm:mb-4">
               Information
             </h4>
-            <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm text-ink/80">
+            <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm text-bg/80">
               {[
                 { label: `About ${publicSettings?.general?.siteName || 'Store'}`, href: '/pages/about' },
                 { label: 'Our Story', href: '/pages/about' },
@@ -226,7 +226,7 @@ export const Footer: React.FC = () => {
                 <li key={idx}>
                   <Link
                     href={link.href}
-                    className="hover:text-primary transition-colors text-ink/80 block"
+                    className="hover:text-sage transition-colors text-bg/80 block"
                   >
                     {link.label}
                   </Link>
@@ -239,20 +239,22 @@ export const Footer: React.FC = () => {
       </div>
 
       {/* Bottom Copyright & Payment Icons */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-2 flex flex-col-reverse md:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-ink/70">
-        <div className="text-center md:text-left text-xs sm:text-sm text-ink/70 font-normal leading-relaxed md:shrink-0">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-2 flex flex-col-reverse md:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-bg/70">
+        <div className="text-center md:text-left text-xs sm:text-sm text-bg/70 font-normal leading-relaxed md:shrink-0">
           © {new Date().getFullYear()} {publicSettings?.general?.siteName || "Store"}. All rights reserved.
         </div>
 
-        {/* Payment Gateway / SSLCOMMERZ Banner */}
+        {/* Payment Gateway / SSLCOMMERZ Banner on white rounded strip */}
         <div className="flex items-center justify-center md:justify-end shrink-0 w-full md:w-auto">
-          <img 
-            src="/images/sslcommerz-banner.png" 
-            alt="Secure Payment Gateway powered by SSLCOMMERZ - Visa, Mastercard, bKash, Nagad, AMEX" 
-            className="w-full max-w-[494px] h-auto md:w-[494px] md:h-[72px] object-contain select-none transition-opacity duration-200"
-            loading="lazy"
-            decoding="async"
-          />
+          <div className="bg-white rounded-lg px-2.5 py-1.5 shadow-xs flex items-center justify-center">
+            <img 
+              src="/images/sslcommerz-banner.png" 
+              alt="Secure Payment Gateway powered by SSLCOMMERZ - Visa, Mastercard, bKash, Nagad, AMEX" 
+              className="w-full max-w-[494px] h-auto md:w-[494px] md:h-[60px] object-contain select-none transition-opacity duration-200"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
         </div>
       </div>
 

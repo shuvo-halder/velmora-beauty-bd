@@ -47,7 +47,7 @@ export default async function RootLayout({
         <style
           id="brand-primary-tokens"
           dangerouslySetInnerHTML={{
-            __html: `:root{--color-primary:${brandColors.primary};--color-primary-hover:${brandColors.hover};--color-primary-light:${brandColors.light};--color-primary-text:${brandColors.text};--color-accent:${brandColors.primary};--color-accent-hover:${brandColors.hover};--color-accent-muted:${brandColors.light};}`,
+            __html: `:root{--color-primary:${brandColors.primary};--color-primary-hover:${brandColors.hover};--color-primary-light:${brandColors.light};--color-primary-text:${brandColors.text};--color-accent:${brandColors.primary};--color-accent-hover:${brandColors.hover};--color-accent-muted:${brandColors.light};--color-footer:${brandColors.footer};}`,
           }}
         />
       </head>

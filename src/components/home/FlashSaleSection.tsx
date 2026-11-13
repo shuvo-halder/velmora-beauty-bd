@@ -10,6 +10,8 @@ import { Zap, Clock, ShoppingCart, Heart, ShieldCheck, ArrowRight, AlertCircle, 
 import { Skeleton } from '../ui/Skeleton';
 import { SmartImage } from '../common/SmartImage';
 import { formatPrice } from '../../utils/formatters';
+import { getDiscountInfo } from '../../utils/discount';
+import { DiscountBadge } from '../common/DiscountBadge';
 
 export const FlashSaleSection: React.FC = () => {
   const { toggleWishlist, isInWishlist, navigateTo } = useStorefront();
@@ -24,6 +26,7 @@ export const FlashSaleSection: React.FC = () => {
   });
 
   const dealProduct = products?.find(p => p.isDealOfDay || p.discountPercent) || products?.[0];
+  const discountInfo = getDiscountInfo(dealProduct);
   const inWishlist = dealProduct ? isInWishlist(dealProduct.id) : false;
 
   // Live countdown state
@@ -89,10 +92,16 @@ export const FlashSaleSection: React.FC = () => {
                 fallbackLabel={dealProduct.name}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
               />
-              <div className="absolute top-4 left-4 bg-primary text-white font-extrabold text-xs px-3 py-1 rounded-full shadow-md uppercase tracking-wider flex items-center gap-1">
-                <Zap size={14} className="fill-white" />
-                <span>{dealProduct.discountPercent ? `${dealProduct.discountPercent}% OFF` : 'SPECIAL DEAL'}</span>
-              </div>
+              {discountInfo.hasDiscount ? (
+                <div className="absolute top-4 left-4 z-10">
+                  <DiscountBadge discountInfo={discountInfo} size="md" format="percent-off" className="rounded-full shadow-md" />
+                </div>
+              ) : (
+                <div className="absolute top-4 left-4 bg-primary text-white font-extrabold text-xs px-3 py-1 rounded-full shadow-md uppercase tracking-wider flex items-center gap-1 z-10">
+                  <Zap size={14} className="fill-white" />
+                  <span>SPECIAL DEAL</span>
+                </div>
+              )}
             </div>
           </div>
 
@@ -144,11 +153,11 @@ export const FlashSaleSection: React.FC = () => {
             <div className="space-y-3 pt-2">
               <div className="flex items-baseline gap-3">
                 <span className="text-3xl font-black text-rose-400">
-                  {formatPrice(dealProduct.price)}
+                  {formatPrice(discountInfo.price)}
                 </span>
-                {dealProduct.compareAtPrice && (
+                {discountInfo.hasDiscount && discountInfo.compareAtPrice && (
                   <span className="text-base font-semibold text-slate-400 line-through">
-                    {formatPrice(dealProduct.compareAtPrice)}
+                    {formatPrice(discountInfo.compareAtPrice)}
                   </span>
                 )}
               </div>

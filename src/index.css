@@ -12,6 +12,10 @@
     --color-accent-hover: var(--color-primary-hover);
     --color-accent-muted: var(--color-primary-light);
 
+    --color-footer: #1F3A2D;
+    --color-sale: #C62828;
+    --color-sale-text: #FFFFFF;
+
     /* Velmora Warm Earthy Palette Tokens */
     --color-bg: #F5F4EC;
     --color-bg-alt: #EAEBDD;
@@ -84,6 +88,10 @@
   --color-accent: #315B46;
   --color-accent-hover: #254636;
   --color-accent-muted: #EEF3F0;
+
+  --color-footer: #1F3A2D;
+  --color-sale: #C62828;
+  --color-sale-text: #FFFFFF;
 
   /* Velmora Warm Earthy Palette Tokens */
   --color-bg: #F5F4EC;

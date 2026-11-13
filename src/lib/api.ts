@@ -403,10 +403,10 @@ export function normalizeProduct(raw: any): Product {
   const rawPrice = raw.price ?? raw.regularPrice ?? raw.regular_price ?? raw.unit_price ?? raw.unitPrice ?? raw.sale_price ?? raw.salePrice ?? raw.amount ?? raw.cost;
   const price = (rawPrice !== undefined && rawPrice !== null && !isNaN(Number(rawPrice))) ? Number(rawPrice) : 0;
 
-  const rawCompare = raw.compareAtPrice ?? raw.compare_at_price ?? raw.originalPrice ?? raw.original_price ?? raw.mrp ?? raw.old_price ?? raw.oldPrice ?? raw.listPrice ?? raw.list_price;
+  const rawCompare = raw.compareAtPrice ?? raw.compare_at_price ?? raw.originalPrice ?? raw.original_price ?? raw.mrp ?? raw.old_price ?? raw.oldPrice ?? raw.listPrice ?? raw.list_price ?? (Array.isArray(raw.variants) ? (raw.variants[0]?.compareAtPrice ?? raw.variants[0]?.compare_at_price ?? raw.variants[0]?.originalPrice) : undefined);
   const compareAtPrice = (rawCompare !== undefined && rawCompare !== null && !isNaN(Number(rawCompare)) && Number(rawCompare) > price) ? Number(rawCompare) : undefined;
 
-  const rawDiscount = raw.discountPercent ?? raw.discount_percent ?? raw.discount_percentage ?? raw.discount;
+  const rawDiscount = raw.discountPercent ?? raw.discount_percent ?? raw.discount_percentage ?? raw.discount ?? (Array.isArray(raw.variants) ? (raw.variants[0]?.discountPercent ?? raw.variants[0]?.discount_percent ?? raw.variants[0]?.discount) : undefined);
   let discountPercent: number | undefined = (rawDiscount !== undefined && rawDiscount !== null && !isNaN(Number(rawDiscount))) ? Number(rawDiscount) : undefined;
   if (discountPercent === undefined && compareAtPrice && compareAtPrice > price && price > 0) {
     discountPercent = Math.round(((compareAtPrice - price) / compareAtPrice) * 100);

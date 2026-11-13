@@ -3,12 +3,14 @@ export interface BrandColorTokens {
   hover: string;
   light: string;
   text: string;
+  footer: string;
 }
 
 export const DEFAULT_PRIMARY_COLOR = '#315B46';
 export const DEFAULT_PRIMARY_HOVER = '#254636';
 export const DEFAULT_PRIMARY_LIGHT = '#EEF3F0';
 export const DEFAULT_PRIMARY_TEXT = '#FFFFFF';
+export const DEFAULT_FOOTER = '#1F3A2D';
 
 const HEX_COLOR_REGEX = /^#[0-9a-fA-F]{6}$/;
 
@@ -63,6 +65,7 @@ export function deriveBrandColors(inputHex?: string | null): BrandColorTokens {
       hover: DEFAULT_PRIMARY_HOVER,
       light: DEFAULT_PRIMARY_LIGHT,
       text: DEFAULT_PRIMARY_TEXT,
+      footer: DEFAULT_FOOTER,
     };
   }
 
@@ -81,10 +84,14 @@ export function deriveBrandColors(inputHex?: string | null): BrandColorTokens {
 
   const text = contrastWithWhite >= 4.5 ? '#FFFFFF' : '#111827';
 
+  // 4. Dark footer background: primary darkened ~35% (multiply by 0.65)
+  const footer = rgbToHex(r * 0.65, g * 0.65, b * 0.65);
+
   return {
     primary: trimmed.toUpperCase(),
     hover,
     light,
     text,
+    footer,
   };
 }

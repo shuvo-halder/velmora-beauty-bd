@@ -5,6 +5,8 @@ import { CartItem as CartItemType } from '../../types/storefront';
 import { QuantitySelector } from './QuantitySelector';
 import { useSettings } from '../../context/SettingsContext';
 import { formatPrice } from '../../utils/formatters';
+import { getDiscountInfo } from '../../utils/discount';
+import { DiscountBadge } from '../common/DiscountBadge';
 
 interface CartItemProps {
   item: CartItemType;
@@ -33,6 +35,8 @@ export const CartItem = React.memo<CartItemProps>(({
     // Ignore if not wrapped
   }
 
+  const discountInfo = getDiscountInfo(item.product, item.selectedVariant);
+
   return (
     <div className="py-3.5 flex items-start gap-3.5">
       {/* Product Image */}
@@ -40,6 +44,11 @@ export const CartItem = React.memo<CartItemProps>(({
         onClick={() => onNavigateToProduct(item.product.slug)}
         className="w-18 h-18 bg-[#F9FAFB] border border-champagne/50 rounded-lg overflow-hidden shrink-0 cursor-pointer group relative"
       >
+        {discountInfo.hasDiscount && (
+          <div className="absolute top-1 left-1 z-10 pointer-events-none">
+            <DiscountBadge discountInfo={discountInfo} size="xs" format="percent" />
+          </div>
+        )}
         <SmartImage 
           src={item.selectedVariant?.image || item.product.images[0]} 
           alt={item.product.name} 
@@ -95,6 +104,11 @@ export const CartItem = React.memo<CartItemProps>(({
             <div className="text-sm font-bold text-ink">
               {formatPrice(item.totalPrice, currencyCode, currencySymbol)}
             </div>
+            {discountInfo.hasDiscount && discountInfo.compareAtPrice && (
+              <div className="text-[10px] text-muted line-through font-medium">
+                {formatPrice(discountInfo.compareAtPrice * item.quantity, currencyCode, currencySymbol)}
+              </div>
+            )}
             {item.quantity > 1 && (
               <div className="text-[10px] text-muted font-normal">
                 {formatPrice(item.unitPrice, currencyCode, currencySymbol)} / unit

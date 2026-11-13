@@ -10,6 +10,7 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
     | 'info'
     | 'outline'
     | 'deal'
+    | 'sale'
     | 'new';
   size?: 'sm' | 'md' | 'lg';
   leftIcon?: React.ReactNode;
@@ -38,7 +39,8 @@ export const Badge: React.FC<BadgeProps> = ({
     error: 'bg-red-50 text-[#DC2626] border border-red-200 font-semibold',
     info: 'bg-sky-50 text-sky-700 border border-sky-200 font-semibold',
     outline: 'bg-white text-muted border border-champagne/50 font-semibold',
-    deal: 'bg-champagne text-ink font-bold border border-champagne',
+    deal: 'bg-sale text-sale-text font-bold',
+    sale: 'bg-sale text-sale-text font-bold',
     new: 'bg-beige text-ink font-bold border border-beige',
   };
 

@@ -37,6 +37,8 @@ import {
 } from 'lucide-react';
 import { Skeleton, ProductCardSkeleton } from '../ui/Skeleton';
 import { Badge } from '../ui/Badge';
+import { getDiscountInfo } from '../../utils/discount';
+import { DiscountBadge } from '../common/DiscountBadge';
 
 import { SEO } from '../common/SEO';
 import { getProductSchema, getBreadcrumbSchema } from '../../utils/seo';
@@ -283,10 +285,9 @@ export const ProductDetailPage: React.FC = () => {
     : (product.stock > 0 ? product.stock : 0);
   const activeSKU = selectedVariant ? selectedVariant.sku : `AURA-PRD-${product.id}`;
 
-  const hasDiscount = activeComparePrice && activeComparePrice > activePrice;
-  const computedDiscount = hasDiscount 
-    ? Math.round(((activeComparePrice - activePrice) / activeComparePrice) * 100) 
-    : product.discountPercent;
+  const discountInfo = getDiscountInfo(product, selectedVariant);
+  const hasDiscount = discountInfo.hasDiscount;
+  const computedDiscount = discountInfo.hasDiscount ? discountInfo.discountPercent : undefined;
 
   const inWishlist = isInWishlist(product.id);
 
@@ -473,10 +474,13 @@ export const ProductDetailPage: React.FC = () => {
               </button>
 
               {/* Discount Badge */}
-              {computedDiscount && (
-                <span className="absolute top-3.5 left-3.5 bg-primary text-white font-bold text-[11px] px-2.5 py-0.5 rounded-full shadow-xs z-10 pointer-events-none">
-                  -{computedDiscount}% OFF
-                </span>
+              {discountInfo.hasDiscount && (
+                <DiscountBadge
+                  discountInfo={discountInfo}
+                  size="sm"
+                  format="percent-off"
+                  className="absolute top-3.5 left-3.5 z-10 pointer-events-none rounded-full"
+                />
               )}
 
               {/* Zoom trigger icon */}
@@ -603,21 +607,25 @@ export const ProductDetailPage: React.FC = () => {
               </div>
 
               {/* Price Row */}
-              <div className="flex items-baseline gap-3 pt-1">
+              <div className="flex flex-wrap items-baseline gap-2.5 sm:gap-3 pt-1">
                 <span className="text-2xl sm:text-3xl font-bold text-ink">
-                  {formatPrice(activePrice, currencyCode, currencySymbol)}
+                  {formatPrice(discountInfo.price, currencyCode, currencySymbol)}
                 </span>
-                {activeComparePrice && activeComparePrice > activePrice && (
-                  <span className="text-base font-medium text-muted line-through">
-                    {formatPrice(activeComparePrice, currencyCode, currencySymbol)}
+                {discountInfo.hasDiscount && discountInfo.compareAtPrice && (
+                  <span className="text-base sm:text-lg font-medium text-muted line-through">
+                    {formatPrice(discountInfo.compareAtPrice, currencyCode, currencySymbol)}
                   </span>
                 )}
-                {computedDiscount && (
-                  <span className="px-2 py-0.5 bg-champagne text-ink font-bold text-xs rounded-md border border-champagne">
-                    Save {formatPrice(activeComparePrice! - activePrice, currencyCode, currencySymbol)} ({computedDiscount}%)
-                  </span>
+                {discountInfo.hasDiscount && (
+                  <DiscountBadge discountInfo={discountInfo} size="sm" format="percent-off" />
                 )}
               </div>
+
+              {discountInfo.hasDiscount && (
+                <div className="text-xs sm:text-sm font-bold text-sale pt-0.5">
+                  You save {formatPrice(discountInfo.savingsAmount, currencyCode, currencySymbol)} ({discountInfo.discountPercent}%)
+                </div>
+              )}
 
               {product.subtitle && (
                 <p className="text-xs sm:text-sm text-muted leading-relaxed pt-1 line-clamp-3">

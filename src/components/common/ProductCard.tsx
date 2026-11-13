@@ -8,6 +8,8 @@ import { useCart } from '../../hooks/useCart';
 import { RatingStars } from './RatingStars';
 import { trackGA4SelectItem } from '../../utils/analytics';
 import { formatPrice } from '../../utils/formatters';
+import { getDiscountInfo } from '../../utils/discount';
+import { DiscountBadge } from './DiscountBadge';
 import { Heart, Eye, ShoppingCart, Sparkles, Zap, Loader2 } from 'lucide-react';
 import { RichTextRenderer } from './RichTextRenderer';
 
@@ -38,6 +40,7 @@ export const ProductCard = React.memo(({
   const currencySymbol = publicSettings?.general?.currencySymbol || (currencyCode === 'BDT' ? '৳' : '৳');
 
   const { addToCart, isAddingToCart } = useCart();
+  const discountInfo = getDiscountInfo(product);
 
   const inWishlist = isInWishlist(product.id);
   const secondImage = product.images[1] || product.images[0];
@@ -63,11 +66,14 @@ export const ProductCard = React.memo(({
     return (
       <div className="group bg-white border border-champagne/50 rounded-xl p-4 shadow-xs hover:border-champagne transition-colors flex flex-col sm:flex-row items-stretch gap-5 relative overflow-hidden">
         {/* Badges */}
-        {product.discountPercent && (
-          <div className="absolute top-3 left-3 bg-champagne text-ink font-bold text-[10px] px-2 py-0.5 rounded-md z-10 border border-champagne">
-            -{product.discountPercent}%
-          </div>
-        )}
+        <div className="absolute top-3 left-3 z-10 flex flex-col gap-1 items-start">
+          <DiscountBadge discountInfo={discountInfo} size="sm" format="percent" />
+          {product.isNew && (
+            <span className="bg-beige text-ink font-bold text-[10px] px-2 py-0.5 rounded-md shadow-xs border border-beige">
+              NEW
+            </span>
+          )}
+        </div>
 
         {/* Thumbnail */}
         <div 
@@ -111,11 +117,11 @@ export const ProductCard = React.memo(({
           <div className="flex items-center justify-between pt-3 border-t border-champagne/50 mt-3">
             <div className="flex items-baseline gap-2">
               <span className="text-xl font-bold text-ink">
-                {formatPrice(product.price, currencyCode, currencySymbol)}
+                {formatPrice(discountInfo.price, currencyCode, currencySymbol)}
               </span>
-              {product.compareAtPrice && (
-                <span className="text-xs text-muted line-through">
-                  {formatPrice(product.compareAtPrice, currencyCode, currencySymbol)}
+              {discountInfo.hasDiscount && discountInfo.compareAtPrice && (
+                <span className="text-xs text-muted line-through font-medium">
+                  {formatPrice(discountInfo.compareAtPrice, currencyCode, currencySymbol)}
                 </span>
               )}
             </div>
@@ -157,13 +163,9 @@ export const ProductCard = React.memo(({
       
       {/* Badges Top Left */}
       <div className="absolute top-2 left-2 z-10 flex flex-col gap-1 items-start">
-        {product.discountPercent && (
-          <span className="bg-champagne text-ink font-bold text-[9px] sm:text-[10px] px-1.5 py-0.5 rounded-md shadow-xs border border-champagne">
-            -{product.discountPercent}%
-          </span>
-        )}
+        <DiscountBadge discountInfo={discountInfo} size="sm" format="percent" />
         {product.isNew && (
-          <span className="bg-beige text-ink font-bold text-[9px] sm:text-[10px] px-1.5 py-0.5 rounded-md shadow-xs">
+          <span className="bg-beige text-ink font-bold text-[9px] sm:text-[10px] px-1.5 py-0.5 rounded-md shadow-xs border border-beige">
             NEW
           </span>
         )}
@@ -258,15 +260,15 @@ export const ProductCard = React.memo(({
         )}
 
         {/* Price and Cart Row */}
-        <div className="pt-1.5 flex items-center justify-between mt-auto border-t border-champagne/50/80">
+        <div className="pt-1.5 flex items-center justify-between mt-auto border-t border-champagne/50">
           <div className="flex flex-col">
-            {product.compareAtPrice ? (
-              <span className="text-[9px] sm:text-[10px] text-muted line-through font-medium leading-none mb-0.5">
-                {formatPrice(product.compareAtPrice, currencyCode, currencySymbol)}
+            {discountInfo.hasDiscount && discountInfo.compareAtPrice ? (
+              <span className="text-[10px] sm:text-xs text-muted line-through font-medium leading-none mb-0.5">
+                {formatPrice(discountInfo.compareAtPrice, currencyCode, currencySymbol)}
               </span>
             ) : null}
             <span className="text-xs sm:text-sm font-bold text-ink leading-tight">
-              {formatPrice(product.price, currencyCode, currencySymbol)}
+              {formatPrice(discountInfo.price, currencyCode, currencySymbol)}
             </span>
           </div>
 

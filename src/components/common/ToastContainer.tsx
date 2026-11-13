@@ -21,7 +21,7 @@ export const ToastContainer: React.FC = () => {
           <button
             type="button"
             onClick={clearAllToasts}
-            className="text-[10px] font-semibold text-gray-600 hover:text-gray-900 bg-white px-2.5 py-1 rounded-full border border-[#E5E7EB] shadow-xs flex items-center gap-1.5 transition-colors cursor-pointer"
+            className="text-[10px] font-semibold text-gray-600 hover:text-ink bg-white px-2.5 py-1 rounded-full border border-champagne/50 shadow-xs flex items-center gap-1.5 transition-colors cursor-pointer"
           >
             <Trash2 size={11} />
             <span>Clear all ({toasts.length})</span>

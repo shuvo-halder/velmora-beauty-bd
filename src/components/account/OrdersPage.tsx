@@ -147,10 +147,10 @@ export const OrdersPage: React.FC = () => {
         {/* Header Section */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900 tracking-tight flex items-center gap-2.5">
+            <h1 className="text-2xl font-bold text-ink tracking-tight flex items-center gap-2.5">
               <span>My Orders</span>
               {!isLoading && (
-                <span className="text-xs font-bold px-2.5 py-0.5 bg-gray-100 text-gray-600 rounded-full border border-gray-200">
+                <span className="text-xs font-bold px-2.5 py-0.5 bg-gray-100 text-gray-600 rounded-full border border-champagne/50">
                   {pagination.total}
                 </span>
               )}
@@ -163,7 +163,7 @@ export const OrdersPage: React.FC = () => {
             <button 
               onClick={() => refetch()}
               disabled={isFetching}
-              className="flex items-center gap-2 px-3.5 py-2 bg-white text-gray-700 font-semibold text-xs rounded-lg border border-gray-200 hover:bg-gray-50 active:bg-gray-100 transition-colors shadow-2xs disabled:opacity-60 cursor-pointer"
+              className="flex items-center gap-2 px-3.5 py-2 bg-white text-gray-700 font-semibold text-xs rounded-lg border border-champagne/50 hover:bg-gray-50 active:bg-gray-100 transition-colors shadow-2xs disabled:opacity-60 cursor-pointer"
               title="Refresh Orders"
             >
               <RefreshCw size={14} className={isFetching ? 'animate-spin text-primary' : ''} />
@@ -173,7 +173,7 @@ export const OrdersPage: React.FC = () => {
         </div>
 
         {/* Filter & Search Bar */}
-        <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-2xs space-y-3.5">
+        <div className="bg-white p-4 rounded-xl border border-champagne/50 shadow-2xs space-y-3.5">
           <div className="flex flex-col md:flex-row items-stretch md:items-center gap-3">
             {/* Search input */}
             <div className="relative flex-1">
@@ -183,7 +183,7 @@ export const OrdersPage: React.FC = () => {
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
                 placeholder="Search by order number (e.g. ORD-2026...)"
-                className="w-full pl-9.5 pr-8 py-2 text-xs bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder:text-gray-400 focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                className="w-full pl-9.5 pr-8 py-2 text-xs bg-gray-50 border border-champagne/50 rounded-lg text-ink placeholder:text-gray-400 focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
               />
               {searchInput && (
                 <button
@@ -226,7 +226,7 @@ export const OrdersPage: React.FC = () => {
 
           {/* Active filter summary tag if applied */}
           {(selectedStatus !== 'ALL' || debouncedSearch) && (
-            <div className="flex items-center justify-between pt-2 border-t border-gray-100 text-xs">
+            <div className="flex items-center justify-between pt-2 border-t border-champagne/40 text-xs">
               <div className="flex items-center gap-2 text-gray-600">
                 <span className="font-semibold text-gray-700">Filters active:</span>
                 {selectedStatus !== 'ALL' && (
@@ -254,8 +254,8 @@ export const OrdersPage: React.FC = () => {
         {isLoading && (
           <div className="space-y-4">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="bg-white border border-gray-200 rounded-xl p-5 sm:p-6 shadow-2xs space-y-4 animate-pulse">
-                <div className="flex justify-between items-start border-b border-gray-100 pb-3">
+              <div key={i} className="bg-white border border-champagne/50 rounded-xl p-5 sm:p-6 shadow-2xs space-y-4 animate-pulse">
+                <div className="flex justify-between items-start border-b border-champagne/40 pb-3">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-gray-200 rounded-lg" />
                     <div className="space-y-2">
@@ -269,7 +269,7 @@ export const OrdersPage: React.FC = () => {
                   <div className="w-28 h-7 bg-gray-200 rounded-full" />
                   <div className="w-20 h-7 bg-gray-200 rounded-full" />
                 </div>
-                <div className="py-2 border-t border-gray-100">
+                <div className="py-2 border-t border-champagne/40">
                   <div className="flex justify-between items-center px-2">
                     {[1, 2, 3, 4].map((s) => (
                       <div key={s} className="flex flex-col items-center gap-1.5">
@@ -279,7 +279,7 @@ export const OrdersPage: React.FC = () => {
                     ))}
                   </div>
                 </div>
-                <div className="space-y-2 pt-2 border-t border-gray-100">
+                <div className="space-y-2 pt-2 border-t border-champagne/40">
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 bg-gray-200 rounded-lg" />
                     <div className="space-y-2 flex-1">
@@ -288,7 +288,7 @@ export const OrdersPage: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col sm:flex-row justify-end gap-2 pt-3 border-t border-gray-100">
+                <div className="flex flex-col sm:flex-row justify-end gap-2 pt-3 border-t border-champagne/40">
                   <div className="w-full sm:w-36 h-11 bg-gray-200 rounded-lg" />
                   <div className="w-full sm:w-28 h-11 bg-gray-100 rounded-lg" />
                 </div>
@@ -304,7 +304,7 @@ export const OrdersPage: React.FC = () => {
               <AlertCircle size={24} />
             </div>
             <div>
-              <h3 className="text-base font-bold text-gray-900">Unable to load orders</h3>
+              <h3 className="text-base font-bold text-ink">Unable to load orders</h3>
               <p className="text-xs text-gray-500 max-w-sm mx-auto mt-1">
                 {(error as any)?.message || 'An error occurred while connecting to the server. Please try again.'}
               </p>
@@ -320,12 +320,12 @@ export const OrdersPage: React.FC = () => {
 
         {/* Empty State */}
         {!isLoading && !isError && orders.length === 0 && (
-          <div className="bg-white border border-gray-200 rounded-xl p-12 sm:p-16 shadow-2xs text-center space-y-4">
-            <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mx-auto text-gray-400 border border-gray-100">
+          <div className="bg-white border border-champagne/50 rounded-xl p-12 sm:p-16 shadow-2xs text-center space-y-4">
+            <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mx-auto text-gray-400 border border-champagne/40">
               <Package size={32} />
             </div>
             <div>
-              <h3 className="text-base font-bold text-gray-900">
+              <h3 className="text-base font-bold text-ink">
                 {debouncedSearch || selectedStatus !== 'ALL' ? 'No matching orders found' : 'No orders placed yet'}
               </h3>
               <p className="text-xs text-gray-500 font-medium max-w-xs mx-auto mt-1 leading-relaxed">
@@ -379,17 +379,17 @@ export const OrdersPage: React.FC = () => {
               return (
                 <div 
                   key={ord.id}
-                  className="bg-white border border-gray-200 rounded-xl p-5 sm:p-6 shadow-2xs hover:border-gray-300 transition-all group"
+                  className="bg-white border border-champagne/50 rounded-xl p-5 sm:p-6 shadow-2xs hover:border-champagne transition-all group"
                 >
                   {/* Card Top Row: Order Code, Date & Total */}
-                  <div className="flex flex-wrap items-start justify-between gap-3 pb-3 border-b border-gray-100">
+                  <div className="flex flex-wrap items-start justify-between gap-3 pb-3 border-b border-champagne/40">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-gray-50 rounded-lg flex items-center justify-center text-gray-500 group-hover:bg-primary-light group-hover:text-primary transition-colors border border-gray-200/80 flex-shrink-0">
+                      <div className="w-10 h-10 bg-gray-50 rounded-lg flex items-center justify-center text-gray-500 group-hover:bg-sage/30 group-hover:text-primary transition-colors border border-champagne/50/80 flex-shrink-0">
                         <ShoppingBag size={18} />
                       </div>
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className="text-sm font-bold text-gray-900">#{orderCode}</span>
+                          <span className="text-sm font-bold text-ink">#{orderCode}</span>
                           <span className="text-xs text-gray-400 font-medium">• {itemCount} {itemCount === 1 ? 'item' : 'items'}</span>
                         </div>
                         <div className="text-xs text-gray-500 font-medium mt-0.5">
@@ -400,7 +400,7 @@ export const OrdersPage: React.FC = () => {
 
                     <div className="text-left sm:text-right">
                       <div className="text-xs text-gray-500 font-medium">Order Total</div>
-                      <div className="text-base font-bold text-gray-900">
+                      <div className="text-base font-bold text-ink">
                         {formatPrice(total, currencyCode, currencySymbol)}
                       </div>
                     </div>
@@ -419,7 +419,7 @@ export const OrdersPage: React.FC = () => {
                       <span>This order is {orderMeta.label.toLowerCase()}. For support, please contact customer care.</span>
                     </div>
                   ) : (
-                    <div className="mt-4 pt-3 border-t border-gray-100">
+                    <div className="mt-4 pt-3 border-t border-champagne/40">
                       <div className="relative flex items-center justify-between">
                         <div className="absolute left-3 right-3 top-3 h-0.5 bg-gray-200 -z-0">
                           <div 
@@ -440,7 +440,7 @@ export const OrdersPage: React.FC = () => {
                                 {isDone ? <Check size={12} strokeWidth={3} /> : idx + 1}
                               </div>
                               <span className={`text-xs mt-1 font-medium ${
-                                isCurrent ? 'text-gray-900 font-bold' : isDone ? 'text-gray-700' : 'text-gray-400'
+                                isCurrent ? 'text-ink font-bold' : isDone ? 'text-gray-700' : 'text-gray-400'
                               }`}>
                                 {stepLabel}
                               </span>
@@ -452,11 +452,11 @@ export const OrdersPage: React.FC = () => {
                   )}
 
                   {/* Items Preview */}
-                  <div className="mt-4 pt-3 border-t border-gray-100 space-y-2.5">
+                  <div className="mt-4 pt-3 border-t border-champagne/40 space-y-2.5">
                     {itemsList.length > 0 ? (
                       itemsList.slice(0, 2).map((item, idx) => (
                         <div key={idx} className="flex items-center gap-3">
-                          <div className="w-12 h-12 rounded-lg border border-gray-200 overflow-hidden relative flex-shrink-0 bg-gray-50">
+                          <div className="w-12 h-12 rounded-lg border border-champagne/50 overflow-hidden relative flex-shrink-0 bg-gray-50">
                             <SmartImage 
                               src={item.productImage || item.image || ''} 
                               alt={item.productName || item.name || 'Product'} 
@@ -467,7 +467,7 @@ export const OrdersPage: React.FC = () => {
                             />
                           </div>
                           <div className="min-w-0 flex-1">
-                            <div className="text-xs font-bold text-gray-900 truncate">
+                            <div className="text-xs font-bold text-ink truncate">
                               {item.productName || item.name || 'Store Item'}
                             </div>
                             <div className="text-xs text-gray-500 font-medium mt-0.5">
@@ -490,7 +490,7 @@ export const OrdersPage: React.FC = () => {
                   </div>
 
                   {/* Actions Row (Mobile-first, min-h-[44px]) */}
-                  <div className="mt-4 pt-3 border-t border-gray-100 flex flex-col sm:flex-row items-stretch sm:items-center justify-end gap-2.5">
+                  <div className="mt-4 pt-3 border-t border-champagne/40 flex flex-col sm:flex-row items-stretch sm:items-center justify-end gap-2.5">
                     <Link
                       href={`/account/orders/${orderId}`}
                       className="min-h-[44px] px-4 py-2.5 bg-gray-900 hover:bg-gray-800 text-white font-semibold text-xs sm:text-sm rounded-lg flex items-center justify-center gap-2 transition-colors shadow-2xs"
@@ -505,7 +505,7 @@ export const OrdersPage: React.FC = () => {
                         setSelectedTrackingOrderId(orderId);
                         setSelectedTrackingOrderNumber(ord.orderNumber || `#${orderId.slice(-8)}`);
                       }}
-                      className="min-h-[44px] px-4 py-2.5 bg-white hover:bg-gray-50 text-gray-700 font-semibold text-xs sm:text-sm rounded-lg border border-gray-200 flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                      className="min-h-[44px] px-4 py-2.5 bg-white hover:bg-gray-50 text-gray-700 font-semibold text-xs sm:text-sm rounded-lg border border-champagne/50 flex items-center justify-center gap-2 transition-colors cursor-pointer"
                     >
                       <Truck size={16} className="text-primary" />
                       <span>Track Order</span>
@@ -517,18 +517,18 @@ export const OrdersPage: React.FC = () => {
 
             {/* Pagination Controls with min 44px buttons */}
             {pagination.totalPages > 1 && (
-              <div className="bg-white border border-gray-200 rounded-xl p-4 shadow-2xs flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div className="bg-white border border-champagne/50 rounded-xl p-4 shadow-2xs flex flex-col sm:flex-row items-center justify-between gap-3">
                 <div className="text-xs text-gray-500 font-medium">
-                  Showing <span className="font-bold text-gray-800">{(page - 1) * limit + 1}</span> to{' '}
-                  <span className="font-bold text-gray-800">{Math.min(page * limit, pagination.total)}</span> of{' '}
-                  <span className="font-bold text-gray-800">{pagination.total}</span> orders
+                  Showing <span className="font-bold text-ink">{(page - 1) * limit + 1}</span> to{' '}
+                  <span className="font-bold text-ink">{Math.min(page * limit, pagination.total)}</span> of{' '}
+                  <span className="font-bold text-ink">{pagination.total}</span> orders
                 </div>
 
                 <div className="flex items-center gap-1.5">
                   <button
                     onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
                     disabled={page <= 1}
-                    className="min-h-[44px] min-w-[44px] p-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors flex items-center justify-center cursor-pointer"
+                    className="min-h-[44px] min-w-[44px] p-2 bg-gray-50 border border-champagne/50 rounded-lg text-gray-700 hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors flex items-center justify-center cursor-pointer"
                     title="Previous Page"
                   >
                     <ChevronLeft size={18} />
@@ -553,7 +553,7 @@ export const OrdersPage: React.FC = () => {
                             className={`min-h-[44px] min-w-[44px] px-3 rounded-lg text-xs sm:text-sm font-bold transition-colors cursor-pointer flex items-center justify-center ${
                               page === p
                                 ? 'bg-primary text-white shadow-xs'
-                                : 'bg-gray-50 border border-gray-200 text-gray-700 hover:bg-gray-100'
+                                : 'bg-gray-50 border border-champagne/50 text-gray-700 hover:bg-gray-100'
                             }`}
                           >
                             {p}
@@ -565,7 +565,7 @@ export const OrdersPage: React.FC = () => {
                   <button
                     onClick={() => setPage((prev) => Math.min(prev + 1, pagination.totalPages))}
                     disabled={page >= pagination.totalPages}
-                    className="min-h-[44px] min-w-[44px] p-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors flex items-center justify-center cursor-pointer"
+                    className="min-h-[44px] min-w-[44px] p-2 bg-gray-50 border border-champagne/50 rounded-lg text-gray-700 hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors flex items-center justify-center cursor-pointer"
                     title="Next Page"
                   >
                     <ChevronRight size={18} />
@@ -585,10 +585,10 @@ export const OrdersPage: React.FC = () => {
             className="fixed inset-0 bg-gray-900/60 backdrop-blur-xs" 
             onClick={() => setSelectedTrackingOrderId(null)} 
           />
-          <div className="bg-white rounded-xl p-6 sm:p-8 max-w-lg w-full relative z-10 shadow-xl border border-gray-200 max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
+          <div className="bg-white rounded-xl p-6 sm:p-8 max-w-lg w-full relative z-10 shadow-xl border border-champagne/50 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between mb-6 pb-4 border-b border-champagne/40">
               <div>
-                <h3 className="text-lg font-bold text-gray-900">Shipment Tracking</h3>
+                <h3 className="text-lg font-bold text-ink">Shipment Tracking</h3>
                 <p className="text-xs text-gray-500 font-medium mt-0.5">
                   Order {selectedTrackingOrderNumber}
                 </p>
@@ -612,7 +612,7 @@ export const OrdersPage: React.FC = () => {
               showExternalLink={true}
             />
 
-            <div className="mt-8 flex gap-3 pt-4 border-t border-gray-100">
+            <div className="mt-8 flex gap-3 pt-4 border-t border-champagne/40">
               <Link
                 href={`/account/orders/${selectedTrackingOrderId}`}
                 className="flex-1 py-2.5 bg-gray-900 text-white text-center font-semibold text-xs rounded-lg hover:bg-gray-800 transition-colors shadow-2xs"

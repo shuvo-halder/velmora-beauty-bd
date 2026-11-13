@@ -58,7 +58,7 @@ export const AuthModal: React.FC = () => {
       />
 
       {/* Dialog */}
-      <div className="relative bg-white rounded-xl p-6 sm:p-8 max-w-sm w-full z-10 shadow-xl border border-gray-200 animate-in zoom-in-95 duration-200">
+      <div className="relative bg-white rounded-xl p-6 sm:p-8 max-w-sm w-full z-10 shadow-xl border border-champagne/50 animate-in zoom-in-95 duration-200">
         
         <button
           onClick={() => setIsAuthModalOpen(false)}
@@ -68,10 +68,10 @@ export const AuthModal: React.FC = () => {
         </button>
 
         <div className="text-center space-y-2 mb-6">
-          <div className="w-12 h-12 bg-primary-light border border-primary/20 text-primary rounded-xl flex items-center justify-center mx-auto">
+          <div className="w-12 h-12 bg-sage/30 border border-primary/20 text-primary rounded-xl flex items-center justify-center mx-auto">
             <Lock size={20} />
           </div>
-          <h3 className="font-bold text-xl text-gray-900">Customer Sign In</h3>
+          <h3 className="font-bold text-xl text-ink">Customer Sign In</h3>
           <p className="text-xs text-gray-500 font-medium">
             Sign in to access your orders, track shipments, and manage your account.
           </p>
@@ -93,7 +93,7 @@ export const AuthModal: React.FC = () => {
                 value={emailInput}
                 onChange={(e) => setEmailInput(e.target.value)}
                 placeholder="name@example.com"
-                className="w-full py-2 pl-9 pr-3 bg-gray-50 border border-gray-200 rounded-lg text-xs font-medium text-gray-900 focus:bg-white focus:outline-hidden focus:ring-1 focus:ring-primary focus:border-primary transition-colors"
+                className="w-full py-2 pl-9 pr-3 bg-gray-50 border border-champagne/50 rounded-lg text-xs font-medium text-ink focus:bg-white focus:outline-hidden focus:ring-1 focus:ring-primary focus:border-primary transition-colors"
               />
               <Mail size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
             </div>
@@ -108,7 +108,7 @@ export const AuthModal: React.FC = () => {
                 value={passwordInput}
                 onChange={(e) => setPasswordInput(e.target.value)}
                 placeholder="••••••••"
-                className="w-full py-2 pl-9 pr-9 bg-gray-50 border border-gray-200 rounded-lg text-xs font-medium text-gray-900 focus:bg-white focus:outline-hidden focus:ring-1 focus:ring-primary focus:border-primary transition-colors"
+                className="w-full py-2 pl-9 pr-9 bg-gray-50 border border-champagne/50 rounded-lg text-xs font-medium text-ink focus:bg-white focus:outline-hidden focus:ring-1 focus:ring-primary focus:border-primary transition-colors"
               />
               <Lock size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
               <button
@@ -131,11 +131,11 @@ export const AuthModal: React.FC = () => {
           </button>
         </form>
 
-        <div className="mt-4 pt-3 border-t border-gray-100 flex flex-col gap-2 text-center">
+        <div className="mt-4 pt-3 border-t border-champagne/40 flex flex-col gap-2 text-center">
           <button
             type="button"
             onClick={() => navigateToFullLogin('mobile')}
-            className="w-full py-2 text-xs font-semibold text-primary hover:bg-primary-light rounded-lg transition-colors cursor-pointer flex items-center justify-center gap-1.5 border border-primary/20"
+            className="w-full py-2 text-xs font-semibold text-primary hover:bg-sage/30 rounded-lg transition-colors cursor-pointer flex items-center justify-center gap-1.5 border border-primary/20"
           >
             <Smartphone size={14} />
             <span>Sign in with Mobile OTP</span>

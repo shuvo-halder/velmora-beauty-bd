@@ -51,7 +51,7 @@ export default async function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-screen bg-white text-[#111827] font-sans flex flex-col justify-between selection:bg-primary selection:text-white antialiased overflow-x-hidden">
+      <body className="min-h-screen bg-bg text-ink font-sans flex flex-col justify-between selection:bg-primary selection:text-white antialiased overflow-x-hidden">
         <StorefrontProviders initialSettings={initialSettings}>
           <AnalyticsProvider initialConfig={initialAnalyticsConfig} />
           <div>

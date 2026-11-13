@@ -31,15 +31,15 @@ export const Badge: React.FC<BadgeProps> = ({
 
   const variantClasses = {
     primary: 'bg-primary text-white font-semibold',
-    secondary: 'bg-[#111827] text-white font-semibold',
+    secondary: 'bg-ink text-white font-semibold',
     accent: 'bg-primary text-white font-semibold',
     success: 'bg-emerald-50 text-[#16A34A] border border-emerald-200 font-semibold',
     warning: 'bg-amber-50 text-[#D97706] border border-amber-200 font-semibold',
     error: 'bg-red-50 text-[#DC2626] border border-red-200 font-semibold',
     info: 'bg-sky-50 text-sky-700 border border-sky-200 font-semibold',
-    outline: 'bg-white text-[#6B7280] border border-[#E5E7EB] font-semibold',
-    deal: 'bg-primary-light text-primary border border-primary/20 font-bold',
-    new: 'bg-[#111827] text-white font-bold',
+    outline: 'bg-white text-taupe border border-champagne/50 font-semibold',
+    deal: 'bg-champagne text-ink font-bold border border-champagne',
+    new: 'bg-beige text-ink font-bold border border-beige',
   };
 
   return (

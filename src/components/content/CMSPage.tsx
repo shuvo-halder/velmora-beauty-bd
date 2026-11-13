@@ -46,7 +46,7 @@ export const CMSPage: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+      <div className="min-h-screen flex items-center justify-center bg-bg">
         <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
@@ -54,7 +54,7 @@ export const CMSPage: React.FC = () => {
 
   if (!page) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 space-y-4">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-bg space-y-4">
         <h1 className="text-2xl font-black text-slate-900 tracking-tight">Page Not Found</h1>
         <button onClick={() => navigateTo('home')} className="text-primary font-bold hover:underline">Return to Home</button>
       </div>
@@ -64,7 +64,7 @@ export const CMSPage: React.FC = () => {
   const isContactPage = slug === 'contact-us' || slug === 'contact';
 
   return (
-    <div className="py-16 bg-slate-50 min-h-screen">
+    <div className="py-16 bg-bg min-h-screen">
       <SEO 
         title={page.title}
         description={page.content.substring(0, 160)}
@@ -100,7 +100,7 @@ export const CMSPage: React.FC = () => {
 
             {isContactPage && (
               <div className="pt-10 border-t border-slate-100 mt-10">
-                <div className="bg-slate-50 rounded-[32px] p-8 sm:p-12 space-y-8">
+                <div className="bg-bg-alt/70 rounded-[32px] border border-champagne/40 p-8 sm:p-12 space-y-8">
                   <div className="space-y-2 text-center">
                     <h2 className="text-2xl font-black text-slate-900">Direct Support Line</h2>
                     <p className="text-sm text-slate-500 font-medium">Have a question or feedback? Send us a message.</p>

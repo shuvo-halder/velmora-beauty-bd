@@ -46,7 +46,7 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({
 
           <div className="flex flex-col">
             <div className="flex items-center gap-2">
-              <span className="font-bold text-xs sm:text-sm text-[#111827]">
+              <span className="font-bold text-xs sm:text-sm text-ink">
                 {review.author}
               </span>
               {review.verifiedPurchase && (
@@ -56,7 +56,7 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({
                 </span>
               )}
             </div>
-            <span className="text-[11px] text-[#6B7280]">{review.date}</span>
+            <span className="text-[11px] text-taupe">{review.date}</span>
           </div>
         </div>
 
@@ -68,7 +68,7 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({
 
       {/* Review Title / Headline */}
       {review.title && (
-        <h5 className="font-bold text-xs sm:text-sm text-[#111827] leading-snug">
+        <h5 className="font-bold text-xs sm:text-sm text-ink leading-snug">
           {review.title}
         </h5>
       )}
@@ -92,7 +92,7 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({
                   type="button"
                   onClick={() => onOpenLightbox?.(images, index, review.author)}
                   aria-label={`View photo ${index + 1} from review by ${review.author}`}
-                  className="group relative w-16 h-16 sm:w-18 sm:h-18 rounded-lg overflow-hidden border border-[#E5E7EB] bg-[#F9FAFB] hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary transition-all cursor-pointer flex-shrink-0"
+                  className="group relative w-16 h-16 sm:w-18 sm:h-18 rounded-lg overflow-hidden border border-champagne/50 bg-[#F9FAFB] hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary transition-all cursor-pointer flex-shrink-0"
                 >
                   <SmartImage
                     src={imgUrl}

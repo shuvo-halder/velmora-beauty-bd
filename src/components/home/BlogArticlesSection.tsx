@@ -27,7 +27,7 @@ export const BlogArticlesSection: React.FC = () => {
               <BookOpen size={14} />
               Journal & Stories
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-black text-ink tracking-tight">
               Latest Articles & Guides
             </h2>
           </div>
@@ -118,7 +118,7 @@ export const BlogArticlesSection: React.FC = () => {
                       )}
                     </div>
 
-                    <h3 className="font-bold text-base text-slate-900 group-hover:text-primary transition-colors leading-snug">
+                    <h3 className="font-bold text-base text-ink group-hover:text-primary transition-colors leading-snug">
                       {article.title}
                     </h3>
 

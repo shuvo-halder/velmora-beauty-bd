@@ -69,7 +69,7 @@ export const CategorySection: React.FC = () => {
             <Layers size={14} />
             <span>Featured Collections</span>
           </div>
-          <h2 className="text-xl sm:text-2xl font-bold text-[#111827] tracking-tight">
+          <h2 className="text-xl sm:text-2xl font-bold text-ink tracking-tight">
             Shop by Category
           </h2>
         </div>
@@ -92,7 +92,7 @@ export const CategorySection: React.FC = () => {
           <div
             key={cat.id}
             onClick={() => handleCategoryClick(cat.slug)}
-            className="group relative overflow-hidden rounded-xl cursor-pointer border border-[#E5E7EB] hover:border-gray-300 transition-colors aspect-[4/3] col-span-1 shadow-2xs"
+            className="group relative overflow-hidden rounded-xl cursor-pointer border border-champagne/50 hover:border-champagne transition-colors aspect-[4/3] col-span-1 shadow-2xs"
           >
             {/* Image Layer */}
             <SmartImage 
@@ -105,7 +105,7 @@ export const CategorySection: React.FC = () => {
             />
             
             {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#111827]/90 via-[#111827]/35 to-transparent opacity-85 group-hover:opacity-95 transition-opacity" />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/35 to-transparent opacity-85 group-hover:opacity-95 transition-opacity" />
 
             {/* Content Layer */}
             <div className="absolute inset-0 p-2 sm:p-2.5 flex flex-col justify-end">

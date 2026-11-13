@@ -255,18 +255,18 @@ export const SearchPageView: React.FC = () => {
   );
 
   return (
-    <div className="min-h-screen bg-slate-50 py-6 sm:py-10">
+    <div className="min-h-screen bg-bg py-6 sm:py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Search Header Banner */}
-        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-xs mb-8">
+        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-champagne/50 shadow-xs mb-8">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 text-primary text-xs font-bold uppercase tracking-wider mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sage/30 text-primary text-xs font-bold uppercase tracking-wider mb-3">
               <Sparkles size={14} />
               <span>Catalog Search Engine</span>
             </div>
             
-            <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-2">
+            <h1 className="text-2xl sm:text-4xl font-extrabold text-ink tracking-tight mb-2">
               {searchQuery ? (
                 <>Search results for <span className="text-primary">"{searchQuery}"</span></>
               ) : (

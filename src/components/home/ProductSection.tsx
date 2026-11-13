@@ -69,11 +69,11 @@ export const ProductSection: React.FC<ProductSectionProps> = ({
               <span>{badge}</span>
             </div>
           )}
-          <h2 className="text-2xl sm:text-3xl font-bold text-[#111827] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-bold text-ink tracking-tight">
             {title}
           </h2>
           {subtitle && (
-            <p className="text-xs sm:text-sm text-[#6B7280] max-w-2xl font-normal leading-relaxed">
+            <p className="text-xs sm:text-sm text-taupe max-w-2xl font-normal leading-relaxed">
               {subtitle}
             </p>
           )}
@@ -82,15 +82,15 @@ export const ProductSection: React.FC<ProductSectionProps> = ({
         {/* Tab Filters or Action Button */}
         <div className="flex flex-wrap items-center gap-3">
           {tabs && tabs.length > 0 && (
-            <div className="flex items-center gap-1 bg-[#F9FAFB] p-1 rounded-lg border border-[#E5E7EB]">
+            <div className="flex items-center gap-1 bg-bg-alt/70 p-1 rounded-lg border border-champagne/40">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => onTabChange && onTabChange(tab.id)}
                   className={`px-3 py-1 rounded-md text-xs font-semibold transition-colors cursor-pointer ${
                     activeTabId === tab.id
-                      ? 'bg-white text-[#111827] shadow-xs border border-[#E5E7EB]'
-                      : 'text-[#6B7280] hover:text-[#111827]'
+                      ? 'bg-white text-ink shadow-xs border border-champagne/50'
+                      : 'text-taupe hover:text-ink'
                   }`}
                 >
                   {tab.label}
@@ -115,7 +115,7 @@ export const ProductSection: React.FC<ProductSectionProps> = ({
       {isLoading ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-3 lg:gap-3.5">
           {Array.from({ length: limit }).map((_, i) => (
-            <div key={i} className="bg-white border border-[#E5E7EB] rounded-xl p-2.5 space-y-2">
+            <div key={i} className="bg-white border border-champagne/50 rounded-xl p-2.5 space-y-2">
               <Skeleton className="aspect-square w-full rounded-lg bg-slate-200" />
               <Skeleton className="h-3 w-1/3 rounded-md bg-slate-200" />
               <Skeleton className="h-3.5 w-full rounded-md bg-slate-200" />
@@ -136,7 +136,7 @@ export const ProductSection: React.FC<ProductSectionProps> = ({
           ))}
         </div>
       ) : (
-        <div className="bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl p-8 text-center text-[#6B7280]">
+        <div className="bg-[#F9FAFB] border border-champagne/50 rounded-xl p-8 text-center text-taupe">
           <p className="text-xs font-semibold">No products found in this section.</p>
         </div>
       )}

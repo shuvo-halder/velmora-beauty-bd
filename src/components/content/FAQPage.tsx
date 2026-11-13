@@ -37,7 +37,7 @@ export const FAQPage: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+      <div className="min-h-screen flex items-center justify-center bg-bg">
         <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
@@ -45,7 +45,7 @@ export const FAQPage: React.FC = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 space-y-4 px-4 text-center">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-bg space-y-4 px-4 text-center">
         <HelpCircle size={48} className="text-red-400" />
         <h2 className="text-2xl font-black text-slate-900">Oops! Something went wrong</h2>
         <p className="text-slate-500 font-medium max-w-md">{error}</p>
@@ -60,7 +60,7 @@ export const FAQPage: React.FC = () => {
   }
 
   return (
-    <div className="py-16 bg-slate-50 min-h-screen">
+    <div className="py-16 bg-bg min-h-screen">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         {/* Header */}

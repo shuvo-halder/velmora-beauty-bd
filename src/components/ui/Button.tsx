@@ -44,17 +44,17 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       primary:
         'bg-primary hover:bg-primary-hover text-white shadow-xs focus:ring-2 focus:ring-primary/20',
       secondary:
-        'bg-[#111827] hover:bg-[#1f2937] text-white shadow-xs focus:ring-2 focus:ring-[#111827]/20',
+        'bg-ink hover:bg-[#1f2937] text-white shadow-xs focus:ring-2 focus:ring-[#111827]/20',
       accent:
         'bg-primary hover:bg-primary-hover text-white shadow-xs focus:ring-2 focus:ring-primary/20',
       outline:
-        'bg-white hover:bg-[#F9FAFB] text-[#111827] border border-[#E5E7EB] hover:border-gray-300 focus:ring-2 focus:ring-primary/20',
+        'bg-white hover:bg-[#F9FAFB] text-ink border border-champagne/50 hover:border-champagne focus:ring-2 focus:ring-primary/20',
       ghost:
-        'bg-transparent hover:bg-[#F9FAFB] text-[#111827] hover:text-primary focus:ring-2 focus:ring-gray-100',
+        'bg-transparent hover:bg-[#F9FAFB] text-ink hover:text-primary focus:ring-2 focus:ring-gray-100',
       danger:
         'bg-[#DC2626] hover:bg-[#B91C1C] text-white shadow-xs focus:ring-2 focus:ring-[#DC2626]/20',
       subtle:
-        'bg-primary-light hover:bg-rose-100 text-primary font-semibold focus:ring-2 focus:ring-primary/20',
+        'bg-sage/30 hover:bg-rose-100 text-primary font-semibold focus:ring-2 focus:ring-primary/20',
     };
 
     const widthClass = fullWidth ? 'w-full' : '';

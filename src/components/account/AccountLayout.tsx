@@ -95,14 +95,14 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({ children, activeTa
 
   return (
     <ProtectedRoute>
-      <div className="bg-[#F9FAFB] min-h-screen pt-4 sm:pt-6 lg:pt-20 pb-12 sm:pb-16">
+      <div className="bg-bg min-h-screen pt-4 sm:pt-6 lg:pt-20 pb-12 sm:pb-16">
         <div className="container-vyzobd px-4 sm:px-6 lg:px-8">
           
           {/* Mobile Customer Account Card */}
           <div className="lg:hidden mb-3 sm:mb-4">
-            <div className="bg-white rounded-xl p-3.5 sm:p-4 border border-gray-200 shadow-xs flex items-center justify-between">
+            <div className="bg-white rounded-xl p-3.5 sm:p-4 border border-champagne/50 shadow-xs flex items-center justify-between">
               <div className="flex items-center gap-3 min-w-0">
-                <div className="w-10 h-10 rounded-full bg-[#111827] text-white flex items-center justify-center font-bold text-sm overflow-hidden flex-shrink-0 relative">
+                <div className="w-10 h-10 rounded-full bg-ink text-white flex items-center justify-center font-bold text-sm overflow-hidden flex-shrink-0 relative">
                   {avatarUrl ? (
                     <SmartImage 
                       src={avatarUrl} 
@@ -116,7 +116,7 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({ children, activeTa
                   )}
                 </div>
                 <div className="min-w-0">
-                  <div className="text-sm font-bold text-gray-900 truncate">{displayName}</div>
+                  <div className="text-sm font-bold text-ink truncate">{displayName}</div>
                   <div className="text-xs text-gray-500 truncate">{activeUser?.email || activeUser?.phone || 'Account Member'}</div>
                 </div>
               </div>
@@ -131,7 +131,7 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({ children, activeTa
           </div>
 
           {/* Mobile Horizontally Scrollable Sticky Navigation Bar */}
-          <div className="lg:hidden sticky top-14 sm:top-16 z-30 bg-white/95 backdrop-blur-md border-y border-gray-200 py-2 -mx-4 px-4 sm:-mx-6 sm:px-6 mb-4 shadow-2xs">
+          <div className="lg:hidden sticky top-14 sm:top-16 z-30 bg-white/95 backdrop-blur-md border-y border-champagne/50 py-2 -mx-4 px-4 sm:-mx-6 sm:px-6 mb-4 shadow-2xs">
             <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none">
               {primaryMobileTabs.map((tab) => {
                 const Icon = tab.icon;
@@ -142,11 +142,11 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({ children, activeTa
                     href={tab.href}
                     className={`min-h-[44px] px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 whitespace-nowrap transition-colors shrink-0 ${
                       isActive
-                        ? 'bg-[#111827] text-white shadow-xs'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200/80'
+                        ? 'bg-ink text-white shadow-xs'
+                        : 'bg-bg-alt text-ink/80 hover:bg-bg-alt/80 border border-champagne/40'
                     }`}
                   >
-                    <Icon size={16} className={isActive ? 'text-white' : 'text-gray-500'} />
+                    <Icon size={16} className={isActive ? 'text-white' : 'text-taupe'} />
                     <span>{tab.label}</span>
                   </Link>
                 );
@@ -158,8 +158,8 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({ children, activeTa
                 onClick={() => setIsMobileNavOpen(true)}
                 className={`min-h-[44px] px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-1.5 whitespace-nowrap transition-colors shrink-0 cursor-pointer ${
                   isMoreActive
-                    ? 'bg-[#111827] text-white shadow-xs'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200/80'
+                    ? 'bg-ink text-white shadow-xs'
+                    : 'bg-bg-alt text-ink/80 hover:bg-bg-alt/80 border border-champagne/40'
                 }`}
                 aria-label="More navigation items"
               >
@@ -182,11 +182,11 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({ children, activeTa
               />
               
               {/* Bottom Sheet Panel */}
-              <div className="fixed bottom-0 inset-x-0 bg-white rounded-t-2xl shadow-2xl border-t border-gray-200 max-h-[85vh] overflow-y-auto z-10 p-5 space-y-4">
-                <div className="flex items-center justify-between pb-3 border-b border-gray-100">
+              <div className="fixed bottom-0 inset-x-0 bg-white rounded-t-2xl shadow-2xl border-t border-champagne/50 max-h-[85vh] overflow-y-auto z-10 p-5 space-y-4">
+                <div className="flex items-center justify-between pb-3 border-b border-champagne/40">
                   <div className="flex items-center gap-2">
                     <div className="w-1.5 h-4 bg-gray-900 rounded-full" />
-                    <h3 className="text-sm font-bold text-gray-900">Account Navigation</h3>
+                    <h3 className="text-sm font-bold text-ink">Account Navigation</h3>
                   </div>
                   <button
                     onClick={() => setIsMobileNavOpen(false)}
@@ -209,8 +209,8 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({ children, activeTa
                         onClick={() => setIsMobileNavOpen(false)}
                         className={`min-h-[44px] flex items-center justify-between px-3.5 py-3 rounded-xl text-xs sm:text-sm font-semibold transition-colors ${
                           isActive
-                            ? 'bg-[#111827] text-white shadow-xs'
-                            : 'bg-gray-50 text-gray-800 hover:bg-gray-100 border border-gray-100'
+                            ? 'bg-ink text-white shadow-xs'
+                            : 'bg-gray-50 text-ink hover:bg-gray-100 border border-champagne/40'
                         }`}
                       >
                         <div className="flex items-center gap-3 min-w-0">
@@ -227,7 +227,7 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({ children, activeTa
                   })}
                 </div>
 
-                <div className="pt-2 border-t border-gray-100">
+                <div className="pt-2 border-t border-champagne/40">
                   <button
                     onClick={() => {
                       setIsMobileNavOpen(false);
@@ -247,10 +247,10 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({ children, activeTa
 
             {/* Desktop Sidebar */}
             <div className="hidden lg:block lg:col-span-3">
-              <div className="bg-white rounded-xl shadow-xs border border-gray-200 overflow-hidden sticky top-28">
+              <div className="bg-white rounded-xl shadow-xs border border-champagne/50 overflow-hidden sticky top-28">
                 
                 {/* User Identity Header */}
-                <div className="p-6 bg-[#111827] text-white relative overflow-hidden">
+                <div className="p-6 bg-ink text-white relative overflow-hidden">
                   <div className="relative z-10">
                     <div className="flex items-center gap-3.5 mb-3">
                       <div className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center border border-white/20 relative overflow-hidden flex-shrink-0">
@@ -295,8 +295,8 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({ children, activeTa
                           className={`
                             w-full flex items-center justify-between px-3.5 py-2.5 rounded-lg text-xs font-semibold transition-colors group
                             ${isActive 
-                              ? 'bg-primary-light text-primary' 
-                              : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'}
+                              ? 'bg-sage/30 text-primary' 
+                              : 'text-gray-600 hover:bg-gray-50 hover:text-ink'}
                           `}
                         >
                           <div className="flex items-center gap-3">
@@ -323,10 +323,10 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({ children, activeTa
                     })}
                   </div>
 
-                  <div className="mt-4 pt-3 border-t border-gray-100">
+                  <div className="mt-4 pt-3 border-t border-champagne/40">
                     <button
                       onClick={handleLogout}
-                      className="w-full flex items-center gap-3 px-3.5 py-2.5 text-gray-600 hover:text-primary hover:bg-primary-light rounded-lg transition-colors font-semibold text-xs cursor-pointer"
+                      className="w-full flex items-center gap-3 px-3.5 py-2.5 text-gray-600 hover:text-primary hover:bg-sage/30 rounded-lg transition-colors font-semibold text-xs cursor-pointer"
                     >
                       <LogOut size={17} />
                       <span>Sign Out</span>
@@ -334,7 +334,7 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({ children, activeTa
                   </div>
                 </nav>
 
-                <div className="px-5 py-3 bg-gray-50 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500 font-medium">
+                <div className="px-5 py-3 bg-gray-50 border-t border-champagne/40 flex items-center justify-between text-xs text-gray-500 font-medium">
                   <div className="flex items-center gap-2">
                     <Sparkles size={14} className="text-primary" />
                     <span className="text-[11px] text-gray-600">{siteName} Customer Portal</span>

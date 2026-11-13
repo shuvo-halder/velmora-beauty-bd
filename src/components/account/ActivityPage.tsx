@@ -15,9 +15,9 @@ export const ActivityPage: React.FC = () => {
 
   return (
     <AccountLayout activeTab="activity">
-      <div className="bg-white rounded-xl p-6 sm:p-8 border border-gray-200 shadow-xs space-y-6">
-        <div className="border-b border-gray-100 pb-6">
-          <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Security & Activity</h1>
+      <div className="bg-white rounded-xl p-6 sm:p-8 border border-champagne/50 shadow-xs space-y-6">
+        <div className="border-b border-champagne/40 pb-6">
+          <h1 className="text-2xl font-bold text-ink tracking-tight">Security & Activity</h1>
           <p className="text-gray-500 text-sm font-medium mt-1">Review your recent account activity and login history.</p>
         </div>
 
@@ -25,7 +25,7 @@ export const ActivityPage: React.FC = () => {
           {activities.map((activity, idx) => (
             <div key={idx} className="flex gap-4">
               <div className="relative flex flex-col items-center">
-                <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${activity.bg} ${activity.color} border border-gray-100 shadow-xs z-10`}>
+                <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${activity.bg} ${activity.color} border border-champagne/40 shadow-xs z-10`}>
                   <activity.icon size={18} />
                 </div>
                 {idx !== activities.length - 1 && (
@@ -34,7 +34,7 @@ export const ActivityPage: React.FC = () => {
               </div>
               <div className="flex-1 pb-4">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1">
-                  <h3 className="text-sm font-semibold text-gray-900">{activity.title}</h3>
+                  <h3 className="text-sm font-semibold text-ink">{activity.title}</h3>
                   <div className="flex items-center gap-1 text-xs text-gray-400 font-medium">
                     <Clock size={12} />
                     <span>{activity.time}</span>
@@ -42,10 +42,10 @@ export const ActivityPage: React.FC = () => {
                 </div>
                 {activity.ip && (
                   <div className="flex flex-wrap gap-2 mt-2">
-                    <div className="px-2.5 py-1 bg-gray-50 rounded-md text-[11px] font-medium text-gray-500 border border-gray-100">
+                    <div className="px-2.5 py-1 bg-gray-50 rounded-md text-[11px] font-medium text-gray-500 border border-champagne/40">
                       IP: {activity.ip}
                     </div>
-                    <div className="px-2.5 py-1 bg-gray-50 rounded-md text-[11px] font-medium text-gray-500 border border-gray-100">
+                    <div className="px-2.5 py-1 bg-gray-50 rounded-md text-[11px] font-medium text-gray-500 border border-champagne/40">
                       {activity.location}
                     </div>
                   </div>
@@ -55,7 +55,7 @@ export const ActivityPage: React.FC = () => {
           ))}
         </div>
 
-        <div className="pt-6 border-t border-gray-100">
+        <div className="pt-6 border-t border-champagne/40">
            <button className="text-xs font-semibold text-primary hover:underline cursor-pointer">
              Sign out of all other sessions
            </button>

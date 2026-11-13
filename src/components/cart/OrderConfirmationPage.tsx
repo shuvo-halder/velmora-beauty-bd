@@ -77,7 +77,7 @@ export const OrderConfirmationPage: React.FC = () => {
   const displayOrderIdentifier = order.orderNumber || order.id;
 
   return (
-    <div className="py-12 bg-slate-50 min-h-screen">
+    <div className="py-12 bg-bg min-h-screen">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
         {/* Celebration Header */}
@@ -90,7 +90,7 @@ export const OrderConfirmationPage: React.FC = () => {
             <span className="px-3 py-1 bg-emerald-50 text-emerald-700 text-xs font-bold rounded-full uppercase tracking-wider">
               ORDER CONFIRMED #{displayOrderIdentifier}
             </span>
-            <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-2">
+            <h1 className="text-2xl sm:text-3xl font-black text-ink tracking-tight mt-2">
               Thank You for Your Order!
             </h1>
             <p className="text-xs sm:text-sm text-slate-500 max-w-md mx-auto mt-1 leading-relaxed">
@@ -103,7 +103,7 @@ export const OrderConfirmationPage: React.FC = () => {
             {order.estimatedDeliveryDate && (
               <>
                 <div>•</div>
-                <div>Estimated Delivery: <span className="font-bold text-slate-900">{order.estimatedDeliveryDate}</span></div>
+                <div>Estimated Delivery: <span className="font-bold text-ink">{order.estimatedDeliveryDate}</span></div>
               </>
             )}
           </div>
@@ -112,7 +112,7 @@ export const OrderConfirmationPage: React.FC = () => {
         {/* Tracking Timeline */}
         {order.trackingSteps && order.trackingSteps.length > 0 && (
           <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-xs space-y-4">
-            <h3 className="font-extrabold text-sm text-slate-900 uppercase tracking-wider flex items-center gap-2">
+            <h3 className="font-extrabold text-sm text-ink uppercase tracking-wider flex items-center gap-2">
               <Truck size={16} className="text-primary" />
               <span>Package Delivery Status</span>
             </h3>
@@ -139,7 +139,7 @@ export const OrderConfirmationPage: React.FC = () => {
 
         {/* Order Details Invoice */}
         <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-xs space-y-4 text-xs">
-          <h3 className="font-extrabold text-sm text-slate-900 uppercase tracking-wider pb-3 border-b border-slate-100">
+          <h3 className="font-extrabold text-sm text-ink uppercase tracking-wider pb-3 border-b border-slate-100">
             Order Items
           </h3>
 
@@ -158,11 +158,11 @@ export const OrderConfirmationPage: React.FC = () => {
                     />
                   </div>
                   <div>
-                    <div className="font-bold text-slate-900">{item.productName}</div>
+                    <div className="font-bold text-ink">{item.productName}</div>
                     <div className="text-[11px] text-slate-400">Qty: {item.quantity}</div>
                   </div>
                 </div>
-                <span className="font-bold text-slate-900">{formatPrice(item.totalPrice || 0, currency, currencySymbol)}</span>
+                <span className="font-bold text-ink">{formatPrice(item.totalPrice || 0, currency, currencySymbol)}</span>
               </div>
             ))}
           </div>
@@ -171,7 +171,7 @@ export const OrderConfirmationPage: React.FC = () => {
             <div className="flex justify-between"><span>Subtotal</span><span>{formatPrice(order.subtotal || 0, currency, currencySymbol)}</span></div>
             <div className="flex justify-between"><span>Shipping ({order.shippingMethod})</span><span>{formatPrice(order.shippingFee || 0, currency, currencySymbol)}</span></div>
             <div className="flex justify-between"><span>Tax</span><span>{formatPrice(order.tax || 0, currency, currencySymbol)}</span></div>
-            <div className="flex justify-between font-black text-sm text-slate-900 pt-2 border-t border-slate-200">
+            <div className="flex justify-between font-black text-sm text-ink pt-2 border-t border-slate-200">
               <span>Total Paid</span>
               <span className="text-primary">{formatPrice(order.totalAmount || order.total || 0, currency, currencySymbol)}</span>
             </div>

@@ -295,12 +295,12 @@ function HeaderContent() {
   };
 
   const renderSearchDropdown = () => (
-    <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-lg border border-[#E5E7EB] z-50 overflow-hidden">
+    <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-lg border border-champagne/50 z-50 overflow-hidden">
       {searchInput.trim().length < 2 && (
         <div className="p-4 space-y-4">
           {searchHistory.length > 0 && (
             <div>
-              <div className="flex items-center justify-between text-xs font-semibold text-[#6B7280] uppercase tracking-wider mb-2">
+              <div className="flex items-center justify-between text-xs font-semibold text-taupe uppercase tracking-wider mb-2">
                 <span>Recent Searches</span>
                 <button onClick={clearSearchHistory} className="text-[10px] text-primary hover:underline cursor-pointer">Clear All</button>
               </div>
@@ -313,7 +313,7 @@ function HeaderContent() {
                       router.push(`/search?q=${encodeURIComponent(q)}`);
                       setIsSearchFocused(false);
                     }}
-                    className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg text-xs font-medium text-[#111827] hover:border-primary hover:text-primary cursor-pointer transition-colors"
+                    className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#F9FAFB] border border-champagne/50 rounded-lg text-xs font-medium text-ink hover:border-primary hover:text-primary cursor-pointer transition-colors"
                   >
                     <span>{q}</span>
                     <X 
@@ -331,17 +331,17 @@ function HeaderContent() {
           )}
 
           <div>
-            <div className="text-xs font-semibold text-[#6B7280] uppercase tracking-wider mb-2">Popular Categories</div>
+            <div className="text-xs font-semibold text-taupe uppercase tracking-wider mb-2">Popular Categories</div>
             <div className="grid grid-cols-2 gap-2">
               {categories.slice(0, 6).map((cat) => (
                 <Link
                   key={cat.id}
                   href={`/categories/${cat.slug}`}
                   onClick={() => setIsSearchFocused(false)}
-                  className="p-2 rounded-lg bg-[#F9FAFB] hover:bg-primary-light hover:text-primary transition-colors text-xs font-medium text-[#111827] flex items-center justify-between border border-transparent hover:border-primary/20"
+                  className="p-2 rounded-lg bg-[#F9FAFB] hover:bg-sage/30 hover:text-primary transition-colors text-xs font-medium text-ink flex items-center justify-between border border-transparent hover:border-primary/20"
                 >
                   <span className="truncate">{cat.name}</span>
-                  <ChevronRight size={14} className="text-[#6B7280] flex-shrink-0" />
+                  <ChevronRight size={14} className="text-taupe flex-shrink-0" />
                 </Link>
               ))}
             </div>
@@ -352,14 +352,14 @@ function HeaderContent() {
       {searchInput.trim().length >= 2 && (
         <div>
           {categorySuggestions.length > 0 && (
-            <div className="p-3 bg-[#F9FAFB] border-b border-[#E5E7EB] flex items-center gap-2 flex-wrap">
-              <span className="text-[11px] font-semibold text-[#6B7280] uppercase">Categories:</span>
+            <div className="p-3 bg-[#F9FAFB] border-b border-champagne/50 flex items-center gap-2 flex-wrap">
+              <span className="text-[11px] font-semibold text-taupe uppercase">Categories:</span>
               {categorySuggestions.map(cat => (
                 <Link
                   key={cat.slug}
                   href={`/categories/${cat.slug}`}
                   onClick={() => setIsSearchFocused(false)}
-                  className="px-2.5 py-1 bg-white border border-[#E5E7EB] rounded-lg text-xs font-medium text-[#111827] hover:border-primary hover:text-primary transition-colors"
+                  className="px-2.5 py-1 bg-white border border-champagne/50 rounded-lg text-xs font-medium text-ink hover:border-primary hover:text-primary transition-colors"
                 >
                   {cat.name}
                 </Link>
@@ -368,7 +368,7 @@ function HeaderContent() {
           )}
 
           {searchResults.length > 0 && (
-            <div className="divide-y divide-[#E5E7EB] max-h-80 overflow-y-auto">
+            <div className="divide-y divide-champagne/50 max-h-80 overflow-y-auto">
               {searchResults.map((prod, idx) => (
                 <div
                   key={prod.id}
@@ -377,7 +377,7 @@ function HeaderContent() {
                     setIsSearchFocused(false);
                   }}
                   className={`p-3 flex items-center justify-between gap-3 cursor-pointer transition-colors ${
-                    idx === selectedIndex ? 'bg-primary-light' : 'hover:bg-[#F9FAFB]'
+                    idx === selectedIndex ? 'bg-sage/30' : 'hover:bg-[#F9FAFB]'
                   }`}
                 >
                   <div className="flex items-center gap-3 flex-1 min-w-0">
@@ -388,10 +388,10 @@ function HeaderContent() {
                       height={48}
                       fallbackType="product"
                       fallbackLabel={prod.name}
-                      className="w-12 h-12 object-cover rounded-lg border border-[#E5E7EB] flex-shrink-0" 
+                      className="w-12 h-12 object-cover rounded-lg border border-champagne/50 flex-shrink-0" 
                     />
                     <div className="min-w-0 flex-1">
-                      <div className="text-xs font-medium text-[#111827] truncate">{prod.name}</div>
+                      <div className="text-xs font-medium text-ink truncate">{prod.name}</div>
                       <div className="text-xs font-bold text-primary mt-0.5">${prod.price}</div>
                     </div>
                   </div>
@@ -406,7 +406,7 @@ function HeaderContent() {
           <button
             type="button"
             onClick={() => handleSearchSubmit()}
-            className="w-full p-3 bg-[#F9FAFB] hover:bg-primary-light text-center text-xs font-semibold text-primary border-t border-[#E5E7EB] transition-colors cursor-pointer flex items-center justify-center gap-1.5"
+            className="w-full p-3 bg-[#F9FAFB] hover:bg-sage/30 text-center text-xs font-semibold text-primary border-t border-champagne/50 transition-colors cursor-pointer flex items-center justify-center gap-1.5"
           >
             <span className="truncate">View all search results for "{searchInput}"</span>
             <ArrowRight size={14} className="flex-shrink-0" />
@@ -424,8 +424,8 @@ function HeaderContent() {
           : '-translate-y-full'
       }`}>
         {/* 1. TOP UTILITY BAR */}
-        <div className="bg-white border-b border-[#E5E7EB] py-2 hidden lg:block">
-          <div className="container-vyzobd flex items-center justify-between text-xs font-medium text-[#6B7280]">
+        <div className="bg-white border-b border-champagne/50 py-2 hidden lg:block">
+          <div className="container-vyzobd flex items-center justify-between text-xs font-medium text-taupe">
             <div className="flex items-center gap-6">
               {(publicSettings?.supportPhone || publicSettings?.general?.storePhone || publicSettings?.store?.supportPhone || publicSettings?.store?.callOrderNumber) && (
                 <a 
@@ -445,17 +445,17 @@ function HeaderContent() {
               )}
             </div>
             <div className="flex items-center gap-5">
-              <div className="flex items-center gap-1 hover:text-[#111827] transition-colors cursor-pointer">
+              <div className="flex items-center gap-1 hover:text-ink transition-colors cursor-pointer">
                 <span>English</span>
                 <ChevronDown size={12} />
               </div>
-              <div className="flex items-center gap-1 hover:text-[#111827] transition-colors cursor-pointer">
+              <div className="flex items-center gap-1 hover:text-ink transition-colors cursor-pointer">
                 <span>{publicSettings?.general?.currency || 'BDT'}</span>
                 <ChevronDown size={12} />
               </div>
               <Link 
                 href={user ? '/account/profile' : '/login'}
-                className="flex items-center gap-1.5 hover:text-primary transition-colors cursor-pointer border-l border-[#E5E7EB] pl-5 ml-1"
+                className="flex items-center gap-1.5 hover:text-primary transition-colors cursor-pointer border-l border-champagne/50 pl-5 ml-1"
               >
                 <User size={13} className="text-primary" />
                 <span>{user ? user.fullName : 'Login / Register'}</span>
@@ -466,7 +466,7 @@ function HeaderContent() {
 
         {/* Announcement Banner */}
         {publicSettings?.announcementBanner?.enabled && (
-          <div className="bg-[#111827] text-white text-xs py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
+          <div className="bg-ink text-white text-xs py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
             <Sparkles className="w-3.5 h-3.5 text-primary" />
             <span>{publicSettings.announcementBanner.text}</span>
             <Link 
@@ -484,7 +484,7 @@ function HeaderContent() {
           {/* Mobile Hamburger Menu Button (Far Left) */}
           <button
             onClick={() => setIsMobileMenuOpen(true)}
-            className="p-1.5 text-[#111827] hover:text-primary transition-colors cursor-pointer min-h-[38px] min-w-[38px] flex items-center justify-center -ml-1 shrink-0 lg:hidden"
+            className="p-1.5 text-ink hover:text-primary transition-colors cursor-pointer min-h-[38px] min-w-[38px] flex items-center justify-center -ml-1 shrink-0 lg:hidden"
             aria-label="Open Menu"
           >
             <Menu size={22} className="stroke-[2.2]" />
@@ -503,7 +503,7 @@ function HeaderContent() {
                 onError={() => setLogoError(true)}
               />
             ) : (
-              <span className="font-extrabold text-xl sm:text-2xl text-[#111827] tracking-tight hover:text-primary transition-colors">{siteName}</span>
+              <span className="font-extrabold text-xl sm:text-2xl text-ink tracking-tight hover:text-primary transition-colors">{siteName}</span>
             )}
           </Link>
 
@@ -511,14 +511,14 @@ function HeaderContent() {
           <div className="hidden lg:flex flex-1 max-w-2xl lg:max-w-3xl relative" ref={searchContainerRef}>
             <form 
               onSubmit={handleSearchSubmit}
-              className="flex items-center w-full bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg focus-within:border-primary focus-within:ring-1 focus-within:ring-primary focus-within:bg-white transition-colors overflow-hidden"
+              className="flex items-center w-full bg-[#F9FAFB] border border-champagne/50 rounded-lg focus-within:border-primary focus-within:ring-1 focus-within:ring-primary focus-within:bg-white transition-colors overflow-hidden"
             >
               {/* Category Selector */}
-              <div className="relative border-r border-[#E5E7EB] bg-gray-50 flex-shrink-0">
+              <div className="relative border-r border-champagne/50 bg-gray-50 flex-shrink-0">
                 <select
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="appearance-none py-2.5 pl-3 pr-8 text-xs font-medium text-[#111827] bg-transparent cursor-pointer focus:outline-none"
+                  className="appearance-none py-2.5 pl-3 pr-8 text-xs font-medium text-ink bg-transparent cursor-pointer focus:outline-none"
                 >
                   <option value="All Categories">All Categories</option>
                   {categories.map((cat) => (
@@ -527,7 +527,7 @@ function HeaderContent() {
                     </option>
                   ))}
                 </select>
-                <ChevronDown className="w-3.5 h-3.5 text-[#6B7280] absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <ChevronDown className="w-3.5 h-3.5 text-taupe absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
               </div>
 
               {/* Input field */}
@@ -539,13 +539,13 @@ function HeaderContent() {
                   onChange={(e) => setSearchInput(e.target.value)}
                   onFocus={() => setIsSearchFocused(true)}
                   onKeyDown={handleKeyDown}
-                  className="w-full py-2.5 px-3 text-sm font-normal text-[#111827] placeholder-[#6B7280] bg-transparent focus:outline-none"
+                  className="w-full py-2.5 px-3 text-sm font-normal text-ink placeholder-[#6B7280] bg-transparent focus:outline-none"
                 />
                 {searchInput && (
                   <button
                     type="button"
                     onClick={() => setSearchInput('')}
-                    className="p-1 mr-2 text-[#6B7280] hover:text-[#111827] transition-colors cursor-pointer"
+                    className="p-1 mr-2 text-taupe hover:text-ink transition-colors cursor-pointer"
                   >
                     <X size={15} />
                   </button>
@@ -578,7 +578,7 @@ function HeaderContent() {
                   setIsSearchFocused(true);
                 }
               }}
-              className="p-1.5 text-[#111827] hover:text-primary hover:bg-gray-50 rounded-lg transition-colors cursor-pointer min-h-[38px] min-w-[38px] flex items-center justify-center lg:hidden"
+              className="p-1.5 text-ink hover:text-primary hover:bg-gray-50 rounded-lg transition-colors cursor-pointer min-h-[38px] min-w-[38px] flex items-center justify-center lg:hidden"
               aria-label="Search products"
             >
               <Search size={20} />
@@ -588,7 +588,7 @@ function HeaderContent() {
             {user && (
               <Link
                 href="/account/notifications"
-                className="p-1.5 text-[#111827] hover:text-primary hover:bg-gray-50 rounded-lg transition-colors cursor-pointer min-h-[38px] min-w-[38px] flex items-center justify-center relative lg:hidden"
+                className="p-1.5 text-ink hover:text-primary hover:bg-gray-50 rounded-lg transition-colors cursor-pointer min-h-[38px] min-w-[38px] flex items-center justify-center relative lg:hidden"
                 aria-label={`Notifications ${unreadNotificationsCount > 0 ? `(${unreadNotificationsCount} unread)` : ''}`}
               >
                 <Bell size={20} />
@@ -612,7 +612,7 @@ function HeaderContent() {
                     router.push('/login');
                   }
                 }}
-                className="p-1.5 text-[#111827] hover:text-primary hover:bg-gray-50 rounded-lg transition-colors cursor-pointer min-h-[38px] min-w-[38px] flex items-center justify-center lg:hidden"
+                className="p-1.5 text-ink hover:text-primary hover:bg-gray-50 rounded-lg transition-colors cursor-pointer min-h-[38px] min-w-[38px] flex items-center justify-center lg:hidden"
                 aria-label="Account"
               >
                 <User size={20} />
@@ -628,9 +628,9 @@ function HeaderContent() {
                     router.push('/login');
                   }
                 }}
-                className="hidden lg:flex items-center gap-2 p-2 text-[#111827] hover:text-primary hover:bg-gray-50 rounded-lg transition-colors cursor-pointer min-h-[40px]"
+                className="hidden lg:flex items-center gap-2 p-2 text-ink hover:text-primary hover:bg-gray-50 rounded-lg transition-colors cursor-pointer min-h-[40px]"
               >
-                <div className="w-8 h-8 rounded-full bg-[#F9FAFB] border border-[#E5E7EB] flex items-center justify-center text-[#111827] font-semibold text-xs overflow-hidden relative">
+                <div className="w-8 h-8 rounded-full bg-[#F9FAFB] border border-champagne/50 flex items-center justify-center text-ink font-semibold text-xs overflow-hidden relative">
                   {user ? (
                     user.avatar || user.avatarUrl ? (
                       <SmartImage
@@ -648,29 +648,29 @@ function HeaderContent() {
                   )}
                 </div>
                 <div className="hidden xl:block text-left">
-                  <div className="text-[10px] text-[#6B7280] uppercase font-medium leading-tight">
+                  <div className="text-[10px] text-taupe uppercase font-medium leading-tight">
                     {user ? 'Welcome' : 'Account'}
                   </div>
-                  <div className="text-xs font-semibold text-[#111827] leading-tight truncate max-w-[110px]">
+                  <div className="text-xs font-semibold text-ink leading-tight truncate max-w-[110px]">
                     {user ? (user.firstName || user.fullName?.split(' ')[0] || 'Customer') : 'Sign In'}
                   </div>
                 </div>
-                {user && <ChevronDown size={13} className="text-[#6B7280] hidden xl:block" />}
+                {user && <ChevronDown size={13} className="text-taupe hidden xl:block" />}
               </button>
 
               {/* Account Dropdown Menu */}
               {user && isAccountMenuOpen && (
-                <div className="absolute right-0 top-full mt-2 w-56 max-w-[calc(100vw-2rem)] bg-white rounded-xl shadow-lg border border-[#E5E7EB] p-1.5 z-50">
-                  <div className="p-2.5 bg-[#F9FAFB] rounded-lg mb-1 border border-[#E5E7EB]">
-                    <div className="text-xs font-bold text-[#111827]">{user.fullName || 'Customer'}</div>
-                    <div className="text-[11px] text-[#6B7280] truncate">{user.email || user.phone || ''}</div>
+                <div className="absolute right-0 top-full mt-2 w-56 max-w-[calc(100vw-2rem)] bg-white rounded-xl shadow-lg border border-champagne/50 p-1.5 z-50">
+                  <div className="p-2.5 bg-[#F9FAFB] rounded-lg mb-1 border border-champagne/50">
+                    <div className="text-xs font-bold text-ink">{user.fullName || 'Customer'}</div>
+                    <div className="text-[11px] text-taupe truncate">{user.email || user.phone || ''}</div>
                   </div>
 
                   <div className="space-y-0.5">
                     <Link
                       href="/account"
                       onClick={() => setIsAccountMenuOpen(false)}
-                      className="w-full text-left px-3 py-2 text-xs font-medium text-[#111827] hover:text-primary hover:bg-primary-light rounded-lg transition-colors flex items-center gap-2"
+                      className="w-full text-left px-3 py-2 text-xs font-medium text-ink hover:text-primary hover:bg-sage/30 rounded-lg transition-colors flex items-center gap-2"
                     >
                       <LayoutDashboard size={14} />
                       <span>Dashboard</span>
@@ -679,7 +679,7 @@ function HeaderContent() {
                     <Link
                       href="/account/profile"
                       onClick={() => setIsAccountMenuOpen(false)}
-                      className="w-full text-left px-3 py-2 text-xs font-medium text-[#111827] hover:text-primary hover:bg-primary-light rounded-lg transition-colors flex items-center gap-2"
+                      className="w-full text-left px-3 py-2 text-xs font-medium text-ink hover:text-primary hover:bg-sage/30 rounded-lg transition-colors flex items-center gap-2"
                     >
                       <User size={14} />
                       <span>My Profile</span>
@@ -688,7 +688,7 @@ function HeaderContent() {
                     <Link
                       href="/account/orders"
                       onClick={() => setIsAccountMenuOpen(false)}
-                      className="w-full text-left px-3 py-2 text-xs font-medium text-[#111827] hover:text-primary hover:bg-primary-light rounded-lg transition-colors flex items-center gap-2"
+                      className="w-full text-left px-3 py-2 text-xs font-medium text-ink hover:text-primary hover:bg-sage/30 rounded-lg transition-colors flex items-center gap-2"
                     >
                       <Package size={14} />
                       <span>Order History</span>
@@ -697,7 +697,7 @@ function HeaderContent() {
                     <Link
                       href="/account/notifications"
                       onClick={() => setIsAccountMenuOpen(false)}
-                      className="w-full text-left px-3 py-2 text-xs font-medium text-[#111827] hover:text-primary hover:bg-primary-light rounded-lg transition-colors flex items-center justify-between"
+                      className="w-full text-left px-3 py-2 text-xs font-medium text-ink hover:text-primary hover:bg-sage/30 rounded-lg transition-colors flex items-center justify-between"
                     >
                       <div className="flex items-center gap-2">
                         <Bell size={14} />
@@ -713,7 +713,7 @@ function HeaderContent() {
                     <Link
                       href="/account/wishlist"
                       onClick={() => setIsAccountMenuOpen(false)}
-                      className="w-full text-left px-3 py-2 text-xs font-medium text-[#111827] hover:text-primary hover:bg-primary-light rounded-lg transition-colors flex items-center justify-between"
+                      className="w-full text-left px-3 py-2 text-xs font-medium text-ink hover:text-primary hover:bg-sage/30 rounded-lg transition-colors flex items-center justify-between"
                     >
                       <div className="flex items-center gap-2">
                         <Heart size={14} />
@@ -727,7 +727,7 @@ function HeaderContent() {
                     </Link>
                   </div>
 
-                  <div className="pt-1 mt-1 border-t border-[#E5E7EB]">
+                  <div className="pt-1 mt-1 border-t border-champagne/50">
                     <button
                       onClick={async () => {
                         await logout();
@@ -748,7 +748,7 @@ function HeaderContent() {
             {user && (
               <Link
                 href="/account/notifications"
-                className="hidden lg:flex relative p-2 text-[#111827] hover:text-primary hover:bg-gray-50 rounded-lg transition-colors items-center gap-1.5 min-h-[40px]"
+                className="hidden lg:flex relative p-2 text-ink hover:text-primary hover:bg-gray-50 rounded-lg transition-colors items-center gap-1.5 min-h-[40px]"
                 aria-label={`Notifications ${unreadNotificationsCount > 0 ? `(${unreadNotificationsCount} unread)` : ''}`}
               >
                 <div className="relative">
@@ -759,7 +759,7 @@ function HeaderContent() {
                     </span>
                   )}
                 </div>
-                <span className="hidden xl:inline text-xs font-medium text-[#111827]">
+                <span className="hidden xl:inline text-xs font-medium text-ink">
                   Notifications
                 </span>
               </Link>
@@ -768,7 +768,7 @@ function HeaderContent() {
             {/* Wishlist Button (Hidden on Mobile, Visible on Desktop) */}
             <Link
               href="/account/wishlist"
-              className="hidden lg:flex relative p-2 text-[#111827] hover:text-primary hover:bg-gray-50 rounded-lg transition-colors items-center gap-1.5 min-h-[40px]"
+              className="hidden lg:flex relative p-2 text-ink hover:text-primary hover:bg-gray-50 rounded-lg transition-colors items-center gap-1.5 min-h-[40px]"
               aria-label="View Wishlist"
             >
               <div className="relative">
@@ -779,7 +779,7 @@ function HeaderContent() {
                   </span>
                 )}
               </div>
-              <span className="hidden xl:inline text-xs font-medium text-[#111827]">
+              <span className="hidden xl:inline text-xs font-medium text-ink">
                 Wishlist
               </span>
             </Link>
@@ -787,7 +787,7 @@ function HeaderContent() {
             {/* Mobile Shopping Cart Button (Clean Icon with Badge, No Background Pill) */}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="p-1.5 text-[#111827] hover:text-primary hover:bg-gray-50 rounded-lg transition-colors cursor-pointer min-h-[38px] min-w-[38px] flex items-center justify-center relative lg:hidden"
+              className="p-1.5 text-ink hover:text-primary hover:bg-gray-50 rounded-lg transition-colors cursor-pointer min-h-[38px] min-w-[38px] flex items-center justify-center relative lg:hidden"
               aria-label="Open Cart"
             >
               <ShoppingCart size={20} />
@@ -807,7 +807,7 @@ function HeaderContent() {
               <div className="relative">
                 <ShoppingCart size={18} />
                 {totalCartCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-[#111827] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-white">
+                  <span className="absolute -top-2 -right-2 bg-ink text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-white">
                     {totalCartCount}
                   </span>
                 )}
@@ -826,7 +826,7 @@ function HeaderContent() {
 
         {/* 3. PRIMARY NAVIGATION BAR */}
         <div 
-          className="hidden lg:block bg-[#F9FAFB] border-t border-[#E5E7EB] relative" 
+          className="hidden lg:block bg-[#F9FAFB] border-t border-champagne/50 relative" 
           ref={navContainerRef}
           onMouseLeave={() => setIsMegaMenuOpen(false)}
         >
@@ -837,7 +837,7 @@ function HeaderContent() {
                 className={`px-4 py-3 text-xs font-semibold uppercase tracking-wider transition-colors flex items-center gap-1 border-b-2 ${
                   isNavActive('/', true) 
                     ? 'text-primary border-primary' 
-                    : 'text-[#111827] border-transparent hover:text-primary'
+                    : 'text-ink border-transparent hover:text-primary'
                 }`}
               >
                 Home
@@ -848,7 +848,7 @@ function HeaderContent() {
                 className={`px-4 py-3 text-xs font-semibold uppercase tracking-wider transition-colors flex items-center gap-1 border-b-2 ${
                   isNavActive('/products', true) 
                     ? 'text-primary border-primary' 
-                    : 'text-[#111827] border-transparent hover:text-primary'
+                    : 'text-ink border-transparent hover:text-primary'
                 }`}
               >
                 Shop
@@ -863,7 +863,7 @@ function HeaderContent() {
                   className={`px-4 py-3 text-xs font-semibold uppercase tracking-wider transition-colors flex items-center gap-1 border-b-2 ${
                     isNavActive('/categories') 
                       ? 'text-primary border-primary' 
-                      : 'text-[#111827] border-transparent hover:text-primary'
+                      : 'text-ink border-transparent hover:text-primary'
                   }`}
                 >
                   <span>Categories</span>
@@ -876,7 +876,7 @@ function HeaderContent() {
                 className={`px-4 py-3 text-xs font-semibold uppercase tracking-wider transition-colors flex items-center gap-1 border-b-2 ${
                   isNavActive('/brands') 
                     ? 'text-primary border-primary' 
-                    : 'text-[#111827] border-transparent hover:text-primary'
+                    : 'text-ink border-transparent hover:text-primary'
                 }`}
               >
                 Brands
@@ -887,7 +887,7 @@ function HeaderContent() {
                 className={`px-4 py-3 text-xs font-semibold uppercase tracking-wider transition-colors flex items-center gap-1 border-b-2 ${
                   isNavActive('/products?deals=true') 
                     ? 'text-primary border-primary' 
-                    : 'text-[#111827] border-transparent hover:text-primary'
+                    : 'text-ink border-transparent hover:text-primary'
                 }`}
               >
                 Deals
@@ -898,7 +898,7 @@ function HeaderContent() {
                 className={`px-4 py-3 text-xs font-semibold uppercase tracking-wider transition-colors flex items-center gap-1 border-b-2 ${
                   isNavActive('/products?sort=newest') 
                     ? 'text-primary border-primary' 
-                    : 'text-[#111827] border-transparent hover:text-primary'
+                    : 'text-ink border-transparent hover:text-primary'
                 }`}
               >
                 New Arrivals
@@ -909,7 +909,7 @@ function HeaderContent() {
                 className={`px-4 py-3 text-xs font-semibold uppercase tracking-wider transition-colors flex items-center gap-1 border-b-2 ${
                   isNavActive('/blog') 
                     ? 'text-primary border-primary' 
-                    : 'text-[#111827] border-transparent hover:text-primary'
+                    : 'text-ink border-transparent hover:text-primary'
                 }`}
               >
                 Blog
@@ -920,7 +920,7 @@ function HeaderContent() {
                 className={`px-4 py-3 text-xs font-semibold uppercase tracking-wider transition-colors flex items-center gap-1 border-b-2 ${
                   isNavActive('/pages/about') 
                     ? 'text-primary border-primary' 
-                    : 'text-[#111827] border-transparent hover:text-primary'
+                    : 'text-ink border-transparent hover:text-primary'
                 }`}
               >
                 About
@@ -931,7 +931,7 @@ function HeaderContent() {
                 className={`px-4 py-3 text-xs font-semibold uppercase tracking-wider transition-colors flex items-center gap-1 border-b-2 ${
                   isNavActive('/pages/contact') 
                     ? 'text-primary border-primary' 
-                    : 'text-[#111827] border-transparent hover:text-primary'
+                    : 'text-ink border-transparent hover:text-primary'
                 }`}
               >
                 Contact
@@ -970,7 +970,7 @@ function HeaderContent() {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.2 }}
-              className="lg:hidden px-4 pb-3 pt-1 border-t border-[#E5E7EB] bg-white shadow-xs"
+              className="lg:hidden px-4 pb-3 pt-1 border-t border-champagne/50 bg-white shadow-xs"
             >
               <div ref={mobileSearchContainerRef} className="relative w-full">
                 <form 
@@ -988,15 +988,15 @@ function HeaderContent() {
                     onChange={(e) => setSearchInput(e.target.value)}
                     onFocus={() => setIsSearchFocused(true)}
                     onKeyDown={handleKeyDown}
-                    className="w-full py-2 pl-9 pr-16 text-sm bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg focus:outline-none focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary font-normal transition-colors"
+                    className="w-full py-2 pl-9 pr-16 text-sm bg-[#F9FAFB] border border-champagne/50 rounded-lg focus:outline-none focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary font-normal transition-colors"
                   />
-                  <Search size={16} className="absolute left-3 text-[#6B7280] pointer-events-none" />
+                  <Search size={16} className="absolute left-3 text-taupe pointer-events-none" />
                   <div className="absolute right-2 flex items-center gap-1">
                     {searchInput && (
                       <button
                         type="button"
                         onClick={() => setSearchInput('')}
-                        className="text-[#6B7280] hover:text-[#111827] transition-colors cursor-pointer p-1"
+                        className="text-taupe hover:text-ink transition-colors cursor-pointer p-1"
                         aria-label="Clear search input"
                       >
                         <X size={15} />
@@ -1008,7 +1008,7 @@ function HeaderContent() {
                         setIsMobileSearchOpen(false);
                         setIsSearchFocused(false);
                       }}
-                      className="text-xs font-medium text-[#6B7280] hover:text-[#111827] px-1.5 py-1 rounded cursor-pointer"
+                      className="text-xs font-medium text-taupe hover:text-ink px-1.5 py-1 rounded cursor-pointer"
                       aria-label="Close search"
                     >
                       Cancel
@@ -1039,23 +1039,23 @@ function HeaderContent() {
                   onError={() => setLogoError(true)}
                 />
               ) : (
-                <span className="font-bold text-lg text-[#111827]">{siteName}</span>
+                <span className="font-bold text-lg text-ink">{siteName}</span>
               )}
             </Link>
           }
           footer={
             <div className="space-y-2.5">
               <div className="grid grid-cols-2 gap-2">
-                <button className="flex items-center justify-center gap-1.5 p-2 rounded-lg bg-white border border-[#E5E7EB] hover:border-primary transition-colors group cursor-pointer">
-                  <ShieldCheck size={15} className="text-[#111827] group-hover:text-primary" />
-                  <span className="text-[11px] font-semibold text-[#6B7280] group-hover:text-[#111827]">Warranty</span>
+                <button className="flex items-center justify-center gap-1.5 p-2 rounded-lg bg-white border border-champagne/50 hover:border-primary transition-colors group cursor-pointer">
+                  <ShieldCheck size={15} className="text-ink group-hover:text-primary" />
+                  <span className="text-[11px] font-semibold text-taupe group-hover:text-ink">Warranty</span>
                 </button>
-                <button className="flex items-center justify-center gap-1.5 p-2 rounded-lg bg-white border border-[#E5E7EB] hover:border-primary transition-colors group cursor-pointer">
-                  <Truck size={15} className="text-[#111827] group-hover:text-primary" />
-                  <span className="text-[11px] font-semibold text-[#6B7280] group-hover:text-[#111827]">Track Order</span>
+                <button className="flex items-center justify-center gap-1.5 p-2 rounded-lg bg-white border border-champagne/50 hover:border-primary transition-colors group cursor-pointer">
+                  <Truck size={15} className="text-ink group-hover:text-primary" />
+                  <span className="text-[11px] font-semibold text-taupe group-hover:text-ink">Track Order</span>
                 </button>
               </div>
-              <div className="flex items-center justify-center gap-1.5 text-[11px] text-[#6B7280]">
+              <div className="flex items-center justify-center gap-1.5 text-[11px] text-taupe">
                 <HelpCircle size={13} />
                 <span>Support Available 24/7</span>
               </div>
@@ -1064,7 +1064,7 @@ function HeaderContent() {
         >
           <div className="space-y-4 overflow-x-hidden">
             {/* User Profile Summary */}
-            <div className="relative overflow-hidden rounded-xl bg-[#111827] p-3.5 text-white shadow-xs">
+            <div className="relative overflow-hidden rounded-xl bg-ink p-3.5 text-white shadow-xs">
               <div className="relative z-10 flex items-center gap-2.5">
                 <div className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-sm font-bold flex-shrink-0">
                   {user ? user.fullName.charAt(0).toUpperCase() : <User size={18} />}
@@ -1104,7 +1104,7 @@ function HeaderContent() {
 
             {/* Main Navigation Links */}
             <div className="space-y-0.5">
-              <div className="px-2 text-[10px] font-semibold text-[#6B7280] uppercase tracking-wider mb-1">Navigation</div>
+              <div className="px-2 text-[10px] font-semibold text-taupe uppercase tracking-wider mb-1">Navigation</div>
               {[
                 { label: 'Shop All Products', href: '/products', icon: LayoutGrid },
                 { label: 'Deals & Offers', href: '/products?deals=true', icon: Zap, isHot: true },
@@ -1118,12 +1118,12 @@ function HeaderContent() {
                   href={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`w-full flex items-center justify-between py-2 px-2.5 rounded-lg transition-colors group min-h-[40px] ${
-                    item.isHot ? 'bg-primary-light text-primary' : 'hover:bg-[#F9FAFB] text-[#111827]'
+                    item.isHot ? 'bg-sage/30 text-primary' : 'hover:bg-[#F9FAFB] text-ink'
                   }`}
                 >
                   <div className="flex items-center gap-2.5 min-w-0">
                     <div className={`p-1.5 rounded-md flex-shrink-0 ${
-                      item.isHot ? 'bg-primary/10 text-primary' : 'bg-gray-100 text-[#111827]'
+                      item.isHot ? 'bg-primary/10 text-primary' : 'bg-gray-100 text-ink'
                     }`}>
                       <item.icon size={15} />
                     </div>
@@ -1137,7 +1137,7 @@ function HeaderContent() {
             {/* Product Categories Section */}
             <div>
               <div className="px-2 flex items-center justify-between mb-2">
-                <span className="text-[10px] font-semibold text-[#6B7280] uppercase tracking-wider">Categories</span>
+                <span className="text-[10px] font-semibold text-taupe uppercase tracking-wider">Categories</span>
                 <Link 
                   href="/categories" 
                   onClick={() => setIsMobileMenuOpen(false)} 
@@ -1152,7 +1152,7 @@ function HeaderContent() {
                     key={cat.id}
                     href={`/categories/${cat.slug}`}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center gap-2 p-2 rounded-lg bg-[#F9FAFB] border border-[#E5E7EB] hover:border-primary transition-colors group min-h-[48px]"
+                    className="flex items-center gap-2 p-2 rounded-lg bg-[#F9FAFB] border border-champagne/50 hover:border-primary transition-colors group min-h-[48px]"
                   >
                     <div className="w-10 h-10 rounded-md overflow-hidden relative flex-shrink-0 bg-gray-100">
                       <SmartImage 
@@ -1165,8 +1165,8 @@ function HeaderContent() {
                       />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <div className="text-xs font-semibold text-[#111827] truncate">{cat.name}</div>
-                      <div className="text-[10px] text-[#6B7280]">{cat.itemCount || 0} Items</div>
+                      <div className="text-xs font-semibold text-ink truncate">{cat.name}</div>
+                      <div className="text-[10px] text-taupe">{cat.itemCount || 0} Items</div>
                     </div>
                   </Link>
                 ))}
@@ -1174,7 +1174,7 @@ function HeaderContent() {
             </div>
 
             {/* Support & Links */}
-            <div className="pt-2 border-t border-[#E5E7EB]">
+            <div className="pt-2 border-t border-champagne/50">
               <div className="grid grid-cols-2 gap-y-0.5">
                 {[
                   { label: 'About Us', href: '/pages/about' },
@@ -1186,7 +1186,7 @@ function HeaderContent() {
                     key={item.label}
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-left px-2 py-1 text-xs font-medium text-[#6B7280] hover:text-primary transition-colors block truncate"
+                    className="text-left px-2 py-1 text-xs font-medium text-taupe hover:text-primary transition-colors block truncate"
                   >
                     {item.label}
                   </Link>
@@ -1205,9 +1205,9 @@ export const Header: React.FC = () => {
   const siteName = settings?.general?.siteName || 'Store';
   return (
     <Suspense fallback={
-      <header className="w-full bg-white border-b border-[#E5E7EB] sticky top-0 z-40 py-3.5">
+      <header className="w-full bg-white border-b border-champagne/50 sticky top-0 z-40 py-3.5">
         <div className="container-vyzobd flex items-center justify-between">
-          <Link href="/" className="font-bold text-xl text-[#111827]">{siteName}</Link>
+          <Link href="/" className="font-bold text-xl text-ink">{siteName}</Link>
         </div>
       </header>
     }>

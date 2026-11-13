@@ -44,17 +44,17 @@ export const ReviewSummary: React.FC<ReviewSummaryProps> = ({
   const effectiveTotal = Object.values(distribution).reduce((sum, v) => sum + v, 0) || (reviews.length > 0 ? reviews.length : Math.max(1, reviewCount));
 
   return (
-    <div className="bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl p-4 sm:p-6 mb-6">
+    <div className="bg-[#F9FAFB] border border-champagne/50 rounded-xl p-4 sm:p-6 mb-6">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
         {/* Left: Overall Rating & Stars */}
-        <div className="md:col-span-4 flex flex-col items-center md:items-start text-center md:text-left border-b md:border-b-0 md:border-r border-[#E5E7EB] pb-4 md:pb-0 md:pr-6">
-          <span className="text-3xl sm:text-4xl font-extrabold text-[#111827] tracking-tight">
+        <div className="md:col-span-4 flex flex-col items-center md:items-start text-center md:text-left border-b md:border-b-0 md:border-r border-champagne/50 pb-4 md:pb-0 md:pr-6">
+          <span className="text-3xl sm:text-4xl font-extrabold text-ink tracking-tight">
             {reviewCount > 0 ? rating.toFixed(1) : '0.0'}
           </span>
           <div className="mt-1">
             <RatingStars rating={reviewCount > 0 ? rating : 0} showNumber={false} size={18} />
           </div>
-          <span className="text-xs text-[#6B7280] font-medium mt-1">
+          <span className="text-xs text-taupe font-medium mt-1">
             Based on {reviewCount} verified {reviewCount === 1 ? 'review' : 'reviews'}
           </span>
 
@@ -76,7 +76,7 @@ export const ReviewSummary: React.FC<ReviewSummaryProps> = ({
 
             return (
               <div key={starLevel} className="flex items-center gap-2 text-xs">
-                <span className="w-12 font-medium text-[#111827] flex items-center gap-1 justify-end">
+                <span className="w-12 font-medium text-ink flex items-center gap-1 justify-end">
                   {starLevel} <Star size={11} className="fill-amber-400 text-amber-400 inline" />
                 </span>
 
@@ -88,7 +88,7 @@ export const ReviewSummary: React.FC<ReviewSummaryProps> = ({
                   />
                 </div>
 
-                <span className="w-10 text-right font-medium text-[#6B7280] text-[11px]">
+                <span className="w-10 text-right font-medium text-taupe text-[11px]">
                   {percentage}%
                 </span>
               </div>

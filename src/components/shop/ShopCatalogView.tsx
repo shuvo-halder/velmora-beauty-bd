@@ -248,17 +248,17 @@ export const ShopCatalogView: React.FC = () => {
   };
 
   return (
-    <div className="py-8 bg-[#F9FAFB] min-h-screen">
+    <div className="py-8 bg-bg min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Catalog Banner / Header */}
-        <div className="mb-6 bg-white border border-[#E5E7EB] rounded-xl p-6 sm:p-8 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="mb-6 bg-white border border-champagne/50 rounded-xl p-6 sm:p-8 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <div className="text-xs font-bold text-primary uppercase tracking-wider mb-1 flex items-center gap-1.5">
               <Sparkles size={14} />
               <span>Official Store Catalog</span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-[#111827] tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-bold text-ink tracking-tight">
               {activeCategoryObj 
                 ? activeCategoryObj.name 
                 : activeBrandObj 
@@ -279,8 +279,8 @@ export const ShopCatalogView: React.FC = () => {
           </div>
 
           <div className="text-right">
-            <span className="text-[11px] font-bold text-[#6B7280] uppercase tracking-wider block">Catalog Range</span>
-            <div className="text-xl sm:text-2xl font-bold text-[#111827] font-mono">
+            <span className="text-[11px] font-bold text-taupe uppercase tracking-wider block">Catalog Range</span>
+            <div className="text-xl sm:text-2xl font-bold text-ink font-mono">
               {totalCount > 0 ? `${startIndex}–${endIndex} of ${totalCount}` : '0 Items'}
             </div>
           </div>
@@ -288,13 +288,13 @@ export const ShopCatalogView: React.FC = () => {
 
         {/* Active Filters Bar */}
         {(filters.categorySlug || filters.brandSlugs.length > 0 || filters.searchQuery || filters.minPrice > 0 || filters.maxPrice < 1000 || filters.ratingMin > 0 || filters.inStockOnly) && (
-          <div className="mb-6 flex flex-wrap items-center gap-2 bg-white p-3.5 border border-[#E5E7EB] rounded-xl shadow-xs">
-            <span className="text-xs font-bold text-[#6B7280] uppercase tracking-wider mr-1">
+          <div className="mb-6 flex flex-wrap items-center gap-2 bg-white p-3.5 border border-champagne/50 rounded-xl shadow-xs">
+            <span className="text-xs font-bold text-taupe uppercase tracking-wider mr-1">
               Active Filters:
             </span>
 
             {filters.searchQuery && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary-light border border-primary/20 text-primary text-xs font-semibold rounded-full">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-sage/30 border border-primary/20 text-primary text-xs font-semibold rounded-full">
                 Search: "{filters.searchQuery}"
                 <button onClick={() => setFilters(prev => ({ ...prev, searchQuery: '', page: 1 }))} className="hover:text-primary-hover cursor-pointer">
                   <X size={12} />
@@ -303,7 +303,7 @@ export const ShopCatalogView: React.FC = () => {
             )}
 
             {filters.categorySlug && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary-light border border-primary/20 text-primary text-xs font-semibold rounded-full">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-sage/30 border border-primary/20 text-primary text-xs font-semibold rounded-full">
                 Dept: {activeCategoryObj?.name || filters.categorySlug}
                 <button onClick={() => setFilters(prev => ({ ...prev, categorySlug: null, page: 1 }))} className="hover:text-primary-hover cursor-pointer">
                   <X size={12} />
@@ -312,7 +312,7 @@ export const ShopCatalogView: React.FC = () => {
             )}
 
             {filters.brandSlugs.map((bs) => (
-              <span key={bs} className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary-light border border-primary/20 text-primary text-xs font-semibold rounded-full capitalize">
+              <span key={bs} className="inline-flex items-center gap-1.5 px-3 py-1 bg-sage/30 border border-primary/20 text-primary text-xs font-semibold rounded-full capitalize">
                 Brand: {bs}
                 <button 
                   onClick={() => setFilters(prev => ({ ...prev, brandSlugs: prev.brandSlugs.filter(s => s !== bs), page: 1 }))}
@@ -324,7 +324,7 @@ export const ShopCatalogView: React.FC = () => {
             ))}
 
             {(filters.minPrice > 0 || filters.maxPrice < 1000) && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary-light border border-primary/20 text-primary text-xs font-semibold rounded-full">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-sage/30 border border-primary/20 text-primary text-xs font-semibold rounded-full">
                 Price: ${filters.minPrice} - ${filters.maxPrice}
                 <button onClick={() => setFilters(prev => ({ ...prev, minPrice: 0, maxPrice: 1000, page: 1 }))} className="hover:text-primary-hover cursor-pointer">
                   <X size={12} />
@@ -360,12 +360,12 @@ export const ShopCatalogView: React.FC = () => {
         )}
 
         {/* Sorting & Grid Layout Controls */}
-        <div className="bg-white border border-[#E5E7EB] rounded-xl p-3.5 shadow-xs mb-6 flex flex-wrap items-center justify-between gap-4">
+        <div className="bg-white border border-champagne/50 rounded-xl p-3.5 shadow-xs mb-6 flex flex-wrap items-center justify-between gap-4">
           
           {/* Mobile Filter Toggle */}
           <button
             onClick={() => setIsMobileFilterOpen(true)}
-            className="lg:hidden px-4 py-2 bg-[#111827] hover:bg-black text-white font-semibold text-xs rounded-lg flex items-center gap-2 cursor-pointer shadow-xs transition-colors"
+            className="lg:hidden px-4 py-2 bg-ink hover:bg-black text-white font-semibold text-xs rounded-lg flex items-center gap-2 cursor-pointer shadow-xs transition-colors"
           >
             <SlidersHorizontal size={16} />
             <span>Filter Catalog</span>
@@ -373,14 +373,14 @@ export const ShopCatalogView: React.FC = () => {
 
           {/* Sorting Dropdown */}
           <div className="flex items-center gap-2">
-            <span className="text-xs font-bold text-[#6B7280] uppercase tracking-wider hidden sm:inline">
+            <span className="text-xs font-bold text-taupe uppercase tracking-wider hidden sm:inline">
               Sort By:
             </span>
             <div className="relative">
               <select
                 value={filters.sortBy}
                 onChange={(e) => setFilters(prev => ({ ...prev, sortBy: e.target.value as any, page: 1 }))}
-                className="appearance-none bg-[#F9FAFB] border border-[#E5E7EB] hover:border-[#111827] py-2 pl-3.5 pr-8 text-xs font-semibold text-[#111827] rounded-lg focus:outline-none focus:border-primary cursor-pointer"
+                className="appearance-none bg-bg-alt/50 border border-champagne/50 hover:border-ink py-2 pl-3.5 pr-8 text-xs font-semibold text-ink rounded-lg focus:outline-none focus:border-primary cursor-pointer"
               >
                 <option value="featured">Featured / Best Sellers</option>
                 <option value="newest">Newest Releases</option>
@@ -391,16 +391,16 @@ export const ShopCatalogView: React.FC = () => {
                 <option value="name_desc">Name: Z to A</option>
                 <option value="rating">Highest Customer Rating</option>
               </select>
-              <ChevronDown size={14} className="text-[#6B7280] absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <ChevronDown size={14} className="text-taupe absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             </div>
           </div>
 
           {/* View Switcher */}
-          <div className="flex items-center gap-1 bg-[#F9FAFB] p-1 rounded-lg border border-[#E5E7EB]">
+          <div className="flex items-center gap-1 bg-bg-alt/70 p-1 rounded-lg border border-champagne/40">
             <button
               onClick={() => setViewMode('grid')}
               className={`p-2 rounded-md transition-colors cursor-pointer ${
-                viewMode === 'grid' ? 'bg-white text-primary shadow-xs font-bold' : 'text-[#6B7280] hover:text-[#111827]'
+                viewMode === 'grid' ? 'bg-white text-primary shadow-xs font-bold' : 'text-taupe hover:text-ink'
               }`}
               title="Grid View"
             >
@@ -409,7 +409,7 @@ export const ShopCatalogView: React.FC = () => {
             <button
               onClick={() => setViewMode('list')}
               className={`p-2 rounded-md transition-colors cursor-pointer ${
-                viewMode === 'list' ? 'bg-white text-primary shadow-xs font-bold' : 'text-[#6B7280] hover:text-[#111827]'
+                viewMode === 'list' ? 'bg-white text-primary shadow-xs font-bold' : 'text-taupe hover:text-ink'
               }`}
               title="List View"
             >
@@ -423,7 +423,7 @@ export const ShopCatalogView: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Desktop Filter Sidebar */}
-          <div className="hidden lg:block lg:col-span-3 bg-white border border-[#E5E7EB] rounded-xl p-5 shadow-xs sticky top-28">
+          <div className="hidden lg:block lg:col-span-3 bg-white border border-champagne/50 rounded-xl p-5 shadow-xs sticky top-28">
             <ProductFilterSidebar />
           </div>
 
@@ -434,7 +434,7 @@ export const ShopCatalogView: React.FC = () => {
             {isLoading ? (
               <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-3.5 lg:gap-4">
                 {Array.from({ length: filters.pageSize || 12 }).map((_, i) => (
-                  <div key={i} className="bg-white border border-[#E5E7EB] rounded-xl p-2.5 space-y-2.5">
+                  <div key={i} className="bg-white border border-champagne/50 rounded-xl p-2.5 space-y-2.5">
                     <Skeleton className="aspect-square w-full rounded-lg bg-[#F9FAFB]" />
                     <Skeleton className="h-3.5 w-1/3 rounded-md bg-[#F9FAFB]" />
                     <Skeleton className="h-4 w-full rounded-md bg-[#F9FAFB]" />
@@ -444,12 +444,12 @@ export const ShopCatalogView: React.FC = () => {
               </div>
             ) : error ? (
               /* Error State */
-              <div className="bg-primary-light border border-primary/20 rounded-xl p-8 text-center space-y-4">
-                <div className="w-12 h-12 rounded-full bg-primary-light text-primary flex items-center justify-center mx-auto border border-primary/20">
+              <div className="bg-sage/30 border border-primary/20 rounded-xl p-8 text-center space-y-4">
+                <div className="w-12 h-12 rounded-full bg-sage/30 text-primary flex items-center justify-center mx-auto border border-primary/20">
                   <AlertTriangle size={24} />
                 </div>
-                <h3 className="text-base font-bold text-[#111827]">Catalog Loading Error</h3>
-                <p className="text-xs text-[#6B7280] max-w-md mx-auto leading-relaxed">{error}</p>
+                <h3 className="text-base font-bold text-ink">Catalog Loading Error</h3>
+                <p className="text-xs text-taupe max-w-md mx-auto leading-relaxed">{error}</p>
                 <button
                   onClick={fetchProducts}
                   className="px-5 py-2.5 bg-primary hover:bg-primary-hover text-white font-semibold text-xs rounded-lg transition-colors cursor-pointer inline-flex items-center gap-2 shadow-xs"
@@ -460,12 +460,12 @@ export const ShopCatalogView: React.FC = () => {
               </div>
             ) : products.length === 0 ? (
               /* Empty State */
-              <div className="bg-white border border-[#E5E7EB] rounded-xl p-12 text-center space-y-4 shadow-xs">
-                <div className="w-16 h-16 rounded-xl bg-[#F9FAFB] border border-[#E5E7EB] flex items-center justify-center text-[#6B7280] mx-auto">
+              <div className="bg-white border border-champagne/50 rounded-xl p-12 text-center space-y-4 shadow-xs">
+                <div className="w-16 h-16 rounded-xl bg-[#F9FAFB] border border-champagne/50 flex items-center justify-center text-taupe mx-auto">
                   <PackageX size={32} />
                 </div>
-                <h3 className="text-lg font-bold text-[#111827]">No products match your criteria</h3>
-                <p className="text-xs text-[#6B7280] max-w-sm mx-auto leading-relaxed font-medium">
+                <h3 className="text-lg font-bold text-ink">No products match your criteria</h3>
+                <p className="text-xs text-taupe max-w-sm mx-auto leading-relaxed font-medium">
                   We couldn't find any products matching your current filter settings. Try adjusting your search query, price range, or category filter.
                 </p>
                 <div className="pt-2">
@@ -515,16 +515,16 @@ export const ShopCatalogView: React.FC = () => {
 
                 {/* Pagination Controls */}
                 {totalPages > 1 && (
-                  <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-[#E5E7EB]">
-                    <div className="text-xs text-[#6B7280] font-medium">
-                      Showing <span className="font-bold text-[#111827]">{startIndex}</span> to <span className="font-bold text-[#111827]">{endIndex}</span> of <span className="font-bold text-[#111827]">{totalCount}</span> items
+                  <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-champagne/50">
+                    <div className="text-xs text-taupe font-medium">
+                      Showing <span className="font-bold text-ink">{startIndex}</span> to <span className="font-bold text-ink">{endIndex}</span> of <span className="font-bold text-ink">{totalCount}</span> items
                     </div>
 
                     <div className="flex items-center gap-1.5">
                       <button
                         onClick={() => handlePageChange(currentPage - 1)}
                         disabled={currentPage === 1}
-                        className="p-2 rounded-lg border border-[#E5E7EB] bg-white text-[#111827] hover:bg-[#F9FAFB] disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer"
+                        className="p-2 rounded-lg border border-champagne/50 bg-white text-ink hover:bg-[#F9FAFB] disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer"
                         title="Previous Page"
                       >
                         <ChevronLeft size={16} />
@@ -540,7 +540,7 @@ export const ShopCatalogView: React.FC = () => {
                             className={`w-9 h-9 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
                               isActive
                                 ? 'bg-primary text-white shadow-xs'
-                                : 'bg-white border border-[#E5E7EB] text-[#111827] hover:bg-[#F9FAFB]'
+                                : 'bg-white border border-champagne/50 text-ink hover:bg-[#F9FAFB]'
                             }`}
                           >
                             {pageNum}
@@ -551,7 +551,7 @@ export const ShopCatalogView: React.FC = () => {
                       <button
                         onClick={() => handlePageChange(currentPage + 1)}
                         disabled={currentPage === totalPages}
-                        className="p-2 rounded-lg border border-[#E5E7EB] bg-white text-[#111827] hover:bg-[#F9FAFB] disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer"
+                        className="p-2 rounded-lg border border-champagne/50 bg-white text-ink hover:bg-[#F9FAFB] disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer"
                         title="Next Page"
                       >
                         <ChevronRight size={16} />
@@ -575,13 +575,13 @@ export const ShopCatalogView: React.FC = () => {
             className="fixed inset-0 bg-black/50 backdrop-blur-xs transition-opacity" 
             onClick={() => setIsMobileFilterOpen(false)}
           />
-          <div className="relative w-full max-w-xs bg-white h-full shadow-lg p-6 overflow-y-auto z-10 flex flex-col justify-between border-l border-[#E5E7EB]">
+          <div className="relative w-full max-w-xs bg-white h-full shadow-lg p-6 overflow-y-auto z-10 flex flex-col justify-between border-l border-champagne/50">
             <div>
-              <div className="flex items-center justify-between pb-4 border-b border-[#E5E7EB] mb-4">
-                <h3 className="font-bold text-base text-[#111827]">Filter Catalog</h3>
+              <div className="flex items-center justify-between pb-4 border-b border-champagne/50 mb-4">
+                <h3 className="font-bold text-base text-ink">Filter Catalog</h3>
                 <button 
                   onClick={() => setIsMobileFilterOpen(false)} 
-                  className="p-1.5 text-[#6B7280] hover:text-[#111827] rounded-lg cursor-pointer"
+                  className="p-1.5 text-taupe hover:text-ink rounded-lg cursor-pointer"
                 >
                   <X size={20} />
                 </button>
@@ -589,7 +589,7 @@ export const ShopCatalogView: React.FC = () => {
               <ProductFilterSidebar onCloseMobile={() => setIsMobileFilterOpen(false)} />
             </div>
 
-            <div className="pt-6 border-t border-[#E5E7EB] mt-6">
+            <div className="pt-6 border-t border-champagne/50 mt-6">
               <button
                 onClick={() => setIsMobileFilterOpen(false)}
                 className="w-full py-2.5 bg-primary hover:bg-primary-hover text-white font-semibold text-xs uppercase tracking-wider rounded-lg shadow-xs cursor-pointer"

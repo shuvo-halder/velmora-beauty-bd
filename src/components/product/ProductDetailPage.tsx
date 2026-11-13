@@ -222,7 +222,7 @@ export const ProductDetailPage: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="py-10 bg-slate-50 min-h-screen">
+      <div className="py-10 bg-bg min-h-screen">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <Skeleton className="h-6 w-64 rounded-xl bg-slate-200" />
           <div className="bg-white border border-slate-200 rounded-3xl p-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -249,13 +249,13 @@ export const ProductDetailPage: React.FC = () => {
 
   if (error || !product) {
     return (
-      <div className="py-16 bg-[#F9FAFB] min-h-screen flex items-center justify-center px-4">
-        <div className="bg-white border border-[#E5E7EB] rounded-xl p-8 max-w-md w-full text-center space-y-4 shadow-xs">
-          <div className="w-14 h-14 rounded-xl bg-primary-light text-primary flex items-center justify-center mx-auto border border-primary/20">
+      <div className="py-16 bg-bg min-h-screen flex items-center justify-center px-4">
+        <div className="bg-white border border-champagne/50 rounded-xl p-8 max-w-md w-full text-center space-y-4 shadow-xs">
+          <div className="w-14 h-14 rounded-xl bg-sage/30 text-primary flex items-center justify-center mx-auto border border-primary/20">
             <AlertCircle size={28} />
           </div>
-          <h2 className="text-xl font-bold text-[#111827]">Product Unavailable</h2>
-          <p className="text-xs text-[#6B7280] leading-relaxed">
+          <h2 className="text-xl font-bold text-ink">Product Unavailable</h2>
+          <p className="text-xs text-taupe leading-relaxed">
             {error || "The requested item slug could not be located in our inventory."}
           </p>
           <div className="pt-2">
@@ -413,7 +413,7 @@ export const ProductDetailPage: React.FC = () => {
     : [];
 
   return (
-    <div className="py-8 bg-white min-h-screen">
+    <div className="py-8 bg-bg min-h-screen">
       <SEO 
         title={product.name}
         description={product.description || product.subtitle}
@@ -427,33 +427,33 @@ export const ProductDetailPage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         
         {/* Breadcrumb Navigation */}
-        <nav className="flex items-center gap-2 text-xs text-[#6B7280] font-medium overflow-x-auto pb-1">
+        <nav className="flex items-center gap-2 text-xs text-taupe font-medium overflow-x-auto pb-1">
           <button onClick={() => navigateTo('home')} className="hover:text-primary transition-colors cursor-pointer">
             Home
           </button>
-          <ChevronRight size={12} className="text-[#6B7280] flex-shrink-0" />
+          <ChevronRight size={12} className="text-taupe flex-shrink-0" />
           <button onClick={() => navigateTo('shop')} className="hover:text-primary transition-colors cursor-pointer">
             Catalog
           </button>
-          <ChevronRight size={12} className="text-[#6B7280] flex-shrink-0" />
+          <ChevronRight size={12} className="text-taupe flex-shrink-0" />
           <button 
             onClick={() => navigateTo('shop')} 
             className="hover:text-primary transition-colors cursor-pointer truncate"
           >
             {product.category}
           </button>
-          <ChevronRight size={12} className="text-[#6B7280] flex-shrink-0" />
-          <span className="text-[#111827] font-bold truncate max-w-xs">{product.name}</span>
+          <ChevronRight size={12} className="text-taupe flex-shrink-0" />
+          <span className="text-ink font-bold truncate max-w-xs">{product.name}</span>
         </nav>
 
         {/* Product Main Showcase Card */}
-        <div className="bg-white border border-[#E5E7EB] rounded-xl p-6 sm:p-8 shadow-xs grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div className="bg-white border border-champagne/50 rounded-xl p-6 sm:p-8 shadow-xs grid grid-cols-1 lg:grid-cols-12 gap-8">
           
           {/* Gallery Column (6 cols on Desktop) */}
           <div className="lg:col-span-6 space-y-3.5">
             
             {/* Main Image Stage */}
-            <div className="relative aspect-square bg-[#F9FAFB] rounded-xl border border-[#E5E7EB] overflow-hidden group">
+            <div className="relative aspect-square bg-[#F9FAFB] rounded-xl border border-champagne/50 overflow-hidden group">
               {/* Clickable Main Image Trigger */}
               <button
                 type="button"
@@ -486,7 +486,7 @@ export const ProductDetailPage: React.FC = () => {
                   e.stopPropagation();
                   openLightbox(selectedImage || product.images[0]);
                 }}
-                className="absolute top-3.5 right-3.5 p-2 rounded-lg bg-[#111827]/80 hover:bg-[#111827] text-white opacity-0 group-hover:opacity-100 transition-all cursor-pointer z-10"
+                className="absolute top-3.5 right-3.5 p-2 rounded-lg bg-ink/80 hover:bg-ink text-white opacity-0 group-hover:opacity-100 transition-all cursor-pointer z-10"
                 title="Expand Full Resolution Image"
                 aria-label="Expand Full Resolution Image"
               >
@@ -504,7 +504,7 @@ export const ProductDetailPage: React.FC = () => {
                       const prevIdx = currIdx <= 0 ? product.images.length - 1 : currIdx - 1;
                       setSelectedImage(product.images[prevIdx]);
                     }}
-                    className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 hover:bg-white text-[#111827] shadow-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all cursor-pointer z-10 border border-[#E5E7EB]"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 hover:bg-white text-ink shadow-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all cursor-pointer z-10 border border-champagne/50"
                     aria-label="Previous image"
                   >
                     <ChevronLeft size={16} />
@@ -517,7 +517,7 @@ export const ProductDetailPage: React.FC = () => {
                       const nextIdx = (currIdx + 1) % product.images.length;
                       setSelectedImage(product.images[nextIdx]);
                     }}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 hover:bg-white text-[#111827] shadow-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all cursor-pointer z-10 border border-[#E5E7EB]"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 hover:bg-white text-ink shadow-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all cursor-pointer z-10 border border-champagne/50"
                     aria-label="Next image"
                   >
                     <ChevronRight size={16} />
@@ -534,7 +534,7 @@ export const ProductDetailPage: React.FC = () => {
                     key={idx}
                     onClick={() => setSelectedImage(img)}
                     className={`w-16 h-16 rounded-lg border-2 overflow-hidden flex-shrink-0 transition-all cursor-pointer relative ${
-                      selectedImage === img ? 'border-primary ring-1 ring-primary/20' : 'border-[#E5E7EB] opacity-70 hover:opacity-100'
+                      selectedImage === img ? 'border-primary ring-1 ring-primary/20' : 'border-champagne/50 opacity-70 hover:opacity-100'
                     }`}
                   >
                     <SmartImage 
@@ -559,7 +559,7 @@ export const ProductDetailPage: React.FC = () => {
               
               {/* Brand & Stock Header */}
               <div className="flex items-center justify-between gap-2">
-                <span className="inline-block text-xs font-bold uppercase tracking-wider text-primary bg-primary-light px-2.5 py-0.5 rounded-md border border-primary/20">
+                <span className="inline-block text-xs font-bold uppercase tracking-wider text-primary bg-sage/30 px-2.5 py-0.5 rounded-md border border-primary/20">
                   {product.brand}
                 </span>
 
@@ -575,19 +575,19 @@ export const ProductDetailPage: React.FC = () => {
                     Only {activeStock} Left
                   </span>
                 ) : (
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-primary-light text-[#DC2626] border border-[#DC2626]/20 text-xs font-semibold">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-red-50 text-[#DC2626] border border-red-200 text-xs font-semibold">
                     <AlertCircle size={12} className="text-[#DC2626]" />
                     Currently Out of Stock
                   </span>
                 )}
               </div>
 
-              <h1 className="text-2xl sm:text-3xl font-bold text-[#111827] tracking-tight leading-snug">
+              <h1 className="text-2xl sm:text-3xl font-bold text-ink tracking-tight leading-snug">
                 {product.name}
               </h1>
 
               {/* Rating and SKU */}
-              <div className="flex items-center justify-between border-y border-[#E5E7EB] py-2.5 my-2">
+              <div className="flex items-center justify-between border-y border-champagne/50 py-2.5 my-2">
                 <div className="flex items-center gap-2">
                   <RatingStars rating={product.rating} count={product.reviewCount} size={15} />
                   <button 
@@ -597,30 +597,30 @@ export const ProductDetailPage: React.FC = () => {
                     Read Reviews
                   </button>
                 </div>
-                <span className="text-xs font-mono text-[#6B7280]">
-                  SKU: <span className="font-semibold text-[#111827]">{activeSKU}</span>
+                <span className="text-xs font-mono text-taupe">
+                  SKU: <span className="font-semibold text-ink">{activeSKU}</span>
                 </span>
               </div>
 
               {/* Price Row */}
               <div className="flex items-baseline gap-3 pt-1">
-                <span className="text-2xl sm:text-3xl font-bold text-[#111827]">
+                <span className="text-2xl sm:text-3xl font-bold text-ink">
                   {formatPrice(activePrice, currencyCode, currencySymbol)}
                 </span>
                 {activeComparePrice && activeComparePrice > activePrice && (
-                  <span className="text-base font-medium text-[#6B7280] line-through">
+                  <span className="text-base font-medium text-taupe line-through">
                     {formatPrice(activeComparePrice, currencyCode, currencySymbol)}
                   </span>
                 )}
                 {computedDiscount && (
-                  <span className="px-2 py-0.5 bg-primary-light text-primary font-bold text-xs rounded-md border border-primary/20">
+                  <span className="px-2 py-0.5 bg-champagne text-ink font-bold text-xs rounded-md border border-champagne">
                     Save {formatPrice(activeComparePrice! - activePrice, currencyCode, currencySymbol)} ({computedDiscount}%)
                   </span>
                 )}
               </div>
 
               {product.subtitle && (
-                <p className="text-xs sm:text-sm text-[#6B7280] leading-relaxed pt-1 line-clamp-3">
+                <p className="text-xs sm:text-sm text-taupe leading-relaxed pt-1 line-clamp-3">
                   {product.subtitle}
                 </p>
               )}
@@ -628,10 +628,10 @@ export const ProductDetailPage: React.FC = () => {
 
             {/* Variant Selector */}
             {product.variants && product.variants.length > 0 && (
-              <div className="space-y-2.5 pt-3 border-t border-[#E5E7EB]">
+              <div className="space-y-2.5 pt-3 border-t border-champagne/50">
                 <div className="flex items-center justify-between text-xs">
-                  <span className="font-bold text-[#111827]">Select Option:</span>
-                  <span className="text-[#6B7280]">{selectedVariant?.name}</span>
+                  <span className="font-bold text-ink">Select Option:</span>
+                  <span className="text-taupe">{selectedVariant?.name}</span>
                 </div>
 
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -643,20 +643,20 @@ export const ProductDetailPage: React.FC = () => {
                         onClick={() => handleVariantChange(v)}
                         className={`p-2.5 rounded-lg text-xs font-semibold border transition-colors flex flex-col justify-between text-left cursor-pointer ${
                           isSelected 
-                            ? 'bg-primary-light border-primary text-primary ring-1 ring-primary' 
-                            : 'bg-white border-[#E5E7EB] text-[#111827] hover:border-[#111827]'
+                            ? 'bg-sage/30 border-primary text-primary ring-1 ring-primary' 
+                            : 'bg-white border-champagne/50 text-ink hover:border-[#111827]'
                         }`}
                       >
                         <div className="flex items-center justify-between gap-1 mb-1">
                           <span className="truncate">{v.name}</span>
                           {v.colorHex && (
                             <span 
-                              className="w-3.5 h-3.5 rounded-full border border-[#E5E7EB] flex-shrink-0" 
+                              className="w-3.5 h-3.5 rounded-full border border-champagne/50 flex-shrink-0" 
                               style={{ backgroundColor: v.colorHex }} 
                             />
                           )}
                         </div>
-                        <div className="text-[#6B7280] text-[11px] flex items-center justify-between">
+                        <div className="text-taupe text-[11px] flex items-center justify-between">
                           <span>{formatPrice(v.price, currencyCode, currencySymbol)}</span>
                           {v.stock === 0 && <span className="text-[#DC2626] text-[10px]">Out of stock</span>}
                         </div>
@@ -672,21 +672,21 @@ export const ProductDetailPage: React.FC = () => {
               <div className="flex flex-col sm:flex-row items-stretch gap-2.5">
                 
                 {/* Quantity Control */}
-                <div className="flex items-center border border-[#E5E7EB] rounded-lg bg-white self-start sm:self-auto min-h-[42px]">
+                <div className="flex items-center border border-champagne/50 rounded-lg bg-white self-start sm:self-auto min-h-[42px]">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
                     disabled={activeStock === 0}
-                    className="px-3 py-2 text-[#6B7280] hover:bg-[#F9FAFB] rounded-l-lg transition-colors font-bold disabled:opacity-40 cursor-pointer"
+                    className="px-3 py-2 text-taupe hover:bg-[#F9FAFB] rounded-l-lg transition-colors font-bold disabled:opacity-40 cursor-pointer"
                   >
                     <Minus size={13} />
                   </button>
-                  <span className="px-3 text-xs font-semibold text-[#111827]">
+                  <span className="px-3 text-xs font-semibold text-ink">
                     {quantity}
                   </span>
                   <button
                     onClick={() => setQuantity(Math.min(activeStock, quantity + 1))}
                     disabled={activeStock === 0 || quantity >= activeStock}
-                    className="px-3 py-2 text-[#6B7280] hover:bg-[#F9FAFB] rounded-r-lg transition-colors font-bold disabled:opacity-40 cursor-pointer"
+                    className="px-3 py-2 text-taupe hover:bg-[#F9FAFB] rounded-r-lg transition-colors font-bold disabled:opacity-40 cursor-pointer"
                   >
                     <Plus size={13} />
                   </button>
@@ -706,7 +706,7 @@ export const ProductDetailPage: React.FC = () => {
                 <button
                   onClick={handleBuyNow}
                   disabled={activeStock === 0}
-                  className="py-2.5 px-5 bg-[#111827] hover:bg-black disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold text-xs rounded-lg transition-colors cursor-pointer min-h-[42px]"
+                  className="py-2.5 px-5 bg-ink hover:bg-black disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold text-xs rounded-lg transition-colors cursor-pointer min-h-[42px]"
                 >
                   Buy Now
                 </button>
@@ -716,7 +716,7 @@ export const ProductDetailPage: React.FC = () => {
                   <button
                     onClick={() => toggleWishlist(product)}
                     className={`p-2.5 rounded-lg border transition-colors cursor-pointer min-h-[42px] min-w-[42px] flex items-center justify-center ${
-                      inWishlist ? 'bg-primary-light border-primary/30 text-primary' : 'bg-white border-[#E5E7EB] text-[#6B7280] hover:text-primary'
+                      inWishlist ? 'bg-sage/30 border-primary/30 text-primary' : 'bg-white border-champagne/50 text-taupe hover:text-primary'
                     }`}
                     title={inWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}
                   >
@@ -725,7 +725,7 @@ export const ProductDetailPage: React.FC = () => {
 
                   <button
                     onClick={handleShare}
-                    className="p-2.5 bg-white border border-[#E5E7EB] text-[#6B7280] hover:text-[#111827] rounded-lg transition-colors cursor-pointer min-h-[42px] min-w-[42px] flex items-center justify-center"
+                    className="p-2.5 bg-white border border-champagne/50 text-taupe hover:text-ink rounded-lg transition-colors cursor-pointer min-h-[42px] min-w-[42px] flex items-center justify-center"
                     title="Share Canonical Link"
                   >
                     <Share2 size={16} />
@@ -760,10 +760,10 @@ export const ProductDetailPage: React.FC = () => {
         </div>
 
         {/* Tabbed Specifications, Shipping, Returns & Reviews */}
-        <div className="bg-white border border-[#E5E7EB] rounded-xl p-6 sm:p-8 shadow-xs space-y-6">
+        <div className="bg-white border border-champagne/50 rounded-xl p-6 sm:p-8 shadow-xs space-y-6">
           
           {/* Tab Headers */}
-          <div className="flex border-b border-[#E5E7EB] gap-4 sm:gap-6 text-xs sm:text-sm font-semibold overflow-x-auto pb-1">
+          <div className="flex border-b border-champagne/50 gap-4 sm:gap-6 text-xs sm:text-sm font-semibold overflow-x-auto pb-1">
             {[
               { id: 'description', label: 'Overview' },
               { id: 'specs', label: 'Specifications' },
@@ -776,7 +776,7 @@ export const ProductDetailPage: React.FC = () => {
                 className={`pb-3 border-b-2 transition-colors cursor-pointer whitespace-nowrap ${
                   activeTab === tab.id 
                     ? 'border-primary text-primary' 
-                    : 'border-transparent text-[#6B7280] hover:text-[#111827]'
+                    : 'border-transparent text-taupe hover:text-ink'
                 }`}
               >
                 {tab.label}
@@ -793,15 +793,15 @@ export const ProductDetailPage: React.FC = () => {
 
               {product.features && product.features.length > 0 && (
                 <div className="pt-2">
-                  <h4 className="font-bold text-sm text-[#111827] mb-3 flex items-center gap-2">
+                  <h4 className="font-bold text-sm text-ink mb-3 flex items-center gap-2">
                     <Sparkles size={15} className="text-primary" />
                     <span>Product Highlights</span>
                   </h4>
                   <ul className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
                     {product.features.map((feat, i) => (
-                      <li key={i} className="flex items-start gap-2.5 bg-[#F9FAFB] p-3 rounded-lg border border-[#E5E7EB]">
+                      <li key={i} className="flex items-start gap-2.5 bg-[#F9FAFB] p-3 rounded-lg border border-champagne/50">
                         <CheckCircle2 size={15} className="text-[#16A34A] flex-shrink-0 mt-0.5" />
-                        <span className="text-xs font-medium text-[#111827]">{feat}</span>
+                        <span className="text-xs font-medium text-ink">{feat}</span>
                       </li>
                     ))}
                   </ul>
@@ -813,12 +813,12 @@ export const ProductDetailPage: React.FC = () => {
           {/* Tab 2: Technical Specifications */}
           {activeTab === 'specs' && (
             <div className="space-y-4">
-              <h4 className="font-bold text-sm text-[#111827]">Technical Specifications</h4>
-              <div className="bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg overflow-hidden divide-y divide-[#E5E7EB] text-xs">
+              <h4 className="font-bold text-sm text-ink">Technical Specifications</h4>
+              <div className="bg-[#F9FAFB] border border-champagne/50 rounded-lg overflow-hidden divide-y divide-champagne/50 text-xs">
                 {product.specifications?.map((spec, i) => (
                   <div key={i} className="py-2.5 px-4 flex justify-between gap-4 odd:bg-white">
-                    <span className="font-medium text-[#6B7280] w-1/3">{spec.key}</span>
-                    <span className="font-semibold text-[#111827] w-2/3 text-right">{spec.value}</span>
+                    <span className="font-medium text-taupe w-1/3">{spec.key}</span>
+                    <span className="font-semibold text-ink w-2/3 text-right">{spec.value}</span>
                   </div>
                 ))}
               </div>
@@ -848,13 +848,13 @@ export const ProductDetailPage: React.FC = () => {
           {/* Tab 4: Product FAQs */}
           {activeTab === 'faq' && (
             <div className="space-y-4">
-              <h4 className="font-bold text-sm text-[#111827] flex items-center gap-2">
+              <h4 className="font-bold text-sm text-ink flex items-center gap-2">
                 <HelpCircle size={16} className="text-primary" />
                 <span>Frequently Asked Questions</span>
               </h4>
 
               {product.faqs && product.faqs.length > 0 ? (
-                <div className="divide-y divide-[#E5E7EB] border border-[#E5E7EB] rounded-lg overflow-hidden">
+                <div className="divide-y divide-champagne/50 border border-champagne/50 rounded-lg overflow-hidden">
                   {product.faqs.map((faq) => {
                     const isOpen = openFaqId === faq.id;
                     return (
@@ -863,10 +863,10 @@ export const ProductDetailPage: React.FC = () => {
                           type="button"
                           aria-expanded={isOpen}
                           onClick={() => setOpenFaqId(isOpen ? null : faq.id)}
-                          className="w-full flex items-center justify-between gap-4 p-4 sm:p-4.5 text-left font-semibold text-xs sm:text-sm text-[#111827] hover:bg-[#F9FAFB] transition-colors focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer"
+                          className="w-full flex items-center justify-between gap-4 p-4 sm:p-4.5 text-left font-semibold text-xs sm:text-sm text-ink hover:bg-[#F9FAFB] transition-colors focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer"
                         >
                           <span className="flex-1 leading-snug">{faq.question}</span>
-                          <span className="p-1 rounded-md bg-[#F3F4F6] text-[#6B7280] shrink-0">
+                          <span className="p-1 rounded-md bg-[#F3F4F6] text-taupe shrink-0">
                             {isOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                           </span>
                         </button>
@@ -880,7 +880,7 @@ export const ProductDetailPage: React.FC = () => {
                   })}
                 </div>
               ) : (
-                <div className="p-6 text-center text-xs sm:text-sm text-[#6B7280] bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg">
+                <div className="p-6 text-center text-xs sm:text-sm text-taupe bg-[#F9FAFB] border border-champagne/50 rounded-lg">
                   No questions or answers have been added for this product yet.
                 </div>
               )}
@@ -891,10 +891,10 @@ export const ProductDetailPage: React.FC = () => {
 
         {/* Related Products Grid */}
         {(relatedProducts.length > 0 || isRelatedLoading) && (
-          <div className="space-y-4 pt-10 border-t border-[#E5E7EB] mt-8">
+          <div className="space-y-4 pt-10 border-t border-champagne/50 mt-8">
             <div className="flex flex-col mb-6">
-              <h3 className="text-xl sm:text-2xl font-bold text-[#111827] tracking-tight">Related Products</h3>
-              <span className="text-sm font-medium text-[#6B7280] block mt-1">You may also like these products</span>
+              <h3 className="text-xl sm:text-2xl font-bold text-ink tracking-tight">Related Products</h3>
+              <span className="text-sm font-medium text-taupe block mt-1">You may also like these products</span>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-3.5">

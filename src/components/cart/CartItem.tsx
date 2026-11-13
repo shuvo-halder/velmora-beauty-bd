@@ -38,7 +38,7 @@ export const CartItem = React.memo<CartItemProps>(({
       {/* Product Image */}
       <div 
         onClick={() => onNavigateToProduct(item.product.slug)}
-        className="w-18 h-18 bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg overflow-hidden shrink-0 cursor-pointer group relative"
+        className="w-18 h-18 bg-[#F9FAFB] border border-champagne/50 rounded-lg overflow-hidden shrink-0 cursor-pointer group relative"
       >
         <SmartImage 
           src={item.selectedVariant?.image || item.product.images[0]} 
@@ -56,16 +56,16 @@ export const CartItem = React.memo<CartItemProps>(({
           <div>
             <h4 
               onClick={() => onNavigateToProduct(item.product.slug)}
-              className="text-xs sm:text-sm font-semibold text-[#111827] hover:text-primary cursor-pointer transition-colors line-clamp-1"
+              className="text-xs sm:text-sm font-semibold text-ink hover:text-primary cursor-pointer transition-colors line-clamp-1"
             >
               {item.product.name}
             </h4>
-            <div className="text-[11px] text-[#6B7280] font-normal">
+            <div className="text-[11px] text-taupe font-normal">
               Brand: {item.product.brand}
             </div>
             {item.selectedVariant && (
               <div className="mt-1">
-                <span className="text-[10px] font-semibold text-primary bg-primary-light px-1.5 py-0.5 rounded border border-primary/20">
+                <span className="text-[10px] font-semibold text-primary bg-sage/30 px-1.5 py-0.5 rounded border border-primary/20">
                   {item.selectedVariant.name}
                 </span>
               </div>
@@ -75,7 +75,7 @@ export const CartItem = React.memo<CartItemProps>(({
           <button
             onClick={() => onRemove(item.id)}
             disabled={isRemoving}
-            className="text-[#6B7280] hover:text-primary p-1 transition-colors disabled:opacity-40 cursor-pointer"
+            className="text-taupe hover:text-primary p-1 transition-colors disabled:opacity-40 cursor-pointer"
             title="Remove from cart"
           >
             <Trash2 size={15} />
@@ -92,11 +92,11 @@ export const CartItem = React.memo<CartItemProps>(({
           />
           
           <div className="text-right">
-            <div className="text-sm font-bold text-[#111827]">
+            <div className="text-sm font-bold text-ink">
               {formatPrice(item.totalPrice, currencyCode, currencySymbol)}
             </div>
             {item.quantity > 1 && (
-              <div className="text-[10px] text-[#6B7280] font-normal">
+              <div className="text-[10px] text-taupe font-normal">
                 {formatPrice(item.unitPrice, currencyCode, currencySymbol)} / unit
               </div>
             )}

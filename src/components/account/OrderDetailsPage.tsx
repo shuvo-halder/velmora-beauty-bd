@@ -218,7 +218,7 @@ export const OrderDetailsPage: React.FC = () => {
     return (
       <AccountLayout activeTab="orders">
         <div className="space-y-6 animate-pulse">
-          <div className="flex items-center justify-between border-b border-gray-100 pb-4">
+          <div className="flex items-center justify-between border-b border-champagne/40 pb-4">
             <div className="space-y-2">
               <div className="w-24 h-4 bg-gray-200 rounded" />
               <div className="w-48 h-7 bg-gray-200 rounded" />
@@ -228,14 +228,14 @@ export const OrderDetailsPage: React.FC = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="lg:col-span-2 space-y-6">
-              <div className="bg-white rounded-xl border border-gray-200 p-6 space-y-4 shadow-2xs">
+              <div className="bg-white rounded-xl border border-champagne/50 p-6 space-y-4 shadow-2xs">
                 <div className="w-32 h-5 bg-gray-200 rounded" />
                 <div className="h-20 bg-gray-100 rounded" />
                 <div className="h-20 bg-gray-100 rounded" />
               </div>
             </div>
             <div className="space-y-6">
-              <div className="bg-white rounded-xl border border-gray-200 p-6 space-y-3 shadow-2xs">
+              <div className="bg-white rounded-xl border border-champagne/50 p-6 space-y-3 shadow-2xs">
                 <div className="w-28 h-4 bg-gray-200 rounded" />
                 <div className="h-16 bg-gray-100 rounded" />
               </div>
@@ -255,7 +255,7 @@ export const OrderDetailsPage: React.FC = () => {
             <AlertCircle size={28} />
           </div>
           <div>
-            <h2 className="text-lg font-bold text-gray-900">Order Not Accessible</h2>
+            <h2 className="text-lg font-bold text-ink">Order Not Accessible</h2>
             <p className="text-xs text-gray-500 max-w-md mx-auto mt-1 leading-relaxed">
               {orderError instanceof Error 
                 ? orderError.message 
@@ -333,7 +333,7 @@ export const OrderDetailsPage: React.FC = () => {
       <div className="space-y-6">
         
         {/* Navigation & Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-100 pb-5">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-champagne/40 pb-5">
           <div>
             <Link 
               href="/account/orders"
@@ -343,7 +343,7 @@ export const OrderDetailsPage: React.FC = () => {
               <span>Back to Orders List</span>
             </Link>
             <div className="flex flex-wrap items-center gap-3">
-              <h1 className="text-2xl font-bold text-gray-900 tracking-tight">
+              <h1 className="text-2xl font-bold text-ink tracking-tight">
                 Order #{orderCode}
               </h1>
               <OrderStatusBadge status={status} size="lg" />
@@ -360,7 +360,7 @@ export const OrderDetailsPage: React.FC = () => {
             {status !== 'CANCELLED' && (
               <button
                 onClick={() => setIsReturnModalOpen(true)}
-                className="min-h-[44px] px-3.5 py-2 bg-white text-gray-700 hover:text-primary font-semibold text-xs sm:text-sm rounded-lg border border-gray-200 hover:bg-gray-50 active:bg-gray-100 transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
+                className="min-h-[44px] px-3.5 py-2 bg-white text-gray-700 hover:text-primary font-semibold text-xs sm:text-sm rounded-lg border border-champagne/50 hover:bg-gray-50 active:bg-gray-100 transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
               >
                 <RotateCcw size={14} />
                 <span>Request Return</span>
@@ -369,7 +369,7 @@ export const OrderDetailsPage: React.FC = () => {
 
             <button
               onClick={handlePrint}
-              className="min-h-[44px] px-3.5 py-2 bg-white text-gray-700 font-semibold text-xs sm:text-sm rounded-lg border border-gray-200 hover:bg-gray-50 active:bg-gray-100 transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
+              className="min-h-[44px] px-3.5 py-2 bg-white text-gray-700 font-semibold text-xs sm:text-sm rounded-lg border border-champagne/50 hover:bg-gray-50 active:bg-gray-100 transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
               title="Print Receipt"
             >
               <Printer size={14} />
@@ -378,7 +378,7 @@ export const OrderDetailsPage: React.FC = () => {
             <button 
               onClick={() => handleRefetchAll()}
               disabled={isOrderFetching}
-              className="min-h-[44px] min-w-[44px] p-2.5 bg-white text-gray-700 font-semibold text-xs rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors shadow-2xs disabled:opacity-60 flex items-center justify-center cursor-pointer"
+              className="min-h-[44px] min-w-[44px] p-2.5 bg-white text-gray-700 font-semibold text-xs rounded-lg border border-champagne/50 hover:bg-gray-50 transition-colors shadow-2xs disabled:opacity-60 flex items-center justify-center cursor-pointer"
               title="Refresh"
             >
               <RefreshCw size={14} className={isOrderFetching ? 'animate-spin text-primary' : ''} />
@@ -396,7 +396,7 @@ export const OrderDetailsPage: React.FC = () => {
               const orderMeta = getOrderStatusMeta(status);
               const PROGRESS_STEPS = ['Placed', 'Processing', 'Shipped', 'Delivered'];
               return (
-                <div className="bg-white rounded-xl p-5 sm:p-6 border border-gray-200 shadow-2xs space-y-4">
+                <div className="bg-white rounded-xl p-5 sm:p-6 border border-champagne/50 shadow-2xs space-y-4">
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <div>
                       <div className="text-xs font-bold text-gray-400 uppercase tracking-wider">Current Order Status</div>
@@ -419,7 +419,7 @@ export const OrderDetailsPage: React.FC = () => {
                       </div>
                     </div>
                   ) : (
-                    <div className="pt-3 pb-1 border-t border-gray-100">
+                    <div className="pt-3 pb-1 border-t border-champagne/40">
                       <div className="relative flex items-center justify-between">
                         <div className="absolute left-4 right-4 top-3.5 h-1 bg-gray-200 -z-0">
                           <div 
@@ -440,7 +440,7 @@ export const OrderDetailsPage: React.FC = () => {
                                 {isDone ? <Check size={14} strokeWidth={3} /> : idx + 1}
                               </div>
                               <span className={`text-xs mt-1.5 font-medium ${
-                                isCurrent ? 'text-gray-900 font-bold' : isDone ? 'text-gray-700' : 'text-gray-400'
+                                isCurrent ? 'text-ink font-bold' : isDone ? 'text-gray-700' : 'text-gray-400'
                               }`}>
                                 {stepLabel}
                               </span>
@@ -455,9 +455,9 @@ export const OrderDetailsPage: React.FC = () => {
             })()}
 
             {/* 2. Live Tracking Timeline Card */}
-            <div className="bg-white rounded-xl p-5 sm:p-6 border border-gray-200 shadow-2xs space-y-4">
-              <div className="flex items-center justify-between pb-3 border-b border-gray-100">
-                <h2 className="text-base font-bold text-gray-900 flex items-center gap-2">
+            <div className="bg-white rounded-xl p-5 sm:p-6 border border-champagne/50 shadow-2xs space-y-4">
+              <div className="flex items-center justify-between pb-3 border-b border-champagne/40">
+                <h2 className="text-base font-bold text-ink flex items-center gap-2">
                   <Truck size={18} className="text-primary" />
                   <span>Real-Time Tracking Checkpoints</span>
                 </h2>
@@ -484,9 +484,9 @@ export const OrderDetailsPage: React.FC = () => {
             </div>
 
             {/* 3. Purchased Items Card */}
-            <div className="bg-white rounded-xl p-5 sm:p-6 border border-gray-200 shadow-2xs">
-              <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-100">
-                <h2 className="text-base font-bold text-gray-900 flex items-center gap-2">
+            <div className="bg-white rounded-xl p-5 sm:p-6 border border-champagne/50 shadow-2xs">
+              <div className="flex items-center justify-between mb-4 pb-3 border-b border-champagne/40">
+                <h2 className="text-base font-bold text-ink flex items-center gap-2">
                   <Package size={18} className="text-primary" />
                   <span>Purchased Items ({items.length})</span>
                 </h2>
@@ -508,10 +508,10 @@ export const OrderDetailsPage: React.FC = () => {
                     return (
                       <div 
                         key={item.id || idx} 
-                        className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-gray-100 last:border-0 last:pb-0"
+                        className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-champagne/40 last:border-0 last:pb-0"
                       >
                         <div className="flex items-start sm:items-center gap-4 flex-1 min-w-0">
-                          <div className="w-16 h-16 bg-gray-50 rounded-lg overflow-hidden border border-gray-200 flex-shrink-0 relative">
+                          <div className="w-16 h-16 bg-gray-50 rounded-lg overflow-hidden border border-champagne/50 flex-shrink-0 relative">
                             <SmartImage 
                               src={itemImage} 
                               alt={itemName} 
@@ -522,7 +522,7 @@ export const OrderDetailsPage: React.FC = () => {
                             />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <h3 className="text-sm font-bold text-gray-900 truncate">
+                            <h3 className="text-sm font-bold text-ink truncate">
                               {itemName}
                             </h3>
                             {itemVariant && (
@@ -531,7 +531,7 @@ export const OrderDetailsPage: React.FC = () => {
                               </p>
                             )}
                             <div className="flex flex-wrap items-center gap-3 mt-1 text-xs text-gray-500">
-                              <span>Qty: <strong className="text-gray-800">{itemQty}</strong></span>
+                              <span>Qty: <strong className="text-ink">{itemQty}</strong></span>
                               <span>•</span>
                               <span>Unit: {formatPrice(unitPrice, currencyCode, currencySymbol)}</span>
                             </div>
@@ -539,7 +539,7 @@ export const OrderDetailsPage: React.FC = () => {
                         </div>
 
                         <div className="flex items-center sm:flex-col sm:items-end justify-between sm:justify-center gap-2 flex-shrink-0">
-                          <div className="text-sm font-bold text-gray-900">
+                          <div className="text-sm font-bold text-ink">
                             {formatPrice(itemTotal, currencyCode, currencySymbol)}
                           </div>
 
@@ -577,9 +577,9 @@ export const OrderDetailsPage: React.FC = () => {
             </div>
 
             {/* 2. Payment Summary & Transaction History Card (GET /customer/orders/:orderId/payments) */}
-            <div className="bg-white rounded-xl p-5 sm:p-6 border border-gray-200 shadow-2xs space-y-5">
-              <div className="flex items-center justify-between pb-3 border-b border-gray-100">
-                <h2 className="text-base font-bold text-gray-900 flex items-center gap-2">
+            <div className="bg-white rounded-xl p-5 sm:p-6 border border-champagne/50 shadow-2xs space-y-5">
+              <div className="flex items-center justify-between pb-3 border-b border-champagne/40">
+                <h2 className="text-base font-bold text-ink flex items-center gap-2">
                   <CreditCard size={18} className="text-primary" />
                   <span>Payment & Financial Summary</span>
                 </h2>
@@ -594,9 +594,9 @@ export const OrderDetailsPage: React.FC = () => {
 
               {/* Financial Metrics Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                <div className="p-3 bg-gray-50 rounded-xl border border-gray-100">
+                <div className="p-3 bg-gray-50 rounded-xl border border-champagne/40">
                   <div className="text-[11px] font-medium text-gray-500">Order Total</div>
-                  <div className="text-sm font-bold text-gray-900 mt-0.5">
+                  <div className="text-sm font-bold text-ink mt-0.5">
                     {formatPrice(totalAmount, currencyCode, currencySymbol)}
                   </div>
                 </div>
@@ -630,7 +630,7 @@ export const OrderDetailsPage: React.FC = () => {
                 </div>
 
                 {paymentsList.length > 0 ? (
-                  <div className="divide-y divide-gray-100 border border-gray-100 rounded-xl overflow-hidden">
+                  <div className="divide-y divide-champagne/40 border border-champagne/40 rounded-xl overflow-hidden">
                     {paymentsList.map((p, pIdx) => {
                       const gatewayMeta = getPaymentGatewayMeta(p.gateway || p.paymentMethod);
                       const statusMeta = getPaymentStatusMeta(p.status);
@@ -649,11 +649,11 @@ export const OrderDetailsPage: React.FC = () => {
                           className="p-3.5 bg-white hover:bg-gray-50/50 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
                         >
                           <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-lg bg-gray-50 border border-gray-200 flex items-center justify-center text-primary flex-shrink-0">
+                            <div className="w-8 h-8 rounded-lg bg-gray-50 border border-champagne/50 flex items-center justify-center text-primary flex-shrink-0">
                               <GatewayIcon size={14} />
                             </div>
                             <div>
-                              <div className="font-bold text-gray-900 flex items-center gap-2">
+                              <div className="font-bold text-ink flex items-center gap-2">
                                 <span>{gatewayMeta.name}</span>
                                 <span className={`px-2 py-0.5 rounded text-[10px] font-bold border ${statusMeta.badgeClass}`}>
                                   {statusMeta.label}
@@ -675,7 +675,7 @@ export const OrderDetailsPage: React.FC = () => {
                           </div>
 
                           <div className="flex sm:flex-col items-center sm:items-end justify-between gap-1 text-right">
-                            <div className="text-sm font-bold text-gray-900">
+                            <div className="text-sm font-bold text-ink">
                               {formatPrice(p.amount || 0, p.currency || currencyCode, currencySymbol)}
                             </div>
                             {pDate && (
@@ -689,17 +689,17 @@ export const OrderDetailsPage: React.FC = () => {
                     })}
                   </div>
                 ) : (
-                  <div className="p-4 bg-gray-50/70 rounded-xl border border-gray-100 text-center text-xs text-gray-500">
-                    Payment method: <strong className="text-gray-800">{paymentMethod}</strong> (Status: {paymentStatus})
+                  <div className="p-4 bg-gray-50/70 rounded-xl border border-champagne/40 text-center text-xs text-gray-500">
+                    Payment method: <strong className="text-ink">{paymentMethod}</strong> (Status: {paymentStatus})
                   </div>
                 )}
               </div>
             </div>
 
             {/* 3. Shipment Packages Card (GET /customer/orders/:orderId/shipments) */}
-            <div className="bg-white rounded-xl p-5 sm:p-6 border border-gray-200 shadow-2xs space-y-4">
-              <div className="flex items-center justify-between pb-3 border-b border-gray-100">
-                <h2 className="text-base font-bold text-gray-900 flex items-center gap-2">
+            <div className="bg-white rounded-xl p-5 sm:p-6 border border-champagne/50 shadow-2xs space-y-4">
+              <div className="flex items-center justify-between pb-3 border-b border-champagne/40">
+                <h2 className="text-base font-bold text-ink flex items-center gap-2">
                   <Layers size={18} className="text-primary" />
                   <span>Shipment Packages ({packagesList.length > 0 ? packagesList.length : '1'})</span>
                 </h2>
@@ -723,22 +723,22 @@ export const OrderDetailsPage: React.FC = () => {
                     return (
                       <div
                         key={pkg.id || pIdx}
-                        className="p-4 bg-gray-50/60 rounded-xl border border-gray-200 space-y-3"
+                        className="p-4 bg-gray-50/60 rounded-xl border border-champagne/50 space-y-3"
                       >
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                           <div className="flex items-center gap-2.5">
-                            <div className="w-8 h-8 rounded-lg bg-white border border-gray-200 flex items-center justify-center text-primary">
+                            <div className="w-8 h-8 rounded-lg bg-white border border-champagne/50 flex items-center justify-center text-primary">
                               <Truck size={15} />
                             </div>
                             <div>
                               <div className="flex items-center gap-2">
-                                <span className="text-xs font-bold text-gray-900">{carrierName}</span>
+                                <span className="text-xs font-bold text-ink">{carrierName}</span>
                                 <span className={`px-2 py-0.5 rounded text-[10px] font-bold border ${pkgStatusMeta.badgeClass}`}>
                                   {pkgStatusMeta.label}
                                 </span>
                               </div>
                               <div className="text-[11px] text-gray-500 font-mono mt-0.5">
-                                Tracking: <strong className="text-gray-800">{pkgTracking || 'Pending Dispatch'}</strong>
+                                Tracking: <strong className="text-ink">{pkgTracking || 'Pending Dispatch'}</strong>
                               </div>
                             </div>
                           </div>
@@ -748,7 +748,7 @@ export const OrderDetailsPage: React.FC = () => {
                               href={pkg.trackingUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="self-start sm:self-auto inline-flex items-center gap-1.5 px-3 py-1.5 bg-white hover:bg-gray-100 text-gray-700 border border-gray-200 rounded-lg text-xs font-semibold shadow-2xs transition-colors"
+                              className="self-start sm:self-auto inline-flex items-center gap-1.5 px-3 py-1.5 bg-white hover:bg-gray-100 text-gray-700 border border-champagne/50 rounded-lg text-xs font-semibold shadow-2xs transition-colors"
                             >
                               <span>Courier Page</span>
                               <ExternalLink size={12} className="text-gray-400" />
@@ -758,7 +758,7 @@ export const OrderDetailsPage: React.FC = () => {
 
                         {/* Included items in package */}
                         {pkgItems.length > 0 && (
-                          <div className="pt-2 border-t border-gray-200/60">
+                          <div className="pt-2 border-t border-champagne/50/60">
                             <div className="text-[10px] font-bold text-gray-400 uppercase mb-1.5">
                               Items in package:
                             </div>
@@ -766,10 +766,10 @@ export const OrderDetailsPage: React.FC = () => {
                               {pkgItems.map((pi, piIdx) => (
                                 <span
                                   key={pi.id || piIdx}
-                                  className="inline-flex items-center gap-1 px-2.5 py-1 bg-white border border-gray-200 rounded-md text-[11px] text-gray-700"
+                                  className="inline-flex items-center gap-1 px-2.5 py-1 bg-white border border-champagne/50 rounded-md text-[11px] text-gray-700"
                                 >
                                   <span>{pi.productName || pi.name || 'Item'}</span>
-                                  <strong className="text-gray-900">×{pi.quantity || 1}</strong>
+                                  <strong className="text-ink">×{pi.quantity || 1}</strong>
                                 </span>
                               ))}
                             </div>
@@ -780,7 +780,7 @@ export const OrderDetailsPage: React.FC = () => {
                   })}
                 </div>
               ) : (
-                <div className="p-4 bg-gray-50/70 rounded-xl border border-gray-100 text-center text-xs text-gray-500">
+                <div className="p-4 bg-gray-50/70 rounded-xl border border-champagne/40 text-center text-xs text-gray-500">
                   Carrier dispatch package is currently in preparation with the warehouse team.
                 </div>
               )}
@@ -790,9 +790,9 @@ export const OrderDetailsPage: React.FC = () => {
             {((returnsResponse?.returns && returnsResponse.returns.length > 0) || 
               (refundsResponse?.refunds && refundsResponse.refunds.length > 0) ||
               (status.includes('DELIVERED') || status.includes('COMPLETED'))) && (
-              <div className="bg-white rounded-xl p-5 sm:p-6 border border-gray-200 shadow-2xs space-y-4">
-                <div className="flex items-center justify-between pb-3 border-b border-gray-100">
-                  <h2 className="text-base font-bold text-gray-900 flex items-center gap-2">
+              <div className="bg-white rounded-xl p-5 sm:p-6 border border-champagne/50 shadow-2xs space-y-4">
+                <div className="flex items-center justify-between pb-3 border-b border-champagne/40">
+                  <h2 className="text-base font-bold text-ink flex items-center gap-2">
                     <RotateCcw size={18} className="text-primary" />
                     <span>Returns & Financial Adjustments</span>
                   </h2>
@@ -818,11 +818,11 @@ export const OrderDetailsPage: React.FC = () => {
                       return (
                         <div
                           key={ret.id}
-                          className="p-3.5 bg-gray-50 rounded-xl border border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                          className="p-3.5 bg-gray-50 rounded-xl border border-champagne/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
                         >
                           <div>
                             <div className="flex items-center gap-2">
-                              <span className="font-bold text-xs text-gray-900">
+                              <span className="font-bold text-xs text-ink">
                                 Return #{ret.returnNumber || ret.id}
                               </span>
                               <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold border ${retMeta.badgeClass}`}>
@@ -881,7 +881,7 @@ export const OrderDetailsPage: React.FC = () => {
                                 <span>{refMeta.label}</span>
                               </span>
                             </div>
-                            <div className="text-xs font-bold text-gray-900 mt-1">
+                            <div className="text-xs font-bold text-ink mt-1">
                               Amount: {formatPrice(ref.amount, ref.currency || currencyCode, currencySymbol)}
                             </div>
                           </div>
@@ -923,14 +923,14 @@ export const OrderDetailsPage: React.FC = () => {
           <div className="space-y-6">
             
             {/* Delivery Address Card */}
-            <div className="bg-white rounded-xl p-5 sm:p-6 border border-gray-200 shadow-2xs">
-              <h2 className="text-xs font-bold text-gray-900 uppercase tracking-wider mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-xl p-5 sm:p-6 border border-champagne/50 shadow-2xs">
+              <h2 className="text-xs font-bold text-ink uppercase tracking-wider mb-4 flex items-center gap-2">
                 <MapPin size={16} className="text-primary" />
                 <span>Shipping Address</span>
               </h2>
               {hasShippingAddress ? (
                 <div className="space-y-2 text-xs">
-                  <div className="font-bold text-gray-900">
+                  <div className="font-bold text-ink">
                     {shippingAddress.fullName || shippingAddress.name || 'Recipient'}
                   </div>
                   <div className="text-gray-600 font-normal leading-relaxed">
@@ -973,32 +973,32 @@ export const OrderDetailsPage: React.FC = () => {
             </div>
 
             {/* Financial Breakdown Card */}
-            <div className="bg-white rounded-xl p-5 sm:p-6 border border-gray-200 shadow-2xs">
-              <h2 className="text-xs font-bold text-gray-900 uppercase tracking-wider mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-xl p-5 sm:p-6 border border-champagne/50 shadow-2xs">
+              <h2 className="text-xs font-bold text-ink uppercase tracking-wider mb-4 flex items-center gap-2">
                 <Receipt size={16} className="text-primary" />
                 <span>Cost Breakdown</span>
               </h2>
               
               <div className="space-y-3.5">
-                <div className="p-3 bg-gray-50 rounded-lg border border-gray-100 flex items-center justify-between">
+                <div className="p-3 bg-gray-50 rounded-lg border border-champagne/40 flex items-center justify-between">
                   <div>
                     <div className="text-xs font-medium text-gray-500">Method</div>
-                    <div className="text-xs font-bold text-gray-900 mt-0.5">{paymentMethod}</div>
+                    <div className="text-xs font-bold text-ink mt-0.5">{paymentMethod}</div>
                   </div>
                   <PaymentStatusBadge status={paymentStatus} size="sm" />
                 </div>
                 
-                <div className="space-y-2 pt-2 border-t border-gray-100">
+                <div className="space-y-2 pt-2 border-t border-champagne/40">
                   <div className="flex justify-between text-xs">
                     <span className="text-gray-500 font-medium">Subtotal</span>
-                    <span className="text-gray-900 font-semibold">
+                    <span className="text-ink font-semibold">
                       {formatPrice(subtotal, currencyCode, currencySymbol)}
                     </span>
                   </div>
 
                   <div className="flex justify-between text-xs">
                     <span className="text-gray-500 font-medium">Shipping Fee</span>
-                    <span className="text-gray-900 font-semibold">
+                    <span className="text-ink font-semibold">
                       {shippingFee > 0 ? formatPrice(shippingFee, currencyCode, currencySymbol) : 'Free'}
                     </span>
                   </div>
@@ -1006,7 +1006,7 @@ export const OrderDetailsPage: React.FC = () => {
                   {tax > 0 && (
                     <div className="flex justify-between text-xs">
                       <span className="text-gray-500 font-medium">Estimated Tax</span>
-                      <span className="text-gray-900 font-semibold">
+                      <span className="text-ink font-semibold">
                         {formatPrice(tax, currencyCode, currencySymbol)}
                       </span>
                     </div>
@@ -1019,8 +1019,8 @@ export const OrderDetailsPage: React.FC = () => {
                     </div>
                   )}
 
-                  <div className="pt-3 border-t border-gray-100 flex justify-between items-center">
-                    <span className="text-xs font-bold text-gray-900">Grand Total</span>
+                  <div className="pt-3 border-t border-champagne/40 flex justify-between items-center">
+                    <span className="text-xs font-bold text-ink">Grand Total</span>
                     <span className="text-lg font-bold text-primary">
                       {formatPrice(totalAmount, currencyCode, currencySymbol)}
                     </span>
@@ -1055,7 +1055,7 @@ export const OrderDetailsPage: React.FC = () => {
               </p>
               <Link
                 href="/contact"
-                className="w-full py-2 bg-white text-gray-900 text-center font-semibold text-xs rounded-lg hover:bg-gray-100 transition-colors inline-block"
+                className="w-full py-2 bg-white text-ink text-center font-semibold text-xs rounded-lg hover:bg-gray-100 transition-colors inline-block"
               >
                 Contact Support
               </Link>

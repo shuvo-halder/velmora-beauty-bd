@@ -31,7 +31,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label
             htmlFor={generatedId}
-            className="block text-xs font-semibold text-[#111827] tracking-wide"
+            className="block text-xs font-semibold text-ink tracking-wide"
           >
             {label}
           </label>
@@ -39,7 +39,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
         <div className="relative flex items-center">
           {leftIcon && (
-            <div className="absolute left-3.5 pointer-events-none text-[#6B7280]">
+            <div className="absolute left-3.5 pointer-events-none text-taupe">
               {leftIcon}
             </div>
           )}
@@ -47,12 +47,12 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           <input
             ref={ref}
             id={generatedId}
-            className={`w-full bg-white text-[#111827] text-sm rounded-lg border transition-colors placeholder:text-gray-400 focus:outline-none ${
+            className={`w-full bg-white text-ink text-sm rounded-lg border transition-colors placeholder:text-gray-400 focus:outline-none ${
               leftIcon ? 'pl-10' : 'pl-3.5'
             } ${rightElement ? 'pr-10' : 'pr-3.5'} py-2.5 ${
               error
                 ? 'border-[#DC2626] focus:border-[#DC2626] focus:ring-2 focus:ring-red-100'
-                : 'border-[#E5E7EB] hover:border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/15'
+                : 'border-champagne/50 hover:border-champagne focus:border-primary focus:ring-2 focus:ring-primary/15'
             } ${className}`}
             {...props}
           />
@@ -71,7 +71,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         )}
 
         {!error && helperText && (
-          <p className="text-xs text-[#6B7280]">{helperText}</p>
+          <p className="text-xs text-taupe">{helperText}</p>
         )}
       </div>
     );

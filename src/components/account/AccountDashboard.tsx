@@ -89,7 +89,7 @@ export const AccountDashboard: React.FC = () => {
         {isLoading ? (
           <div className="space-y-6 animate-pulse">
             {/* Banner Skeleton */}
-            <div className="bg-white rounded-xl p-6 sm:p-8 border border-gray-200 shadow-xs h-40">
+            <div className="bg-white rounded-xl p-6 sm:p-8 border border-champagne/50 shadow-xs h-40">
               <div className="h-6 bg-gray-200 rounded-md w-1/3 mb-4"></div>
               <div className="h-4 bg-gray-100 rounded-md w-2/3 mb-2"></div>
               <div className="h-4 bg-gray-100 rounded-md w-1/2"></div>
@@ -98,7 +98,7 @@ export const AccountDashboard: React.FC = () => {
             {/* Metrics Skeleton */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="bg-white p-5 rounded-xl border border-gray-200 shadow-xs h-28">
+                <div key={i} className="bg-white p-5 rounded-xl border border-champagne/50 shadow-xs h-28">
                   <div className="w-8 h-8 bg-gray-200 rounded-lg mb-3"></div>
                   <div className="h-6 bg-gray-200 rounded-md w-1/2 mb-1"></div>
                   <div className="h-3 bg-gray-100 rounded-md w-3/4"></div>
@@ -108,8 +108,8 @@ export const AccountDashboard: React.FC = () => {
 
             {/* Content Skeleton */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <div className="lg:col-span-2 bg-white rounded-xl p-6 border border-gray-200 h-64"></div>
-              <div className="bg-white rounded-xl p-6 border border-gray-200 h-64"></div>
+              <div className="lg:col-span-2 bg-white rounded-xl p-6 border border-champagne/50 h-64"></div>
+              <div className="bg-white rounded-xl p-6 border border-champagne/50 h-64"></div>
             </div>
           </div>
         ) : isError ? (
@@ -118,7 +118,7 @@ export const AccountDashboard: React.FC = () => {
             <div className="w-12 h-12 bg-red-50 text-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
               <AlertCircle size={24} />
             </div>
-            <h3 className="text-base font-bold text-gray-900 mb-1">Unable to Load Dashboard</h3>
+            <h3 className="text-base font-bold text-ink mb-1">Unable to Load Dashboard</h3>
             <p className="text-xs text-gray-500 max-w-md mx-auto mb-6">
               {error instanceof Error ? error.message : 'An unexpected error occurred while fetching your account metrics.'}
             </p>
@@ -135,11 +135,11 @@ export const AccountDashboard: React.FC = () => {
           /* Loaded Dashboard Content */
           <>
             {/* Greeting & Identity Summary Banner */}
-            <div className="bg-white rounded-xl p-6 sm:p-8 border border-gray-200 shadow-xs relative overflow-hidden">
+            <div className="bg-white rounded-xl p-6 sm:p-8 border border-champagne/50 shadow-xs relative overflow-hidden">
               <div className="relative z-10">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div>
-                    <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight">
+                    <h1 className="text-2xl sm:text-3xl font-bold text-ink tracking-tight">
                       Welcome back, {displayName}
                     </h1>
                     <p className="text-gray-600 text-xs sm:text-sm mt-1">
@@ -149,7 +149,7 @@ export const AccountDashboard: React.FC = () => {
                   <div className="flex items-center gap-2">
                     <Link
                       href="/account/profile"
-                      className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-gray-50 hover:bg-gray-100 text-gray-700 border border-gray-200 rounded-lg text-xs font-semibold transition-colors"
+                      className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-gray-50 hover:bg-gray-100 text-gray-700 border border-champagne/50 rounded-lg text-xs font-semibold transition-colors"
                     >
                       <User size={14} className="text-primary" />
                       <span>Edit Profile</span>
@@ -158,10 +158,10 @@ export const AccountDashboard: React.FC = () => {
                 </div>
 
                 {/* Identity Summary Badges */}
-                <div className="mt-6 pt-5 border-t border-gray-100 flex flex-wrap items-center gap-4 sm:gap-6 text-xs text-gray-600">
+                <div className="mt-6 pt-5 border-t border-champagne/40 flex flex-wrap items-center gap-4 sm:gap-6 text-xs text-gray-600">
                   <div className="flex items-center gap-2">
                     <User size={15} className="text-gray-400" />
-                    <span className="font-semibold text-gray-900">
+                    <span className="font-semibold text-ink">
                       {[resolvedCustomer.firstName, resolvedCustomer.lastName].filter(Boolean).join(' ') || resolvedCustomer.fullName || 'Customer'}
                     </span>
                   </div>
@@ -191,38 +191,38 @@ export const AccountDashboard: React.FC = () => {
             {/* 4 Core Metrics Cards */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {/* Total Orders */}
-              <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-xs">
+              <div className="bg-white p-5 rounded-xl border border-champagne/50 shadow-xs">
                 <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center mb-3">
                   <ShoppingBag size={20} />
                 </div>
-                <div className="text-2xl font-bold text-gray-900">{metrics.totalOrders}</div>
+                <div className="text-2xl font-bold text-ink">{metrics.totalOrders}</div>
                 <div className="text-xs font-semibold text-gray-500 mt-0.5">Total Orders</div>
               </div>
 
               {/* Pending Orders */}
-              <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-xs">
+              <div className="bg-white p-5 rounded-xl border border-champagne/50 shadow-xs">
                 <div className="w-10 h-10 bg-amber-50 text-amber-600 rounded-lg flex items-center justify-center mb-3">
                   <Clock size={20} />
                 </div>
-                <div className="text-2xl font-bold text-gray-900">{metrics.pendingOrders}</div>
+                <div className="text-2xl font-bold text-ink">{metrics.pendingOrders}</div>
                 <div className="text-xs font-semibold text-gray-500 mt-0.5">Pending Orders</div>
               </div>
 
               {/* Completed Orders */}
-              <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-xs">
+              <div className="bg-white p-5 rounded-xl border border-champagne/50 shadow-xs">
                 <div className="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-lg flex items-center justify-center mb-3">
                   <CheckCircle2 size={20} />
                 </div>
-                <div className="text-2xl font-bold text-gray-900">{metrics.completedOrders}</div>
+                <div className="text-2xl font-bold text-ink">{metrics.completedOrders}</div>
                 <div className="text-xs font-semibold text-gray-500 mt-0.5">Completed Orders</div>
               </div>
 
               {/* Total Spent */}
-              <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-xs">
-                <div className="w-10 h-10 bg-primary-light text-primary rounded-lg flex items-center justify-center mb-3">
+              <div className="bg-white p-5 rounded-xl border border-champagne/50 shadow-xs">
+                <div className="w-10 h-10 bg-sage/30 text-primary rounded-lg flex items-center justify-center mb-3">
                   <DollarSign size={20} />
                 </div>
-                <div className="text-2xl font-bold text-gray-900">
+                <div className="text-2xl font-bold text-ink">
                   {formatPrice(metrics.totalSpent || 0, currencyCode, currencySymbol)}
                 </div>
                 <div className="text-xs font-semibold text-gray-500 mt-0.5">Total Spent</div>
@@ -233,10 +233,10 @@ export const AccountDashboard: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               
               {/* Recent Orders Section (2 Cols) */}
-              <div className="lg:col-span-2 bg-white rounded-xl p-6 border border-gray-200 shadow-xs">
-                <div className="flex items-center justify-between mb-5 pb-3 border-b border-gray-100">
+              <div className="lg:col-span-2 bg-white rounded-xl p-6 border border-champagne/50 shadow-xs">
+                <div className="flex items-center justify-between mb-5 pb-3 border-b border-champagne/40">
                   <div>
-                    <h3 className="text-base font-bold text-gray-900">Recent Orders</h3>
+                    <h3 className="text-base font-bold text-ink">Recent Orders</h3>
                     <p className="text-[11px] text-gray-500">Your latest purchases from {siteName}</p>
                   </div>
                   <Link 
@@ -251,10 +251,10 @@ export const AccountDashboard: React.FC = () => {
                 {recentOrders.length === 0 ? (
                   /* Polished Empty State for Orders */
                   <div className="text-center py-10 px-4">
-                    <div className="w-14 h-14 bg-gray-50 text-gray-400 rounded-full flex items-center justify-center mx-auto mb-3 border border-gray-200">
+                    <div className="w-14 h-14 bg-gray-50 text-gray-400 rounded-full flex items-center justify-center mx-auto mb-3 border border-champagne/50">
                       <Package size={24} />
                     </div>
-                    <h4 className="text-sm font-bold text-gray-900 mb-1">No orders yet</h4>
+                    <h4 className="text-sm font-bold text-ink mb-1">No orders yet</h4>
                     <p className="text-xs text-gray-500 max-w-xs mx-auto mb-5 leading-relaxed">
                       You haven&apos;t placed any orders yet. Discover our latest items and trending deals.
                     </p>
@@ -283,19 +283,19 @@ export const AccountDashboard: React.FC = () => {
                         <Link 
                           key={order.id || orderCode} 
                           href={`/account/orders/${order.id || orderCode}`}
-                          className="flex items-center justify-between p-3.5 bg-gray-50 hover:bg-gray-100/80 rounded-lg border border-gray-100 transition-colors group cursor-pointer"
+                          className="flex items-center justify-between p-3.5 bg-gray-50 hover:bg-gray-100/80 rounded-lg border border-champagne/40 transition-colors group cursor-pointer"
                         >
                           <div className="flex items-center gap-3">
-                            <div className="w-9 h-9 bg-white rounded-lg flex items-center justify-center text-gray-500 group-hover:bg-primary-light group-hover:text-primary border border-gray-200 flex-shrink-0 transition-colors">
+                            <div className="w-9 h-9 bg-white rounded-lg flex items-center justify-center text-gray-500 group-hover:bg-sage/30 group-hover:text-primary border border-champagne/50 flex-shrink-0 transition-colors">
                               <ShoppingBag size={16} />
                             </div>
                             <div>
-                              <div className="text-xs font-bold text-gray-900 group-hover:text-primary transition-colors">#{orderCode}</div>
+                              <div className="text-xs font-bold text-ink group-hover:text-primary transition-colors">#{orderCode}</div>
                               <div className="text-xs text-gray-500 font-medium mt-0.5">{orderDate}</div>
                             </div>
                           </div>
                           <div className="text-right flex flex-col items-end gap-1">
-                            <div className="text-xs font-bold text-gray-900">
+                            <div className="text-xs font-bold text-ink">
                               {formatPrice(amount, currencyCode, currencySymbol)}
                             </div>
                             <OrderStatusBadge status={orderStatus} size="sm" />
@@ -313,7 +313,7 @@ export const AccountDashboard: React.FC = () => {
                 {/* Unread Notifications Indicator */}
                 <Link
                   href="/account/notifications"
-                  className="bg-white rounded-xl p-5 border border-gray-200 shadow-xs block hover:border-gray-300 transition-colors group cursor-pointer"
+                  className="bg-white rounded-xl p-5 border border-champagne/50 shadow-xs block hover:border-champagne transition-colors group cursor-pointer"
                 >
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-2.5">
@@ -321,7 +321,7 @@ export const AccountDashboard: React.FC = () => {
                         <Bell size={16} />
                       </div>
                       <div>
-                        <h4 className="text-xs font-bold text-gray-900 group-hover:text-primary transition-colors">
+                        <h4 className="text-xs font-bold text-ink group-hover:text-primary transition-colors">
                           Notifications
                         </h4>
                         <div className="text-[11px] text-gray-500">Unread updates</div>
@@ -341,7 +341,7 @@ export const AccountDashboard: React.FC = () => {
                 {/* Eligible Reviews Indicator */}
                 <Link
                   href="/account/reviews?tab=eligible"
-                  className="bg-white rounded-xl p-5 border border-gray-200 shadow-xs block hover:border-gray-300 transition-colors group cursor-pointer"
+                  className="bg-white rounded-xl p-5 border border-champagne/50 shadow-xs block hover:border-champagne transition-colors group cursor-pointer"
                 >
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-2.5">
@@ -349,7 +349,7 @@ export const AccountDashboard: React.FC = () => {
                         <Star size={16} />
                       </div>
                       <div>
-                        <h4 className="text-xs font-bold text-gray-900 group-hover:text-primary transition-colors">
+                        <h4 className="text-xs font-bold text-ink group-hover:text-primary transition-colors">
                           Product Reviews
                         </h4>
                         <div className="text-[11px] text-gray-500">Eligible items</div>
@@ -367,7 +367,7 @@ export const AccountDashboard: React.FC = () => {
                 </Link>
 
                 {/* Quick Catalog Banner */}
-                <div className="bg-[#111827] text-white rounded-xl p-5 shadow-xs relative overflow-hidden">
+                <div className="bg-ink text-white rounded-xl p-5 shadow-xs relative overflow-hidden">
                   <h4 className="text-sm font-bold mb-1">Discover New Arrivals</h4>
                   <p className="text-xs text-gray-300 mb-4 leading-relaxed">
                     Explore curated collections, high-speed delivery, and best prices.

@@ -31,7 +31,7 @@ export const PaymentStep: React.FC<PaymentStepProps> = ({ register, watch }) => 
             key={method.id}
             className={`
               flex items-center gap-3.5 p-3.5 rounded-lg border transition-colors cursor-pointer
-              ${isActive ? 'border-primary bg-primary-light ring-1 ring-primary' : 'border-[#E5E7EB] bg-white hover:border-[#111827]'}
+              ${isActive ? 'border-primary bg-sage/30 ring-1 ring-primary' : 'border-champagne/50 bg-white hover:border-[#111827]'}
             `}
           >
             <input
@@ -41,16 +41,16 @@ export const PaymentStep: React.FC<PaymentStepProps> = ({ register, watch }) => 
               className="hidden"
             />
             
-            <div className={`p-2 rounded-md ${isActive ? 'bg-primary text-white' : 'bg-[#F9FAFB] text-[#6B7280] border border-[#E5E7EB]'}`}>
+            <div className={`p-2 rounded-md ${isActive ? 'bg-primary text-white' : 'bg-[#F9FAFB] text-taupe border border-champagne/50'}`}>
               <Icon size={18} />
             </div>
             
             <div className="flex-1">
-              <div className="text-xs font-bold text-[#111827]">{method.name}</div>
-              <div className="text-[11px] text-[#6B7280]">{method.description}</div>
+              <div className="text-xs font-bold text-ink">{method.name}</div>
+              <div className="text-[11px] text-taupe">{method.description}</div>
             </div>
             
-            <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${isActive ? 'border-primary' : 'border-[#E5E7EB]'}`}>
+            <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${isActive ? 'border-primary' : 'border-champagne/50'}`}>
               {isActive && <div className="w-2 h-2 rounded-full bg-primary" />}
             </div>
           </label>

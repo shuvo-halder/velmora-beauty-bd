@@ -71,7 +71,7 @@ export const ArticleDetailPage: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-[60vh] flex flex-col items-center justify-center bg-slate-50 space-y-3 p-6">
+      <div className="min-h-[60vh] flex flex-col items-center justify-center bg-bg space-y-3 p-6">
         <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin" />
         <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">
           Loading Article...
@@ -82,7 +82,7 @@ export const ArticleDetailPage: React.FC = () => {
 
   if (error || !article) {
     return (
-      <div className="min-h-[60vh] flex flex-col items-center justify-center bg-slate-50 p-6 text-center">
+      <div className="min-h-[60vh] flex flex-col items-center justify-center bg-bg p-6 text-center">
         <div className="w-16 h-16 bg-red-50 text-red-500 rounded-3xl flex items-center justify-center mb-4">
           <AlertCircle size={32} />
         </div>
@@ -102,7 +102,7 @@ export const ArticleDetailPage: React.FC = () => {
   }
 
   return (
-    <div className="py-12 bg-slate-50 min-h-screen">
+    <div className="py-12 bg-bg min-h-screen">
       <SEO 
         title={article.title}
         description={article.excerpt}

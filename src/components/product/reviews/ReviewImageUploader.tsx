@@ -135,12 +135,12 @@ export const ReviewImageUploader: React.FC<ReviewImageUploaderProps> = ({
       <div className="flex items-center justify-between">
         <label
           htmlFor="review-image-input"
-          className="font-semibold text-xs text-[#111827] flex items-center gap-1.5 cursor-pointer"
+          className="font-semibold text-xs text-ink flex items-center gap-1.5 cursor-pointer"
         >
           <Camera size={14} className="text-primary" />
-          Add Photos <span className="text-[#6B7280] font-normal">(Optional)</span>
+          Add Photos <span className="text-taupe font-normal">(Optional)</span>
         </label>
-        <span className="text-[11px] text-[#6B7280]">
+        <span className="text-[11px] text-taupe">
           Up to {MAX_REVIEW_IMAGES} photos
         </span>
       </div>
@@ -178,19 +178,19 @@ export const ReviewImageUploader: React.FC<ReviewImageUploaderProps> = ({
           }}
           className={`relative border-2 border-dashed rounded-xl p-4 sm:p-5 text-center transition-all cursor-pointer select-none flex flex-col items-center justify-center gap-2 group ${
             isDragOver
-              ? 'border-primary bg-primary-light'
-              : 'border-[#E5E7EB] hover:border-primary/60 bg-[#F9FAFB] hover:bg-white'
+              ? 'border-primary bg-sage/30'
+              : 'border-champagne/50 hover:border-primary/60 bg-[#F9FAFB] hover:bg-white'
           } ${disabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : ''}`}
         >
-          <div className="w-10 h-10 rounded-full bg-white border border-[#E5E7EB] flex items-center justify-center text-primary shadow-2xs group-hover:scale-105 transition-transform">
+          <div className="w-10 h-10 rounded-full bg-white border border-champagne/50 flex items-center justify-center text-primary shadow-2xs group-hover:scale-105 transition-transform">
             <UploadCloud size={20} />
           </div>
 
           <div className="space-y-0.5">
-            <p className="text-xs font-semibold text-[#111827]">
+            <p className="text-xs font-semibold text-ink">
               <span className="text-primary underline underline-offset-2">Click to choose photos</span> or drag & drop
             </p>
-            <p className="text-[11px] text-[#6B7280]">
+            <p className="text-[11px] text-taupe">
               {ACCEPTED_EXTENSIONS_LABEL} • Max 5 MB per image
             </p>
           </div>

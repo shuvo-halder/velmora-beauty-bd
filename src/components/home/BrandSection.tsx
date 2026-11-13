@@ -39,7 +39,7 @@ export const BrandSection: React.FC = () => {
             <Award size={14} />
             <span>Featured Brand Partners</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-bold text-[#111827] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-bold text-ink tracking-tight">
             Featured Brands
           </h2>
         </div>
@@ -62,13 +62,13 @@ export const BrandSection: React.FC = () => {
           <div
             key={brand.id}
             onClick={() => handleBrandClick(brand.slug)}
-            className="group bg-white border border-[#E5E7EB] hover:border-primary/40 rounded-xl p-3 sm:p-3.5 text-center transition-all duration-200 cursor-pointer flex flex-col items-center justify-between min-h-[85px] sm:min-h-[95px] shadow-2xs"
+            className="group bg-white border border-champagne/50 hover:border-primary/40 rounded-xl p-3 sm:p-3.5 text-center transition-all duration-200 cursor-pointer flex flex-col items-center justify-between min-h-[85px] sm:min-h-[95px] shadow-2xs"
           >
-            <div className="font-semibold text-[#111827] group-hover:text-primary transition-colors text-xs sm:text-sm tracking-tight my-auto line-clamp-1">
+            <div className="font-semibold text-ink group-hover:text-primary transition-colors text-xs sm:text-sm tracking-tight my-auto line-clamp-1">
               {brand.name}
             </div>
 
-            <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-[#F9FAFB] border border-[#E5E7EB] text-[10px] font-medium text-[#6B7280]">
+            <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-sage/20 border border-champagne/40 text-[10px] font-semibold text-taupe">
               {brand.itemCount ?? 0} Items
             </span>
           </div>

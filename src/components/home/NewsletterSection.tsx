@@ -31,29 +31,29 @@ export const NewsletterSection: React.FC = () => {
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-      <div className="bg-[#F9FAFB] border border-[#E5E7EB] rounded-2xl p-6 sm:p-10 text-center relative overflow-hidden shadow-2xs">
+      <div className="bg-[#F9FAFB] border border-champagne/50 rounded-2xl p-6 sm:p-10 text-center relative overflow-hidden shadow-2xs">
         
         <div className="relative z-10 max-w-xl mx-auto space-y-5">
           <div className="space-y-2.5">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-[#E5E7EB] text-xs font-semibold text-primary">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-champagne/50 text-xs font-semibold text-primary">
               <Mail size={13} className="text-primary" />
               <span>Newsletter</span>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#111827] tracking-tight leading-tight">
+            <h2 className="text-2xl sm:text-3xl font-bold text-ink tracking-tight leading-tight">
               Subscribe for Deals & Updates
             </h2>
 
-            <p className="text-xs sm:text-sm text-[#6B7280] font-normal leading-relaxed">
+            <p className="text-xs sm:text-sm text-taupe font-normal leading-relaxed">
               Get exclusive access to new arrivals, special promotions, and private discounts directly in your inbox.
             </p>
           </div>
 
           {isSubscribed ? (
-            <div className="p-6 bg-white border border-[#E5E7EB] rounded-xl space-y-2">
+            <div className="p-6 bg-white border border-champagne/50 rounded-xl space-y-2">
               <CheckCircle2 size={32} className="text-[#16A34A] mx-auto" />
-              <h4 className="font-bold text-lg text-[#111827]">You're on the list</h4>
-              <p className="text-xs text-[#6B7280]">
+              <h4 className="font-bold text-lg text-ink">You're on the list</h4>
+              <p className="text-xs text-taupe">
                 Check your inbox for your welcome discount code.
               </p>
             </div>
@@ -66,7 +66,7 @@ export const NewsletterSection: React.FC = () => {
                     placeholder="Enter your email address"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full h-11 pl-4 pr-4 bg-white border border-[#E5E7EB] rounded-lg text-sm text-[#111827] placeholder-[#6B7280] focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+                    className="w-full h-11 pl-4 pr-4 bg-white border border-champagne/50 rounded-lg text-sm text-ink placeholder-[#6B7280] focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
                     required
                   />
                 </div>
@@ -77,7 +77,7 @@ export const NewsletterSection: React.FC = () => {
                   Subscribe
                 </button>
               </div>
-              <p className="text-xs text-[#6B7280]">
+              <p className="text-xs text-taupe">
                 No spam. You can unsubscribe at any time.
               </p>
             </form>

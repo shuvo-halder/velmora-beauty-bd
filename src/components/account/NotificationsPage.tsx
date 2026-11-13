@@ -121,11 +121,11 @@ export const NotificationsPage: React.FC = () => {
       <div className="space-y-6">
         
         {/* Top Header Card */}
-        <div className="bg-white rounded-xl p-6 sm:p-7 border border-gray-200 shadow-xs">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-gray-100">
+        <div className="bg-white rounded-xl p-6 sm:p-7 border border-champagne/50 shadow-xs">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-champagne/40">
             <div>
               <div className="flex items-center gap-3">
-                <h1 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight flex items-center gap-2.5">
+                <h1 className="text-xl sm:text-2xl font-bold text-ink tracking-tight flex items-center gap-2.5">
                   <Bell size={24} className="text-primary" />
                   <span>Notifications</span>
                 </h1>
@@ -144,7 +144,7 @@ export const NotificationsPage: React.FC = () => {
               <button
                 onClick={() => refetch()}
                 disabled={isFetching}
-                className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors border border-gray-200 cursor-pointer disabled:opacity-50"
+                className="p-2 text-gray-600 hover:text-ink hover:bg-gray-100 rounded-lg transition-colors border border-champagne/50 cursor-pointer disabled:opacity-50"
                 title="Refresh notifications"
                 aria-label="Refresh notifications"
               >
@@ -155,7 +155,7 @@ export const NotificationsPage: React.FC = () => {
                 <button
                   onClick={handleMarkAllAsRead}
                   disabled={markAllReadMutation.isPending}
-                  className="px-3.5 py-2 bg-white hover:bg-gray-50 text-gray-700 hover:text-primary text-xs font-bold rounded-lg border border-gray-200 shadow-2xs transition-colors flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+                  className="px-3.5 py-2 bg-white hover:bg-gray-50 text-gray-700 hover:text-primary text-xs font-bold rounded-lg border border-champagne/50 shadow-2xs transition-colors flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
                   aria-label="Mark all notifications as read"
                 >
                   {markAllReadMutation.isPending ? (
@@ -183,8 +183,8 @@ export const NotificationsPage: React.FC = () => {
               onClick={() => handleFilterChange('all')}
               className={`px-4 py-2 rounded-lg text-xs font-bold transition-colors cursor-pointer border ${
                 activeFilter === 'all'
-                  ? 'bg-[#111827] text-white border-[#111827]'
-                  : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
+                  ? 'bg-ink text-white border-[#111827]'
+                  : 'bg-white text-gray-600 border-champagne/50 hover:bg-gray-50'
               }`}
             >
               <span>All Notifications</span>
@@ -197,8 +197,8 @@ export const NotificationsPage: React.FC = () => {
               onClick={() => handleFilterChange('unread')}
               className={`px-4 py-2 rounded-lg text-xs font-bold transition-colors cursor-pointer border flex items-center gap-1.5 ${
                 activeFilter === 'unread'
-                  ? 'bg-[#111827] text-white border-[#111827]'
-                  : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
+                  ? 'bg-ink text-white border-[#111827]'
+                  : 'bg-white text-gray-600 border-champagne/50 hover:bg-gray-50'
               }`}
             >
               <span>Unread</span>
@@ -221,7 +221,7 @@ export const NotificationsPage: React.FC = () => {
             {[1, 2, 3, 4, 5].map((i) => (
               <div
                 key={i}
-                className="bg-white rounded-xl p-5 border border-gray-200/80 shadow-2xs animate-pulse flex items-start gap-4"
+                className="bg-white rounded-xl p-5 border border-champagne/50/80 shadow-2xs animate-pulse flex items-start gap-4"
               >
                 <div className="w-11 h-11 bg-gray-100 rounded-xl flex-shrink-0" />
                 <div className="flex-1 space-y-2">
@@ -242,7 +242,7 @@ export const NotificationsPage: React.FC = () => {
               <AlertCircle size={24} />
             </div>
             <div>
-              <h3 className="text-base font-bold text-gray-900">Unable to load notifications</h3>
+              <h3 className="text-base font-bold text-ink">Unable to load notifications</h3>
               <p className="text-xs text-gray-500 max-w-md mx-auto mt-1">
                 {(error as Error)?.message || 'We could not fetch your notifications right now. Please try again.'}
               </p>
@@ -256,12 +256,12 @@ export const NotificationsPage: React.FC = () => {
             </button>
           </div>
         ) : notifications.length === 0 ? (
-          <div className="bg-white rounded-xl p-12 border border-gray-200 text-center space-y-4 shadow-xs">
-            <div className="w-16 h-16 rounded-full bg-gray-50 border border-gray-100 text-gray-400 flex items-center justify-center mx-auto">
+          <div className="bg-white rounded-xl p-12 border border-champagne/50 text-center space-y-4 shadow-xs">
+            <div className="w-16 h-16 rounded-full bg-gray-50 border border-champagne/40 text-gray-400 flex items-center justify-center mx-auto">
               <Inbox size={28} />
             </div>
             <div>
-              <h3 className="text-base font-bold text-gray-900">
+              <h3 className="text-base font-bold text-ink">
                 {activeFilter === 'unread' ? "No unread notifications" : "You're all caught up"}
               </h3>
               <p className="text-xs text-gray-500 max-w-sm mx-auto mt-1 leading-relaxed">
@@ -273,7 +273,7 @@ export const NotificationsPage: React.FC = () => {
             {activeFilter === 'unread' && (
               <button
                 onClick={() => handleFilterChange('all')}
-                className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-semibold rounded-lg transition-colors cursor-pointer"
+                className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-ink text-xs font-semibold rounded-lg transition-colors cursor-pointer"
               >
                 <span>View All Notifications</span>
               </button>
@@ -294,16 +294,16 @@ export const NotificationsPage: React.FC = () => {
 
         {/* Pagination Controls */}
         {!isLoading && !isError && totalPages > 1 && (
-          <div className="bg-white rounded-xl p-4 border border-gray-200 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+          <div className="bg-white rounded-xl p-4 border border-champagne/50 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
             <div className="text-gray-500">
-              Showing page <strong className="text-gray-900">{page}</strong> of <strong className="text-gray-900">{totalPages}</strong> ({totalItems} total)
+              Showing page <strong className="text-ink">{page}</strong> of <strong className="text-ink">{totalPages}</strong> ({totalItems} total)
             </div>
 
             <div className="flex items-center gap-1.5">
               <button
                 onClick={() => setPage((p) => Math.max(1, p - 1))}
                 disabled={page <= 1}
-                className="px-3 py-1.5 bg-white border border-gray-200 rounded-lg font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1 cursor-pointer transition-colors"
+                className="px-3 py-1.5 bg-white border border-champagne/50 rounded-lg font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1 cursor-pointer transition-colors"
                 aria-label="Previous page"
               >
                 <ChevronLeft size={14} />
@@ -324,7 +324,7 @@ export const NotificationsPage: React.FC = () => {
                           className={`w-7 h-7 rounded-md font-bold text-xs flex items-center justify-center transition-colors cursor-pointer ${
                             page === p
                               ? 'bg-primary text-white'
-                              : 'bg-white hover:bg-gray-100 text-gray-700 border border-gray-200'
+                              : 'bg-white hover:bg-gray-100 text-gray-700 border border-champagne/50'
                           }`}
                         >
                           {p}
@@ -337,7 +337,7 @@ export const NotificationsPage: React.FC = () => {
               <button
                 onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                 disabled={page >= totalPages}
-                className="px-3 py-1.5 bg-white border border-gray-200 rounded-lg font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1 cursor-pointer transition-colors"
+                className="px-3 py-1.5 bg-white border border-champagne/50 rounded-lg font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1 cursor-pointer transition-colors"
                 aria-label="Next page"
               >
                 <span>Next</span>

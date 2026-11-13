@@ -71,7 +71,7 @@ export const OrderTrackingTimeline: React.FC<OrderTrackingTimelineProps> = ({
   if (isLoading) {
     return (
       <div className="space-y-4 animate-pulse">
-        <div className="p-4 bg-gray-50 rounded-xl border border-gray-200 flex items-center justify-between">
+        <div className="p-4 bg-gray-50 rounded-xl border border-champagne/50 flex items-center justify-between">
           <div className="space-y-2">
             <div className="w-24 h-4 bg-gray-200 rounded" />
             <div className="w-36 h-5 bg-gray-200 rounded" />
@@ -107,7 +107,7 @@ export const OrderTrackingTimeline: React.FC<OrderTrackingTimelineProps> = ({
           <AlertCircle size={20} />
         </div>
         <div>
-          <h4 className="text-xs font-bold text-gray-900">Tracking Info Unavailable</h4>
+          <h4 className="text-xs font-bold text-ink">Tracking Info Unavailable</h4>
           <p className="text-xs text-gray-600 mt-1 max-w-sm mx-auto">{errorMsg}</p>
         </div>
         {onRetry && (
@@ -127,11 +127,11 @@ export const OrderTrackingTimeline: React.FC<OrderTrackingTimelineProps> = ({
   // No Shipments / Unshipped State
   if (!currentShipment || shipmentsList.length === 0) {
     return (
-      <div className="p-6 sm:p-8 bg-gray-50/60 rounded-xl border border-dashed border-gray-200 text-center space-y-2">
-        <div className="w-12 h-12 bg-white text-gray-400 rounded-full flex items-center justify-center mx-auto border border-gray-200 shadow-2xs">
+      <div className="p-6 sm:p-8 bg-gray-50/60 rounded-xl border border-dashed border-champagne/50 text-center space-y-2">
+        <div className="w-12 h-12 bg-white text-gray-400 rounded-full flex items-center justify-center mx-auto border border-champagne/50 shadow-2xs">
           <Package size={22} className="text-gray-400" />
         </div>
-        <h4 className="text-xs font-bold text-gray-900">Order Processing Initiated</h4>
+        <h4 className="text-xs font-bold text-ink">Order Processing Initiated</h4>
         <p className="text-xs text-gray-500 max-w-sm mx-auto leading-relaxed">
           This order has not been dispatched yet. Live carrier tracking checkpoints will appear once the package is dispatched.
         </p>
@@ -152,7 +152,7 @@ export const OrderTrackingTimeline: React.FC<OrderTrackingTimelineProps> = ({
       
       {/* Multi-Package Selector Tabs (if multiple shipments exist) */}
       {shipmentsList.length > 1 && (
-        <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none border-b border-gray-100">
+        <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none border-b border-champagne/40">
           <div className="flex items-center gap-1.5 text-xs font-bold text-gray-600 mr-2 flex-shrink-0">
             <Layers size={14} className="text-primary" />
             <span>Packages ({shipmentsList.length}):</span>
@@ -166,8 +166,8 @@ export const OrderTrackingTimeline: React.FC<OrderTrackingTimelineProps> = ({
                 onClick={() => setActiveShipmentIndex(idx)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors border cursor-pointer ${
                   isSelected
-                    ? 'bg-[#111827] text-white border-[#111827] shadow-2xs'
-                    : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50'
+                    ? 'bg-ink text-white border-[#111827] shadow-2xs'
+                    : 'bg-white text-gray-700 border-champagne/50 hover:bg-gray-50'
                 }`}
               >
                 <span>{pkgCarrier}</span>
@@ -183,10 +183,10 @@ export const OrderTrackingTimeline: React.FC<OrderTrackingTimelineProps> = ({
       )}
 
       {/* Shipment Header Banner */}
-      <div className={`p-4 bg-gray-50 rounded-xl border border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${compact ? 'text-xs' : ''}`}>
+      <div className={`p-4 bg-gray-50 rounded-xl border border-champagne/40 flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${compact ? 'text-xs' : ''}`}>
         <div className="space-y-1">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-xs font-bold text-gray-900">{carrier}</span>
+            <span className="text-xs font-bold text-ink">{carrier}</span>
             <span className={`px-2 py-0.5 rounded-md text-[10px] font-bold border ${statusMeta.badgeClass}`}>
               {statusMeta.label}
             </span>
@@ -199,7 +199,7 @@ export const OrderTrackingTimeline: React.FC<OrderTrackingTimelineProps> = ({
           </div>
           {currentShipment.estimatedDeliveryDate && (
             <div className="text-[11px] text-gray-500 font-normal">
-              Est. Delivery: <strong className="text-gray-800">{currentShipment.estimatedDeliveryDate}</strong>
+              Est. Delivery: <strong className="text-ink">{currentShipment.estimatedDeliveryDate}</strong>
             </div>
           )}
         </div>
@@ -210,7 +210,7 @@ export const OrderTrackingTimeline: React.FC<OrderTrackingTimelineProps> = ({
             href={trackingUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-white hover:bg-gray-50 text-gray-800 border border-gray-200 rounded-lg text-xs font-semibold transition-colors shadow-2xs group flex-shrink-0"
+            className="inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-white hover:bg-gray-50 text-ink border border-champagne/50 rounded-lg text-xs font-semibold transition-colors shadow-2xs group flex-shrink-0"
             title="Open tracking page in new tab"
           >
             <Truck size={14} className="text-primary" />
@@ -254,10 +254,10 @@ export const OrderTrackingTimeline: React.FC<OrderTrackingTimelineProps> = ({
                 </div>
 
                 {/* Event Content */}
-                <div className="flex-1 min-w-0 bg-white p-3.5 rounded-xl border border-gray-100 shadow-2xs group-hover:border-gray-200 transition-colors">
+                <div className="flex-1 min-w-0 bg-white p-3.5 rounded-xl border border-champagne/40 shadow-2xs group-hover:border-champagne/50 transition-colors">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
                     <div className="flex items-center gap-2">
-                      <span className={`text-xs font-bold ${isCurrent || isCompleted ? 'text-gray-900' : 'text-gray-500'}`}>
+                      <span className={`text-xs font-bold ${isCurrent || isCompleted ? 'text-ink' : 'text-gray-500'}`}>
                         {event.label || event.title || eventMeta.label}
                       </span>
                       {isCurrent && (
@@ -292,9 +292,9 @@ export const OrderTrackingTimeline: React.FC<OrderTrackingTimelineProps> = ({
           })}
         </div>
       ) : (
-        <div className="py-6 px-4 bg-gray-50/50 rounded-xl border border-gray-100 text-center space-y-1.5">
+        <div className="py-6 px-4 bg-gray-50/50 rounded-xl border border-champagne/40 text-center space-y-1.5">
           <Clock size={22} className="mx-auto text-gray-400" />
-          <div className="text-xs font-bold text-gray-800">Tracking milestones registered</div>
+          <div className="text-xs font-bold text-ink">Tracking milestones registered</div>
           <p className="text-[11px] text-gray-500 max-w-xs mx-auto">
             Package details dispatched with {carrier}. Specific regional hub checkpoints will display as the driver scans the parcel barcode.
           </p>

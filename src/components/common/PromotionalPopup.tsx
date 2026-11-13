@@ -244,7 +244,7 @@ export const PromotionalPopup: React.FC = () => {
                 <button
                   onClick={handleCopyCoupon}
                   type="button"
-                  className="px-4 py-2.5 text-xs sm:text-sm font-bold text-slate-900 bg-white hover:bg-gray-100 rounded-xl transition-all shadow-md flex items-center gap-1.5 shrink-0 cursor-pointer active:scale-95"
+                  className="px-4 py-2.5 text-xs sm:text-sm font-bold text-ink bg-white hover:bg-gray-100 rounded-xl transition-all shadow-md flex items-center gap-1.5 shrink-0 cursor-pointer active:scale-95"
                 >
                   {copied ? (
                     <>

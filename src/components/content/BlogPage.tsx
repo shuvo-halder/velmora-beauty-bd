@@ -36,7 +36,7 @@ export const BlogPage: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-[60vh] flex flex-col items-center justify-center bg-slate-50 space-y-3 p-6">
+      <div className="min-h-[60vh] flex flex-col items-center justify-center bg-bg space-y-3 p-6">
         <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin" />
         <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">
           Loading articles...
@@ -47,7 +47,7 @@ export const BlogPage: React.FC = () => {
 
   if (error) {
     return (
-      <div className="min-h-[60vh] flex flex-col items-center justify-center bg-slate-50 p-6 text-center">
+      <div className="min-h-[60vh] flex flex-col items-center justify-center bg-bg p-6 text-center">
         <div className="w-16 h-16 bg-red-50 text-red-500 rounded-3xl flex items-center justify-center mb-4">
           <AlertCircle size={32} />
         </div>
@@ -66,7 +66,7 @@ export const BlogPage: React.FC = () => {
 
   if (articles.length === 0) {
     return (
-      <div className="min-h-[60vh] flex flex-col items-center justify-center bg-slate-50 p-6 text-center">
+      <div className="min-h-[60vh] flex flex-col items-center justify-center bg-bg p-6 text-center">
         <div className="w-16 h-16 bg-slate-100 text-slate-400 rounded-3xl flex items-center justify-center mb-4">
           <FileText size={32} />
         </div>
@@ -88,7 +88,7 @@ export const BlogPage: React.FC = () => {
   const regularArticles = articles.slice(1);
 
   return (
-    <div className="py-12 bg-slate-50 min-h-screen">
+    <div className="py-12 bg-bg min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         {/* Header */}

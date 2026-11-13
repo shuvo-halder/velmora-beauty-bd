@@ -68,8 +68,8 @@ export const NotificationCard: React.FC<NotificationCardProps> = ({
         relative rounded-xl p-4 sm:p-5 border transition-all duration-200
         ${notification.orderId ? 'cursor-pointer' : isUnread ? 'cursor-pointer' : 'cursor-default'}
         ${isUnread 
-          ? 'bg-primary-light/50 border-rose-200/80 shadow-2xs hover:border-primary/40' 
-          : 'bg-white border-gray-200/80 hover:border-gray-300'}
+          ? 'bg-sage/30/50 border-rose-200/80 shadow-2xs hover:border-primary/40' 
+          : 'bg-white border-champagne/50/80 hover:border-champagne'}
       `}
     >
       <div className="flex items-start gap-3.5 sm:gap-4">
@@ -99,7 +99,7 @@ export const NotificationCard: React.FC<NotificationCardProps> = ({
             </span>
           </div>
 
-          <h3 className={`text-sm ${isUnread ? 'font-bold text-gray-900' : 'font-semibold text-gray-800'} tracking-tight leading-snug`}>
+          <h3 className={`text-sm ${isUnread ? 'font-bold text-ink' : 'font-semibold text-ink'} tracking-tight leading-snug`}>
             {notification.title}
           </h3>
 
@@ -108,7 +108,7 @@ export const NotificationCard: React.FC<NotificationCardProps> = ({
           </p>
 
           {/* Action Row */}
-          <div className="flex flex-wrap items-center justify-between gap-3 mt-3 pt-2.5 border-t border-gray-100/80">
+          <div className="flex flex-wrap items-center justify-between gap-3 mt-3 pt-2.5 border-t border-champagne/40/80">
             {notification.orderId ? (
               <button
                 type="button"
@@ -133,7 +133,7 @@ export const NotificationCard: React.FC<NotificationCardProps> = ({
                 type="button"
                 onClick={handleMarkReadClick}
                 disabled={isMarkingRead}
-                className="inline-flex items-center gap-1 text-[11px] font-semibold text-gray-500 hover:text-gray-900 bg-white hover:bg-gray-50 px-2.5 py-1 rounded-md border border-gray-200 transition-colors cursor-pointer shadow-2xs ml-auto"
+                className="inline-flex items-center gap-1 text-[11px] font-semibold text-gray-500 hover:text-ink bg-white hover:bg-gray-50 px-2.5 py-1 rounded-md border border-champagne/50 transition-colors cursor-pointer shadow-2xs ml-auto"
                 title="Mark as read"
                 aria-label="Mark notification as read"
               >

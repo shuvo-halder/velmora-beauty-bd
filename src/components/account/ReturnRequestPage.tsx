@@ -118,9 +118,9 @@ export const ReturnRequestPage: React.FC = () => {
   if (!order) {
     return (
       <AccountLayout activeTab="orders">
-        <div className="bg-white rounded-xl p-12 text-center border border-gray-200 shadow-xs">
+        <div className="bg-white rounded-xl p-12 text-center border border-champagne/50 shadow-xs">
           <AlertCircle size={48} className="mx-auto text-gray-300 mb-4" />
-          <h3 className="text-lg font-bold text-gray-900">Order Not Found</h3>
+          <h3 className="text-lg font-bold text-ink">Order Not Found</h3>
           <button onClick={() => navigateTo('orders')} className="mt-6 btn-primary text-xs">
             Back to Orders
           </button>
@@ -132,13 +132,13 @@ export const ReturnRequestPage: React.FC = () => {
   if (isSubmitted) {
     return (
       <AccountLayout activeTab="orders">
-        <div className="max-w-xl mx-auto bg-white rounded-xl p-8 sm:p-12 text-center border border-gray-200 shadow-xs">
+        <div className="max-w-xl mx-auto bg-white rounded-xl p-8 sm:p-12 text-center border border-champagne/50 shadow-xs">
           <div className="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6 border border-emerald-100">
             <CheckCircle2 size={32} />
           </div>
-          <h2 className="text-2xl font-bold text-gray-900 tracking-tight mb-3">Return Requested</h2>
+          <h2 className="text-2xl font-bold text-ink tracking-tight mb-3">Return Requested</h2>
           <p className="text-gray-500 text-sm font-medium leading-relaxed mb-8">
-            Your return request for order <span className="text-gray-900 font-semibold">#{order.id}</span> has been submitted successfully. 
+            Your return request for order <span className="text-ink font-semibold">#{order.id}</span> has been submitted successfully. 
             Our team will review your request and send you the shipping label within 24-48 hours.
           </p>
           <button 
@@ -165,21 +165,21 @@ export const ReturnRequestPage: React.FC = () => {
             <ArrowLeft size={14} />
             <span>Back to Order Details</span>
           </button>
-          <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Request Return</h1>
+          <h1 className="text-2xl font-bold text-ink tracking-tight">Request Return</h1>
           <p className="text-gray-500 text-sm font-medium mt-1">Select the items you wish to return and provide a reason.</p>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           
-          <div className="bg-white rounded-xl p-6 sm:p-8 border border-gray-200 shadow-xs">
-            <h3 className="text-base font-bold text-gray-900 mb-6 flex items-center gap-2.5">
+          <div className="bg-white rounded-xl p-6 sm:p-8 border border-champagne/50 shadow-xs">
+            <h3 className="text-base font-bold text-ink mb-6 flex items-center gap-2.5">
               <Package size={18} className="text-primary" />
               <span>Select Items</span>
             </h3>
             
             <div className="space-y-6">
               {fields.map((field, index) => (
-                <div key={field.id} className="pb-6 border-b border-gray-100 last:border-0 last:pb-0">
+                <div key={field.id} className="pb-6 border-b border-champagne/40 last:border-0 last:pb-0">
                   <div className="flex items-start gap-4">
                     <div className="pt-1">
                        <input 
@@ -190,7 +190,7 @@ export const ReturnRequestPage: React.FC = () => {
                     </div>
                     <div className="flex-1 space-y-4">
                       <div className="flex items-center gap-3.5">
-                        <div className="w-14 h-14 bg-gray-50 rounded-lg overflow-hidden border border-gray-200 flex-shrink-0 relative">
+                        <div className="w-14 h-14 bg-gray-50 rounded-lg overflow-hidden border border-champagne/50 flex-shrink-0 relative">
                           <SmartImage 
                             src={order.items[index].productImage} 
                             alt={field.productName} 
@@ -201,7 +201,7 @@ export const ReturnRequestPage: React.FC = () => {
                           />
                         </div>
                         <div>
-                          <h4 className="text-sm font-semibold text-gray-900">{field.productName}</h4>
+                          <h4 className="text-sm font-semibold text-ink">{field.productName}</h4>
                           <p className="text-xs text-gray-500 font-medium mt-0.5">
                             {order.items[index].variantName || 'Standard Edition'}
                           </p>
@@ -213,7 +213,7 @@ export const ReturnRequestPage: React.FC = () => {
                           <label className="block text-xs font-semibold text-gray-700 mb-1.5">Quantity</label>
                           <select 
                             {...register(`items.${index}.quantity`, { valueAsNumber: true })}
-                            className="block w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-xs font-medium focus:bg-white focus:outline-hidden focus:ring-1 focus:ring-primary"
+                            className="block w-full px-3 py-2 bg-gray-50 border border-champagne/50 rounded-lg text-xs font-medium focus:bg-white focus:outline-hidden focus:ring-1 focus:ring-primary"
                           >
                             {[...Array(order.items[index].quantity)].map((_, i) => (
                               <option key={i+1} value={i+1}>{i+1}</option>
@@ -224,7 +224,7 @@ export const ReturnRequestPage: React.FC = () => {
                           <label className="block text-xs font-semibold text-gray-700 mb-1.5">Condition</label>
                           <select 
                             {...register(`items.${index}.condition`)}
-                            className="block w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-xs font-medium focus:bg-white focus:outline-hidden focus:ring-1 focus:ring-primary"
+                            className="block w-full px-3 py-2 bg-gray-50 border border-champagne/50 rounded-lg text-xs font-medium focus:bg-white focus:outline-hidden focus:ring-1 focus:ring-primary"
                           >
                             <option value="New">Unopened / New</option>
                             <option value="Open">Opened / Like New</option>
@@ -236,7 +236,7 @@ export const ReturnRequestPage: React.FC = () => {
                           <label className="block text-xs font-semibold text-gray-700 mb-1.5">Reason</label>
                           <select 
                             {...register(`items.${index}.reason`)}
-                            className="block w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-xs font-medium focus:bg-white focus:outline-hidden focus:ring-1 focus:ring-primary"
+                            className="block w-full px-3 py-2 bg-gray-50 border border-champagne/50 rounded-lg text-xs font-medium focus:bg-white focus:outline-hidden focus:ring-1 focus:ring-primary"
                           >
                             <option value="">Select Reason</option>
                             <option value="wrong_item">Received wrong item</option>
@@ -254,16 +254,16 @@ export const ReturnRequestPage: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl p-6 sm:p-8 border border-gray-200 shadow-xs">
-             <h3 className="text-base font-bold text-gray-900 mb-4 flex items-center gap-2.5">
+          <div className="bg-white rounded-xl p-6 sm:p-8 border border-champagne/50 shadow-xs">
+             <h3 className="text-base font-bold text-ink mb-4 flex items-center gap-2.5">
                <FileText size={18} className="text-primary" />
                <span>Additional Details</span>
              </h3>
              <textarea 
                placeholder="Tell us more about the reason for your return (optional)..."
-               className="w-full p-4 bg-gray-50 border border-gray-200 rounded-lg text-sm font-medium focus:bg-white focus:outline-hidden focus:ring-1 focus:ring-primary focus:border-primary transition-colors min-h-[120px]"
+               className="w-full p-4 bg-gray-50 border border-champagne/50 rounded-lg text-sm font-medium focus:bg-white focus:outline-hidden focus:ring-1 focus:ring-primary focus:border-primary transition-colors min-h-[120px]"
              />
-             <div className="mt-6 flex items-center gap-3 p-4 bg-primary-light rounded-lg border border-primary/10">
+             <div className="mt-6 flex items-center gap-3 p-4 bg-sage/30 rounded-lg border border-primary/10">
                 <HelpCircle size={18} className="text-primary flex-shrink-0" />
                 <p className="text-xs text-gray-600 font-normal leading-relaxed">
                   By submitting this request, you agree to our <span className="text-primary font-semibold">Return Policy</span>. Items must be shipped back within 14 days of approval.

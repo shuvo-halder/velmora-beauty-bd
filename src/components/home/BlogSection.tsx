@@ -39,7 +39,7 @@ export const BlogSection: React.FC = () => {
         <Skeleton className="h-5 w-32 mb-4 bg-slate-200" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className="space-y-3 bg-white p-3.5 rounded-xl border border-[#E5E7EB]">
+            <div key={i} className="space-y-3 bg-white p-3.5 rounded-xl border border-champagne/50">
               <Skeleton className="h-36 w-full rounded-lg bg-slate-200" />
               <Skeleton className="h-3.5 w-1/3 rounded-md bg-slate-200" />
               <Skeleton className="h-5 w-full rounded-md bg-slate-200" />
@@ -62,7 +62,7 @@ export const BlogSection: React.FC = () => {
             <BookOpen size={14} />
             <span>Articles & Insights</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-bold text-[#111827] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-bold text-ink tracking-tight">
             Latest Stories & Guides
           </h2>
         </div>
@@ -82,7 +82,7 @@ export const BlogSection: React.FC = () => {
           <article
             key={article.id}
             onClick={() => navigateTo('article-detail', { articleSlug: article.slug })}
-            className="group bg-white border border-[#E5E7EB] rounded-xl overflow-hidden hover:border-gray-300 transition-all duration-200 cursor-pointer flex flex-col justify-between shadow-2xs"
+            className="group bg-white border border-champagne/50 rounded-xl overflow-hidden hover:border-champagne transition-all duration-200 cursor-pointer flex flex-col justify-between shadow-2xs"
           >
             <div>
               <div className="h-40 sm:h-44 overflow-hidden bg-[#F9FAFB] relative">
@@ -95,14 +95,14 @@ export const BlogSection: React.FC = () => {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                 />
                 <div className="absolute top-2.5 left-2.5">
-                  <span className="px-2 py-0.5 rounded-md bg-[#111827]/90 text-white font-medium text-[10px] backdrop-blur-xs">
+                  <span className="px-2 py-0.5 rounded-md bg-champagne text-ink font-bold text-[10px] backdrop-blur-xs border border-champagne">
                     {article.category}
                   </span>
                 </div>
               </div>
 
               <div className="p-4 space-y-1.5">
-                <div className="flex items-center gap-2.5 text-[11px] text-[#6B7280]">
+                <div className="flex items-center gap-2.5 text-[11px] text-taupe">
                   <span className="flex items-center gap-1">
                     <User size={12} />
                     {article.author}
@@ -114,14 +114,14 @@ export const BlogSection: React.FC = () => {
                   </span>
                 </div>
 
-                <h3 className="font-semibold text-sm sm:text-base text-[#111827] group-hover:text-primary transition-colors line-clamp-2 leading-snug">
+                <h3 className="font-semibold text-sm sm:text-base text-ink group-hover:text-primary transition-colors line-clamp-2 leading-snug">
                   {article.title}
                 </h3>
 
                 <RichTextRenderer
                   content={article.excerpt}
                   inline
-                  className="text-xs text-[#6B7280] line-clamp-2 leading-relaxed [&_p]:inline [&_p]:m-0"
+                  className="text-xs text-taupe line-clamp-2 leading-relaxed [&_p]:inline [&_p]:m-0"
                 />
               </div>
             </div>

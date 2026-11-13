@@ -22,17 +22,17 @@ export const QuantitySelector: React.FC<QuantitySelectorProps> = ({
   const textClass = size === 'sm' ? 'px-2 text-xs' : 'px-3 text-sm';
 
   return (
-    <div className="flex items-center border border-[#E5E7EB] rounded-lg bg-[#F9FAFB] overflow-hidden">
+    <div className="flex items-center border border-champagne/50 rounded-lg bg-[#F9FAFB] overflow-hidden">
       <button
         onClick={() => onUpdate(Math.max(min, quantity - 1))}
         disabled={isLoading || quantity <= min}
-        className={`${padding} text-[#111827] hover:bg-gray-200 disabled:opacity-40 transition-colors font-semibold cursor-pointer`}
+        className={`${padding} text-ink hover:bg-gray-200 disabled:opacity-40 transition-colors font-semibold cursor-pointer`}
         aria-label="Decrease quantity"
       >
         <Minus size={size === 'sm' ? 12 : 14} />
       </button>
       
-      <div className={`${textClass} font-semibold text-[#111827] min-w-[30px] text-center flex items-center justify-center`}>
+      <div className={`${textClass} font-semibold text-ink min-w-[30px] text-center flex items-center justify-center`}>
         {isLoading ? (
           <Loader2 size={12} className="animate-spin text-primary" />
         ) : (
@@ -43,7 +43,7 @@ export const QuantitySelector: React.FC<QuantitySelectorProps> = ({
       <button
         onClick={() => onUpdate(Math.min(max, quantity + 1))}
         disabled={isLoading || quantity >= max}
-        className={`${padding} text-[#111827] hover:bg-gray-200 disabled:opacity-40 transition-colors font-semibold cursor-pointer`}
+        className={`${padding} text-ink hover:bg-gray-200 disabled:opacity-40 transition-colors font-semibold cursor-pointer`}
         aria-label="Increase quantity"
       >
         <Plus size={size === 'sm' ? 12 : 14} />

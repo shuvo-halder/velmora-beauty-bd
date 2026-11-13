@@ -12,13 +12,23 @@
     --color-accent-hover: var(--color-primary-hover);
     --color-accent-muted: var(--color-primary-light);
 
+    /* Velmora Warm Earthy Palette Tokens */
+    --color-bg: #F5F4EC;
+    --color-bg-alt: #EAEBDD;
+    --color-sage: #B5CAB0;
+    --color-sage-2: #AEBFA8;
+    --color-beige: #C7A892;
+    --color-champagne: #D6C3B1;
+    --color-taupe: #94816C;
+    --color-ink: #372F26;
+
     /* Neutrals & Surfaces */
-    --color-text-main: #111827;
-    --color-text-muted: #6B7280;
-    --color-border: #E5E7EB;
-    --color-bg-page: #FFFFFF;
-    --color-bg-subtle: #F9FAFB;
-    --color-dark: #111827;
+    --color-text-main: #372F26;
+    --color-text-muted: #94816C;
+    --color-border: #D6C3B1;
+    --color-bg-page: #F5F4EC;
+    --color-bg-subtle: #EAEBDD;
+    --color-dark: #372F26;
 
     /* Feedback Colors */
     --color-success: #16A34A;
@@ -67,12 +77,22 @@
   --color-primary-light: #EEF3F0;
   --color-primary-text: #FFFFFF;
   
-  --color-secondary: #111827;
-  --color-secondary-hover: #1f2937;
+  --color-secondary: #372F26;
+  --color-secondary-hover: #251f19;
   
   --color-accent: #315B46;
   --color-accent-hover: #254636;
   --color-accent-muted: #EEF3F0;
+
+  /* Velmora Warm Earthy Palette Tokens */
+  --color-bg: #F5F4EC;
+  --color-bg-alt: #EAEBDD;
+  --color-sage: #B5CAB0;
+  --color-sage-2: #AEBFA8;
+  --color-beige: #C7A892;
+  --color-champagne: #D6C3B1;
+  --color-taupe: #94816C;
+  --color-ink: #372F26;
   
   /* Backgrounds */
   --color-bg-app: #FFFFFF;

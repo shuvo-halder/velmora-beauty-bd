@@ -106,10 +106,10 @@ export const CartDrawer: React.FC = () => {
       <div className="relative w-full max-w-md bg-white h-full shadow-2xl flex flex-col z-10 animate-in slide-in-from-right duration-250">
         
         {/* Header */}
-        <div className="p-4 border-b border-[#E5E7EB] flex items-center justify-between bg-[#F9FAFB]">
+        <div className="p-4 border-b border-champagne/50 flex items-center justify-between bg-[#F9FAFB]">
           <div className="flex items-center gap-2">
             <ShoppingBag className="text-primary" size={18} />
-            <h3 className="font-bold text-base text-[#111827]">
+            <h3 className="font-bold text-base text-ink">
               Shopping Cart ({totalItemCount})
             </h3>
           </div>
@@ -122,7 +122,7 @@ export const CartDrawer: React.FC = () => {
                   }
                 }}
                 disabled={isClearingCart}
-                className="p-1.5 text-[#6B7280] hover:text-primary hover:bg-primary-light rounded-lg transition-colors cursor-pointer"
+                className="p-1.5 text-taupe hover:text-primary hover:bg-sage/30 rounded-lg transition-colors cursor-pointer"
                 title="Clear Entire Cart"
               >
                 {isClearingCart ? <Loader2 size={16} className="animate-spin" /> : <Trash2 size={16} />}
@@ -130,7 +130,7 @@ export const CartDrawer: React.FC = () => {
             )}
             <button
               onClick={() => setIsCartOpen(false)}
-              className="p-1.5 text-[#6B7280] hover:text-[#111827] hover:bg-gray-100 rounded-lg transition-colors cursor-pointer"
+              className="p-1.5 text-taupe hover:text-ink hover:bg-gray-100 rounded-lg transition-colors cursor-pointer"
             >
               <X size={18} />
             </button>
@@ -138,9 +138,9 @@ export const CartDrawer: React.FC = () => {
         </div>
 
         {/* Free Shipping Progress Indicator */}
-        <div className="p-3.5 bg-primary-light border-b border-primary/15">
+        <div className="p-3.5 bg-sage/30 border-b border-primary/15">
           <div className="flex items-center justify-between text-xs font-medium mb-1.5">
-            <span className="flex items-center gap-1.5 text-[#111827]">
+            <span className="flex items-center gap-1.5 text-ink">
               <Truck size={14} className="text-primary" />
               {amountNeeded > 0 ? (
                 <>Add <span className="font-bold text-primary">{formatPrice(amountNeeded, currencyCode, currencySymbol)}</span> more for FREE Shipping</>
@@ -150,7 +150,7 @@ export const CartDrawer: React.FC = () => {
                 </span>
               )}
             </span>
-            <span className="text-[#6B7280] text-xs font-mono">{shippingPercent}%</span>
+            <span className="text-taupe text-xs font-mono">{shippingPercent}%</span>
           </div>
           <div className="w-full h-1.5 bg-[#E5E7EB] rounded-full overflow-hidden">
             <div 
@@ -161,20 +161,20 @@ export const CartDrawer: React.FC = () => {
         </div>
 
         {/* Items List */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-2 divide-y divide-[#E5E7EB]">
+        <div className="flex-1 overflow-y-auto p-4 space-y-2 divide-y divide-champagne/50">
           {isLoading ? (
-            <div className="h-full flex flex-col items-center justify-center py-12 text-[#6B7280]">
+            <div className="h-full flex flex-col items-center justify-center py-12 text-taupe">
               <Loader2 size={28} className="animate-spin text-primary mb-2" />
               <p className="text-xs font-semibold">Synchronizing cart...</p>
             </div>
           ) : cart.items.length === 0 ? (
             <div className="h-full flex flex-col items-center justify-center text-center py-12 px-4 space-y-3">
-              <div className="w-14 h-14 rounded-full bg-[#F9FAFB] border border-[#E5E7EB] flex items-center justify-center text-[#6B7280]">
+              <div className="w-14 h-14 rounded-full bg-[#F9FAFB] border border-champagne/50 flex items-center justify-center text-taupe">
                 <ShoppingBag size={24} />
               </div>
               <div>
-                <h4 className="font-bold text-[#111827] text-base">Your cart is empty</h4>
-                <p className="text-xs text-[#6B7280] mt-1 max-w-xs">
+                <h4 className="font-bold text-ink text-base">Your cart is empty</h4>
+                <p className="text-xs text-taupe mt-1 max-w-xs">
                   Discover quality products and add items to your cart.
                 </p>
               </div>
@@ -208,7 +208,7 @@ export const CartDrawer: React.FC = () => {
 
         {/* Footer Summary & Checkout */}
         {cart.items.length > 0 && (
-          <div className="p-4 bg-[#F9FAFB] border-t border-[#E5E7EB] space-y-3">
+          <div className="p-4 bg-[#F9FAFB] border-t border-champagne/50 space-y-3">
             
             {/* Coupon Code input */}
             <form onSubmit={handleApplyCoupon} className="space-y-1">
@@ -219,14 +219,14 @@ export const CartDrawer: React.FC = () => {
                     placeholder="e.g. MONSOON-5"
                     value={couponInput}
                     onChange={(e) => setCouponInput(e.target.value)}
-                    className="w-full py-2 pl-8 pr-3 bg-white border border-[#E5E7EB] rounded-lg text-xs uppercase placeholder:normal-case font-medium text-[#111827] focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
+                    className="w-full py-2 pl-8 pr-3 bg-white border border-champagne/50 rounded-lg text-xs uppercase placeholder:normal-case font-medium text-ink focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
                   />
-                  <Tag size={13} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-[#6B7280]" />
+                  <Tag size={13} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-taupe" />
                 </div>
                 <button
                   type="submit"
                   disabled={isApplyingCoupon || !couponInput.trim()}
-                  className="px-3.5 py-2 bg-[#111827] hover:bg-black text-white font-semibold text-xs rounded-lg transition-colors cursor-pointer disabled:opacity-50"
+                  className="px-3.5 py-2 bg-ink hover:bg-black text-white font-semibold text-xs rounded-lg transition-colors cursor-pointer disabled:opacity-50"
                 >
                   {isApplyingCoupon ? <Loader2 size={13} className="animate-spin" /> : 'Apply'}
                 </button>
@@ -243,7 +243,7 @@ export const CartDrawer: React.FC = () => {
                           setCouponInput(c.code);
                           applyCoupon(c.code);
                         }}
-                        className="inline-flex items-center gap-1 text-[10px] font-semibold bg-[#F3F4F6] hover:bg-[#E5E7EB] text-[#111827] px-1.5 py-0.5 rounded border border-[#E5E7EB] cursor-pointer"
+                        className="inline-flex items-center gap-1 text-[10px] font-semibold bg-[#F3F4F6] hover:bg-[#E5E7EB] text-ink px-1.5 py-0.5 rounded border border-champagne/50 cursor-pointer"
                       >
                         <Tag size={9} className="text-primary" />
                         {c.code}
@@ -259,13 +259,13 @@ export const CartDrawer: React.FC = () => {
             </form>
 
             {/* Calculations Breakdown */}
-            <div className="space-y-1.5 text-xs text-[#6B7280] pt-1 border-t border-[#E5E7EB]">
+            <div className="space-y-1.5 text-xs text-taupe pt-1 border-t border-champagne/50">
               <div className="flex justify-between">
                 <span>Subtotal</span>
-                <span className="font-semibold text-[#111827]">{formatPrice(cart.subtotal, currencyCode, currencySymbol)}</span>
+                <span className="font-semibold text-ink">{formatPrice(cart.subtotal, currencyCode, currencySymbol)}</span>
               </div>
               {(cart.discount > 0 || cart.appliedCoupon) && (
-                <div className="flex justify-between items-center text-primary font-medium bg-primary-light px-2 py-1 rounded border border-primary/20">
+                <div className="flex justify-between items-center text-primary font-medium bg-sage/30 px-2 py-1 rounded border border-primary/20">
                   <span className="flex items-center gap-1">
                     <Tag size={11} />
                     Discount ({cart.appliedCoupon || 'Applied'})
@@ -286,9 +286,9 @@ export const CartDrawer: React.FC = () => {
               )}
               <div className="flex justify-between">
                 <span>Shipping</span>
-                <span className="font-semibold text-[#111827]">
+                <span className="font-semibold text-ink">
                   {isSessionLoading && cart.shippingFee === undefined ? (
-                    <span className="text-[#6B7280] font-normal text-xs flex items-center gap-1 justify-end">
+                    <span className="text-taupe font-normal text-xs flex items-center gap-1 justify-end">
                       <Loader2 size={12} className="animate-spin text-primary" /> Calculating...
                     </span>
                   ) : isFreeShipping ? (
@@ -296,15 +296,15 @@ export const CartDrawer: React.FC = () => {
                   ) : cart.shippingFee !== undefined && cart.shippingFee > 0 ? (
                     formatPrice(cart.shippingFee, currencyCode, currencySymbol)
                   ) : (
-                    <span className="text-[#6B7280] font-normal text-xs">Calculated at checkout</span>
+                    <span className="text-taupe font-normal text-xs">Calculated at checkout</span>
                   )}
                 </span>
               </div>
               <div className="flex justify-between">
                 <span>Estimated Tax ({taxPercentDisplay}%)</span>
-                <span className="font-semibold text-[#111827]">{formatPrice(calculatedTax, currencyCode, currencySymbol)}</span>
+                <span className="font-semibold text-ink">{formatPrice(calculatedTax, currencyCode, currencySymbol)}</span>
               </div>
-              <div className="flex justify-between text-sm font-bold text-[#111827] pt-2 border-t border-[#E5E7EB]">
+              <div className="flex justify-between text-sm font-bold text-ink pt-2 border-t border-champagne/50">
                 <span>Total Amount</span>
                 <span className="text-primary font-bold">{formatPrice(estimatedTotal, currencyCode, currencySymbol)}</span>
               </div>
@@ -328,13 +328,13 @@ export const CartDrawer: React.FC = () => {
                   setIsCartOpen(false);
                   navigateTo('cart');
                 }}
-                className="w-full py-2 px-4 bg-white hover:bg-gray-50 text-[#111827] border border-[#E5E7EB] font-semibold text-xs rounded-lg transition-colors cursor-pointer text-center"
+                className="w-full py-2 px-4 bg-white hover:bg-gray-50 text-ink border border-champagne/50 font-semibold text-xs rounded-lg transition-colors cursor-pointer text-center"
               >
                 View Cart
               </button>
             </div>
 
-            <div className="text-[11px] text-[#6B7280] text-center flex items-center justify-center gap-1">
+            <div className="text-[11px] text-taupe text-center flex items-center justify-center gap-1">
               <ShieldCheck size={13} className="text-[#16A34A]" />
               <span>Guaranteed safe & secure checkout</span>
             </div>

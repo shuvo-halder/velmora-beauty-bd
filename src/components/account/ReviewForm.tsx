@@ -148,13 +148,13 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ item, isOpen, onClose, o
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs overflow-y-auto">
-      <div className="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-7 shadow-2xl border border-gray-100 my-8 relative animate-in fade-in zoom-in-95 duration-200">
+      <div className="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-7 shadow-2xl border border-champagne/40 my-8 relative animate-in fade-in zoom-in-95 duration-200">
         
         {/* Close Button */}
         <button
           onClick={onClose}
           disabled={submitMutation.isPending || isUploadingImages}
-          className="absolute top-5 right-5 w-8 h-8 rounded-full bg-gray-100 text-gray-500 hover:text-gray-900 hover:bg-gray-200 flex items-center justify-center transition-colors cursor-pointer"
+          className="absolute top-5 right-5 w-8 h-8 rounded-full bg-gray-100 text-gray-500 hover:text-ink hover:bg-gray-200 flex items-center justify-center transition-colors cursor-pointer"
           aria-label="Close modal"
         >
           <X size={16} />
@@ -165,7 +165,7 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ item, isOpen, onClose, o
             <div className="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 border border-emerald-100 animate-bounce">
               <CheckCircle2 size={36} />
             </div>
-            <h3 className="text-xl font-bold text-gray-900">Review Submitted!</h3>
+            <h3 className="text-xl font-bold text-ink">Review Submitted!</h3>
             <p className="text-xs text-gray-500 mt-2 max-w-xs mx-auto">
               Thank you for sharing your feedback. Your review helps other shoppers make informed choices.
             </p>
@@ -174,13 +174,13 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ item, isOpen, onClose, o
           <div>
             {/* Header */}
             <div className="mb-5 pr-8">
-              <h2 className="text-xl font-bold text-gray-900 tracking-tight">Write a Review</h2>
+              <h2 className="text-xl font-bold text-ink tracking-tight">Write a Review</h2>
               <p className="text-xs text-gray-500 mt-0.5">Share your experience with this purchase</p>
             </div>
 
             {/* Product Summary Card */}
-            <div className="p-3.5 bg-gray-50 rounded-xl border border-gray-200 mb-6 flex items-center gap-3.5">
-              <div className="w-14 h-14 rounded-lg bg-white overflow-hidden border border-gray-200 flex-shrink-0 relative">
+            <div className="p-3.5 bg-gray-50 rounded-xl border border-champagne/50 mb-6 flex items-center gap-3.5">
+              <div className="w-14 h-14 rounded-lg bg-white overflow-hidden border border-champagne/50 flex-shrink-0 relative">
                 <SmartImage
                   src={item.productImage}
                   alt={item.productName}
@@ -191,7 +191,7 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ item, isOpen, onClose, o
                 />
               </div>
               <div className="min-w-0 flex-1">
-                <h4 className="text-xs font-bold text-gray-900 line-clamp-1">{item.productName}</h4>
+                <h4 className="text-xs font-bold text-ink line-clamp-1">{item.productName}</h4>
                 <div className="flex items-center gap-2 mt-1 text-[11px] text-gray-500">
                   {item.orderNumber && (
                     <span className="font-medium">Order #{item.orderNumber}</span>
@@ -210,7 +210,7 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ item, isOpen, onClose, o
               
               {/* Star Rating Selection */}
               <div>
-                <label className="block text-xs font-bold text-gray-900 mb-1.5">
+                <label className="block text-xs font-bold text-ink mb-1.5">
                   Overall Rating <span className="text-primary">*</span>
                 </label>
                 <div className="flex items-center gap-2">
@@ -243,7 +243,7 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ item, isOpen, onClose, o
 
               {/* Review Headline */}
               <div>
-                <label className="block text-xs font-bold text-gray-900 mb-1">
+                <label className="block text-xs font-bold text-ink mb-1">
                   Review Headline <span className="text-gray-400 font-normal">(optional)</span>
                 </label>
                 <input
@@ -252,13 +252,13 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ item, isOpen, onClose, o
                   onChange={(e) => setHeadline(e.target.value)}
                   placeholder="e.g. Excellent sound quality & fast delivery!"
                   maxLength={100}
-                  className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-xs font-medium focus:bg-white focus:outline-hidden focus:ring-1 focus:ring-primary focus:border-primary transition-colors"
+                  className="w-full px-3.5 py-2.5 bg-gray-50 border border-champagne/50 rounded-lg text-xs font-medium focus:bg-white focus:outline-hidden focus:ring-1 focus:ring-primary focus:border-primary transition-colors"
                 />
               </div>
 
               {/* Detailed Review Feedback */}
               <div>
-                <label className="block text-xs font-bold text-gray-900 mb-1">
+                <label className="block text-xs font-bold text-ink mb-1">
                   Detailed Feedback <span className="text-primary">*</span>
                 </label>
                 <textarea
@@ -268,7 +268,7 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ item, isOpen, onClose, o
                   rows={3}
                   maxLength={1000}
                   required
-                  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg text-xs font-medium focus:bg-white focus:outline-hidden focus:ring-1 focus:ring-primary focus:border-primary transition-colors"
+                  className="w-full p-3 bg-gray-50 border border-champagne/50 rounded-lg text-xs font-medium focus:bg-white focus:outline-hidden focus:ring-1 focus:ring-primary focus:border-primary transition-colors"
                 />
                 <div className="flex justify-between items-center text-[10px] text-gray-400 mt-0.5">
                   <span>Authentic reviews help our community.</span>
@@ -279,7 +279,7 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ item, isOpen, onClose, o
               {/* Upload Photos */}
               <div>
                 <div className="flex items-center justify-between mb-1.5">
-                  <label className="text-xs font-bold text-gray-900">
+                  <label className="text-xs font-bold text-ink">
                     Add Photos <span className="text-gray-400 font-normal">(up to 5)</span>
                   </label>
                   <span className="text-[10px] text-gray-400">JPG, PNG, WEBP &lt; 5MB</span>
@@ -297,7 +297,7 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ item, isOpen, onClose, o
                 {/* Previews and Add Button */}
                 <div className="flex flex-wrap gap-2.5">
                   {previewUrls.map((url, idx) => (
-                    <div key={idx} className="w-14 h-14 rounded-lg overflow-hidden border border-gray-200 relative group">
+                    <div key={idx} className="w-14 h-14 rounded-lg overflow-hidden border border-champagne/50 relative group">
                       <img src={url} alt={`Upload ${idx + 1}`} className="w-full h-full object-cover" />
                       <button
                         type="button"
@@ -333,7 +333,7 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ item, isOpen, onClose, o
               )}
 
               {/* Action Buttons */}
-              <div className="flex items-center justify-end gap-2.5 pt-2 border-t border-gray-100">
+              <div className="flex items-center justify-end gap-2.5 pt-2 border-t border-champagne/40">
                 <button
                   type="button"
                   onClick={onClose}

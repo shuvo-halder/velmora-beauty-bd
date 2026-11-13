@@ -77,7 +77,7 @@ export const Drawer: React.FC<DrawerProps> = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-[#111827]/50 backdrop-blur-xs transition-opacity z-[100]"
+            className="fixed inset-0 bg-ink/50 backdrop-blur-xs transition-opacity z-[100]"
             aria-hidden="true"
           />
 
@@ -89,16 +89,16 @@ export const Drawer: React.FC<DrawerProps> = ({
               animate="visible"
               exit="hidden"
               transition={{ type: 'spring', damping: 28, stiffness: 300 }}
-              className={`${sizeClasses[size]} bg-white shadow-xl flex flex-col justify-between z-[102] ${position === 'right' ? 'border-l' : 'border-r'} border-[#E5E7EB] h-full max-h-screen overflow-hidden`}
+              className={`${sizeClasses[size]} bg-white shadow-xl flex flex-col justify-between z-[102] ${position === 'right' ? 'border-l' : 'border-r'} border-champagne/50 h-full max-h-screen overflow-hidden`}
             >
               {/* Header */}
-              <div className="flex items-center justify-between px-4 py-3 sm:px-6 sm:py-4 border-b border-[#E5E7EB] shrink-0">
-                <div className="font-bold text-base sm:text-lg text-[#111827] min-w-0 flex-1 pr-2">
+              <div className="flex items-center justify-between px-4 py-3 sm:px-6 sm:py-4 border-b border-champagne/50 shrink-0">
+                <div className="font-bold text-base sm:text-lg text-ink min-w-0 flex-1 pr-2">
                   {title}
                 </div>
                 <button
                   onClick={onClose}
-                  className="p-1.5 sm:p-2 text-[#6B7280] hover:text-[#111827] hover:bg-[#F9FAFB] rounded-lg transition-colors cursor-pointer min-h-[36px] min-w-[36px] flex items-center justify-center"
+                  className="p-1.5 sm:p-2 text-taupe hover:text-ink hover:bg-[#F9FAFB] rounded-lg transition-colors cursor-pointer min-h-[36px] min-w-[36px] flex items-center justify-center"
                   aria-label="Close drawer"
                 >
                   <X size={20} />
@@ -110,7 +110,7 @@ export const Drawer: React.FC<DrawerProps> = ({
 
               {/* Footer */}
               {footer && (
-                <div className="p-3.5 sm:p-5 border-t border-[#E5E7EB] bg-[#F9FAFB] shrink-0">
+                <div className="p-3.5 sm:p-5 border-t border-champagne/50 bg-[#F9FAFB] shrink-0">
                   {footer}
                 </div>
               )}

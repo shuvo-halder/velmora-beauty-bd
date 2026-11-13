@@ -50,7 +50,7 @@ export const PromoCard: React.FC<PromoCardProps> = ({ banner, variant = 'vertica
     return (
       <div 
         onClick={handleClick}
-        className="group relative overflow-hidden rounded-xl bg-[#111827] border border-gray-800 p-4 text-white flex items-center justify-between gap-4 cursor-pointer hover:border-gray-700 transition-colors shadow-xs"
+        className="group relative overflow-hidden rounded-xl bg-ink border border-gray-800 p-4 text-white flex items-center justify-between gap-4 cursor-pointer hover:border-gray-700 transition-colors shadow-xs"
       >
         <div className="relative z-10 space-y-1 flex-1 min-w-0">
           {banner.badge && (
@@ -90,7 +90,7 @@ export const PromoCard: React.FC<PromoCardProps> = ({ banner, variant = 'vertica
   return (
     <div 
       onClick={handleClick}
-      className="group relative overflow-hidden rounded-xl bg-[#111827] border border-gray-800 text-white p-6 flex flex-col justify-between cursor-pointer hover:border-gray-700 transition-colors shadow-xs min-h-[220px]"
+      className="group relative overflow-hidden rounded-xl bg-ink border border-gray-800 text-white p-6 flex flex-col justify-between cursor-pointer hover:border-gray-700 transition-colors shadow-xs min-h-[220px]"
     >
       {/* Background Image with Dark Gradient overlay */}
       <div className="absolute inset-0 z-0">
@@ -114,7 +114,7 @@ export const PromoCard: React.FC<PromoCardProps> = ({ banner, variant = 'vertica
             className="w-full h-full object-cover object-center opacity-30 group-hover:opacity-40 group-hover:scale-105 transition-all duration-700 ease-out" 
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-[#111827] via-[#111827]/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-transparent" />
       </div>
 
       {/* Top Badge */}

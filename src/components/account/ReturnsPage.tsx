@@ -77,13 +77,13 @@ export const ReturnsPage: React.FC = () => {
       <div className="space-y-6">
         
         {/* Header Banner */}
-        <div className="bg-white rounded-xl p-6 sm:p-7 border border-gray-200 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="bg-white rounded-xl p-6 sm:p-7 border border-champagne/50 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 text-xs font-bold text-primary uppercase tracking-wider mb-1">
               <RotateCcw size={14} />
               <span>Customer Returns</span>
             </div>
-            <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Returns & Replacements</h1>
+            <h1 className="text-2xl font-bold text-ink tracking-tight">Returns & Replacements</h1>
             <p className="text-gray-500 text-xs sm:text-sm mt-0.5">
               Track active return requests, view resolutions, and check refund statuses.
             </p>
@@ -113,8 +113,8 @@ export const ReturnsPage: React.FC = () => {
                 }}
                 className={`px-3.5 py-2 rounded-lg text-xs font-semibold transition-all whitespace-nowrap cursor-pointer ${
                   isActive
-                    ? 'bg-[#111827] text-white shadow-xs'
-                    : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 hover:text-gray-900'
+                    ? 'bg-ink text-white shadow-xs'
+                    : 'bg-white text-gray-600 border border-champagne/50 hover:bg-gray-50 hover:text-ink'
                 }`}
               >
                 {tab.label}
@@ -128,8 +128,8 @@ export const ReturnsPage: React.FC = () => {
           /* Loading Skeletons */
           <div className="space-y-4">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="bg-white rounded-xl p-6 border border-gray-200 shadow-xs animate-pulse space-y-4">
-                <div className="flex justify-between items-center pb-3 border-b border-gray-100">
+              <div key={i} className="bg-white rounded-xl p-6 border border-champagne/50 shadow-xs animate-pulse space-y-4">
+                <div className="flex justify-between items-center pb-3 border-b border-champagne/40">
                   <div className="h-5 bg-gray-200 rounded w-1/4"></div>
                   <div className="h-5 bg-gray-200 rounded w-20"></div>
                 </div>
@@ -143,7 +143,7 @@ export const ReturnsPage: React.FC = () => {
             <div className="w-12 h-12 bg-red-50 text-red-500 rounded-full flex items-center justify-center mx-auto mb-3">
               <AlertCircle size={24} />
             </div>
-            <h3 className="text-base font-bold text-gray-900 mb-1">Failed to Load Returns</h3>
+            <h3 className="text-base font-bold text-ink mb-1">Failed to Load Returns</h3>
             <p className="text-xs text-gray-500 max-w-sm mx-auto mb-5">
               {error instanceof Error ? error.message : 'Unable to connect to the returns service. Please try again.'}
             </p>
@@ -158,11 +158,11 @@ export const ReturnsPage: React.FC = () => {
           </div>
         ) : returns.length === 0 ? (
           /* Empty State */
-          <div className="bg-white rounded-xl p-12 border border-gray-200 shadow-xs text-center">
-            <div className="w-14 h-14 bg-gray-50 text-gray-400 rounded-full flex items-center justify-center mx-auto mb-4 border border-gray-200">
+          <div className="bg-white rounded-xl p-12 border border-champagne/50 shadow-xs text-center">
+            <div className="w-14 h-14 bg-gray-50 text-gray-400 rounded-full flex items-center justify-center mx-auto mb-4 border border-champagne/50">
               <RotateCcw size={28} />
             </div>
-            <h3 className="text-base font-bold text-gray-900 mb-1">No return requests yet.</h3>
+            <h3 className="text-base font-bold text-ink mb-1">No return requests yet.</h3>
             <p className="text-xs text-gray-500 max-w-sm mx-auto mb-6">
               {statusFilter !== 'ALL'
                 ? `You don't have any return requests matching the "${statusFilter.toLowerCase()}" filter.`
@@ -201,12 +201,12 @@ export const ReturnsPage: React.FC = () => {
               return (
                 <div
                   key={ret.id}
-                  className="bg-white rounded-xl border border-gray-200 shadow-xs overflow-hidden hover:border-gray-300 transition-colors"
+                  className="bg-white rounded-xl border border-champagne/50 shadow-xs overflow-hidden hover:border-champagne transition-colors"
                 >
                   {/* Card Top Banner */}
-                  <div className="p-4 sm:p-5 bg-gray-50/70 border-b border-gray-100 flex flex-wrap items-center justify-between gap-3">
+                  <div className="p-4 sm:p-5 bg-gray-50/70 border-b border-champagne/40 flex flex-wrap items-center justify-between gap-3">
                     <div className="flex flex-wrap items-center gap-3 text-xs">
-                      <span className="font-bold text-gray-900">
+                      <span className="font-bold text-ink">
                         Return #{ret.returnNumber || ret.id}
                       </span>
                       <span className="text-gray-300">•</span>
@@ -251,9 +251,9 @@ export const ReturnsPage: React.FC = () => {
                           {ret.items.map((item, idx) => (
                             <div
                               key={idx}
-                              className="p-3 bg-gray-50 rounded-xl border border-gray-200/80 flex items-start gap-3"
+                              className="p-3 bg-gray-50 rounded-xl border border-champagne/50/80 flex items-start gap-3"
                             >
-                              <div className="w-12 h-12 rounded-lg bg-white overflow-hidden border border-gray-200 flex-shrink-0 relative">
+                              <div className="w-12 h-12 rounded-lg bg-white overflow-hidden border border-champagne/50 flex-shrink-0 relative">
                                 <SmartImage
                                   src={item.productImage}
                                   alt={item.productName || 'Product'}
@@ -264,7 +264,7 @@ export const ReturnsPage: React.FC = () => {
                                 />
                               </div>
                               <div className="min-w-0 flex-1">
-                                <h4 className="text-xs font-bold text-gray-900 line-clamp-1">
+                                <h4 className="text-xs font-bold text-ink line-clamp-1">
                                   {item.productName || 'Product Item'}
                                 </h4>
                                 {item.variantName && (
@@ -288,9 +288,9 @@ export const ReturnsPage: React.FC = () => {
 
                     {/* Return Notes or Reason Summary if single */}
                     {(ret.reason || ret.notes) && (
-                      <div className="p-3.5 bg-gray-50/80 rounded-xl border border-gray-200/70 text-xs space-y-1">
+                      <div className="p-3.5 bg-gray-50/80 rounded-xl border border-champagne/50/70 text-xs space-y-1">
                         {ret.reason && (
-                          <div className="flex items-center gap-1.5 font-semibold text-gray-800">
+                          <div className="flex items-center gap-1.5 font-semibold text-ink">
                             <span className="text-gray-500">Reason:</span>
                             <span>{ret.reason}</span>
                           </div>
@@ -349,16 +349,16 @@ export const ReturnsPage: React.FC = () => {
 
             {/* Pagination */}
             {pagination.totalPages > 1 && (
-              <div className="flex items-center justify-between pt-4 border-t border-gray-200">
+              <div className="flex items-center justify-between pt-4 border-t border-champagne/50">
                 <div className="text-xs text-gray-500 font-medium">
-                  Page <span className="font-bold text-gray-900">{pagination.page}</span> of{' '}
-                  <span className="font-bold text-gray-900">{pagination.totalPages}</span>
+                  Page <span className="font-bold text-ink">{pagination.page}</span> of{' '}
+                  <span className="font-bold text-ink">{pagination.totalPages}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => setPage((p) => Math.max(1, p - 1))}
                     disabled={page <= 1}
-                    className="p-2 border border-gray-200 rounded-lg hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition-colors"
+                    className="p-2 border border-champagne/50 rounded-lg hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition-colors"
                     aria-label="Previous page"
                   >
                     <ChevronLeft size={16} />
@@ -366,7 +366,7 @@ export const ReturnsPage: React.FC = () => {
                   <button
                     onClick={() => setPage((p) => Math.min(pagination.totalPages, p + 1))}
                     disabled={page >= pagination.totalPages}
-                    className="p-2 border border-gray-200 rounded-lg hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition-colors"
+                    className="p-2 border border-champagne/50 rounded-lg hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition-colors"
                     aria-label="Next page"
                   >
                     <ChevronRight size={16} />

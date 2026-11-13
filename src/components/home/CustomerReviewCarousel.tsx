@@ -177,7 +177,7 @@ export const CustomerReviewCarousel: React.FC = () => {
         className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-5 box-border overflow-hidden"
         aria-label="Loading customer reviews"
       >
-        <div className="bg-[#F9FAFB] border border-[#E5E7EB] rounded-2xl p-4 sm:p-5 flex flex-col justify-between overflow-hidden shadow-2xs min-h-[280px]">
+        <div className="bg-[#F9FAFB] border border-champagne/50 rounded-2xl p-4 sm:p-5 flex flex-col justify-between overflow-hidden shadow-2xs min-h-[280px]">
           {/* Header Skeleton */}
           <div className="flex items-center justify-between shrink-0 mb-4">
             <div className="flex items-center gap-2">
@@ -280,7 +280,7 @@ export const CustomerReviewCarousel: React.FC = () => {
       tabIndex={0}
     >
       <div 
-        className="bg-gradient-to-b from-[#F9FAFB] via-[#F9FAFB] to-white border border-[#E5E7EB] rounded-2xl px-3 py-3.5 sm:px-6 sm:py-5 flex flex-col justify-between relative overflow-hidden shadow-2xs min-h-[290px]"
+        className="bg-gradient-to-b from-bg-alt via-bg-alt to-bg border border-champagne/40 rounded-2xl px-3 py-3.5 sm:px-6 sm:py-5 flex flex-col justify-between relative overflow-hidden shadow-2xs min-h-[290px]"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
         onTouchStart={onTouchStart}
@@ -296,10 +296,10 @@ export const CustomerReviewCarousel: React.FC = () => {
         {/* 1. Header Row (Compact & Clean) */}
         <div className="relative z-10 flex items-center justify-between gap-2 shrink-0 mb-3 sm:mb-4">
           <div className="flex items-center gap-2 sm:gap-3">
-            <h2 className="text-base sm:text-lg lg:text-xl font-bold text-[#111827] tracking-tight leading-none">
+            <h2 className="text-base sm:text-lg lg:text-xl font-bold text-ink tracking-tight leading-none">
               What Our Customers Say
             </h2>
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-[#E5E7EB] text-xs font-semibold text-primary shadow-2xs">
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-champagne/50 text-xs font-semibold text-primary shadow-2xs">
               <Sparkles size={12} className="text-primary" />
               Verified Stories
             </span>
@@ -311,7 +311,7 @@ export const CustomerReviewCarousel: React.FC = () => {
                 <Pause size={10} /> Paused
               </span>
             )}
-            <span className="text-xs text-[#6B7280] font-medium">
+            <span className="text-xs text-taupe font-medium">
               {activeIndex + 1} / {count}
             </span>
           </div>
@@ -344,12 +344,12 @@ export const CustomerReviewCarousel: React.FC = () => {
                         <div className="flex items-center justify-between gap-1.5 shrink-0">
                           <div className="flex items-center gap-1.5">
                             {renderStars(item.rating, 13)}
-                            <span className="text-xs sm:text-sm font-bold text-[#111827]">
+                            <span className="text-xs sm:text-sm font-bold text-ink">
                               {item.rating.toFixed(1)}
                             </span>
                           </div>
 
-                          <div className="flex items-center gap-1.5 text-[11px] text-[#6B7280]">
+                          <div className="flex items-center gap-1.5 text-[11px] text-taupe">
                             {item.verifiedPurchase && (
                               <span className="inline-flex items-center gap-0.5 px-1.5 py-0.2 rounded-full bg-emerald-50 text-[#16A34A] text-[10px] font-semibold border border-emerald-200 shrink-0">
                                 <CheckCircle2 size={10} />
@@ -363,7 +363,7 @@ export const CustomerReviewCarousel: React.FC = () => {
                         {/* Body Content with Optional Review Photo */}
                         <div className="flex items-start gap-2.5 my-auto overflow-hidden py-1">
                           {item.images && item.images.length > 0 && (
-                            <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-lg overflow-hidden border border-[#E5E7EB] bg-slate-50 shrink-0">
+                            <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-lg overflow-hidden border border-champagne/50 bg-slate-50 shrink-0">
                               <SmartImage
                                 src={item.images[0]}
                                 alt={`Review photo by ${item.author}`}
@@ -377,7 +377,7 @@ export const CustomerReviewCarousel: React.FC = () => {
 
                           <div className="min-w-0 flex-1">
                             {item.title && (
-                              <h3 className="font-bold text-xs sm:text-sm text-[#111827] truncate mb-0.5">
+                              <h3 className="font-bold text-xs sm:text-sm text-ink truncate mb-0.5">
                                 {item.title}
                               </h3>
                             )}
@@ -404,13 +404,13 @@ export const CustomerReviewCarousel: React.FC = () => {
                                 <span>{item.author.charAt(0).toUpperCase()}</span>
                               )}
                             </div>
-                            <span className="font-bold text-xs sm:text-sm text-[#111827] truncate">
+                            <span className="font-bold text-xs sm:text-sm text-ink truncate">
                               {item.author}
                             </span>
                           </div>
 
                           {item.productName && (
-                            <div className="hidden xl:inline-flex items-center gap-1 text-[10px] text-[#6B7280] truncate max-w-[120px] bg-slate-50 px-1.5 py-0.5 rounded border border-slate-200">
+                            <div className="hidden xl:inline-flex items-center gap-1 text-[10px] text-taupe truncate max-w-[120px] bg-slate-50 px-1.5 py-0.5 rounded border border-slate-200">
                               <ShoppingBag size={10} className="text-primary shrink-0" />
                               <span className="truncate">{item.productName}</span>
                             </div>
@@ -435,7 +435,7 @@ export const CustomerReviewCarousel: React.FC = () => {
                     }
                   }}
                   aria-label={`View review by ${item.author}`}
-                  className={`flex-1 min-w-0 ${slot.visibility} flex flex-col justify-between bg-white/95 border border-[#E5E7EB] rounded-xl sm:rounded-2xl p-3 sm:p-3.5 min-h-[165px] shadow-2xs hover:shadow-xs opacity-90 hover:opacity-100 hover:border-slate-300 transition-all duration-200 cursor-pointer select-none z-10 scale-[0.97] hover:scale-[0.99]`}
+                  className={`flex-1 min-w-0 ${slot.visibility} flex flex-col justify-between bg-white/95 border border-champagne/50 rounded-xl sm:rounded-2xl p-3 sm:p-3.5 min-h-[165px] shadow-2xs hover:shadow-xs opacity-90 hover:opacity-100 hover:border-slate-300 transition-all duration-200 cursor-pointer select-none z-10 scale-[0.97] hover:scale-[0.99]`}
                 >
                   {/* Top Bar: Stars + Date */}
                   <div className="flex items-center justify-between gap-1.5 shrink-0">
@@ -451,7 +451,7 @@ export const CustomerReviewCarousel: React.FC = () => {
                   {/* Comment */}
                   <div className="my-auto py-1">
                     {item.title && (
-                      <h4 className="font-semibold text-xs text-[#111827] truncate mb-0.5">
+                      <h4 className="font-semibold text-xs text-ink truncate mb-0.5">
                         {item.title}
                       </h4>
                     )}
@@ -466,7 +466,7 @@ export const CustomerReviewCarousel: React.FC = () => {
                       <div className="w-5 h-5 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-700 text-[10px] font-bold shrink-0">
                         {item.author.charAt(0).toUpperCase()}
                       </div>
-                      <p className="text-xs font-semibold text-[#111827] truncate">
+                      <p className="text-xs font-semibold text-ink truncate">
                         {item.author}
                       </p>
                     </div>
@@ -489,7 +489,7 @@ export const CustomerReviewCarousel: React.FC = () => {
             <button
               type="button"
               onClick={handlePrev}
-              className="w-7 h-7 rounded-full bg-white border border-[#E5E7EB] text-[#4B5563] hover:text-[#111827] hover:border-slate-300 hover:bg-slate-50 transition-all flex items-center justify-center shadow-2xs cursor-pointer focus:outline-none focus:ring-1 focus:ring-primary/30"
+              className="w-7 h-7 rounded-full bg-white border border-champagne/50 text-[#4B5563] hover:text-ink hover:border-slate-300 hover:bg-slate-50 transition-all flex items-center justify-center shadow-2xs cursor-pointer focus:outline-none focus:ring-1 focus:ring-primary/30"
               aria-label="Previous customer review"
             >
               <ChevronLeft size={15} />
@@ -518,7 +518,7 @@ export const CustomerReviewCarousel: React.FC = () => {
             <button
               type="button"
               onClick={handleNext}
-              className="w-7 h-7 rounded-full bg-white border border-[#E5E7EB] text-[#4B5563] hover:text-[#111827] hover:border-slate-300 hover:bg-slate-50 transition-all flex items-center justify-center shadow-2xs cursor-pointer focus:outline-none focus:ring-1 focus:ring-primary/30"
+              className="w-7 h-7 rounded-full bg-white border border-champagne/50 text-[#4B5563] hover:text-ink hover:border-slate-300 hover:bg-slate-50 transition-all flex items-center justify-center shadow-2xs cursor-pointer focus:outline-none focus:ring-1 focus:ring-primary/30"
               aria-label="Next customer review"
             >
               <ChevronRight size={15} />

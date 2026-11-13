@@ -71,38 +71,38 @@ export const GatewaySimulation: React.FC = () => {
 
   return (
     <div className="fixed inset-0 bg-[#F9FAFB] z-[9999] flex flex-col items-center justify-center p-6 text-center">
-      <div className="max-w-sm w-full bg-white border border-[#E5E7EB] rounded-xl p-8 shadow-xs space-y-6">
+      <div className="max-w-sm w-full bg-white border border-champagne/50 rounded-xl p-8 shadow-xs space-y-6">
         
         {status !== 'failed' ? (
           <>
             <div className="flex flex-col items-center">
-              <div className="w-14 h-14 bg-primary-light rounded-full flex items-center justify-center mb-3 border border-primary/20">
+              <div className="w-14 h-14 bg-sage/30 rounded-full flex items-center justify-center mb-3 border border-primary/20">
                 <Landmark className="text-primary" size={26} />
               </div>
-              <h1 className="text-base font-bold text-[#111827] mb-1">
+              <h1 className="text-base font-bold text-ink mb-1">
                 {methodNames[method as string] || 'Secure Payment Gateway'}
               </h1>
-              <p className="text-xs text-[#6B7280]">
+              <p className="text-xs text-taupe">
                 {status === 'initiating' ? `Initiating session for Order #${orderId}...` : `Verifying payment with provider...`}
               </p>
             </div>
 
             <div className="space-y-3 py-2 flex flex-col items-center justify-center">
               <Loader2 size={28} className="animate-spin text-primary" />
-              <p className="text-xs font-semibold text-[#111827]">
+              <p className="text-xs font-semibold text-ink">
                 {status === 'initiating' ? 'Connecting to payment provider' : 'Authorizing transaction'}
               </p>
             </div>
 
-            <div className="pt-5 space-y-2.5 border-t border-[#E5E7EB]">
+            <div className="pt-5 space-y-2.5 border-t border-champagne/50">
               <div className="flex items-center justify-center gap-1.5 text-[#16A34A]">
                 <ShieldCheck size={16} />
                 <span className="text-xs font-semibold">256-Bit Bank-Grade Encryption</span>
               </div>
-              <p className="text-[11px] text-[#6B7280] leading-relaxed max-w-[260px] mx-auto">
+              <p className="text-[11px] text-taupe leading-relaxed max-w-[260px] mx-auto">
                 Please do not close this window or navigate back while your transaction is being processed.
               </p>
-              <div className="flex items-center justify-center gap-2 pt-1 text-[#6B7280] text-[10px] font-medium">
+              <div className="flex items-center justify-center gap-2 pt-1 text-taupe text-[10px] font-medium">
                 <Lock size={12} />
                 <span>PCI-DSS Compliant</span>
               </div>
@@ -114,8 +114,8 @@ export const GatewaySimulation: React.FC = () => {
               <div className="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center mb-3 border border-red-200 text-[#DC2626]">
                 <AlertCircle size={26} />
               </div>
-              <h1 className="text-base font-bold text-[#111827] mb-1">Payment Initialization Failed</h1>
-              <p className="text-xs text-[#6B7280] mt-1">
+              <h1 className="text-base font-bold text-ink mb-1">Payment Initialization Failed</h1>
+              <p className="text-xs text-taupe mt-1">
                 {errorMessage || 'Unable to establish connection with payment provider.'}
               </p>
             </div>
@@ -137,7 +137,7 @@ export const GatewaySimulation: React.FC = () => {
               <button
                 type="button"
                 onClick={() => navigateTo('checkout')}
-                className="w-full py-2 bg-white hover:bg-gray-50 text-[#111827] border border-[#E5E7EB] font-semibold text-xs rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-2 bg-white hover:bg-gray-50 text-ink border border-champagne/50 font-semibold text-xs rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer"
               >
                 <ArrowLeft size={14} />
                 <span>Return to Checkout</span>

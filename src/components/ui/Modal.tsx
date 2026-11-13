@@ -50,7 +50,7 @@ export const Modal: React.FC<ModalProps> = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-[#111827]/50 backdrop-blur-xs transition-opacity"
+            className="fixed inset-0 bg-ink/50 backdrop-blur-xs transition-opacity"
           />
 
           {/* Modal Content Window */}
@@ -59,13 +59,13 @@ export const Modal: React.FC<ModalProps> = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className={`relative w-full ${widthClasses[maxWidth]} bg-white rounded-xl shadow-lg border border-[#E5E7EB] overflow-hidden z-10 my-auto`}
+            className={`relative w-full ${widthClasses[maxWidth]} bg-white rounded-xl shadow-lg border border-champagne/50 overflow-hidden z-10 my-auto`}
           >
             {/* Header */}
             {(title || showCloseButton) && (
-              <div className="flex items-center justify-between px-6 py-4 border-b border-[#E5E7EB]">
+              <div className="flex items-center justify-between px-6 py-4 border-b border-champagne/50">
                 {title ? (
-                  <div className="font-bold text-base sm:text-lg text-[#111827]">
+                  <div className="font-bold text-base sm:text-lg text-ink">
                     {title}
                   </div>
                 ) : (
@@ -75,7 +75,7 @@ export const Modal: React.FC<ModalProps> = ({
                 {showCloseButton && (
                   <button
                     onClick={onClose}
-                    className="p-1.5 text-[#6B7280] hover:text-[#111827] hover:bg-[#F9FAFB] rounded-lg transition-colors cursor-pointer"
+                    className="p-1.5 text-taupe hover:text-ink hover:bg-[#F9FAFB] rounded-lg transition-colors cursor-pointer"
                     aria-label="Close modal"
                   >
                     <X size={18} />

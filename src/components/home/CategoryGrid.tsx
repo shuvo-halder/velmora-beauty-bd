@@ -17,7 +17,7 @@ export const CategoryGrid: React.FC = () => {
             <div className="text-xs font-extrabold text-primary uppercase tracking-widest mb-1">
               Top Categories
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-black text-ink tracking-tight">
               Explore Featured Departments
             </h2>
           </div>
@@ -58,7 +58,7 @@ export const CategoryGrid: React.FC = () => {
               </div>
 
               <div>
-                <h3 className="font-bold text-xs sm:text-sm text-slate-900 group-hover:text-primary transition-colors">
+                <h3 className="font-bold text-xs sm:text-sm text-ink group-hover:text-primary transition-colors">
                   {cat.name}
                 </h3>
                 <p className="text-[11px] font-medium text-slate-400 mt-0.5">

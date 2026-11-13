@@ -108,7 +108,7 @@ export const Navbar: React.FC = () => {
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center justify-between">
-                          <h4 className="text-xs font-bold text-slate-900 group-hover:text-primary transition-colors truncate">
+                          <h4 className="text-xs font-bold text-ink group-hover:text-primary transition-colors truncate">
                             {cat.name}
                           </h4>
                         </div>
@@ -217,7 +217,7 @@ export const Navbar: React.FC = () => {
                       onClick={() => setIsBrandsMenuOpen(false)}
                       className="p-2.5 rounded-xl bg-slate-50 hover:bg-primary/5 text-left transition-colors border border-slate-100 hover:border-primary/20 cursor-pointer group block"
                     >
-                      <div className="text-xs font-bold text-slate-900 group-hover:text-primary truncate">
+                      <div className="text-xs font-bold text-ink group-hover:text-primary truncate">
                         {brand.name}
                       </div>
                       <div className="text-[10px] text-slate-500 font-semibold mt-0.5">

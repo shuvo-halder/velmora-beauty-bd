@@ -12,21 +12,21 @@ interface OrderReviewProps {
 export const OrderReview: React.FC<OrderReviewProps> = ({ cart, formData }) => {
   return (
     <div className="space-y-5">
-      <h3 className="text-base font-bold text-[#111827]">Review Your Order</h3>
+      <h3 className="text-base font-bold text-ink">Review Your Order</h3>
       
       {/* Items */}
-      <div className="bg-[#F9FAFB] rounded-lg p-4 border border-[#E5E7EB]">
-        <div className="flex items-center gap-2 mb-3 pb-2 border-b border-[#E5E7EB]">
+      <div className="bg-[#F9FAFB] rounded-lg p-4 border border-champagne/50">
+        <div className="flex items-center gap-2 mb-3 pb-2 border-b border-champagne/50">
           <ShoppingBag size={15} className="text-primary" />
-          <span className="text-xs font-bold text-[#111827]">Order Items ({cart.items.length})</span>
+          <span className="text-xs font-bold text-ink">Order Items ({cart.items.length})</span>
         </div>
         <div className="space-y-2.5">
           {cart.items.map((item) => (
             <div key={item.id} className="flex justify-between items-center text-xs">
-              <span className="text-[#6B7280] font-medium truncate max-w-[240px]">
-                {item.product.name} <span className="text-[#111827] font-semibold">× {item.quantity}</span>
+              <span className="text-taupe font-medium truncate max-w-[240px]">
+                {item.product.name} <span className="text-ink font-semibold">× {item.quantity}</span>
               </span>
-              <span className="font-semibold text-[#111827]">{formatPrice(item.totalPrice)}</span>
+              <span className="font-semibold text-ink">{formatPrice(item.totalPrice)}</span>
             </div>
           ))}
         </div>
@@ -34,13 +34,13 @@ export const OrderReview: React.FC<OrderReviewProps> = ({ cart, formData }) => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
         {/* Shipping Info */}
-        <div className="bg-white border border-[#E5E7EB] p-4 rounded-lg">
+        <div className="bg-white border border-champagne/50 p-4 rounded-lg">
           <div className="flex items-center gap-2 mb-2">
             <MapPin size={14} className="text-primary" />
-            <span className="text-xs font-bold text-[#111827]">Delivery Address</span>
+            <span className="text-xs font-bold text-ink">Delivery Address</span>
           </div>
-          <div className="text-xs text-[#6B7280] leading-relaxed">
-            <div className="text-[#111827] font-semibold mb-0.5">{formData.shippingAddress.fullName}</div>
+          <div className="text-xs text-taupe leading-relaxed">
+            <div className="text-ink font-semibold mb-0.5">{formData.shippingAddress.fullName}</div>
             <div>{formData.shippingAddress.addressLine1}</div>
             <div>{formData.shippingAddress.city}, {formData.shippingAddress.state} {formData.shippingAddress.postalCode}</div>
             <div>{formData.shippingAddress.country}</div>
@@ -48,26 +48,26 @@ export const OrderReview: React.FC<OrderReviewProps> = ({ cart, formData }) => {
         </div>
 
         {/* Payment & Method */}
-        <div className="bg-white border border-[#E5E7EB] p-4 rounded-lg">
+        <div className="bg-white border border-champagne/50 p-4 rounded-lg">
           <div className="flex items-center gap-2 mb-2">
             <Wallet size={14} className="text-primary" />
-            <span className="text-xs font-bold text-[#111827]">Payment & Method</span>
+            <span className="text-xs font-bold text-ink">Payment & Method</span>
           </div>
-          <div className="text-xs text-[#6B7280] space-y-1">
+          <div className="text-xs text-taupe space-y-1">
             <div className="flex justify-between">
               <span>Payment:</span>
-              <span className="text-[#111827] font-semibold uppercase">{formData.paymentMethod}</span>
+              <span className="text-ink font-semibold uppercase">{formData.paymentMethod}</span>
             </div>
             <div className="flex justify-between">
               <span>Shipping:</span>
-              <span className="text-[#111827] font-semibold uppercase">{formData.shippingMethod}</span>
+              <span className="text-ink font-semibold uppercase">{formData.shippingMethod}</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* Totals */}
-      <div className="bg-[#111827] text-white p-5 rounded-lg space-y-2.5">
+      <div className="bg-ink text-white p-5 rounded-lg space-y-2.5">
         <div className="flex justify-between text-xs text-gray-300">
           <span>Subtotal</span>
           <span className="font-semibold text-white">{formatPrice(cart.subtotal)}</span>

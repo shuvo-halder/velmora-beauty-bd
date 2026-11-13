@@ -74,7 +74,7 @@ export const RichTextRenderer: React.FC<RichTextRendererProps> = ({ content, cla
             return (
               <h1
                 style={style}
-                className={`${inline ? 'inline m-0' : 'text-xl sm:text-2xl font-black text-[#111827] mt-8 mb-4 leading-tight'} ${attribs.class || ''}`}
+                className={`${inline ? 'inline m-0' : 'text-xl sm:text-2xl font-black text-ink mt-8 mb-4 leading-tight'} ${attribs.class || ''}`}
               >
                 {reactChildren}
               </h1>
@@ -83,7 +83,7 @@ export const RichTextRenderer: React.FC<RichTextRendererProps> = ({ content, cla
             return (
               <h2
                 style={style}
-                className={`${inline ? 'inline m-0' : 'text-lg sm:text-xl font-bold text-[#111827] mt-7 mb-3 leading-snug'} ${attribs.class || ''}`}
+                className={`${inline ? 'inline m-0' : 'text-lg sm:text-xl font-bold text-ink mt-7 mb-3 leading-snug'} ${attribs.class || ''}`}
               >
                 {reactChildren}
               </h2>
@@ -92,7 +92,7 @@ export const RichTextRenderer: React.FC<RichTextRendererProps> = ({ content, cla
             return (
               <h3
                 style={style}
-                className={`${inline ? 'inline m-0' : 'text-base sm:text-lg font-bold text-[#111827] mt-6 mb-2'} ${attribs.class || ''}`}
+                className={`${inline ? 'inline m-0' : 'text-base sm:text-lg font-bold text-ink mt-6 mb-2'} ${attribs.class || ''}`}
               >
                 {reactChildren}
               </h3>
@@ -103,7 +103,7 @@ export const RichTextRenderer: React.FC<RichTextRendererProps> = ({ content, cla
             return (
               <h4
                 style={style}
-                className={`${inline ? 'inline m-0' : 'text-sm sm:text-base font-semibold text-[#111827] mt-5 mb-2'} ${attribs.class || ''}`}
+                className={`${inline ? 'inline m-0' : 'text-sm sm:text-base font-semibold text-ink mt-5 mb-2'} ${attribs.class || ''}`}
               >
                 {reactChildren}
               </h4>
@@ -112,7 +112,7 @@ export const RichTextRenderer: React.FC<RichTextRendererProps> = ({ content, cla
             return (
               <p
                 style={style}
-                className={`${inline ? 'inline m-0 p-0 text-inherit leading-inherit' : 'text-sm sm:text-base text-[#111827] leading-relaxed mb-4'} ${attribs.class || ''}`}
+                className={`${inline ? 'inline m-0 p-0 text-inherit leading-inherit' : 'text-sm sm:text-base text-ink leading-relaxed mb-4'} ${attribs.class || ''}`}
               >
                 {reactChildren}
               </p>
@@ -139,7 +139,7 @@ export const RichTextRenderer: React.FC<RichTextRendererProps> = ({ content, cla
             return (
               <ul
                 style={style}
-                className={`list-disc pl-6 mb-4 space-y-1 text-sm sm:text-base text-[#111827] ${attribs.class || ''}`}
+                className={`list-disc pl-6 mb-4 space-y-1 text-sm sm:text-base text-ink ${attribs.class || ''}`}
               >
                 {reactChildren}
               </ul>
@@ -148,7 +148,7 @@ export const RichTextRenderer: React.FC<RichTextRendererProps> = ({ content, cla
             return (
               <ol
                 style={style}
-                className={`list-decimal pl-6 mb-4 space-y-1 text-sm sm:text-base text-[#111827] ${attribs.class || ''}`}
+                className={`list-decimal pl-6 mb-4 space-y-1 text-sm sm:text-base text-ink ${attribs.class || ''}`}
               >
                 {reactChildren}
               </ol>
@@ -167,7 +167,7 @@ export const RichTextRenderer: React.FC<RichTextRendererProps> = ({ content, cla
             return (
               <strong
                 style={style}
-                className={`font-bold text-[#111827] ${attribs.class || ''}`}
+                className={`font-bold text-ink ${attribs.class || ''}`}
               >
                 {reactChildren}
               </strong>
@@ -214,7 +214,7 @@ export const RichTextRenderer: React.FC<RichTextRendererProps> = ({ content, cla
             return (
               <hr
                 style={style}
-                className={`my-8 border-t border-gray-200 ${attribs.class || ''}`}
+                className={`my-8 border-t border-champagne/50 ${attribs.class || ''}`}
               />
             );
           case 'blockquote':
@@ -263,7 +263,7 @@ export const RichTextRenderer: React.FC<RichTextRendererProps> = ({ content, cla
           }
           case 'img':
             return (
-              <span className="block my-8 max-w-full overflow-hidden rounded-xl shadow-md border border-gray-100">
+              <span className="block my-8 max-w-full overflow-hidden rounded-xl shadow-md border border-champagne/40">
                 <img
                   src={attribs.src || ''}
                   alt={attribs.alt || 'Content visual'}
@@ -275,10 +275,10 @@ export const RichTextRenderer: React.FC<RichTextRendererProps> = ({ content, cla
             );
           case 'table':
             return (
-              <div className="overflow-x-auto my-8 border border-gray-200 rounded-xl shadow-xs">
+              <div className="overflow-x-auto my-8 border border-champagne/50 rounded-xl shadow-xs">
                 <table
                   style={style}
-                  className={`min-w-full divide-y divide-gray-200 text-left text-sm text-[#111827] ${attribs.class || ''}`}
+                  className={`min-w-full divide-y divide-champagne/50 text-left text-sm text-ink ${attribs.class || ''}`}
                 >
                   {reactChildren}
                 </table>
@@ -288,7 +288,7 @@ export const RichTextRenderer: React.FC<RichTextRendererProps> = ({ content, cla
             return (
               <thead
                 style={style}
-                className={`bg-gray-50 text-[#111827] uppercase font-semibold text-xs tracking-wider ${attribs.class || ''}`}
+                className={`bg-gray-50 text-ink uppercase font-semibold text-xs tracking-wider ${attribs.class || ''}`}
               >
                 {reactChildren}
               </thead>
@@ -297,7 +297,7 @@ export const RichTextRenderer: React.FC<RichTextRendererProps> = ({ content, cla
             return (
               <tbody
                 style={style}
-                className={`divide-y divide-gray-200 bg-white ${attribs.class || ''}`}
+                className={`divide-y divide-champagne/50 bg-white ${attribs.class || ''}`}
               >
                 {reactChildren}
               </tbody>
@@ -315,7 +315,7 @@ export const RichTextRenderer: React.FC<RichTextRendererProps> = ({ content, cla
             return (
               <th
                 style={style}
-                className={`px-4 py-3 font-semibold border-b border-gray-200 ${attribs.class || ''}`}
+                className={`px-4 py-3 font-semibold border-b border-champagne/50 ${attribs.class || ''}`}
               >
                 {reactChildren}
               </th>
@@ -339,7 +339,7 @@ export const RichTextRenderer: React.FC<RichTextRendererProps> = ({ content, cla
 
   return (
     <div 
-      className={`rich-text-content text-[#111827] break-words overflow-wrap-anywhere ${className}`}
+      className={`rich-text-content text-ink break-words overflow-wrap-anywhere ${className}`}
       style={{ colorScheme: 'light' }}
     >
       {parse(sanitizedHtml, parserOptions)}

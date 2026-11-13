@@ -31,7 +31,7 @@ export const BrandsIndexView: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-slate-50 min-h-screen py-8">
+    <div className="bg-bg min-h-screen py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Breadcrumb Navigation */}
@@ -41,7 +41,7 @@ export const BrandsIndexView: React.FC = () => {
             <span>Home</span>
           </Link>
           <ChevronRight size={12} className="text-slate-400" />
-          <span className="text-slate-900 font-bold">Brands</span>
+          <span className="text-ink font-bold">Brands</span>
         </nav>
 
         {/* Header Banner */}
@@ -51,7 +51,7 @@ export const BrandsIndexView: React.FC = () => {
               <Award size={14} className="text-primary" />
               <span>Featured Brand Partners</span>
             </div>
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-ink tracking-tight leading-tight">
               Official Brands & Partners
             </h1>
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-normal">
@@ -79,7 +79,7 @@ export const BrandsIndexView: React.FC = () => {
             <div className="w-12 h-12 bg-rose-100 text-rose-600 rounded-2xl flex items-center justify-center mx-auto">
               <PackageX size={24} />
             </div>
-            <h3 className="font-extrabold text-slate-900 text-base">Unable to Load Brands</h3>
+            <h3 className="font-extrabold text-ink text-base">Unable to Load Brands</h3>
             <p className="text-xs text-slate-600 leading-relaxed">{error}</p>
             <button 
               onClick={() => window.location.reload()} 
@@ -96,7 +96,7 @@ export const BrandsIndexView: React.FC = () => {
             <div className="w-16 h-16 bg-slate-100 text-slate-400 rounded-2xl flex items-center justify-center mx-auto">
               <PackageX size={32} />
             </div>
-            <h3 className="text-lg font-black text-slate-900">No Brands Found</h3>
+            <h3 className="text-lg font-black text-ink">No Brands Found</h3>
             <p className="text-xs text-slate-500">Brand directory is currently being updated.</p>
             <Link 
               href="/products" 
@@ -130,7 +130,7 @@ export const BrandsIndexView: React.FC = () => {
                   </div>
 
                   <div>
-                    <h3 className="text-base font-black text-slate-900 group-hover:text-primary transition-colors flex items-center justify-between">
+                    <h3 className="text-base font-black text-ink group-hover:text-primary transition-colors flex items-center justify-between">
                       <span>{brand.name}</span>
                       <ArrowRight size={16} className="text-slate-400 group-hover:text-primary group-hover:translate-x-1 transition-all" />
                     </h3>

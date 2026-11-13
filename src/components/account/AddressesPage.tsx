@@ -287,10 +287,10 @@ export const AddressesPage: React.FC = () => {
       <div className="space-y-6">
         
         {/* Page Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#E5E7EB]">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-champagne/50">
           <div>
-            <h1 className="text-xl sm:text-2xl font-bold text-[#111827] tracking-tight">Saved Addresses</h1>
-            <p className="text-[#6B7280] text-xs sm:text-sm font-medium mt-1">Manage your delivery and billing locations for faster checkout.</p>
+            <h1 className="text-xl sm:text-2xl font-bold text-ink tracking-tight">Saved Addresses</h1>
+            <p className="text-taupe text-xs sm:text-sm font-medium mt-1">Manage your delivery and billing locations for faster checkout.</p>
           </div>
           <button 
             onClick={handleOpenCreateModal}
@@ -305,7 +305,7 @@ export const AddressesPage: React.FC = () => {
         {isLoading && (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             {[1, 2].map((i) => (
-              <div key={i} className="bg-white rounded-xl p-5 border border-[#E5E7EB] space-y-4 animate-pulse">
+              <div key={i} className="bg-white rounded-xl p-5 border border-champagne/50 space-y-4 animate-pulse">
                 <div className="flex items-center justify-between">
                   <div className="h-6 w-24 bg-gray-200 rounded-md"></div>
                   <div className="h-6 w-16 bg-gray-200 rounded-md"></div>
@@ -326,12 +326,12 @@ export const AddressesPage: React.FC = () => {
           <div className="bg-red-50 border border-red-200 rounded-xl p-6 text-center space-y-3">
             <AlertCircle size={32} className="text-primary mx-auto" />
             <div className="space-y-1">
-              <h3 className="text-sm font-semibold text-[#111827]">Unable to load addresses</h3>
-              <p className="text-xs text-[#6B7280]">{error}</p>
+              <h3 className="text-sm font-semibold text-ink">Unable to load addresses</h3>
+              <p className="text-xs text-taupe">{error}</p>
             </div>
             <button
               onClick={fetchAddresses}
-              className="h-9 px-4 bg-white border border-[#E5E7EB] hover:bg-gray-50 text-xs font-semibold text-[#111827] rounded-lg transition-colors inline-flex items-center gap-1.5 cursor-pointer"
+              className="h-9 px-4 bg-white border border-champagne/50 hover:bg-gray-50 text-xs font-semibold text-ink rounded-lg transition-colors inline-flex items-center gap-1.5 cursor-pointer"
             >
               <RefreshCw size={14} />
               <span>Retry</span>
@@ -341,13 +341,13 @@ export const AddressesPage: React.FC = () => {
 
         {/* Empty State */}
         {!isLoading && !error && addresses.length === 0 && (
-          <div className="bg-white border border-[#E5E7EB] rounded-xl p-10 text-center space-y-4">
-            <div className="w-12 h-12 bg-[#F9FAFB] border border-[#E5E7EB] rounded-full flex items-center justify-center mx-auto text-[#6B7280]">
+          <div className="bg-white border border-champagne/50 rounded-xl p-10 text-center space-y-4">
+            <div className="w-12 h-12 bg-[#F9FAFB] border border-champagne/50 rounded-full flex items-center justify-center mx-auto text-taupe">
               <MapPin size={24} className="text-primary" />
             </div>
             <div className="max-w-sm mx-auto space-y-1">
-              <h3 className="text-base font-bold text-[#111827]">No saved addresses yet</h3>
-              <p className="text-xs text-[#6B7280] leading-relaxed">
+              <h3 className="text-base font-bold text-ink">No saved addresses yet</h3>
+              <p className="text-xs text-taupe leading-relaxed">
                 Add your delivery address now to enjoy a smoother and faster checkout experience.
               </p>
             </div>
@@ -375,14 +375,14 @@ export const AddressesPage: React.FC = () => {
                     bg-white rounded-xl p-5 border shadow-2xs transition-all relative flex flex-col justify-between
                     ${isDefault 
                       ? 'border-primary ring-1 ring-primary/20 bg-rose-50/10' 
-                      : 'border-[#E5E7EB] hover:border-gray-300'}
+                      : 'border-champagne/50 hover:border-champagne'}
                   `}
                 >
                   {/* Top Header Row */}
                   <div>
                     <div className="flex items-start justify-between gap-3 mb-3">
                       <div className="flex items-center gap-2.5">
-                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${isDefault ? 'bg-primary text-white' : 'bg-[#F9FAFB] text-[#6B7280] border border-[#E5E7EB]'}`}>
+                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${isDefault ? 'bg-primary text-white' : 'bg-[#F9FAFB] text-taupe border border-champagne/50'}`}>
                           {addr.label?.toLowerCase() === 'work' || addr.label?.toLowerCase() === 'office' ? (
                             <Briefcase size={15} />
                           ) : (
@@ -391,7 +391,7 @@ export const AddressesPage: React.FC = () => {
                         </div>
                         <div>
                           <div className="flex items-center gap-2">
-                            <span className="text-xs font-bold text-[#111827]">
+                            <span className="text-xs font-bold text-ink">
                               {addr.label || 'Saved Address'}
                             </span>
                             {isDefault && (
@@ -409,14 +409,14 @@ export const AddressesPage: React.FC = () => {
                         <button 
                           onClick={() => handleOpenEditModal(addr)}
                           title="Edit Address"
-                          className="p-1.5 text-[#6B7280] hover:text-[#111827] hover:bg-gray-100 rounded-md transition-colors cursor-pointer"
+                          className="p-1.5 text-taupe hover:text-ink hover:bg-gray-100 rounded-md transition-colors cursor-pointer"
                         >
                           <Edit2 size={14}/>
                         </button>
                         <button 
                           onClick={() => setDeletingAddress(addr)}
                           title="Delete Address"
-                          className="p-1.5 text-[#6B7280] hover:text-primary hover:bg-rose-50 rounded-md transition-colors cursor-pointer"
+                          className="p-1.5 text-taupe hover:text-primary hover:bg-rose-50 rounded-md transition-colors cursor-pointer"
                         >
                           <Trash2 size={14}/>
                         </button>
@@ -424,8 +424,8 @@ export const AddressesPage: React.FC = () => {
                     </div>
 
                     {/* Address Content */}
-                    <div className="space-y-1.5 text-xs text-[#6B7280]">
-                      <div className="text-sm font-semibold text-[#111827] truncate">
+                    <div className="space-y-1.5 text-xs text-taupe">
+                      <div className="text-sm font-semibold text-ink truncate">
                         {addr.fullName}
                       </div>
 
@@ -433,10 +433,10 @@ export const AddressesPage: React.FC = () => {
                         <p>{addr.address1}</p>
                         {addr.address2 && <p>{addr.address2}</p>}
                         <p>{addr.city}, {addr.state} {addr.postalCode}</p>
-                        <p className="font-medium text-[#111827]">{addr.country}</p>
+                        <p className="font-medium text-ink">{addr.country}</p>
                       </div>
 
-                      <div className="pt-2 flex flex-col gap-1 text-[11px] font-medium text-[#6B7280]">
+                      <div className="pt-2 flex flex-col gap-1 text-[11px] font-medium text-taupe">
                         <div className="flex items-center gap-1.5">
                           <Phone size={12} className="text-primary shrink-0" />
                           <span>{addr.phone}</span>
@@ -452,7 +452,7 @@ export const AddressesPage: React.FC = () => {
                   </div>
 
                   {/* Set Default Footer Action */}
-                  <div className="mt-4 pt-3 border-t border-[#E5E7EB] flex items-center justify-between">
+                  <div className="mt-4 pt-3 border-t border-champagne/50 flex items-center justify-between">
                     {isDefault ? (
                       <span className="text-[11px] font-semibold text-primary inline-flex items-center gap-1">
                         <CheckCircle2 size={13} />
@@ -462,7 +462,7 @@ export const AddressesPage: React.FC = () => {
                       <button
                         onClick={() => handleSetDefault(addr)}
                         disabled={isSettingThisDefault}
-                        className="text-xs font-semibold text-[#6B7280] hover:text-primary transition-colors inline-flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+                        className="text-xs font-semibold text-taupe hover:text-primary transition-colors inline-flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
                       >
                         {isSettingThisDefault ? (
                           <>
@@ -490,22 +490,22 @@ export const AddressesPage: React.FC = () => {
       {/* ADD / EDIT MODAL */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs animate-in fade-in duration-200">
-          <div className="bg-white rounded-2xl max-w-lg w-full border border-[#E5E7EB] shadow-2xl overflow-hidden max-h-[90vh] flex flex-col">
+          <div className="bg-white rounded-2xl max-w-lg w-full border border-champagne/50 shadow-2xl overflow-hidden max-h-[90vh] flex flex-col">
             
             {/* Modal Header */}
-            <div className="px-6 py-4 border-b border-[#E5E7EB] flex items-center justify-between bg-[#F9FAFB]">
+            <div className="px-6 py-4 border-b border-champagne/50 flex items-center justify-between bg-[#F9FAFB]">
               <div>
-                <h3 className="text-base font-bold text-[#111827]">
+                <h3 className="text-base font-bold text-ink">
                   {editingAddress ? 'Edit Address' : 'Add New Address'}
                 </h3>
-                <p className="text-xs text-[#6B7280]">
+                <p className="text-xs text-taupe">
                   {editingAddress ? 'Update your saved delivery address' : 'Save a new delivery address for checkout'}
                 </p>
               </div>
               <button
                 onClick={handleCloseModal}
                 disabled={isSubmitting}
-                className="p-1.5 text-[#6B7280] hover:text-[#111827] rounded-lg transition-colors cursor-pointer"
+                className="p-1.5 text-taupe hover:text-ink rounded-lg transition-colors cursor-pointer"
               >
                 <X size={18} />
               </button>
@@ -523,7 +523,7 @@ export const AddressesPage: React.FC = () => {
 
               {/* Label Selection */}
               <div>
-                <label className="block text-xs font-semibold text-[#111827] mb-1.5">Address Label</label>
+                <label className="block text-xs font-semibold text-ink mb-1.5">Address Label</label>
                 <div className="flex items-center gap-2">
                   {['Home', 'Office', 'Other'].map((lbl) => (
                     <button
@@ -534,7 +534,7 @@ export const AddressesPage: React.FC = () => {
                         px-3 py-1.5 text-xs font-semibold rounded-lg border transition-colors cursor-pointer flex-1
                         ${formData.label === lbl 
                           ? 'bg-primary text-white border-primary' 
-                          : 'bg-white text-[#6B7280] border-[#E5E7EB] hover:bg-gray-50'}
+                          : 'bg-white text-taupe border-champagne/50 hover:bg-gray-50'}
                       `}
                     >
                       {lbl}
@@ -546,7 +546,7 @@ export const AddressesPage: React.FC = () => {
               {/* Full Name & Phone */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
-                  <label className="block text-xs font-semibold text-[#111827] mb-1">
+                  <label className="block text-xs font-semibold text-ink mb-1">
                     Full Name <span className="text-primary">*</span>
                   </label>
                   <input
@@ -554,13 +554,13 @@ export const AddressesPage: React.FC = () => {
                     value={formData.fullName}
                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                     placeholder="John Doe"
-                    className={`w-full px-3.5 py-2.5 bg-white border rounded-lg text-xs text-[#111827] focus:outline-none focus:border-primary ${fieldErrors.fullName ? 'border-red-500' : 'border-[#E5E7EB]'}`}
+                    className={`w-full px-3.5 py-2.5 bg-white border rounded-lg text-xs text-ink focus:outline-none focus:border-primary ${fieldErrors.fullName ? 'border-red-500' : 'border-champagne/50'}`}
                   />
                   {fieldErrors.fullName && <p className="text-primary text-[11px] mt-1 font-medium">{fieldErrors.fullName}</p>}
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-[#111827] mb-1">
+                  <label className="block text-xs font-semibold text-ink mb-1">
                     Phone Number <span className="text-primary">*</span>
                   </label>
                   <input
@@ -568,7 +568,7 @@ export const AddressesPage: React.FC = () => {
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="+1 234 567 890"
-                    className={`w-full px-3.5 py-2.5 bg-white border rounded-lg text-xs text-[#111827] focus:outline-none focus:border-primary ${fieldErrors.phone ? 'border-red-500' : 'border-[#E5E7EB]'}`}
+                    className={`w-full px-3.5 py-2.5 bg-white border rounded-lg text-xs text-ink focus:outline-none focus:border-primary ${fieldErrors.phone ? 'border-red-500' : 'border-champagne/50'}`}
                   />
                   {fieldErrors.phone && <p className="text-primary text-[11px] mt-1 font-medium">{fieldErrors.phone}</p>}
                 </div>
@@ -576,21 +576,21 @@ export const AddressesPage: React.FC = () => {
 
               {/* Email */}
               <div>
-                <label className="block text-xs font-semibold text-[#111827] mb-1">
-                  Email Address <span className="text-[#6B7280] font-normal">(Optional)</span>
+                <label className="block text-xs font-semibold text-ink mb-1">
+                  Email Address <span className="text-taupe font-normal">(Optional)</span>
                 </label>
                 <input
                   type="email"
                   value={formData.email || ''}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="john@example.com"
-                  className="w-full px-3.5 py-2.5 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] focus:outline-none focus:border-primary"
+                  className="w-full px-3.5 py-2.5 bg-white border border-champagne/50 rounded-lg text-xs text-ink focus:outline-none focus:border-primary"
                 />
               </div>
 
               {/* Address Line 1 */}
               <div>
-                <label className="block text-xs font-semibold text-[#111827] mb-1">
+                <label className="block text-xs font-semibold text-ink mb-1">
                   Street Address <span className="text-primary">*</span>
                 </label>
                 <input
@@ -598,29 +598,29 @@ export const AddressesPage: React.FC = () => {
                   value={formData.address1}
                   onChange={(e) => setFormData({ ...formData, address1: e.target.value })}
                   placeholder="123 Main St"
-                  className={`w-full px-3.5 py-2.5 bg-white border rounded-lg text-xs text-[#111827] focus:outline-none focus:border-primary ${fieldErrors.address1 ? 'border-red-500' : 'border-[#E5E7EB]'}`}
+                  className={`w-full px-3.5 py-2.5 bg-white border rounded-lg text-xs text-ink focus:outline-none focus:border-primary ${fieldErrors.address1 ? 'border-red-500' : 'border-champagne/50'}`}
                 />
                 {fieldErrors.address1 && <p className="text-primary text-[11px] mt-1 font-medium">{fieldErrors.address1}</p>}
               </div>
 
               {/* Address Line 2 */}
               <div>
-                <label className="block text-xs font-semibold text-[#111827] mb-1">
-                  Apartment, Suite, Unit <span className="text-[#6B7280] font-normal">(Optional)</span>
+                <label className="block text-xs font-semibold text-ink mb-1">
+                  Apartment, Suite, Unit <span className="text-taupe font-normal">(Optional)</span>
                 </label>
                 <input
                   type="text"
                   value={formData.address2 || ''}
                   onChange={(e) => setFormData({ ...formData, address2: e.target.value })}
                   placeholder="Apt 4B"
-                  className="w-full px-3.5 py-2.5 bg-white border border-[#E5E7EB] rounded-lg text-xs text-[#111827] focus:outline-none focus:border-primary"
+                  className="w-full px-3.5 py-2.5 bg-white border border-champagne/50 rounded-lg text-xs text-ink focus:outline-none focus:border-primary"
                 />
               </div>
 
               {/* City & State */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
-                  <label className="block text-xs font-semibold text-[#111827] mb-1">
+                  <label className="block text-xs font-semibold text-ink mb-1">
                     City <span className="text-primary">*</span>
                   </label>
                   <input
@@ -628,13 +628,13 @@ export const AddressesPage: React.FC = () => {
                     value={formData.city}
                     onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                     placeholder="New York"
-                    className={`w-full px-3.5 py-2.5 bg-white border rounded-lg text-xs text-[#111827] focus:outline-none focus:border-primary ${fieldErrors.city ? 'border-red-500' : 'border-[#E5E7EB]'}`}
+                    className={`w-full px-3.5 py-2.5 bg-white border rounded-lg text-xs text-ink focus:outline-none focus:border-primary ${fieldErrors.city ? 'border-red-500' : 'border-champagne/50'}`}
                   />
                   {fieldErrors.city && <p className="text-primary text-[11px] mt-1 font-medium">{fieldErrors.city}</p>}
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-[#111827] mb-1">
+                  <label className="block text-xs font-semibold text-ink mb-1">
                     State / Province <span className="text-primary">*</span>
                   </label>
                   <input
@@ -642,7 +642,7 @@ export const AddressesPage: React.FC = () => {
                     value={formData.state}
                     onChange={(e) => setFormData({ ...formData, state: e.target.value })}
                     placeholder="NY"
-                    className={`w-full px-3.5 py-2.5 bg-white border rounded-lg text-xs text-[#111827] focus:outline-none focus:border-primary ${fieldErrors.state ? 'border-red-500' : 'border-[#E5E7EB]'}`}
+                    className={`w-full px-3.5 py-2.5 bg-white border rounded-lg text-xs text-ink focus:outline-none focus:border-primary ${fieldErrors.state ? 'border-red-500' : 'border-champagne/50'}`}
                   />
                   {fieldErrors.state && <p className="text-primary text-[11px] mt-1 font-medium">{fieldErrors.state}</p>}
                 </div>
@@ -651,7 +651,7 @@ export const AddressesPage: React.FC = () => {
               {/* Postal Code & Country */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
-                  <label className="block text-xs font-semibold text-[#111827] mb-1">
+                  <label className="block text-xs font-semibold text-ink mb-1">
                     Postal / ZIP Code <span className="text-primary">*</span>
                   </label>
                   <input
@@ -659,13 +659,13 @@ export const AddressesPage: React.FC = () => {
                     value={formData.postalCode}
                     onChange={(e) => setFormData({ ...formData, postalCode: e.target.value })}
                     placeholder="10001"
-                    className={`w-full px-3.5 py-2.5 bg-white border rounded-lg text-xs text-[#111827] focus:outline-none focus:border-primary ${fieldErrors.postalCode ? 'border-red-500' : 'border-[#E5E7EB]'}`}
+                    className={`w-full px-3.5 py-2.5 bg-white border rounded-lg text-xs text-ink focus:outline-none focus:border-primary ${fieldErrors.postalCode ? 'border-red-500' : 'border-champagne/50'}`}
                   />
                   {fieldErrors.postalCode && <p className="text-primary text-[11px] mt-1 font-medium">{fieldErrors.postalCode}</p>}
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-[#111827] mb-1">
+                  <label className="block text-xs font-semibold text-ink mb-1">
                     Country <span className="text-primary">*</span>
                   </label>
                   <input
@@ -673,7 +673,7 @@ export const AddressesPage: React.FC = () => {
                     value={formData.country}
                     onChange={(e) => setFormData({ ...formData, country: e.target.value })}
                     placeholder="United States"
-                    className={`w-full px-3.5 py-2.5 bg-white border rounded-lg text-xs text-[#111827] focus:outline-none focus:border-primary ${fieldErrors.country ? 'border-red-500' : 'border-[#E5E7EB]'}`}
+                    className={`w-full px-3.5 py-2.5 bg-white border rounded-lg text-xs text-ink focus:outline-none focus:border-primary ${fieldErrors.country ? 'border-red-500' : 'border-champagne/50'}`}
                   />
                   {fieldErrors.country && <p className="text-primary text-[11px] mt-1 font-medium">{fieldErrors.country}</p>}
                 </div>
@@ -686,19 +686,19 @@ export const AddressesPage: React.FC = () => {
                     type="checkbox"
                     checked={formData.isDefault}
                     onChange={(e) => setFormData({ ...formData, isDefault: e.target.checked })}
-                    className="w-4 h-4 text-primary border-[#E5E7EB] rounded focus:ring-primary"
+                    className="w-4 h-4 text-primary border-champagne/50 rounded focus:ring-primary"
                   />
-                  <span className="text-xs font-medium text-[#111827]">Set as my primary delivery address</span>
+                  <span className="text-xs font-medium text-ink">Set as my primary delivery address</span>
                 </label>
               </div>
 
               {/* Modal Footer Actions */}
-              <div className="pt-4 border-t border-[#E5E7EB] flex items-center justify-end gap-3">
+              <div className="pt-4 border-t border-champagne/50 flex items-center justify-end gap-3">
                 <button
                   type="button"
                   onClick={handleCloseModal}
                   disabled={isSubmitting}
-                  className="h-10 px-4 bg-white border border-[#E5E7EB] hover:bg-gray-50 text-xs font-semibold text-[#111827] rounded-lg transition-colors cursor-pointer"
+                  className="h-10 px-4 bg-white border border-champagne/50 hover:bg-gray-50 text-xs font-semibold text-ink rounded-lg transition-colors cursor-pointer"
                 >
                   Cancel
                 </button>
@@ -727,15 +727,15 @@ export const AddressesPage: React.FC = () => {
       {/* DELETE CONFIRMATION DIALOG */}
       {deletingAddress && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs animate-in fade-in duration-200">
-          <div className="bg-white rounded-2xl max-w-sm w-full border border-[#E5E7EB] shadow-2xl p-6 text-center space-y-4">
+          <div className="bg-white rounded-2xl max-w-sm w-full border border-champagne/50 shadow-2xl p-6 text-center space-y-4">
             <div className="w-12 h-12 bg-rose-50 border border-rose-100 rounded-full flex items-center justify-center mx-auto text-primary">
               <Trash2 size={22} />
             </div>
 
             <div className="space-y-1">
-              <h3 className="text-base font-bold text-[#111827]">Delete Saved Address?</h3>
-              <p className="text-xs text-[#6B7280]">
-                Are you sure you want to delete <span className="font-semibold text-[#111827]">{deletingAddress.fullName}</span>'s address? This action cannot be undone.
+              <h3 className="text-base font-bold text-ink">Delete Saved Address?</h3>
+              <p className="text-xs text-taupe">
+                Are you sure you want to delete <span className="font-semibold text-ink">{deletingAddress.fullName}</span>'s address? This action cannot be undone.
               </p>
             </div>
 
@@ -743,7 +743,7 @@ export const AddressesPage: React.FC = () => {
               <button
                 onClick={() => setDeletingAddress(null)}
                 disabled={isDeleting}
-                className="flex-1 h-10 bg-white border border-[#E5E7EB] hover:bg-gray-50 text-xs font-semibold text-[#111827] rounded-lg transition-colors cursor-pointer"
+                className="flex-1 h-10 bg-white border border-champagne/50 hover:bg-gray-50 text-xs font-semibold text-ink rounded-lg transition-colors cursor-pointer"
               >
                 Cancel
               </button>

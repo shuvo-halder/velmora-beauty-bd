@@ -234,13 +234,13 @@ export const ReviewFormModal: React.FC<ReviewFormModalProps> = ({
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 12 }}
           transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-          className="relative w-full max-w-lg bg-white rounded-2xl shadow-xl border border-[#E5E7EB] overflow-hidden z-10 my-auto flex flex-col max-h-[90vh]"
+          className="relative w-full max-w-lg bg-white rounded-2xl shadow-xl border border-champagne/50 overflow-hidden z-10 my-auto flex flex-col max-h-[90vh]"
         >
           {/* Modal Header */}
-          <div className="flex items-center justify-between px-5 py-4 border-b border-[#E5E7EB] bg-white sticky top-0 z-10">
+          <div className="flex items-center justify-between px-5 py-4 border-b border-champagne/50 bg-white sticky top-0 z-10">
             <div>
-              <h3 className="font-bold text-base text-[#111827]">Write a Review</h3>
-              <p className="text-xs text-[#6B7280] truncate max-w-xs sm:max-w-sm">
+              <h3 className="font-bold text-base text-ink">Write a Review</h3>
+              <p className="text-xs text-taupe truncate max-w-xs sm:max-w-sm">
                 {productName}
               </p>
             </div>
@@ -249,7 +249,7 @@ export const ReviewFormModal: React.FC<ReviewFormModalProps> = ({
               type="button"
               onClick={onClose}
               aria-label="Close review dialog"
-              className="p-1.5 text-[#6B7280] hover:text-[#111827] hover:bg-[#F9FAFB] rounded-lg transition-colors cursor-pointer"
+              className="p-1.5 text-taupe hover:text-ink hover:bg-[#F9FAFB] rounded-lg transition-colors cursor-pointer"
             >
               <X size={18} />
             </button>
@@ -264,10 +264,10 @@ export const ReviewFormModal: React.FC<ReviewFormModalProps> = ({
                   <CheckCircle2 size={32} />
                 </div>
                 <div className="space-y-1">
-                  <h4 className="font-bold text-base text-[#111827]">
+                  <h4 className="font-bold text-base text-ink">
                     Thank You for Your Feedback!
                   </h4>
-                  <p className="text-xs text-[#6B7280] max-w-xs mx-auto leading-relaxed">
+                  <p className="text-xs text-taupe max-w-xs mx-auto leading-relaxed">
                     Your rating and photos have been received. They help the community make informed decisions.
                   </p>
                 </div>
@@ -276,7 +276,7 @@ export const ReviewFormModal: React.FC<ReviewFormModalProps> = ({
                   <button
                     type="button"
                     onClick={onClose}
-                    className="px-6 py-2.5 bg-[#111827] hover:bg-black text-white font-semibold text-xs rounded-lg transition-colors cursor-pointer shadow-xs"
+                    className="px-6 py-2.5 bg-ink hover:bg-black text-white font-semibold text-xs rounded-lg transition-colors cursor-pointer shadow-xs"
                   >
                     Done
                   </button>
@@ -286,8 +286,8 @@ export const ReviewFormModal: React.FC<ReviewFormModalProps> = ({
               /* Main Review Form */
               <form onSubmit={handleSubmit} className="space-y-4 text-xs">
                 {/* 1. Rating Selector */}
-                <div className="space-y-1.5 bg-[#F9FAFB] p-3.5 rounded-xl border border-[#E5E7EB]">
-                  <label className="font-semibold text-xs text-[#111827] block">
+                <div className="space-y-1.5 bg-[#F9FAFB] p-3.5 rounded-xl border border-champagne/50">
+                  <label className="font-semibold text-xs text-ink block">
                     Overall Rating <span className="text-primary">*</span>
                   </label>
 
@@ -317,7 +317,7 @@ export const ReviewFormModal: React.FC<ReviewFormModalProps> = ({
                     })}
                   </div>
 
-                  <p className="text-[11px] font-medium text-[#6B7280] pt-0.5">
+                  <p className="text-[11px] font-medium text-taupe pt-0.5">
                     {ratingDescriptions[currentDisplayRating] || 'Select your rating'}
                   </p>
                 </div>
@@ -331,7 +331,7 @@ export const ReviewFormModal: React.FC<ReviewFormModalProps> = ({
                           <ShieldCheck size={16} />
                         </div>
                         <div>
-                          <div className="font-bold text-xs text-[#111827] flex items-center gap-1.5">
+                          <div className="font-bold text-xs text-ink flex items-center gap-1.5">
                             <span>{formData.name || user.fullName || 'Verified Customer'}</span>
                             <span className="px-1.5 py-0.2 bg-emerald-100 text-emerald-800 text-[9px] font-semibold rounded">
                               Verified Member
@@ -343,8 +343,8 @@ export const ReviewFormModal: React.FC<ReviewFormModalProps> = ({
                     </div>
                   </div>
                 ) : (
-                  <div className="space-y-3 bg-[#F9FAFB] p-3.5 rounded-xl border border-[#E5E7EB]">
-                    <div className="flex items-center gap-1.5 font-semibold text-xs text-[#111827]">
+                  <div className="space-y-3 bg-[#F9FAFB] p-3.5 rounded-xl border border-champagne/50">
+                    <div className="flex items-center gap-1.5 font-semibold text-xs text-ink">
                       <User size={13} className="text-primary" />
                       Guest Customer Information
                     </div>
@@ -360,7 +360,7 @@ export const ReviewFormModal: React.FC<ReviewFormModalProps> = ({
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           placeholder="e.g. Tanvir Hasan"
-                          className="w-full p-2 bg-white border border-[#E5E7EB] rounded-lg focus:outline-none focus:border-primary text-[#111827] text-xs font-normal"
+                          className="w-full p-2 bg-white border border-champagne/50 rounded-lg focus:outline-none focus:border-primary text-ink text-xs font-normal"
                         />
                       </div>
 
@@ -374,21 +374,21 @@ export const ReviewFormModal: React.FC<ReviewFormModalProps> = ({
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           placeholder="e.g. 017XXXXXXXX"
-                          className="w-full p-2 bg-white border border-[#E5E7EB] rounded-lg focus:outline-none focus:border-primary text-[#111827] text-xs font-normal"
+                          className="w-full p-2 bg-white border border-champagne/50 rounded-lg focus:outline-none focus:border-primary text-ink text-xs font-normal"
                         />
                       </div>
                     </div>
 
                     <div>
                       <label className="font-medium text-[11px] text-[#4B5563] block mb-1">
-                        Email Address <span className="text-[#6B7280] font-normal">(Optional)</span>
+                        Email Address <span className="text-taupe font-normal">(Optional)</span>
                       </label>
                       <input
                         type="email"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="e.g. customer@example.com"
-                        className="w-full p-2 bg-white border border-[#E5E7EB] rounded-lg focus:outline-none focus:border-primary text-[#111827] text-xs font-normal"
+                        className="w-full p-2 bg-white border border-champagne/50 rounded-lg focus:outline-none focus:border-primary text-ink text-xs font-normal"
                       />
                     </div>
                   </div>
@@ -396,25 +396,25 @@ export const ReviewFormModal: React.FC<ReviewFormModalProps> = ({
 
                 {/* 3. Review Headline / Title */}
                 <div>
-                  <label className="font-semibold text-xs text-[#111827] block mb-1">
-                    Review Headline <span className="text-[#6B7280] font-normal">(Optional)</span>
+                  <label className="font-semibold text-xs text-ink block mb-1">
+                    Review Headline <span className="text-taupe font-normal">(Optional)</span>
                   </label>
                   <input
                     type="text"
                     value={formData.title}
                     onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                     placeholder="e.g. Excellent build quality and premium sound!"
-                    className="w-full p-2 bg-white border border-[#E5E7EB] rounded-lg focus:outline-none focus:border-primary text-[#111827] text-xs font-normal"
+                    className="w-full p-2 bg-white border border-champagne/50 rounded-lg focus:outline-none focus:border-primary text-ink text-xs font-normal"
                   />
                 </div>
 
                 {/* 4. Review Comment Textarea */}
                 <div>
                   <div className="flex items-center justify-between mb-1">
-                    <label className="font-semibold text-xs text-[#111827]">
+                    <label className="font-semibold text-xs text-ink">
                       Your Detailed Review <span className="text-primary">*</span>
                     </label>
-                    <span className="text-[10px] text-[#6B7280]">
+                    <span className="text-[10px] text-taupe">
                       {formData.comment.length} / 1000 characters
                     </span>
                   </div>
@@ -425,7 +425,7 @@ export const ReviewFormModal: React.FC<ReviewFormModalProps> = ({
                     value={formData.comment}
                     onChange={(e) => setFormData({ ...formData, comment: e.target.value })}
                     placeholder="Tell us what you liked or disliked, quality, delivery experience, etc."
-                    className="w-full p-2.5 bg-white border border-[#E5E7EB] rounded-lg focus:outline-none focus:border-primary text-[#111827] text-xs font-normal resize-none leading-relaxed"
+                    className="w-full p-2.5 bg-white border border-champagne/50 rounded-lg focus:outline-none focus:border-primary text-ink text-xs font-normal resize-none leading-relaxed"
                   />
                 </div>
 
@@ -454,7 +454,7 @@ export const ReviewFormModal: React.FC<ReviewFormModalProps> = ({
                     type="button"
                     onClick={onClose}
                     disabled={formStatus === 'submitting'}
-                    className="flex-1 py-2.5 bg-[#F9FAFB] hover:bg-gray-100 font-semibold text-[#4B5563] rounded-lg cursor-pointer border border-[#E5E7EB] transition-colors text-xs"
+                    className="flex-1 py-2.5 bg-[#F9FAFB] hover:bg-gray-100 font-semibold text-[#4B5563] rounded-lg cursor-pointer border border-champagne/50 transition-colors text-xs"
                   >
                     Cancel
                   </button>

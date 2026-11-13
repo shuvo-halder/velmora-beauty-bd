@@ -35,7 +35,7 @@ export const CategoriesIndexView: React.FC = () => {
   }, [categories]);
 
   return (
-    <div className="bg-slate-50 min-h-screen py-6 sm:py-8">
+    <div className="bg-bg min-h-screen py-6 sm:py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Breadcrumb Navigation */}
@@ -45,7 +45,7 @@ export const CategoriesIndexView: React.FC = () => {
             <span>Home</span>
           </Link>
           <ChevronRight size={12} className="text-slate-400" />
-          <span className="text-slate-900 font-bold">Categories</span>
+          <span className="text-ink font-bold">Categories</span>
         </nav>
 
         {/* Header Banner */}
@@ -88,7 +88,7 @@ export const CategoriesIndexView: React.FC = () => {
             <div className="w-12 h-12 bg-rose-100 text-rose-600 rounded-2xl flex items-center justify-center mx-auto">
               <PackageX size={24} />
             </div>
-            <h3 className="font-extrabold text-slate-900 text-base">Unable to Load Categories</h3>
+            <h3 className="font-extrabold text-ink text-base">Unable to Load Categories</h3>
             <p className="text-xs text-slate-600 leading-relaxed">{error}</p>
             <button 
               onClick={() => window.location.reload()} 
@@ -105,7 +105,7 @@ export const CategoriesIndexView: React.FC = () => {
             <div className="w-14 h-14 bg-slate-100 text-slate-400 rounded-2xl flex items-center justify-center mx-auto">
               <PackageX size={28} />
             </div>
-            <h3 className="text-base font-black text-slate-900">No Categories Found</h3>
+            <h3 className="text-base font-black text-ink">No Categories Found</h3>
             <p className="text-xs text-slate-500">Categories are currently being updated.</p>
             <Link 
               href="/products" 
@@ -157,7 +157,7 @@ export const CategoriesIndexView: React.FC = () => {
                         </div>
 
                         <div>
-                          <h3 className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-primary transition-colors line-clamp-1 flex items-center justify-between">
+                          <h3 className="text-xs sm:text-sm font-bold text-ink group-hover:text-primary transition-colors line-clamp-1 flex items-center justify-between">
                             <span>{cat.name}</span>
                             <ChevronRight size={14} className="text-slate-400 group-hover:text-primary group-hover:translate-x-0.5 transition-transform shrink-0" />
                           </h3>
@@ -209,7 +209,7 @@ export const CategoriesIndexView: React.FC = () => {
                   <FolderTree size={18} />
                 </span>
                 <div>
-                  <h2 className="text-base font-extrabold text-slate-900">
+                  <h2 className="text-base font-extrabold text-ink">
                     Explore Departments & Subcategories
                   </h2>
                   <p className="text-xs text-slate-500">
@@ -230,7 +230,7 @@ export const CategoriesIndexView: React.FC = () => {
                       <div className="flex items-center justify-between pb-2 border-b border-slate-100">
                         <Link 
                           href={`/categories/${mainCat.slug}`}
-                          className="text-sm font-bold text-slate-900 hover:text-primary transition-colors flex items-center gap-1.5 group"
+                          className="text-sm font-bold text-ink hover:text-primary transition-colors flex items-center gap-1.5 group"
                         >
                           <span>{mainCat.name}</span>
                           <ArrowRight size={13} className="text-slate-400 group-hover:text-primary group-hover:translate-x-0.5 transition-transform" />

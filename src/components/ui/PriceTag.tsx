@@ -24,24 +24,24 @@ export const PriceTag: React.FC<PriceTagProps> = ({
 }) => {
   const sizeMap = {
     sm: {
-      current: 'text-sm font-bold text-[#111827]',
-      original: 'text-xs text-[#6B7280] line-through',
-      badge: 'text-[10px] px-1.5 py-0.5 bg-primary-light text-primary border border-primary/20 rounded font-semibold',
+      current: 'text-sm font-bold text-ink',
+      original: 'text-xs text-taupe line-through',
+      badge: 'text-[10px] px-1.5 py-0.5 bg-champagne text-ink border border-champagne rounded font-bold',
     },
     md: {
-      current: 'text-base font-bold text-[#111827]',
-      original: 'text-xs text-[#6B7280] line-through',
-      badge: 'text-[10px] px-2 py-0.5 bg-primary-light text-primary border border-primary/20 rounded font-semibold',
+      current: 'text-base font-bold text-ink',
+      original: 'text-xs text-taupe line-through',
+      badge: 'text-[10px] px-2 py-0.5 bg-champagne text-ink border border-champagne rounded font-bold',
     },
     lg: {
-      current: 'text-xl sm:text-2xl font-bold text-[#111827]',
-      original: 'text-sm text-[#6B7280] line-through',
-      badge: 'text-xs px-2.5 py-0.5 bg-primary-light text-primary border border-primary/20 rounded font-semibold',
+      current: 'text-xl sm:text-2xl font-bold text-ink',
+      original: 'text-sm text-taupe line-through',
+      badge: 'text-xs px-2.5 py-0.5 bg-champagne text-ink border border-champagne rounded font-bold',
     },
     xl: {
-      current: 'text-3xl sm:text-4xl font-bold text-[#111827] tracking-tight',
-      original: 'text-lg text-[#6B7280] line-through',
-      badge: 'text-xs px-3 py-1 bg-primary-light text-primary border border-primary/20 rounded font-semibold',
+      current: 'text-3xl sm:text-4xl font-bold text-ink tracking-tight',
+      original: 'text-lg text-taupe line-through',
+      badge: 'text-xs px-3 py-1 bg-champagne text-ink border border-champagne rounded font-bold',
     },
   };
 

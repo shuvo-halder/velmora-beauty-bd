@@ -88,7 +88,7 @@ export const ToastItem: React.FC<ToastItemProps> = ({ toast, onDismiss }) => {
       case 'info':
       default:
         return (
-          <div className="w-6 h-6 rounded-full bg-primary-light text-primary border border-primary/20 flex items-center justify-center flex-shrink-0 shadow-2xs">
+          <div className="w-6 h-6 rounded-full bg-sage/30 text-primary border border-primary/20 flex items-center justify-center flex-shrink-0 shadow-2xs">
             <Info size={14} strokeWidth={2.5} />
           </div>
         );
@@ -99,7 +99,7 @@ export const ToastItem: React.FC<ToastItemProps> = ({ toast, onDismiss }) => {
     type === 'success' ? 'border-emerald-200/80' :
     type === 'error' ? 'border-rose-200/80' :
     type === 'warning' ? 'border-amber-200/80' :
-    'border-[#E5E7EB]';
+    'border-champagne/50';
 
   const progressBg =
     type === 'success' ? 'bg-emerald-500' :
@@ -125,7 +125,7 @@ export const ToastItem: React.FC<ToastItemProps> = ({ toast, onDismiss }) => {
       <div className="p-3 flex items-start gap-2.5">
         {/* Product Image if available, else variant icon */}
         {toast.image ? (
-          <div className="w-9 h-9 rounded-md border border-[#E5E7EB] bg-[#F9FAFB] flex-shrink-0 relative overflow-hidden shadow-2xs">
+          <div className="w-9 h-9 rounded-md border border-champagne/50 bg-[#F9FAFB] flex-shrink-0 relative overflow-hidden shadow-2xs">
             <SmartImage
               src={toast.image}
               alt={toast.title}
@@ -142,11 +142,11 @@ export const ToastItem: React.FC<ToastItemProps> = ({ toast, onDismiss }) => {
         {/* Content Body */}
         <div className="flex-1 min-w-0 pr-1">
           <div className="flex items-center gap-1.5 mb-0.5">
-            <h4 className="text-xs font-bold text-[#111827] leading-snug truncate">
+            <h4 className="text-xs font-bold text-ink leading-snug truncate">
               {toast.title}
             </h4>
             {toast.badge && (
-              <span className="text-[9px] font-semibold tracking-wide uppercase px-1.5 py-0.2 rounded bg-gray-100 text-gray-700 border border-gray-200">
+              <span className="text-[9px] font-semibold tracking-wide uppercase px-1.5 py-0.2 rounded bg-gray-100 text-gray-700 border border-champagne/50">
                 {toast.badge}
               </span>
             )}
@@ -170,10 +170,10 @@ export const ToastItem: React.FC<ToastItemProps> = ({ toast, onDismiss }) => {
                 className={`
                   inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-semibold rounded-md transition-colors cursor-pointer shadow-2xs
                   ${toast.action.variant === 'secondary'
-                    ? 'bg-gray-100 hover:bg-gray-200 text-gray-900 border border-gray-200'
+                    ? 'bg-gray-100 hover:bg-gray-200 text-ink border border-champagne/50'
                     : toast.action.variant === 'outline'
-                    ? 'bg-white hover:bg-gray-50 text-[#111827] border border-[#E5E7EB]'
-                    : 'bg-[#111827] hover:bg-[#1F2937] text-white'
+                    ? 'bg-white hover:bg-gray-50 text-ink border border-champagne/50'
+                    : 'bg-ink hover:bg-[#1F2937] text-white'
                   }
                 `}
               >

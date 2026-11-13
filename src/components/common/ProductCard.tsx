@@ -61,10 +61,10 @@ export const ProductCard = React.memo(({
 
   if (viewMode === 'list') {
     return (
-      <div className="group bg-white border border-[#E5E7EB] rounded-xl p-4 shadow-xs hover:border-gray-300 transition-colors flex flex-col sm:flex-row items-stretch gap-5 relative overflow-hidden">
+      <div className="group bg-white border border-champagne/50 rounded-xl p-4 shadow-xs hover:border-champagne transition-colors flex flex-col sm:flex-row items-stretch gap-5 relative overflow-hidden">
         {/* Badges */}
         {product.discountPercent && (
-          <div className="absolute top-3 left-3 bg-primary text-white font-semibold text-[10px] px-2 py-0.5 rounded-md z-10">
+          <div className="absolute top-3 left-3 bg-champagne text-ink font-bold text-[10px] px-2 py-0.5 rounded-md z-10 border border-champagne">
             -{product.discountPercent}%
           </div>
         )}
@@ -96,25 +96,25 @@ export const ProductCard = React.memo(({
 
             <h3 
               onClick={handleCardClick}
-              className="font-semibold text-lg text-[#111827] group-hover:text-primary transition-colors cursor-pointer mt-1.5"
+              className="font-semibold text-lg text-ink group-hover:text-primary transition-colors cursor-pointer mt-1.5"
             >
               {product.name}
             </h3>
 
             {product.description ? (
-              <div className="text-sm text-[#6B7280] line-clamp-2 mt-1.5 leading-relaxed overflow-hidden [&_p]:mb-0 [&_p]:inline [&_ul]:inline [&_ol]:inline [&_li]:inline [&_h1]:inline [&_h2]:inline [&_h3]:inline [&_h4]:inline [&_h5]:inline [&_h6]:inline [&_blockquote]:my-0 [&_pre]:my-0 [&_img]:hidden [&_table]:hidden [&_*]:text-sm [&_*]:text-[#6B7280] [&_strong]:font-semibold [&_b]:font-semibold">
+              <div className="text-sm text-taupe line-clamp-2 mt-1.5 leading-relaxed overflow-hidden [&_p]:mb-0 [&_p]:inline [&_ul]:inline [&_ol]:inline [&_li]:inline [&_h1]:inline [&_h2]:inline [&_h3]:inline [&_h4]:inline [&_h5]:inline [&_h6]:inline [&_blockquote]:my-0 [&_pre]:my-0 [&_img]:hidden [&_table]:hidden [&_*]:text-sm [&_*]:text-taupe [&_strong]:font-semibold [&_b]:font-semibold">
                 <RichTextRenderer content={product.description} />
               </div>
             ) : null}
           </div>
 
-          <div className="flex items-center justify-between pt-3 border-t border-[#E5E7EB] mt-3">
+          <div className="flex items-center justify-between pt-3 border-t border-champagne/50 mt-3">
             <div className="flex items-baseline gap-2">
-              <span className="text-xl font-bold text-[#111827]">
+              <span className="text-xl font-bold text-ink">
                 {formatPrice(product.price, currencyCode, currencySymbol)}
               </span>
               {product.compareAtPrice && (
-                <span className="text-xs text-[#6B7280] line-through">
+                <span className="text-xs text-taupe line-through">
                   {formatPrice(product.compareAtPrice, currencyCode, currencySymbol)}
                 </span>
               )}
@@ -123,7 +123,7 @@ export const ProductCard = React.memo(({
             <div className="flex items-center gap-2">
               <button
                 onClick={() => openQuickView(product)}
-                className="p-2 bg-[#F9FAFB] hover:bg-gray-100 text-[#111827] rounded-lg transition-colors cursor-pointer border border-[#E5E7EB]"
+                className="p-2 bg-[#F9FAFB] hover:bg-gray-100 text-ink rounded-lg transition-colors cursor-pointer border border-champagne/50"
                 title="Quick View"
               >
                 <Eye size={16} />
@@ -131,7 +131,7 @@ export const ProductCard = React.memo(({
               <button
                 onClick={() => toggleWishlist(product)}
                 className={`p-2 rounded-lg border transition-colors cursor-pointer ${
-                  inWishlist ? 'bg-primary-light border-primary/20 text-primary' : 'bg-[#F9FAFB] border-[#E5E7EB] text-[#6B7280] hover:text-primary'
+                  inWishlist ? 'bg-sage/30 border-primary/20 text-primary' : 'bg-[#F9FAFB] border-champagne/50 text-taupe hover:text-primary'
                 }`}
                 title="Wishlist"
               >
@@ -153,17 +153,17 @@ export const ProductCard = React.memo(({
   }
 
   return (
-    <div className="group bg-white border border-[#E5E7EB] rounded-xl p-2 sm:p-2.5 shadow-xs hover:border-gray-300 transition-colors flex flex-col justify-between relative overflow-hidden h-full">
+    <div className="group bg-white border border-champagne/50 rounded-xl p-2 sm:p-2.5 shadow-xs hover:border-champagne transition-colors flex flex-col justify-between relative overflow-hidden h-full">
       
       {/* Badges Top Left */}
       <div className="absolute top-2 left-2 z-10 flex flex-col gap-1 items-start">
         {product.discountPercent && (
-          <span className="bg-primary text-white font-semibold text-[9px] sm:text-[10px] px-1.5 py-0.5 rounded-md shadow-xs">
+          <span className="bg-champagne text-ink font-bold text-[9px] sm:text-[10px] px-1.5 py-0.5 rounded-md shadow-xs border border-champagne">
             -{product.discountPercent}%
           </span>
         )}
         {product.isNew && (
-          <span className="bg-[#111827] text-white font-semibold text-[9px] sm:text-[10px] px-1.5 py-0.5 rounded-md shadow-xs">
+          <span className="bg-beige text-ink font-bold text-[9px] sm:text-[10px] px-1.5 py-0.5 rounded-md shadow-xs">
             NEW
           </span>
         )}
@@ -174,8 +174,8 @@ export const ProductCard = React.memo(({
         onClick={() => toggleWishlist(product)}
         className={`absolute top-2 right-2 z-10 p-1 sm:p-1.5 rounded-full border transition-colors cursor-pointer ${
           inWishlist 
-            ? 'bg-primary-light text-primary border-primary/20' 
-            : 'bg-white/90 text-[#6B7280] border-[#E5E7EB] hover:text-primary hover:bg-white'
+            ? 'bg-sage/30 text-primary border-primary/20' 
+            : 'bg-white/90 text-taupe border-champagne/50 hover:text-primary hover:bg-white'
         }`}
         aria-label="Wishlist"
       >
@@ -213,7 +213,7 @@ export const ProductCard = React.memo(({
               e.stopPropagation();
               openQuickView(product);
             }}
-            className="w-full py-1 px-1.5 bg-white/95 hover:bg-white text-[#111827] font-semibold text-[10px] rounded-md shadow-xs border border-[#E5E7EB] flex items-center justify-center gap-1 transition-colors cursor-pointer"
+            className="w-full py-1 px-1.5 bg-white/95 hover:bg-white text-ink font-semibold text-[10px] rounded-md shadow-xs border border-champagne/50 flex items-center justify-center gap-1 transition-colors cursor-pointer"
           >
             <Eye size={12} className="text-primary" />
             <span>Quick View</span>
@@ -224,14 +224,14 @@ export const ProductCard = React.memo(({
       {/* Product Information */}
       <div className="space-y-1 flex-1 flex flex-col justify-between">
         <div>
-          <div className="flex items-center justify-between text-[9px] sm:text-[10px] font-medium text-[#6B7280] min-h-[14px]">
+          <div className="flex items-center justify-between text-[9px] sm:text-[10px] font-medium text-taupe min-h-[14px]">
             <span className="text-primary font-semibold uppercase tracking-wider truncate max-w-[55%]">{product.brand}</span>
             <RatingStars rating={product.rating} count={product.reviewCount} showNumber={false} size={11} />
           </div>
 
           <h3 
             onClick={handleCardClick}
-            className="font-medium text-xs text-[#111827] group-hover:text-primary transition-colors cursor-pointer line-clamp-2 mt-0.5 leading-snug min-h-[2rem]"
+            className="font-medium text-xs text-ink group-hover:text-primary transition-colors cursor-pointer line-clamp-2 mt-0.5 leading-snug min-h-[2rem]"
             title={product.name}
           >
             {product.name}
@@ -250,7 +250,7 @@ export const ProductCard = React.memo(({
               />
             ))}
             {product.variants.length > 3 && (
-              <span className="text-[8px] text-[#6B7280] font-medium pl-0.5">
+              <span className="text-[8px] text-taupe font-medium pl-0.5">
                 +{product.variants.length - 3}
               </span>
             )}
@@ -258,14 +258,14 @@ export const ProductCard = React.memo(({
         )}
 
         {/* Price and Cart Row */}
-        <div className="pt-1.5 flex items-center justify-between mt-auto border-t border-[#E5E7EB]/80">
+        <div className="pt-1.5 flex items-center justify-between mt-auto border-t border-champagne/50/80">
           <div className="flex flex-col">
             {product.compareAtPrice ? (
-              <span className="text-[9px] sm:text-[10px] text-[#6B7280] line-through font-medium leading-none mb-0.5">
+              <span className="text-[9px] sm:text-[10px] text-taupe line-through font-medium leading-none mb-0.5">
                 {formatPrice(product.compareAtPrice, currencyCode, currencySymbol)}
               </span>
             ) : null}
-            <span className="text-xs sm:text-sm font-bold text-[#111827] leading-tight">
+            <span className="text-xs sm:text-sm font-bold text-ink leading-tight">
               {formatPrice(product.price, currencyCode, currencySymbol)}
             </span>
           </div>

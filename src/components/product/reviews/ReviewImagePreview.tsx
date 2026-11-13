@@ -46,11 +46,11 @@ export const ReviewImagePreview: React.FC<ReviewImagePreviewProps> = ({
   return (
     <div className="space-y-2 pt-1">
       <div className="flex items-center justify-between text-xs">
-        <span className="font-semibold text-[#111827] flex items-center gap-1.5">
+        <span className="font-semibold text-ink flex items-center gap-1.5">
           <ImageIcon size={14} className="text-primary" />
           Selected Photos
         </span>
-        <span className="font-medium text-[#6B7280]">
+        <span className="font-medium text-taupe">
           {files.length} / {MAX_REVIEW_IMAGES} photos
         </span>
       </div>
@@ -61,7 +61,7 @@ export const ReviewImagePreview: React.FC<ReviewImagePreviewProps> = ({
           return (
             <div
               key={item.id}
-              className="group relative aspect-square rounded-lg border border-[#E5E7EB] bg-[#F9FAFB] overflow-hidden shadow-2xs"
+              className="group relative aspect-square rounded-lg border border-champagne/50 bg-[#F9FAFB] overflow-hidden shadow-2xs"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img

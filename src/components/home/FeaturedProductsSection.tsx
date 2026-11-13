@@ -49,7 +49,7 @@ export const FeaturedProductsSection: React.FC = () => {
               <Sparkles size={14} />
               Featured Collection
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-black text-ink tracking-tight">
               Featured Products & Top Picks
             </h2>
           </div>

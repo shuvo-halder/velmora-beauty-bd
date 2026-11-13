@@ -24,7 +24,7 @@ export const BrandCarousel: React.FC = () => {
           <div className="text-xs font-extrabold text-primary uppercase tracking-widest mb-1">
             Official Brand Partners
           </div>
-          <h2 className="text-2xl font-black text-slate-900 tracking-tight">
+          <h2 className="text-2xl font-black text-ink tracking-tight">
             Top Brands You Know and Trust
           </h2>
         </div>
@@ -86,7 +86,7 @@ export const BrandCarousel: React.FC = () => {
                 </div>
 
                 <div>
-                  <h3 className="font-bold text-xs sm:text-sm text-slate-900 group-hover:text-primary transition-colors">
+                  <h3 className="font-bold text-xs sm:text-sm text-ink group-hover:text-primary transition-colors">
                     {brand.name}
                   </h3>
                   {hasRichTextContent(brand.description) && (

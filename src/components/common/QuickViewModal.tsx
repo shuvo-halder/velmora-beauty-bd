@@ -227,7 +227,7 @@ export const QuickViewModal: React.FC = () => {
                   </span>
                 </div>
 
-                <h2 className="text-xl font-extrabold text-slate-900 leading-snug">
+                <h2 className="text-xl font-extrabold text-ink leading-snug">
                   {currentProduct.name}
                 </h2>
 
@@ -235,7 +235,7 @@ export const QuickViewModal: React.FC = () => {
 
                 {/* Price Row */}
                 <div className="flex items-baseline gap-3 pt-1">
-                  <span className="text-2xl font-black text-slate-900 font-mono">
+                  <span className="text-2xl font-black text-ink font-mono">
                     {formatPrice(activePrice, currencyCode, currencySymbol)}
                   </span>
                   {activeComparePrice && activeComparePrice > activePrice && (

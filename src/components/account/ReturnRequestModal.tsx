@@ -171,13 +171,13 @@ export const ReturnRequestModal: React.FC<ReturnRequestModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs overflow-y-auto">
-      <div className="bg-white rounded-2xl max-w-xl w-full p-6 sm:p-7 shadow-2xl border border-gray-100 my-8 relative animate-in fade-in zoom-in-95 duration-200 max-h-[90vh] flex flex-col">
+      <div className="bg-white rounded-2xl max-w-xl w-full p-6 sm:p-7 shadow-2xl border border-champagne/40 my-8 relative animate-in fade-in zoom-in-95 duration-200 max-h-[90vh] flex flex-col">
         
         {/* Close Button */}
         <button
           onClick={onClose}
           disabled={returnMutation.isPending}
-          className="absolute top-5 right-5 w-8 h-8 rounded-full bg-gray-100 text-gray-500 hover:text-gray-900 hover:bg-gray-200 flex items-center justify-center transition-colors cursor-pointer"
+          className="absolute top-5 right-5 w-8 h-8 rounded-full bg-gray-100 text-gray-500 hover:text-ink hover:bg-gray-200 flex items-center justify-center transition-colors cursor-pointer"
           aria-label="Close modal"
         >
           <X size={16} />
@@ -188,7 +188,7 @@ export const ReturnRequestModal: React.FC<ReturnRequestModalProps> = ({
             <div className="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 border border-emerald-100 animate-bounce">
               <CheckCircle2 size={36} />
             </div>
-            <h3 className="text-xl font-bold text-gray-900">Return Request Submitted!</h3>
+            <h3 className="text-xl font-bold text-ink">Return Request Submitted!</h3>
             <p className="text-xs text-gray-500 mt-2 max-w-sm mx-auto leading-relaxed">
               Your return request for Order #{order.orderNumber || order.id} has been received. Our team will review the details and provide return shipping guidance.
             </p>
@@ -201,7 +201,7 @@ export const ReturnRequestModal: React.FC<ReturnRequestModalProps> = ({
                 <RotateCcw size={14} />
                 <span>Return Item Request</span>
               </div>
-              <h2 className="text-xl font-bold text-gray-900 tracking-tight">
+              <h2 className="text-xl font-bold text-ink tracking-tight">
                 Order #{order.orderNumber || order.id}
               </h2>
               <p className="text-xs text-gray-500 mt-0.5">
@@ -214,12 +214,12 @@ export const ReturnRequestModal: React.FC<ReturnRequestModalProps> = ({
               
               {/* Item selection list */}
               <div className="space-y-3">
-                <label className="block text-xs font-bold text-gray-900">
+                <label className="block text-xs font-bold text-ink">
                   Select Order Items <span className="text-primary">*</span>
                 </label>
 
                 {itemSelections.length === 0 ? (
-                  <div className="p-4 bg-gray-50 rounded-xl border border-gray-200 text-center text-xs text-gray-500">
+                  <div className="p-4 bg-gray-50 rounded-xl border border-champagne/50 text-center text-xs text-gray-500">
                     No items available for return on this order.
                   </div>
                 ) : (
@@ -229,7 +229,7 @@ export const ReturnRequestModal: React.FC<ReturnRequestModalProps> = ({
                       className={`p-3.5 rounded-xl border transition-all ${
                         item.selected
                           ? 'border-primary bg-primary/5 shadow-xs'
-                          : 'border-gray-200 bg-white hover:border-gray-300'
+                          : 'border-champagne/50 bg-white hover:border-champagne'
                       }`}
                     >
                       <div className="flex items-start gap-3">
@@ -239,7 +239,7 @@ export const ReturnRequestModal: React.FC<ReturnRequestModalProps> = ({
                           onChange={() => handleToggleItem(idx)}
                           className="mt-1 w-4 h-4 text-primary rounded border-gray-300 focus:ring-primary cursor-pointer"
                         />
-                        <div className="w-12 h-12 rounded-lg bg-gray-100 overflow-hidden border border-gray-200 flex-shrink-0 relative">
+                        <div className="w-12 h-12 rounded-lg bg-gray-100 overflow-hidden border border-champagne/50 flex-shrink-0 relative">
                           <SmartImage
                             src={item.productImage}
                             alt={item.productName}
@@ -250,7 +250,7 @@ export const ReturnRequestModal: React.FC<ReturnRequestModalProps> = ({
                           />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h4 className="text-xs font-bold text-gray-900 line-clamp-1">
+                          <h4 className="text-xs font-bold text-ink line-clamp-1">
                             {item.productName}
                           </h4>
                           {item.variantName && (
@@ -264,7 +264,7 @@ export const ReturnRequestModal: React.FC<ReturnRequestModalProps> = ({
 
                       {/* Expanded options if selected */}
                       {item.selected && (
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mt-3 pt-3 border-t border-gray-200/70">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mt-3 pt-3 border-t border-champagne/50/70">
                           <div>
                             <label className="block text-[11px] font-semibold text-gray-700 mb-1">
                               Return Qty
@@ -272,7 +272,7 @@ export const ReturnRequestModal: React.FC<ReturnRequestModalProps> = ({
                             <select
                               value={item.selectedQuantity}
                               onChange={(e) => handleQuantityChange(idx, Number(e.target.value))}
-                              className="w-full px-2.5 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-medium focus:ring-1 focus:ring-primary focus:border-primary"
+                              className="w-full px-2.5 py-1.5 bg-white border border-champagne/50 rounded-lg text-xs font-medium focus:ring-1 focus:ring-primary focus:border-primary"
                             >
                               {Array.from({ length: item.maxQuantity }, (_, i) => i + 1).map((q) => (
                                 <option key={q} value={q}>
@@ -289,7 +289,7 @@ export const ReturnRequestModal: React.FC<ReturnRequestModalProps> = ({
                             <select
                               value={item.condition}
                               onChange={(e) => handleConditionChange(idx, e.target.value)}
-                              className="w-full px-2.5 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-medium focus:ring-1 focus:ring-primary focus:border-primary"
+                              className="w-full px-2.5 py-1.5 bg-white border border-champagne/50 rounded-lg text-xs font-medium focus:ring-1 focus:ring-primary focus:border-primary"
                             >
                               {ITEM_CONDITIONS.map((c) => (
                                 <option key={c.value} value={c.value}>
@@ -306,7 +306,7 @@ export const ReturnRequestModal: React.FC<ReturnRequestModalProps> = ({
                             <select
                               value={item.reason}
                               onChange={(e) => handleReasonChange(idx, e.target.value)}
-                              className="w-full px-2.5 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-medium focus:ring-1 focus:ring-primary focus:border-primary"
+                              className="w-full px-2.5 py-1.5 bg-white border border-champagne/50 rounded-lg text-xs font-medium focus:ring-1 focus:ring-primary focus:border-primary"
                             >
                               {RETURN_REASONS.map((r) => (
                                 <option key={r.value} value={r.value}>
@@ -324,7 +324,7 @@ export const ReturnRequestModal: React.FC<ReturnRequestModalProps> = ({
 
               {/* Additional Notes */}
               <div>
-                <label className="block text-xs font-bold text-gray-900 mb-1">
+                <label className="block text-xs font-bold text-ink mb-1">
                   Additional Notes / Defect Details <span className="text-gray-400 font-normal">(optional)</span>
                 </label>
                 <textarea
@@ -333,12 +333,12 @@ export const ReturnRequestModal: React.FC<ReturnRequestModalProps> = ({
                   placeholder="Explain why you are returning this item, package condition, or any missing elements..."
                   rows={2}
                   maxLength={500}
-                  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg text-xs font-medium focus:bg-white focus:outline-hidden focus:ring-1 focus:ring-primary focus:border-primary transition-colors"
+                  className="w-full p-3 bg-gray-50 border border-champagne/50 rounded-lg text-xs font-medium focus:bg-white focus:outline-hidden focus:ring-1 focus:ring-primary focus:border-primary transition-colors"
                 />
               </div>
 
               {/* Policy note */}
-              <div className="p-3 bg-gray-50 rounded-lg border border-gray-200 text-[11px] text-gray-500 flex items-start gap-2">
+              <div className="p-3 bg-gray-50 rounded-lg border border-champagne/50 text-[11px] text-gray-500 flex items-start gap-2">
                 <ShieldCheck size={15} className="text-primary flex-shrink-0 mt-0.5" />
                 <span>
                   Items must be in original condition with tags/accessories attached. Returns are subject to inspection upon warehouse receipt.
@@ -354,7 +354,7 @@ export const ReturnRequestModal: React.FC<ReturnRequestModalProps> = ({
               )}
 
               {/* Action Buttons */}
-              <div className="flex items-center justify-end gap-2.5 pt-3 border-t border-gray-100">
+              <div className="flex items-center justify-end gap-2.5 pt-3 border-t border-champagne/40">
                 <button
                   type="button"
                   onClick={onClose}

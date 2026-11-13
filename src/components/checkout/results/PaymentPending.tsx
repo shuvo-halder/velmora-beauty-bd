@@ -48,8 +48,8 @@ export const PaymentPending: React.FC = () => {
   }, [transactionId, orderId, navigateTo]);
 
   return (
-    <div className="bg-[#F9FAFB] min-h-screen py-16 px-4">
-      <div className="max-w-md mx-auto bg-white rounded-xl p-8 shadow-xs text-center border border-[#E5E7EB]">
+    <div className="bg-bg min-h-screen py-16 px-4">
+      <div className="max-w-md mx-auto bg-white rounded-xl p-8 shadow-xs text-center border border-champagne/50">
         
         {status === 'verifying' ? (
           <>
@@ -57,12 +57,12 @@ export const PaymentPending: React.FC = () => {
               <Loader2 size={28} className="animate-spin text-amber-600" />
             </div>
             
-            <h1 className="text-xl font-bold text-[#111827] mb-1.5">Verifying Payment...</h1>
-            <p className="text-[#6B7280] text-xs font-normal mb-6 leading-relaxed">
-              We are connecting with the payment gateway to confirm your transaction for Order <span className="text-[#111827] font-semibold">#{orderId}</span>.
+            <h1 className="text-xl font-bold text-ink mb-1.5">Verifying Payment...</h1>
+            <p className="text-taupe text-xs font-normal mb-6 leading-relaxed">
+              We are connecting with the payment gateway to confirm your transaction for Order <span className="text-ink font-semibold">#{orderId}</span>.
             </p>
 
-            <div className="p-3 bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg flex items-center justify-center gap-2 text-[#6B7280] text-xs font-medium mb-6">
+            <div className="p-3 bg-[#F9FAFB] border border-champagne/50 rounded-lg flex items-center justify-center gap-2 text-taupe text-xs font-medium mb-6">
               <ShieldCheck size={16} className="text-emerald-500" />
               <span>Verifying with Payment Provider</span>
             </div>
@@ -73,15 +73,15 @@ export const PaymentPending: React.FC = () => {
               <AlertCircle size={28} />
             </div>
 
-            <h1 className="text-xl font-bold text-[#111827] mb-1.5">Payment Awaiting Confirmation</h1>
-            <p className="text-[#6B7280] text-xs font-normal mb-6 leading-relaxed">
+            <h1 className="text-xl font-bold text-ink mb-1.5">Payment Awaiting Confirmation</h1>
+            <p className="text-taupe text-xs font-normal mb-6 leading-relaxed">
               Your transaction is being processed by the provider. You can check back shortly or view your order history.
             </p>
 
             <div className="space-y-2.5">
               <button
                 onClick={() => navigateTo('checkout-success', { orderId })}
-                className="w-full py-3 bg-[#111827] text-white font-bold text-xs rounded-lg hover:bg-[#1F2937] transition-colors cursor-pointer"
+                className="w-full py-3 bg-ink text-white font-bold text-xs rounded-lg hover:bg-[#1F2937] transition-colors cursor-pointer"
               >
                 View Order Status
               </button>
@@ -93,8 +93,8 @@ export const PaymentPending: React.FC = () => {
               <AlertCircle size={28} />
             </div>
 
-            <h1 className="text-xl font-bold text-[#111827] mb-1.5">Verification Error</h1>
-            <p className="text-[#6B7280] text-xs font-normal mb-6 leading-relaxed">
+            <h1 className="text-xl font-bold text-ink mb-1.5">Verification Error</h1>
+            <p className="text-taupe text-xs font-normal mb-6 leading-relaxed">
               {errorMessage || 'Unable to verify payment status.'}
             </p>
 
@@ -113,7 +113,7 @@ export const PaymentPending: React.FC = () => {
           </>
         )}
 
-        <div className="mt-6 pt-5 border-t border-[#E5E7EB] flex items-center justify-center gap-1.5 text-[#6B7280] text-[11px] font-medium">
+        <div className="mt-6 pt-5 border-t border-champagne/50 flex items-center justify-center gap-1.5 text-taupe text-[11px] font-medium">
           <Lock size={12} />
           <span>PCI-DSS Compliant Gateway</span>
         </div>

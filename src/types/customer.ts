@@ -288,17 +288,20 @@ export interface CustomerOrderQueryParams {
  * Single Payment Transaction (/customer/payments)
  */
 export interface CustomerPayment {
-  id?: string;
-  transactionId?: string;
-  gateway: string; // COD, BKASH, NAGAD, SSLCOMMERZ, STRIPE, etc.
-  amount: number;
-  currency?: string;
-  status: string; // SUCCESS, PENDING, FAILED, REFUNDED, CANCELLED, etc.
+  id: string;
   orderId?: string;
   orderNumber?: string;
-  paymentMethod?: string;
+  amount: number;
+  currency?: string;
+  status: string; // e.g. "PAID", "PENDING", "FAILED"
+  method?: string; // e.g. "COD", "BKASH", "NAGAD", "SSLCOMMERZ"
+  gateway?: string;
+  transactionReference?: string | null;
+  transactionId?: string | null;
   createdAt?: string;
+  paidAt?: string | null;
   updatedAt?: string;
+  paymentMethod?: string;
   details?: Record<string, unknown>;
   [key: string]: any;
 }
@@ -360,16 +363,21 @@ export interface CustomerShipment {
   id?: string;
   orderId?: string;
   orderNumber?: string;
+  provider?: string;
+  providerName?: string;
   carrier?: string;
+  courierName?: string;
   carrierName?: string;
   trackingNumber?: string;
-  trackingUrl?: string;
+  trackingUrl?: string | null;
   status?: string; // PENDING, INFO_RECEIVED, PICKED_UP, IN_TRANSIT, ARRIVED_AT_HUB, OUT_FOR_DELIVERY, DELIVERED, FAILED, RETURNED, CANCELLED
-  shippedAt?: string;
-  deliveredAt?: string;
-  estimatedDeliveryDate?: string;
+  shippedAt?: string | null;
+  deliveredAt?: string | null;
+  estimatedDelivery?: string | null;
+  estimatedDeliveryDate?: string | null;
   items?: ShipmentItem[];
   itemCount?: number;
+  trackingEvents?: TrackingEvent[];
   shippingAddress?: CustomerOrderAddress;
   createdAt?: string;
   updatedAt?: string;

@@ -51,7 +51,6 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({ children, activeTa
     { id: 'orders', href: '/account/orders', label: 'Order History', icon: ShoppingBag, isPrimary: false },
     { id: 'shipments', href: '/account/shipments', label: 'Shipments & Tracking', icon: Truck, isPrimary: false },
     { id: 'payments', href: '/account/payments', label: 'Payment History', icon: CreditCard, isPrimary: false },
-    { id: 'reviews', href: '/account/reviews', label: 'Product Reviews', icon: Star, isPrimary: false },
     { id: 'returns', href: '/account/returns', label: 'Returns', icon: RotateCcw, isPrimary: false },
     { id: 'refunds', href: '/account/refunds', label: 'Refunds', icon: Receipt, isPrimary: false },
     { id: 'wishlist', href: '/account/wishlist', label: 'Wishlist', icon: Heart, isPrimary: false },

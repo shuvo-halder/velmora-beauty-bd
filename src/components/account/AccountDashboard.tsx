@@ -22,6 +22,7 @@ import {
   RefreshCw, 
   AlertCircle,
   Package,
+  Truck,
   User,
   Mail,
   Phone
@@ -338,31 +339,29 @@ export const AccountDashboard: React.FC = () => {
                   </p>
                 </Link>
 
-                {/* Eligible Reviews Indicator */}
+                {/* Shipments & Tracking Quick Card */}
                 <Link
-                  href="/account/reviews?tab=eligible"
+                  href="/account/shipments"
                   className="bg-white rounded-xl p-5 border border-champagne/50 shadow-xs block hover:border-champagne transition-colors group cursor-pointer"
                 >
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform">
-                        <Star size={16} />
+                      <div className="w-8 h-8 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform">
+                        <Truck size={16} />
                       </div>
                       <div>
                         <h4 className="text-xs font-bold text-ink group-hover:text-primary transition-colors">
-                          Product Reviews
+                          Shipments & Tracking
                         </h4>
-                        <div className="text-[11px] text-gray-500">Eligible items</div>
+                        <div className="text-[11px] text-gray-500">Live parcel status</div>
                       </div>
                     </div>
-                    <span className="text-sm font-bold px-2 py-0.5 bg-purple-100 text-purple-800 rounded-full">
-                      {metrics.eligibleReviews}
+                    <span className="text-xs font-semibold px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full flex items-center gap-1">
+                      Track <ArrowRight size={10} />
                     </span>
                   </div>
                   <p className="text-[11px] text-gray-500 leading-relaxed">
-                    {metrics.eligibleReviews > 0
-                      ? `You have ${metrics.eligibleReviews} delivered item(s) awaiting your product review.`
-                      : 'You have reviewed all your eligible delivered products.'}
+                    View dispatch status, carrier tracking numbers, and live delivery timeline events.
                   </p>
                 </Link>
 

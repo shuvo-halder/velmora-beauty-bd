@@ -8,6 +8,7 @@ import { customerService } from '../../services/customerService';
 import { useStorefront } from '../../context/StorefrontContext';
 import { useSettings } from '../../context/SettingsContext';
 import { formatPrice } from '../../utils/formatters';
+import { OrderStatusBadge } from './OrderStatusBadge';
 import Link from 'next/link';
 import { 
   ShoppingBag, 
@@ -290,16 +291,14 @@ export const AccountDashboard: React.FC = () => {
                             </div>
                             <div>
                               <div className="text-xs font-bold text-gray-900 group-hover:text-[#DC2B53] transition-colors">#{orderCode}</div>
-                              <div className="text-[11px] text-gray-500 font-medium mt-0.5">{orderDate}</div>
+                              <div className="text-xs text-gray-500 font-medium mt-0.5">{orderDate}</div>
                             </div>
                           </div>
-                          <div className="text-right">
+                          <div className="text-right flex flex-col items-end gap-1">
                             <div className="text-xs font-bold text-gray-900">
                               {formatPrice(amount, currencyCode, currencySymbol)}
                             </div>
-                            <span className="inline-block mt-0.5 px-2 py-0.5 bg-blue-50 text-blue-700 rounded text-[10px] font-semibold">
-                              {orderStatus}
-                            </span>
+                            <OrderStatusBadge status={orderStatus} size="sm" />
                           </div>
                         </Link>
                       );

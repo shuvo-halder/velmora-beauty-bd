@@ -27,7 +27,9 @@ import {
   Sparkles,
   CreditCard,
   Truck,
-  Star
+  Star,
+  MoreHorizontal,
+  X
 } from 'lucide-react';
 
 interface AccountLayoutProps {
@@ -57,6 +59,15 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({ children, activeTa
     { id: 'notifications', href: '/account/notifications', label: 'Notifications', icon: Bell, isPrimary: false },
   ];
 
+  const primaryMobileTabs = [
+    { id: 'account', href: '/account', label: 'Dashboard', icon: LayoutDashboard },
+    { id: 'orders', href: '/account/orders', label: 'Orders', icon: ShoppingBag },
+    { id: 'shipments', href: '/account/shipments', label: 'Shipments', icon: Truck },
+    { id: 'wishlist', href: '/account/wishlist', label: 'Wishlist', icon: Heart },
+    { id: 'profile', href: '/account/profile', label: 'Profile', icon: User },
+  ];
+
+  const isMoreActive = !primaryMobileTabs.some(t => t.id === activeTab);
   const activeMenuItem = menuItems.find(item => item.id === activeTab) || menuItems[0];
 
   const handleLogout = async () => {
@@ -119,59 +130,118 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({ children, activeTa
             </div>
           </div>
 
-          {/* Mobile Customer Dashboard Navigation Toggle */}
-          <div className="lg:hidden mb-4">
-            <button
-              type="button"
-              onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
-              className="w-full bg-white rounded-xl p-3 sm:p-3.5 border border-gray-200 shadow-xs flex items-center justify-between text-xs sm:text-sm font-bold text-gray-900 hover:bg-gray-50 transition-colors cursor-pointer"
-              aria-expanded={isMobileNavOpen}
-            >
-              <div className="flex items-center gap-2.5 min-w-0">
-                {activeMenuItem && (
-                  <activeMenuItem.icon size={18} className="text-[#DC2B53] shrink-0" />
-                )}
-                <span className="truncate">{activeMenuItem ? activeMenuItem.label : 'Navigation Menu'}</span>
-              </div>
-              <div className="flex items-center gap-1.5 text-xs font-semibold text-gray-500 shrink-0">
-                <span>{isMobileNavOpen ? 'Close Menu' : 'Menu'}</span>
-                {isMobileNavOpen ? <ChevronUp size={18} className="text-gray-500" /> : <ChevronDown size={18} className="text-gray-500" />}
-              </div>
-            </button>
+          {/* Mobile Horizontally Scrollable Sticky Navigation Bar */}
+          <div className="lg:hidden sticky top-14 sm:top-16 z-30 bg-white/95 backdrop-blur-md border-y border-gray-200 py-2 -mx-4 px-4 sm:-mx-6 sm:px-6 mb-4 shadow-2xs">
+            <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none">
+              {primaryMobileTabs.map((tab) => {
+                const Icon = tab.icon;
+                const isActive = activeTab === tab.id;
+                return (
+                  <Link
+                    key={tab.id}
+                    href={tab.href}
+                    className={`min-h-[44px] px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 whitespace-nowrap transition-colors shrink-0 ${
+                      isActive
+                        ? 'bg-[#111827] text-white shadow-xs'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200/80'
+                    }`}
+                  >
+                    <Icon size={16} className={isActive ? 'text-white' : 'text-gray-500'} />
+                    <span>{tab.label}</span>
+                  </Link>
+                );
+              })}
 
-            {/* Expandable Mobile Navigation List */}
-            {isMobileNavOpen && (
-              <div className="mt-2 bg-white rounded-xl shadow-xs border border-gray-200 p-2 space-y-1">
-                {menuItems.map((item) => {
-                  const Icon = item.icon;
-                  const isActive = activeTab === item.id;
-                  const showBadge = item.id === 'notifications' && unreadNotificationsCount > 0;
-                  return (
-                    <Link
-                      key={item.id}
-                      href={item.href}
-                      onClick={() => setIsMobileNavOpen(false)}
-                      className={`flex items-center justify-between px-3.5 py-2.5 rounded-lg text-xs font-semibold transition-colors ${
-                        isActive
-                          ? 'bg-[#111827] text-white'
-                          : 'text-gray-700 hover:bg-gray-50'
-                      }`}
-                    >
-                      <div className="flex items-center gap-3 min-w-0">
-                        <Icon size={16} className={`shrink-0 ${isActive ? 'text-[#DC2B53]' : 'text-gray-400'}`} />
-                        <span className="font-semibold">{item.label}</span>
-                      </div>
-                      {showBadge && (
-                        <span className="px-1.5 py-0.2 rounded-full text-[10px] font-extrabold bg-[#DC2B53] text-white shrink-0">
-                          {unreadNotificationsCount > 99 ? '99+' : unreadNotificationsCount}
-                        </span>
-                      )}
-                    </Link>
-                  );
-                })}
-              </div>
-            )}
+              {/* More Navigation Button */}
+              <button
+                type="button"
+                onClick={() => setIsMobileNavOpen(true)}
+                className={`min-h-[44px] px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-1.5 whitespace-nowrap transition-colors shrink-0 cursor-pointer ${
+                  isMoreActive
+                    ? 'bg-[#111827] text-white shadow-xs'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200/80'
+                }`}
+                aria-label="More navigation items"
+              >
+                <MoreHorizontal size={16} />
+                <span>More</span>
+                {unreadNotificationsCount > 0 && (
+                  <span className="w-2 h-2 rounded-full bg-[#DC2B53]" />
+                )}
+              </button>
+            </div>
           </div>
+
+          {/* Bottom Sheet for More Navigation Items */}
+          {isMobileNavOpen && (
+            <div className="fixed inset-0 z-50 lg:hidden">
+              {/* Backdrop */}
+              <div
+                className="fixed inset-0 bg-gray-900/60 backdrop-blur-xs transition-opacity"
+                onClick={() => setIsMobileNavOpen(false)}
+              />
+              
+              {/* Bottom Sheet Panel */}
+              <div className="fixed bottom-0 inset-x-0 bg-white rounded-t-2xl shadow-2xl border-t border-gray-200 max-h-[85vh] overflow-y-auto z-10 p-5 space-y-4">
+                <div className="flex items-center justify-between pb-3 border-b border-gray-100">
+                  <div className="flex items-center gap-2">
+                    <div className="w-1.5 h-4 bg-gray-900 rounded-full" />
+                    <h3 className="text-sm font-bold text-gray-900">Account Navigation</h3>
+                  </div>
+                  <button
+                    onClick={() => setIsMobileNavOpen(false)}
+                    className="min-h-[44px] min-w-[44px] p-2 text-gray-400 hover:text-gray-700 rounded-lg flex items-center justify-center cursor-pointer"
+                    title="Close menu"
+                  >
+                    <X size={20} />
+                  </button>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  {menuItems.map((item) => {
+                    const Icon = item.icon;
+                    const isActive = activeTab === item.id;
+                    const showBadge = item.id === 'notifications' && unreadNotificationsCount > 0;
+                    return (
+                      <Link
+                        key={item.id}
+                        href={item.href}
+                        onClick={() => setIsMobileNavOpen(false)}
+                        className={`min-h-[44px] flex items-center justify-between px-3.5 py-3 rounded-xl text-xs sm:text-sm font-semibold transition-colors ${
+                          isActive
+                            ? 'bg-[#111827] text-white shadow-xs'
+                            : 'bg-gray-50 text-gray-800 hover:bg-gray-100 border border-gray-100'
+                        }`}
+                      >
+                        <div className="flex items-center gap-3 min-w-0">
+                          <Icon size={18} className={isActive ? 'text-white' : 'text-gray-500'} />
+                          <span className="truncate">{item.label}</span>
+                        </div>
+                        {showBadge && (
+                          <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-[#DC2B53] text-white shrink-0">
+                            {unreadNotificationsCount > 99 ? '99+' : unreadNotificationsCount}
+                          </span>
+                        )}
+                      </Link>
+                    );
+                  })}
+                </div>
+
+                <div className="pt-2 border-t border-gray-100">
+                  <button
+                    onClick={() => {
+                      setIsMobileNavOpen(false);
+                      handleLogout();
+                    }}
+                    className="w-full min-h-[44px] px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-rose-600 bg-rose-50 hover:bg-rose-100 transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    <LogOut size={16} />
+                    <span>Sign Out</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
 

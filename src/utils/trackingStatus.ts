@@ -13,8 +13,19 @@ import {
   CreditCard,
   Banknote,
   ShieldCheck,
-  Zap
+  Zap,
+  HelpCircle,
+  PauseCircle,
+  PackageCheck
 } from 'lucide-react';
+
+export interface OrderStatusMeta {
+  label: string;
+  icon: React.ElementType;
+  classes: string;
+  step: number; // 0 to 3: 0 = Placed/Pending, 1 = Processing, 2 = Shipped, 3 = Delivered
+  isTerminalNegative: boolean;
+}
 
 export interface TrackingStatusMeta {
   label: string;
@@ -34,6 +45,7 @@ export interface PaymentGatewayMeta {
 export interface PaymentStatusMeta {
   label: string;
   badgeClass: string;
+  icon?: React.ElementType;
 }
 
 /**
@@ -220,6 +232,146 @@ export function getPaymentGatewayMeta(gatewayStr?: string): PaymentGatewayMeta {
 }
 
 /**
+ * Maps raw backend ORDER statuses to normalized presentation styles.
+ * Space, underscore, and case insensitive.
+ * Handles: pending, processing/confirmed, shipped/in transit, out for delivery,
+ * delivered/completed, cancelled/canceled, returned, refunded, failed, on hold.
+ */
+export function getOrderStatusMeta(rawStatus?: string | null): OrderStatusMeta {
+  const raw = (rawStatus || '').trim();
+  const s = raw.toLowerCase().replace(/[\s_-]+/g, '');
+
+  if (!raw) {
+    return {
+      label: 'Pending',
+      icon: Clock,
+      classes: 'bg-amber-50 text-amber-700 border-amber-200',
+      step: 0,
+      isTerminalNegative: false,
+    };
+  }
+
+  // 1. Delivered / Completed (Step 3)
+  if (s === 'delivered' || s === 'completed') {
+    return {
+      label: s === 'completed' ? 'Completed' : 'Delivered',
+      icon: CheckCircle2,
+      classes: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+      step: 3,
+      isTerminalNegative: false,
+    };
+  }
+
+  // 2. Out for delivery (Step 2)
+  if (s === 'outfordelivery') {
+    return {
+      label: 'Out for Delivery',
+      icon: Navigation,
+      classes: 'bg-purple-50 text-purple-700 border-purple-200',
+      step: 2,
+      isTerminalNegative: false,
+    };
+  }
+
+  // 3. Shipped / In Transit (Step 2)
+  if (s === 'shipped' || s.includes('transit') || s.includes('intransit') || s.includes('dispatched')) {
+    return {
+      label: s.includes('transit') ? 'In Transit' : 'Shipped',
+      icon: Truck,
+      classes: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+      step: 2,
+      isTerminalNegative: false,
+    };
+  }
+
+  // 4. Processing / Confirmed (Step 1)
+  if (s === 'processing' || s.includes('confirmed') || s === 'orderconfirmed') {
+    return {
+      label: s.includes('confirmed') ? 'Confirmed' : 'Processing',
+      icon: PackageCheck,
+      classes: 'bg-blue-50 text-blue-700 border-blue-200',
+      step: 1,
+      isTerminalNegative: false,
+    };
+  }
+
+  // 5. On Hold (Step 0)
+  if (s === 'onhold' || s === 'hold') {
+    return {
+      label: 'On Hold',
+      icon: PauseCircle,
+      classes: 'bg-amber-50 text-amber-800 border-amber-300',
+      step: 0,
+      isTerminalNegative: false,
+    };
+  }
+
+  // 6. Pending / Order Placed (Step 0)
+  if (s === 'pending' || s === 'orderplaced' || s === 'placed') {
+    return {
+      label: 'Pending',
+      icon: Clock,
+      classes: 'bg-amber-50 text-amber-700 border-amber-200',
+      step: 0,
+      isTerminalNegative: false,
+    };
+  }
+
+  // 7. Cancelled / Canceled (Terminal Negative)
+  if (s === 'cancelled' || s === 'canceled' || s === 'void') {
+    return {
+      label: 'Cancelled',
+      icon: XCircle,
+      classes: 'bg-rose-50 text-rose-700 border-rose-200',
+      step: 0,
+      isTerminalNegative: true,
+    };
+  }
+
+  // 8. Returned / RTO (Terminal Negative)
+  if (s === 'returned' || s === 'rto' || s.includes('return')) {
+    return {
+      label: 'Returned',
+      icon: RotateCcw,
+      classes: 'bg-orange-50 text-orange-700 border-orange-200',
+      step: 0,
+      isTerminalNegative: true,
+    };
+  }
+
+  // 9. Refunded (Terminal Negative)
+  if (s === 'refunded' || s.includes('refund')) {
+    return {
+      label: 'Refunded',
+      icon: Banknote,
+      classes: 'bg-purple-50 text-purple-700 border-purple-200',
+      step: 0,
+      isTerminalNegative: true,
+    };
+  }
+
+  // 10. Failed / Declined / Rejected (Terminal Negative)
+  if (s === 'failed' || s === 'declined' || s === 'rejected') {
+    return {
+      label: 'Failed',
+      icon: AlertTriangle,
+      classes: 'bg-red-50 text-red-700 border-red-200',
+      step: 0,
+      isTerminalNegative: true,
+    };
+  }
+
+  // 11. Unknown / Custom status fallback
+  return {
+    label: raw,
+    icon: HelpCircle,
+    classes: 'bg-gray-100 text-gray-700 border-gray-200',
+    step: 0,
+    isTerminalNegative: false,
+  };
+}
+
+/**
  * Maps payment transaction statuses
  */
 export function getPaymentStatusMeta(statusStr?: string): PaymentStatusMeta {
@@ -227,15 +379,17 @@ export function getPaymentStatusMeta(statusStr?: string): PaymentStatusMeta {
 
   if (s.includes('SUCCESS') || s === 'PAID' || s === 'COMPLETED') {
     return {
-      label: 'Success',
+      label: s === 'PAID' ? 'Paid' : 'Success',
       badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+      icon: CheckCircle2,
     };
   }
 
   if (s.includes('PENDING') || s === 'UNPAID' || s === 'PROCESSING' || s === 'AUTHORIZED') {
     return {
-      label: s === 'AUTHORIZED' ? 'Authorized' : 'Pending',
+      label: s === 'UNPAID' ? 'Unpaid' : s === 'AUTHORIZED' ? 'Authorized' : 'Pending',
       badgeClass: 'bg-amber-50 text-amber-700 border-amber-200',
+      icon: Clock,
     };
   }
 
@@ -243,6 +397,7 @@ export function getPaymentStatusMeta(statusStr?: string): PaymentStatusMeta {
     return {
       label: s.includes('PARTIAL') ? 'Partially Refunded' : 'Refunded',
       badgeClass: 'bg-purple-50 text-purple-700 border-purple-200',
+      icon: RotateCcw,
     };
   }
 
@@ -250,6 +405,7 @@ export function getPaymentStatusMeta(statusStr?: string): PaymentStatusMeta {
     return {
       label: s.includes('EXPIRED') ? 'Expired' : 'Failed',
       badgeClass: 'bg-rose-50 text-rose-700 border-rose-200',
+      icon: AlertTriangle,
     };
   }
 
@@ -257,12 +413,14 @@ export function getPaymentStatusMeta(statusStr?: string): PaymentStatusMeta {
     return {
       label: 'Cancelled',
       badgeClass: 'bg-gray-100 text-gray-700 border-gray-200',
+      icon: XCircle,
     };
   }
 
   return {
     label: statusStr || 'Unknown',
     badgeClass: 'bg-gray-100 text-gray-700 border-gray-200',
+    icon: HelpCircle,
   };
 }
 

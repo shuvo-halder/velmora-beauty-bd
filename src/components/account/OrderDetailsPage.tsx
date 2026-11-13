@@ -24,11 +24,13 @@ import {
   getPaymentStatusMeta, 
   getTrackingStatusMeta,
   getReturnStatusMeta,
-  getRefundStatusMeta 
+  getRefundStatusMeta,
+  getOrderStatusMeta
 } from '../../utils/trackingStatus';
 import { OrderTrackingTimeline } from './OrderTrackingTimeline';
 import { ReturnRequestModal } from './ReturnRequestModal';
 import { ReviewForm } from './ReviewForm';
+import { OrderStatusBadge, PaymentStatusBadge } from './OrderStatusBadge';
 import { 
   ArrowLeft, 
   Package, 
@@ -36,13 +38,13 @@ import {
   CreditCard, 
   MapPin, 
   Clock, 
-  RefreshCw,
-  AlertCircle,
-  CheckCircle2,
-  FileText,
-  Printer,
-  ShoppingBag,
-  ExternalLink,
+  RefreshCw, 
+  AlertCircle, 
+  CheckCircle2, 
+  FileText, 
+  Printer, 
+  ShoppingBag, 
+  ExternalLink, 
   ShieldCheck,
   Receipt,
   Copy,
@@ -205,37 +207,6 @@ export const OrderDetailsPage: React.FC = () => {
     refetchRefunds();
   };
 
-  const getStatusBadgeClass = (statusStr?: string) => {
-    const s = (statusStr || '').toUpperCase();
-    if (s.includes('DELIVERED') || s.includes('COMPLETED')) {
-      return 'bg-emerald-50 text-emerald-700 border-emerald-200';
-    }
-    if (s.includes('PROCESSING') || s.includes('SHIPPED') || s.includes('OUT FOR DELIVERY')) {
-      return 'bg-blue-50 text-blue-700 border-blue-200';
-    }
-    if (s.includes('PENDING') || s.includes('PLACED')) {
-      return 'bg-amber-50 text-amber-700 border-amber-200';
-    }
-    if (s.includes('CANCELLED') || s.includes('REJECTED') || s.includes('FAILED')) {
-      return 'bg-rose-50 text-rose-700 border-rose-200';
-    }
-    return 'bg-gray-100 text-gray-700 border-gray-200';
-  };
-
-  const getPaymentBadgeClass = (statusStr?: string) => {
-    const s = (statusStr || '').toUpperCase();
-    if (s.includes('PAID') || s.includes('SUCCESS')) {
-      return 'bg-emerald-50 text-emerald-700 border-emerald-200';
-    }
-    if (s.includes('PENDING') || s.includes('UNPAID') || s.includes('COD')) {
-      return 'bg-amber-50 text-amber-700 border-amber-200';
-    }
-    if (s.includes('REFUNDED')) {
-      return 'bg-purple-50 text-purple-700 border-purple-200';
-    }
-    return 'bg-gray-100 text-gray-700 border-gray-200';
-  };
-
   const handlePrint = () => {
     if (typeof window !== 'undefined') {
       window.print();
@@ -366,21 +337,17 @@ export const OrderDetailsPage: React.FC = () => {
           <div>
             <Link 
               href="/account/orders"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-500 hover:text-[#DC2B53] transition-colors mb-2 cursor-pointer"
+              className="min-h-[44px] inline-flex items-center gap-1.5 text-xs font-semibold text-gray-600 hover:text-[#DC2B53] transition-colors py-2 cursor-pointer"
             >
-              <ArrowLeft size={14} />
+              <ArrowLeft size={16} />
               <span>Back to Orders List</span>
             </Link>
             <div className="flex flex-wrap items-center gap-3">
               <h1 className="text-2xl font-bold text-gray-900 tracking-tight">
                 Order #{orderCode}
               </h1>
-              <span className={`px-2.5 py-1 rounded-md font-bold text-xs border ${getStatusBadgeClass(status)}`}>
-                {status}
-              </span>
-              <span className={`px-2 py-0.5 rounded-md font-semibold text-[11px] border ${getPaymentBadgeClass(paymentStatus)}`}>
-                {paymentStatus}
-              </span>
+              <OrderStatusBadge status={status} size="lg" />
+              <PaymentStatusBadge status={paymentStatus} size="sm" />
             </div>
             <div className="flex items-center gap-2 mt-1 text-xs text-gray-500 font-medium">
               <Clock size={13} className="text-gray-400" />
@@ -393,7 +360,7 @@ export const OrderDetailsPage: React.FC = () => {
             {status !== 'CANCELLED' && (
               <button
                 onClick={() => setIsReturnModalOpen(true)}
-                className="px-3.5 py-2 bg-white text-gray-700 hover:text-[#DC2B53] font-semibold text-xs rounded-lg border border-gray-200 hover:bg-gray-50 active:bg-gray-100 transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
+                className="min-h-[44px] px-3.5 py-2 bg-white text-gray-700 hover:text-[#DC2B53] font-semibold text-xs sm:text-sm rounded-lg border border-gray-200 hover:bg-gray-50 active:bg-gray-100 transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
               >
                 <RotateCcw size={14} />
                 <span>Request Return</span>
@@ -402,7 +369,7 @@ export const OrderDetailsPage: React.FC = () => {
 
             <button
               onClick={handlePrint}
-              className="px-3.5 py-2 bg-white text-gray-700 font-semibold text-xs rounded-lg border border-gray-200 hover:bg-gray-50 active:bg-gray-100 transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
+              className="min-h-[44px] px-3.5 py-2 bg-white text-gray-700 font-semibold text-xs sm:text-sm rounded-lg border border-gray-200 hover:bg-gray-50 active:bg-gray-100 transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
               title="Print Receipt"
             >
               <Printer size={14} />
@@ -411,7 +378,7 @@ export const OrderDetailsPage: React.FC = () => {
             <button 
               onClick={() => handleRefetchAll()}
               disabled={isOrderFetching}
-              className="p-2 bg-white text-gray-700 font-semibold text-xs rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors shadow-2xs disabled:opacity-60 cursor-pointer"
+              className="min-h-[44px] min-w-[44px] p-2.5 bg-white text-gray-700 font-semibold text-xs rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors shadow-2xs disabled:opacity-60 flex items-center justify-center cursor-pointer"
               title="Refresh"
             >
               <RefreshCw size={14} className={isOrderFetching ? 'animate-spin text-[#DC2B53]' : ''} />
@@ -421,10 +388,102 @@ export const OrderDetailsPage: React.FC = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           
-          {/* Main Column: Items, Payment Summary, Shipment Packages & Live Tracking */}
+          {/* Main Column: Status, Live Tracking, Items, Payment Summary, Shipment Packages */}
           <div className="lg:col-span-2 space-y-6">
             
-            {/* 1. Purchased Items Card */}
+            {/* 1. Status Header & Progress Stepper Card */}
+            {(() => {
+              const orderMeta = getOrderStatusMeta(status);
+              const PROGRESS_STEPS = ['Placed', 'Processing', 'Shipped', 'Delivered'];
+              return (
+                <div className="bg-white rounded-xl p-5 sm:p-6 border border-gray-200 shadow-2xs space-y-4">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div>
+                      <div className="text-xs font-bold text-gray-400 uppercase tracking-wider">Current Order Status</div>
+                      <div className="mt-1 flex items-center gap-2">
+                        <OrderStatusBadge status={status} size="md" />
+                        <PaymentStatusBadge status={paymentStatus} size="sm" />
+                      </div>
+                    </div>
+                    <div className="text-xs text-gray-500 font-medium">
+                      Placed on {orderDate}
+                    </div>
+                  </div>
+
+                  {orderMeta.isTerminalNegative ? (
+                    <div className={`p-4 rounded-xl border text-xs sm:text-sm font-medium flex items-center gap-3 ${orderMeta.classes}`}>
+                      <orderMeta.icon className="w-5 h-5 shrink-0" />
+                      <div>
+                        <div className="font-bold">This order is {orderMeta.label}.</div>
+                        <div className="text-xs mt-0.5 opacity-90">If you have any questions or require assistance, please contact our support team.</div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="pt-3 pb-1 border-t border-gray-100">
+                      <div className="relative flex items-center justify-between">
+                        <div className="absolute left-4 right-4 top-3.5 h-1 bg-gray-200 -z-0">
+                          <div 
+                            className="h-full bg-emerald-500 transition-all duration-500"
+                            style={{ width: `${(Math.min(orderMeta.step, 3) / 3) * 100}%` }}
+                          />
+                        </div>
+                        {PROGRESS_STEPS.map((stepLabel, idx) => {
+                          const isDone = idx <= orderMeta.step;
+                          const isCurrent = idx === orderMeta.step;
+                          return (
+                            <div key={stepLabel} className="relative z-10 flex flex-col items-center">
+                              <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
+                                isDone
+                                  ? 'bg-emerald-600 text-white shadow-xs'
+                                  : 'bg-white border-2 border-gray-300 text-gray-400'
+                              }`}>
+                                {isDone ? <Check size={14} strokeWidth={3} /> : idx + 1}
+                              </div>
+                              <span className={`text-xs mt-1.5 font-medium ${
+                                isCurrent ? 'text-gray-900 font-bold' : isDone ? 'text-gray-700' : 'text-gray-400'
+                              }`}>
+                                {stepLabel}
+                              </span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
+
+            {/* 2. Live Tracking Timeline Card */}
+            <div className="bg-white rounded-xl p-5 sm:p-6 border border-gray-200 shadow-2xs space-y-4">
+              <div className="flex items-center justify-between pb-3 border-b border-gray-100">
+                <h2 className="text-base font-bold text-gray-900 flex items-center gap-2">
+                  <Truck size={18} className="text-[#DC2B53]" />
+                  <span>Real-Time Tracking Checkpoints</span>
+                </h2>
+                <button
+                  onClick={() => refetchTracking()}
+                  disabled={isTrackingFetching}
+                  className="text-xs font-semibold text-[#DC2B53] hover:underline inline-flex items-center gap-1 cursor-pointer disabled:opacity-50"
+                  title="Update tracking live"
+                >
+                  <RefreshCw size={12} className={isTrackingFetching ? 'animate-spin' : ''} />
+                  <span>{isTrackingFetching ? 'Updating...' : 'Live Refresh'}</span>
+                </button>
+              </div>
+
+              {/* Embedded Timeline */}
+              <OrderTrackingTimeline
+                trackingData={trackingResponse}
+                isLoading={isTrackingLoading}
+                isFetching={isTrackingFetching}
+                error={trackingError}
+                onRetry={() => refetchTracking()}
+                showExternalLink={true}
+              />
+            </div>
+
+            {/* 3. Purchased Items Card */}
             <div className="bg-white rounded-xl p-5 sm:p-6 border border-gray-200 shadow-2xs">
               <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-100">
                 <h2 className="text-base font-bold text-gray-900 flex items-center gap-2">
@@ -727,36 +786,7 @@ export const OrderDetailsPage: React.FC = () => {
               )}
             </div>
 
-            {/* 4. Live Tracking Timeline Card (GET /customer/orders/:orderId/tracking) */}
-            <div className="bg-white rounded-xl p-5 sm:p-6 border border-gray-200 shadow-2xs space-y-4">
-              <div className="flex items-center justify-between pb-3 border-b border-gray-100">
-                <h2 className="text-base font-bold text-gray-900 flex items-center gap-2">
-                  <Truck size={18} className="text-[#DC2B53]" />
-                  <span>Real-Time Tracking Checkpoints</span>
-                </h2>
-                <button
-                  onClick={() => refetchTracking()}
-                  disabled={isTrackingFetching}
-                  className="text-xs font-semibold text-[#DC2B53] hover:underline inline-flex items-center gap-1 cursor-pointer disabled:opacity-50"
-                  title="Update tracking live"
-                >
-                  <RefreshCw size={12} className={isTrackingFetching ? 'animate-spin' : ''} />
-                  <span>{isTrackingFetching ? 'Updating...' : 'Live Refresh'}</span>
-                </button>
-              </div>
-
-              {/* Embedded Timeline */}
-              <OrderTrackingTimeline
-                trackingData={trackingResponse}
-                isLoading={isTrackingLoading}
-                isFetching={isTrackingFetching}
-                error={trackingError}
-                onRetry={() => refetchTracking()}
-                showExternalLink={true}
-              />
-            </div>
-
-            {/* 5. Returns & Refunds History for this Order Card */}
+            {/* Returns & Refunds History for this Order Card */}
             {((returnsResponse?.returns && returnsResponse.returns.length > 0) || 
               (refundsResponse?.refunds && refundsResponse.refunds.length > 0) ||
               (status.includes('DELIVERED') || status.includes('COMPLETED'))) && (
@@ -952,12 +982,10 @@ export const OrderDetailsPage: React.FC = () => {
               <div className="space-y-3.5">
                 <div className="p-3 bg-gray-50 rounded-lg border border-gray-100 flex items-center justify-between">
                   <div>
-                    <div className="text-[11px] font-medium text-gray-500">Method</div>
+                    <div className="text-xs font-medium text-gray-500">Method</div>
                     <div className="text-xs font-bold text-gray-900 mt-0.5">{paymentMethod}</div>
                   </div>
-                  <span className={`px-2 py-0.5 rounded text-[10px] font-bold border ${getPaymentBadgeClass(paymentStatus)}`}>
-                    {paymentStatus}
-                  </span>
+                  <PaymentStatusBadge status={paymentStatus} size="sm" />
                 </div>
                 
                 <div className="space-y-2 pt-2 border-t border-gray-100">

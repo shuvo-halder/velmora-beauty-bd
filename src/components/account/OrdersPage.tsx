@@ -11,6 +11,8 @@ import { formatPrice } from '../../utils/formatters';
 import { customerService } from '../../services/customerService';
 import { CustomerOrderListItem } from '../../types/customer';
 import { OrderTrackingTimeline } from './OrderTrackingTimeline';
+import { OrderStatusBadge, PaymentStatusBadge } from './OrderStatusBadge';
+import { getOrderStatusMeta } from '../../utils/trackingStatus';
 import { 
   Package, 
   Truck, 
@@ -24,7 +26,8 @@ import {
   ChevronLeft,
   AlertCircle,
   CreditCard,
-  Filter
+  Filter,
+  Check
 } from 'lucide-react';
 
 const STATUS_FILTERS = [
@@ -137,37 +140,6 @@ export const OrdersPage: React.FC = () => {
     setPage(1);
   };
 
-  const getStatusBadgeClass = (statusStr?: string) => {
-    const s = (statusStr || '').toUpperCase();
-    if (s.includes('DELIVERED') || s.includes('COMPLETED')) {
-      return 'bg-emerald-50 text-emerald-700 border-emerald-200';
-    }
-    if (s.includes('PROCESSING') || s.includes('SHIPPED') || s.includes('OUT FOR DELIVERY')) {
-      return 'bg-blue-50 text-blue-700 border-blue-200';
-    }
-    if (s.includes('PENDING') || s.includes('PLACED')) {
-      return 'bg-amber-50 text-amber-700 border-amber-200';
-    }
-    if (s.includes('CANCELLED') || s.includes('REJECTED') || s.includes('FAILED')) {
-      return 'bg-rose-50 text-rose-700 border-rose-200';
-    }
-    return 'bg-gray-100 text-gray-700 border-gray-200';
-  };
-
-  const getPaymentBadgeClass = (statusStr?: string) => {
-    const s = (statusStr || '').toUpperCase();
-    if (s.includes('PAID')) {
-      return 'bg-emerald-50 text-emerald-700 border-emerald-200';
-    }
-    if (s.includes('PENDING') || s.includes('UNPAID') || s.includes('COD')) {
-      return 'bg-amber-50 text-amber-700 border-amber-200';
-    }
-    if (s.includes('REFUNDED')) {
-      return 'bg-purple-50 text-purple-700 border-purple-200';
-    }
-    return 'bg-gray-100 text-gray-700 border-gray-200';
-  };
-
   return (
     <AccountLayout activeTab="orders">
       <div className="space-y-6">
@@ -224,28 +196,31 @@ export const OrdersPage: React.FC = () => {
               )}
             </div>
 
-            {/* Status Tabs on Desktop / Mobile Scroll */}
-            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
-              <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider px-1 flex items-center gap-1">
-                <Filter size={12} />
-                <span className="hidden sm:inline">Status:</span>
-              </span>
-              {STATUS_FILTERS.map((tab) => {
-                const isActive = selectedStatus === tab.value;
-                return (
-                  <button
-                    key={tab.value}
-                    onClick={() => handleStatusChange(tab.value)}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors cursor-pointer ${
-                      isActive
-                        ? 'bg-[#DC2B53] text-white shadow-xs'
-                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200/70'
-                    }`}
-                  >
-                    {tab.label}
-                  </button>
-                );
-              })}
+            {/* Status Tabs on Desktop / Mobile Scroll with Edge Fade */}
+            <div className="relative min-w-0 flex-1">
+              <div className="flex items-center gap-2 overflow-x-auto py-1 scrollbar-none pr-8">
+                <span className="text-xs font-bold text-gray-400 uppercase tracking-wider px-1 flex items-center gap-1 shrink-0">
+                  <Filter size={13} />
+                  <span className="hidden sm:inline">Status:</span>
+                </span>
+                {STATUS_FILTERS.map((tab) => {
+                  const isActive = selectedStatus === tab.value;
+                  return (
+                    <button
+                      key={tab.value}
+                      onClick={() => handleStatusChange(tab.value)}
+                      className={`min-h-[44px] px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold whitespace-nowrap transition-colors cursor-pointer shrink-0 flex items-center justify-center ${
+                        isActive
+                          ? 'bg-[#DC2B53] text-white shadow-xs'
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200/80'
+                      }`}
+                    >
+                      {tab.label}
+                    </button>
+                  );
+                })}
+              </div>
+              <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent md:hidden" />
             </div>
           </div>
 
@@ -255,12 +230,12 @@ export const OrdersPage: React.FC = () => {
               <div className="flex items-center gap-2 text-gray-600">
                 <span className="font-semibold text-gray-700">Filters active:</span>
                 {selectedStatus !== 'ALL' && (
-                  <span className="px-2 py-0.5 bg-gray-100 text-gray-700 rounded text-[11px] font-semibold">
+                  <span className="px-2 py-0.5 bg-gray-100 text-gray-700 rounded text-xs font-semibold">
                     Status: {selectedStatus}
                   </span>
                 )}
                 {debouncedSearch && (
-                  <span className="px-2 py-0.5 bg-gray-100 text-gray-700 rounded text-[11px] font-semibold">
+                  <span className="px-2 py-0.5 bg-gray-100 text-gray-700 rounded text-xs font-semibold">
                     Search: &ldquo;{debouncedSearch}&rdquo;
                   </span>
                 )}
@@ -275,35 +250,47 @@ export const OrdersPage: React.FC = () => {
           )}
         </div>
 
-        {/* Loading State */}
+        {/* Loading State matching real card layout */}
         {isLoading && (
           <div className="space-y-4">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="bg-white border border-gray-200 rounded-xl p-6 shadow-2xs space-y-4 animate-pulse">
-                <div className="flex justify-between items-center border-b border-gray-100 pb-4">
+              <div key={i} className="bg-white border border-gray-200 rounded-xl p-5 sm:p-6 shadow-2xs space-y-4 animate-pulse">
+                <div className="flex justify-between items-start border-b border-gray-100 pb-3">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-gray-200 rounded-lg" />
                     <div className="space-y-2">
-                      <div className="w-28 h-3.5 bg-gray-200 rounded" />
+                      <div className="w-28 h-4 bg-gray-200 rounded" />
                       <div className="w-20 h-3 bg-gray-100 rounded" />
                     </div>
                   </div>
-                  <div className="w-20 h-6 bg-gray-200 rounded-full" />
+                  <div className="w-24 h-6 bg-gray-200 rounded" />
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-                  <div className="md:col-span-8 space-y-3">
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-gray-200 rounded-lg" />
-                      <div className="space-y-2 flex-1">
-                        <div className="w-48 h-3.5 bg-gray-200 rounded" />
-                        <div className="w-24 h-3 bg-gray-100 rounded" />
+                <div className="flex gap-2">
+                  <div className="w-28 h-7 bg-gray-200 rounded-full" />
+                  <div className="w-20 h-7 bg-gray-200 rounded-full" />
+                </div>
+                <div className="py-2 border-t border-gray-100">
+                  <div className="flex justify-between items-center px-2">
+                    {[1, 2, 3, 4].map((s) => (
+                      <div key={s} className="flex flex-col items-center gap-1.5">
+                        <div className="w-6 h-6 bg-gray-200 rounded-full" />
+                        <div className="w-12 h-2.5 bg-gray-100 rounded" />
                       </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="space-y-2 pt-2 border-t border-gray-100">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-gray-200 rounded-lg" />
+                    <div className="space-y-2 flex-1">
+                      <div className="w-48 h-3.5 bg-gray-200 rounded" />
+                      <div className="w-28 h-3 bg-gray-100 rounded" />
                     </div>
                   </div>
-                  <div className="md:col-span-4 bg-gray-50 p-4 rounded-lg space-y-2">
-                    <div className="w-16 h-3 bg-gray-200 rounded" />
-                    <div className="w-24 h-5 bg-gray-200 rounded" />
-                  </div>
+                </div>
+                <div className="flex flex-col sm:flex-row justify-end gap-2 pt-3 border-t border-gray-100">
+                  <div className="w-full sm:w-36 h-11 bg-gray-200 rounded-lg" />
+                  <div className="w-full sm:w-28 h-11 bg-gray-100 rounded-lg" />
                 </div>
               </div>
             ))}
@@ -386,116 +373,149 @@ export const OrdersPage: React.FC = () => {
               const total = ord.total || ord.totalAmount || 0;
               const itemsList = Array.isArray(ord.items) ? ord.items : [];
               const itemCount = ord.itemCount || ord.itemsCount || itemsList.length || 1;
+              const orderMeta = getOrderStatusMeta(status);
+              const PROGRESS_STEPS = ['Placed', 'Processing', 'Shipped', 'Delivered'];
 
               return (
                 <div 
                   key={ord.id}
                   className="bg-white border border-gray-200 rounded-xl p-5 sm:p-6 shadow-2xs hover:border-gray-300 transition-all group"
                 >
-                  {/* Card Top Row */}
-                  <div className="flex flex-wrap items-center justify-between gap-3 border-b border-gray-100 pb-4">
+                  {/* Card Top Row: Order Code, Date & Total */}
+                  <div className="flex flex-wrap items-start justify-between gap-3 pb-3 border-b border-gray-100">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 bg-gray-50 rounded-lg flex items-center justify-center text-gray-500 group-hover:bg-[#FDF0F3] group-hover:text-[#DC2B53] transition-colors border border-gray-200/80 flex-shrink-0">
                         <ShoppingBag size={18} />
                       </div>
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className="text-xs font-bold text-gray-900">#{orderCode}</span>
-                          <span className="text-[11px] text-gray-400 font-medium">• {itemCount} {itemCount === 1 ? 'item' : 'items'}</span>
+                          <span className="text-sm font-bold text-gray-900">#{orderCode}</span>
+                          <span className="text-xs text-gray-400 font-medium">• {itemCount} {itemCount === 1 ? 'item' : 'items'}</span>
                         </div>
-                        <div className="text-[11px] text-gray-500 font-medium mt-0.5">
+                        <div className="text-xs text-gray-500 font-medium mt-0.5">
                           Placed on {orderDate}
                         </div>
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-2">
-                      {/* Status Badges */}
-                      <span className={`px-2.5 py-1 rounded-md font-bold text-[11px] border ${getStatusBadgeClass(status)}`}>
-                        {status}
-                      </span>
-                      <span className={`px-2 py-0.5 rounded-md font-semibold text-[10px] border ${getPaymentBadgeClass(paymentStatus)}`}>
-                        {paymentStatus}
-                      </span>
+                    <div className="text-left sm:text-right">
+                      <div className="text-xs text-gray-500 font-medium">Order Total</div>
+                      <div className="text-base font-bold text-gray-900">
+                        {formatPrice(total, currencyCode, currencySymbol)}
+                      </div>
                     </div>
                   </div>
 
-                  {/* Card Content Row */}
-                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center pt-4">
-                    {/* Items Preview */}
-                    <div className="lg:col-span-8 space-y-3">
-                      {itemsList.length > 0 ? (
-                        itemsList.slice(0, 2).map((item, idx) => (
-                          <div key={idx} className="flex items-center gap-3">
-                            <div className="w-12 h-12 rounded-lg border border-gray-200 overflow-hidden relative flex-shrink-0 bg-gray-50">
-                              <SmartImage 
-                                src={item.productImage || item.image || ''} 
-                                alt={item.productName || item.name || 'Product'} 
-                                fill
-                                fallbackType="product"
-                                fallbackLabel={item.productName || item.name}
-                                className="w-full h-full object-cover" 
-                              />
+                  {/* Prominent Status Row (right under order number and date) */}
+                  <div className="pt-3 pb-1 flex flex-wrap items-center gap-2">
+                    <OrderStatusBadge status={status} size="md" />
+                    <PaymentStatusBadge status={paymentStatus} size="sm" />
+                  </div>
+
+                  {/* Compact 4-step Progress or Terminal Negative Banner */}
+                  {orderMeta.isTerminalNegative ? (
+                    <div className={`mt-3.5 px-3.5 py-2.5 rounded-lg border text-xs sm:text-sm font-medium flex items-center gap-2.5 ${orderMeta.classes}`}>
+                      <orderMeta.icon className="w-4 h-4 shrink-0" />
+                      <span>This order is {orderMeta.label.toLowerCase()}. For support, please contact customer care.</span>
+                    </div>
+                  ) : (
+                    <div className="mt-4 pt-3 border-t border-gray-100">
+                      <div className="relative flex items-center justify-between">
+                        <div className="absolute left-3 right-3 top-3 h-0.5 bg-gray-200 -z-0">
+                          <div 
+                            className="h-full bg-emerald-500 transition-all duration-300"
+                            style={{ width: `${(Math.min(orderMeta.step, 3) / 3) * 100}%` }}
+                          />
+                        </div>
+                        {PROGRESS_STEPS.map((stepLabel, idx) => {
+                          const isDone = idx <= orderMeta.step;
+                          const isCurrent = idx === orderMeta.step;
+                          return (
+                            <div key={stepLabel} className="relative z-10 flex flex-col items-center">
+                              <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
+                                isDone
+                                  ? 'bg-emerald-600 text-white'
+                                  : 'bg-white border-2 border-gray-300 text-gray-400'
+                              }`}>
+                                {isDone ? <Check size={12} strokeWidth={3} /> : idx + 1}
+                              </div>
+                              <span className={`text-xs mt-1 font-medium ${
+                                isCurrent ? 'text-gray-900 font-bold' : isDone ? 'text-gray-700' : 'text-gray-400'
+                              }`}>
+                                {stepLabel}
+                              </span>
                             </div>
-                            <div className="min-w-0 flex-1">
-                              <div className="text-xs font-bold text-gray-900 truncate">
-                                {item.productName || item.name || 'Store Item'}
-                              </div>
-                              <div className="text-[11px] text-gray-500 font-medium mt-0.5">
-                                Qty: {item.quantity} • {formatPrice(item.unitPrice || item.price || 0, currencyCode, currencySymbol)}
-                              </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Items Preview */}
+                  <div className="mt-4 pt-3 border-t border-gray-100 space-y-2.5">
+                    {itemsList.length > 0 ? (
+                      itemsList.slice(0, 2).map((item, idx) => (
+                        <div key={idx} className="flex items-center gap-3">
+                          <div className="w-12 h-12 rounded-lg border border-gray-200 overflow-hidden relative flex-shrink-0 bg-gray-50">
+                            <SmartImage 
+                              src={item.productImage || item.image || ''} 
+                              alt={item.productName || item.name || 'Product'} 
+                              fill
+                              fallbackType="product"
+                              fallbackLabel={item.productName || item.name}
+                              className="w-full h-full object-cover" 
+                            />
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <div className="text-xs font-bold text-gray-900 truncate">
+                              {item.productName || item.name || 'Store Item'}
+                            </div>
+                            <div className="text-xs text-gray-500 font-medium mt-0.5">
+                              Qty: {item.quantity} • {formatPrice(item.unitPrice || item.price || 0, currencyCode, currencySymbol)}
                             </div>
                           </div>
-                        ))
-                      ) : (
-                        <div className="text-xs text-gray-500 italic py-1">
-                          Standard packaged shipment with {itemCount} {itemCount === 1 ? 'item' : 'items'}
                         </div>
-                      )}
-
-                      {itemsList.length > 2 && (
-                        <div className="text-[11px] font-semibold text-gray-500 pt-0.5">
-                          +{itemsList.length - 2} more {itemsList.length - 2 === 1 ? 'item' : 'items'}
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Financial & Actions Column */}
-                    <div className="lg:col-span-4 lg:text-right space-y-3 bg-gray-50/80 p-3.5 rounded-lg border border-gray-100">
-                      <div>
-                        <div className="text-[11px] font-medium text-gray-500">Order Total</div>
-                        <div className="text-base font-bold text-gray-900">
-                          {formatPrice(total, currencyCode, currencySymbol)}
-                        </div>
+                      ))
+                    ) : (
+                      <div className="text-xs text-gray-500 italic py-1">
+                        Standard packaged shipment with {itemCount} {itemCount === 1 ? 'item' : 'items'}
                       </div>
+                    )}
 
-                      <div className="flex flex-col sm:flex-row lg:flex-col gap-2 pt-1">
-                        <Link
-                          href={`/account/orders/${orderId}`}
-                          className="w-full px-3 py-2 bg-gray-900 hover:bg-gray-800 text-white font-semibold text-xs rounded-lg flex items-center justify-center gap-1.5 transition-colors shadow-2xs"
-                        >
-                          <span>View Order Details</span>
-                          <ChevronRight size={14} />
-                        </Link>
-
-                        <button
-                          onClick={() => {
-                            setSelectedTrackingOrderId(orderId);
-                            setSelectedTrackingOrderNumber(ord.orderNumber || `#${orderId.slice(-8)}`);
-                          }}
-                          className="w-full px-3 py-1.5 bg-white hover:bg-gray-50 text-gray-700 font-semibold text-xs rounded-lg border border-gray-200 flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
-                        >
-                          <Truck size={13} className="text-[#DC2B53]" />
-                          <span>Track Order</span>
-                        </button>
+                    {itemsList.length > 2 && (
+                      <div className="text-xs font-semibold text-gray-500 pt-0.5">
+                        +{itemsList.length - 2} more {itemsList.length - 2 === 1 ? 'item' : 'items'}
                       </div>
-                    </div>
+                    )}
+                  </div>
+
+                  {/* Actions Row (Mobile-first, min-h-[44px]) */}
+                  <div className="mt-4 pt-3 border-t border-gray-100 flex flex-col sm:flex-row items-stretch sm:items-center justify-end gap-2.5">
+                    <Link
+                      href={`/account/orders/${orderId}`}
+                      className="min-h-[44px] px-4 py-2.5 bg-gray-900 hover:bg-gray-800 text-white font-semibold text-xs sm:text-sm rounded-lg flex items-center justify-center gap-2 transition-colors shadow-2xs"
+                    >
+                      <span>View Order Details</span>
+                      <ChevronRight size={16} />
+                    </Link>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSelectedTrackingOrderId(orderId);
+                        setSelectedTrackingOrderNumber(ord.orderNumber || `#${orderId.slice(-8)}`);
+                      }}
+                      className="min-h-[44px] px-4 py-2.5 bg-white hover:bg-gray-50 text-gray-700 font-semibold text-xs sm:text-sm rounded-lg border border-gray-200 flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                    >
+                      <Truck size={16} className="text-[#DC2B53]" />
+                      <span>Track Order</span>
+                    </button>
                   </div>
                 </div>
               );
             })}
 
-            {/* Pagination Controls */}
+            {/* Pagination Controls with min 44px buttons */}
             {pagination.totalPages > 1 && (
               <div className="bg-white border border-gray-200 rounded-xl p-4 shadow-2xs flex flex-col sm:flex-row items-center justify-between gap-3">
                 <div className="text-xs text-gray-500 font-medium">
@@ -508,10 +528,10 @@ export const OrdersPage: React.FC = () => {
                   <button
                     onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
                     disabled={page <= 1}
-                    className="p-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                    className="min-h-[44px] min-w-[44px] p-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors flex items-center justify-center cursor-pointer"
                     title="Previous Page"
                   >
-                    <ChevronLeft size={16} />
+                    <ChevronLeft size={18} />
                   </button>
 
                   {Array.from({ length: pagination.totalPages }, (_, idx) => idx + 1)
@@ -530,7 +550,7 @@ export const OrdersPage: React.FC = () => {
                           {hasGap && <span className="px-1 text-xs text-gray-400">...</span>}
                           <button
                             onClick={() => setPage(p)}
-                            className={`w-8 h-8 rounded-lg text-xs font-bold transition-colors cursor-pointer ${
+                            className={`min-h-[44px] min-w-[44px] px-3 rounded-lg text-xs sm:text-sm font-bold transition-colors cursor-pointer flex items-center justify-center ${
                               page === p
                                 ? 'bg-[#DC2B53] text-white shadow-xs'
                                 : 'bg-gray-50 border border-gray-200 text-gray-700 hover:bg-gray-100'
@@ -545,10 +565,10 @@ export const OrdersPage: React.FC = () => {
                   <button
                     onClick={() => setPage((prev) => Math.min(prev + 1, pagination.totalPages))}
                     disabled={page >= pagination.totalPages}
-                    className="p-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                    className="min-h-[44px] min-w-[44px] p-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors flex items-center justify-center cursor-pointer"
                     title="Next Page"
                   >
-                    <ChevronRight size={16} />
+                    <ChevronRight size={18} />
                   </button>
                 </div>
               </div>
